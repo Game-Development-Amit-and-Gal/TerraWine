@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public GameData Data { get; private set; } = new GameData();
 
     [SerializeField] string firstScene = "Garden"; // סצנת התחלה (לפי השם שלך)
-
+    
     void Awake()
     {
         if (Instance != null) { Destroy(gameObject); return; }
@@ -25,7 +25,12 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
-        var loaded = SaveSystem.Load(); if (loaded == null) return;
+        
+        var loaded = SaveSystem.Load(); if (loaded == null) 
+        {
+            Debug.LogWarning("[GameManager] No saved game found. Cannot continue.");
+            return;
+        };
         Data = loaded;
         StartCoroutine(LoadAndPlace(Data.sceneName, new Vector2(Data.playerX, Data.playerY)));
     }
@@ -40,10 +45,24 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LoadAndPlace(string scene, Vector2 pos)
     {
+        
         var op = SceneManager.LoadSceneAsync(scene);
         while (!op.isDone) yield return null;
         yield return null; // פריים לוודא שהשחקן נטען
         var p = GameObject.FindGameObjectWithTag("Player");
         if (p != null) p.transform.position = new Vector3(pos.x, pos.y, p.transform.position.z);
+    }
+
+    private void OnApplicationQuit()
+    {
+        if(SceneManager.GetActiveScene().name == "MainMenu") return;
+        Debug.Log("[GameManager] OnApplicationQuit called. Saving game.");
+        SaveGame();
+    }
+    
+    private void OnApplicationPause(bool pause)
+    {   if(SceneManager.GetActiveScene().name == "MainMenu") return;
+        Debug.Log("[GameManager] OnApplicationPause called. Pause: " + pause);
+        if (pause) SaveGame();
     }
 }

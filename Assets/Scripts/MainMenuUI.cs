@@ -9,7 +9,7 @@ public class MainMenuUI : MonoBehaviour
     {
         if (continueBtn != null) continueBtn.interactable = SaveSystem.HasSave();
     }
-    public void OnNewGame() { GameManager.Instance.NewGame(); }
-    public void OnContinue() { GameManager.Instance.ContinueGame(); }
-    public void OnQuit() { Application.Quit(); }
+    public void OnNewGame() { Debug.Log("[MainMenu] New Game Clicked"); GameManager.Instance.NewGame(); }
+    public void OnContinue() { Debug.Log("[MainMenu] Continue clicked"); GameManager.Instance.ContinueGame(); }
+    public void OnQuit() { Debug.Log("[MainMenu] OnQuit Clicked"); Application.Quit(); }
 }
