@@ -13,13 +13,13 @@ public class InventorySlotClick : MonoBehaviour, IPointerClickHandler
         if (PlantingController.Instance == null) return;
         if (InventoryManager.Instance == null) return;
 
-       
+
         if (InventoryManager.Instance.CountOf(itemId) <= 0) return;
 
-        
+
         PlantingController.Instance.SelectSeed(itemId, iconImage.sprite);
 
-      
+
         var ui = GetComponentInParent<InventoryUI>();
         if (ui != null)
         {

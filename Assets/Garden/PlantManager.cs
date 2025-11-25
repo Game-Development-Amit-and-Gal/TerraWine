@@ -65,12 +65,12 @@ public class PlantManager : MonoBehaviour
         }
     }
 
-    
+
     public void ResetAll()
     {
         PlayerPrefs.DeleteKey(Key);
 
-        
+
         PlantPlot[] plots = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
 
         foreach (var p in plots)

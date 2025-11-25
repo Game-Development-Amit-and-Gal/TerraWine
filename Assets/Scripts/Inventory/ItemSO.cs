@@ -5,14 +5,14 @@ using UnityEngine;
 public class ItemSO : ScriptableObject
 {
     [Header("זהות")]
-    public string id;                 
+    public string id;
     public string displayName;
 
     [Header("נראות / חנות")]
     public Sprite icon;
     public bool stackable = true;
     [Min(1)] public int maxStack = 99;
-    [Min(0)] public int price = 0;    
+    [Min(0)] public int price = 0;
 
     private void OnValidate()
     {

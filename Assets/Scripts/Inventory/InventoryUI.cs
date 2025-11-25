@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.InputSystem;  
+using UnityEngine.InputSystem;
 
 public class InventoryUI : MonoBehaviour
 {
-    [SerializeField] GameObject panel;      
-    [SerializeField] Transform gridParent;  
-    [SerializeField] GameObject slotPrefab; 
+    [SerializeField] GameObject panel;
+    [SerializeField] Transform gridParent;
+    [SerializeField] GameObject slotPrefab;
 
     private void OnEnable()
     {
@@ -44,12 +44,12 @@ public class InventoryUI : MonoBehaviour
         panel.SetActive(false);
     }
 
- 
+
     private void Update()
     {
         if (panel == null || !panel.activeSelf) return;
 
-       
+
         if (Keyboard.current != null &&
             Keyboard.current.escapeKey.wasPressedThisFrame)
         {

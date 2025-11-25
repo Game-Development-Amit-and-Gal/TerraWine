@@ -181,7 +181,7 @@ public class BarrelPurchase : MonoBehaviour, IPointerClickHandler
         Debug.Log("[Barrel] Bought PREMIUM barrel.");
     }
 
-   
+
     public void OnPointerClick(PointerEventData eventData)
     {
         // נוודא שזה לחיצה עם כפתור שמאלי
