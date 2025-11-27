@@ -10,7 +10,8 @@ public class PlantingController : MonoBehaviour
 
     private string currentSeedId;
 
-    bool HasSeed => !string.IsNullOrEmpty(currentSeedId);
+    public bool HasSeed => !string.IsNullOrEmpty(currentSeedId);
+
 
     void Awake()
     {
@@ -42,14 +43,23 @@ public class PlantingController : MonoBehaviour
 
     void Update()
     {
+        // אם יש זרע נבחר – קליק ימני מבטל את הבחירה
+        if (HasSeed && Mouse.current != null &&
+            Mouse.current.rightButton.wasPressedThisFrame)
+        {
+            ClearSelection();
+        }
+
+        // אם אין זרע נבחר – אין מה להזיז אייקון
         if (!HasSeed || cursorSprite == null || Camera.main == null) return;
 
-        // להזיז את האייקון עם העכבר
+        // להזיז את אייקון הזרע עם העכבר
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Vector3 world = Camera.main.ScreenToWorldPoint(mousePos);
         world.z = 0f;
         cursorSprite.transform.position = world;
     }
+
 
     // נקרא מתוך ה-PlantPlot כשמשתילים
     public bool TryPlantOn(PlantPlot plot)
@@ -57,8 +67,10 @@ public class PlantingController : MonoBehaviour
         if (!HasSeed || plot == null) return false;
         if (InventoryManager.Instance == null) return false;
 
+        int countBefore = InventoryManager.Instance.CountOf(currentSeedId);
+
         // אין זרעים? מנקים בחירה
-        if (InventoryManager.Instance.CountOf(currentSeedId) <= 0)
+        if (countBefore <= 0)
         {
             ClearSelection();
             return false;
@@ -72,9 +84,14 @@ public class PlantingController : MonoBehaviour
         // מתחילים גדילה בערוגה
         plot.StartGrowth(currentSeedId);
 
-        // >>> כאן הקסם – מורידים את הזרע מהעכבר
-        ClearSelection();
+        // אם אחרי ההורדה כבר אין זרעים – עכשיו לנקות את הבחירה
+        int countAfter = InventoryManager.Instance.CountOf(currentSeedId);
+        if (countAfter <= 0)
+        {
+            ClearSelection();
+        }
 
         return true;
     }
+
 }

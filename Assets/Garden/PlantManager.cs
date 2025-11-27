@@ -25,10 +25,10 @@ public class PlantManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // ===== SAVE ALL PLOTS =====
+    
     public void SaveAll()
     {
-        // Unity 6 – במקום FindObjectsOfType
+        
         PlantPlot[] plots = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
 
         var wrapper = new PlantPlotsSaveWrapper();

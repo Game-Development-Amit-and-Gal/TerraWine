@@ -11,7 +11,8 @@ public class PlantPlotSave
     public float remainingTime;
 }
 
-public class PlantPlot : MonoBehaviour, IPointerClickHandler
+public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+
 {
     [Header("Identity")]
     [SerializeField] private string plotId;   // למשל: "PLOT_1", "PLOT_2" לכל ערוגה
@@ -23,6 +24,8 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Sprite emptySprite;
     [SerializeField] private Sprite plantedSprite;
     [SerializeField] private Sprite readySprite;
+    [Header("VFX")]
+    [SerializeField] private GameObject readyVfx;
 
     [Header("Growth")]
     [SerializeField] private float growTimeSeconds = 180f;
@@ -59,20 +62,28 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler
         remainingTime = 0f;
         if (spriteRenderer != null) spriteRenderer.sprite = emptySprite;
         if (timerText != null) timerText.gameObject.SetActive(false);
+        if (readyVfx != null) readyVfx.SetActive(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // אם אפשר לשתול (ריק / לא גדל / לא מוכן) – ננסה לשתול
-        if (CanPlant)
-        {
-            if (PlantingController.Instance != null)
-                PlantingController.Instance.TryPlantOn(this);
-        }
-        // אחרת, אם הצמח מוכן – נקצור
-        else if (isReady)
+        // רק קליק שמאלי
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
+
+        // אם הצמח מוכן – קודם כל לקצור
+        if (isReady)
         {
             Harvest();
+            return;
+        }
+
+        // אם אפשר לשתול וגם יש Seed נבחר
+        if (CanPlant &&
+            PlantingController.Instance != null &&
+            PlantingController.Instance.HasSeed)
+        {
+            PlantingController.Instance.TryPlantOn(this);
         }
     }
 
@@ -86,11 +97,14 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler
         remainingTime = growTimeSeconds;
 
         if (spriteRenderer != null) spriteRenderer.sprite = plantedSprite;
-        if (timerText != null) timerText.gameObject.SetActive(true);
+        // כאן להוריד:
+        // if (timerText != null) timerText.gameObject.SetActive(true);
+        if (readyVfx != null) readyVfx.SetActive(false);
 
         StopAllCoroutines();
         StartCoroutine(GrowRoutine());
     }
+
 
     System.Collections.IEnumerator GrowRoutine()
     {
@@ -109,6 +123,7 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler
 
         if (spriteRenderer != null) spriteRenderer.sprite = readySprite;
         if (timerText != null) timerText.gameObject.SetActive(false);
+        if (readyVfx != null) readyVfx.SetActive(true);
     }
 
     void UpdateTimerUI()
@@ -167,7 +182,7 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler
         else if (isGrowing)
         {
             if (spriteRenderer != null) spriteRenderer.sprite = plantedSprite;
-            if (timerText != null) timerText.gameObject.SetActive(true);
+            if (timerText != null) timerText.gameObject.SetActive(false);
             StopAllCoroutines();
             StartCoroutine(GrowRoutine());
         }
@@ -189,5 +204,27 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler
         // מאפסים את הערוגה לריקה
         ResetToEmpty();
     }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (timerText == null) return;
+
+        if (isGrowing)
+        {
+            timerText.gameObject.SetActive(true);
+            UpdateTimerUI(); // לוודא שהטקסט מעודכן לזמן הנוכחי
+        }
+        else if (isReady)
+        {
+            timerText.text = "Ready!";
+            timerText.gameObject.SetActive(true);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (timerText == null) return;
+        timerText.gameObject.SetActive(false);
+    }
+
 
 }

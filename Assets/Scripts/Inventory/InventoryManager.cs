@@ -41,7 +41,7 @@ public class InventoryManager : MonoBehaviour
         if (amount <= 0 || !catalog.ContainsKey(id)) return false;
         var item = catalog[id];
 
-        // קודם נסה למלא סטאקים קיימים
+       
         if (item.stackable)
         {
             foreach (var s in slots)
@@ -56,7 +56,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        // הוסף סלוטים חדשים
+      
         while (amount > 0 && slots.Count < capacity)
         {
             int put = item.stackable ? Mathf.Min(item.maxStack, amount) : 1;
@@ -65,7 +65,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         Save(); onChanged?.Invoke();
-        return amount == 0; // true אם נכנס הכל
+        return amount == 0; 
     }
 
     public bool Remove(string id, int amount = 1)

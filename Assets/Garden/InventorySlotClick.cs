@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using UnityEngine.EventSystems;   // בשביל IPointerClickHandler
+using UnityEngine.UI;            // בשביל Image
 
 public class InventorySlotClick : MonoBehaviour, IPointerClickHandler
 {
@@ -9,21 +9,40 @@ public class InventorySlotClick : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (string.IsNullOrEmpty(itemId)) return;
-        if (PlantingController.Instance == null) return;
-        if (InventoryManager.Instance == null) return;
+        // רק קליק שמאלי
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
 
-       
-        if (InventoryManager.Instance.CountOf(itemId) <= 0) return;
+        if (string.IsNullOrEmpty(itemId))
+            return;
 
-        
-        PlantingController.Instance.SelectSeed(itemId, iconImage.sprite);
-
-      
-        var ui = GetComponentInParent<InventoryUI>();
-        if (ui != null)
+        // טוענים את ה-ItemSO לפי ה-id
+        ItemSO so = Resources.Load<ItemSO>($"Items/{itemId}");
+        if (so == null)
         {
-            ui.Close();
+            Debug.LogWarning($"[InventorySlotClick] No ItemSO found for id={itemId}");
+            return;
+        }
+
+        // --- אם זה seed → בחירת זרע ל-PlantingController ---
+        if (so.isSeed)
+        {
+            if (PlantingController.Instance != null && iconImage != null)
+            {
+                PlantingController.Instance.SelectSeed(itemId, iconImage.sprite);
+            }
+        }
+        else
+        {
+            // פה בעתיד אפשר לשים לוגיקה של גדרות / דקורציה / כלים
+            Debug.Log($"[InventorySlotClick] {itemId} is NOT a seed (clicked normally).");
+        }
+
+        // 👇 בכל מקרה (seed או לא) – נסגור את הקנבס של האינבנטורי
+        var invUI = GetComponentInParent<InventoryUI>();
+        if (invUI != null)
+        {
+            invUI.Close();
         }
     }
 }
