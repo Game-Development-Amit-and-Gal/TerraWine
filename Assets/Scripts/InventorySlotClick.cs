@@ -27,9 +27,10 @@ public class InventorySlotClick : MonoBehaviour, IPointerClickHandler
         // --- אם זה seed → בחירת זרע ל-PlantingController ---
         if (so.isSeed)
         {
-            if (PlantingController.Instance != null && iconImage != null)
+            if (PlantingController.Instance != null)
             {
-                PlantingController.Instance.SelectSeed(itemId, iconImage.sprite);
+                // 👇 פה התיקון – מעבירים את ה-ItemSO עצמו
+                PlantingController.Instance.SelectSeed(so);
             }
         }
         else

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class GameManager : MonoBehaviour
     public GameData Data { get; private set; } = new GameData();
 
     [SerializeField] string firstScene = "SampleScene";
+    [Header("UI")]
+    [SerializeField] private Canvas mainMenuCanvas;
+    [Header("Main Menu World")]
+    [SerializeField] private GameObject mainMenuRoot;
 
     void Awake()
     {
@@ -21,10 +26,33 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // ===== NEW GAME =====
     public void NewGame()
     {
-        // 1. נתוני משחק חדשים
+        StartCoroutine(PlayIntroAndStartGame());
+    }
+
+    private IEnumerator PlayIntroAndStartGame()
+    {
+        // לכבות את הקנבס של המסך הראשי
+        if (mainMenuCanvas != null)
+            mainMenuCanvas.gameObject.SetActive(false);
+        if (mainMenuRoot != null)
+            mainMenuRoot.gameObject.SetActive(false);
+
+        VideoPlayer videoPlayer = GameObject.Find("IntroVideoPlayer")?.GetComponent<VideoPlayer>();
+        if (videoPlayer != null && videoPlayer.clip != null)
+        {
+            videoPlayer.Play();
+
+            yield return new WaitUntil(() => videoPlayer.isPlaying);
+            yield return new WaitUntil(() => !videoPlayer.isPlaying);
+        }
+        else
+        {
+            Debug.LogWarning("[GameManager] No VideoPlayer or clip found. Skipping intro.");
+        }
+
+        // מכאן ממשיכים כמו שיש לך:
         Data = new GameData
         {
             sceneName = firstScene,
@@ -32,31 +60,28 @@ public class GameManager : MonoBehaviour
             playerY = 0,
             money = 500,
             season = 1,
-            lastRealTimeTicks = DateTime.UtcNow.Ticks   // זמן התחלה
+            lastRealTimeTicks = DateTime.UtcNow.Ticks
         };
 
-        // 2. אינבנטורי חדש + פריטים התחלתיים
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.ResetAll();
-            // ה-id חייב להיות בדיוק כמו ב-ItemSO !
             InventoryManager.Instance.Add("Cabernet_Sauvignon_Seed", 5);
+            InventoryManager.Instance.Add("Grenache_Seed", 5);
+            InventoryManager.Instance.Add("Petit_verdot_Seed", 1);
         }
         else
         {
             Debug.LogWarning("[GameManager] NewGame: no InventoryManager.Instance found");
         }
 
-        // 3. איפוס כל הערוגות
         PlantManager.Instance?.ResetAll();
-
-        // 4. שמירה
         SaveSystem.Save(Data);
 
-        // 5. טעינת סצנת ההתחלה
-        StartCoroutine(LoadAndPlace(Data.sceneName,
-                                    new Vector2(Data.playerX, Data.playerY)));
+        yield return StartCoroutine(LoadAndPlace(Data.sceneName,
+                                      new Vector2(Data.playerX, Data.playerY)));
     }
+
 
     // ===== CONTINUE GAME =====
     public void ContinueGame()
@@ -84,6 +109,48 @@ public class GameManager : MonoBehaviour
                                               new Vector2(Data.playerX, Data.playerY),
                                               deltaSeconds));
     }
+    // ===== CHANGE SCENE DURING GAME =====
+    public void ChangeScene(string sceneName, Vector2 newPlayerPos)
+    {
+        StartCoroutine(ChangeSceneCoroutine(sceneName, newPlayerPos));
+    }
+
+    private IEnumerator ChangeSceneCoroutine(string sceneName, Vector2 newPlayerPos)
+    {
+        // 1. שומרות משחק + (אם יש ערוגות) מעדכנות lastRealTimeTicks ומצב ערוגות
+        SaveGame();
+
+        // 2. טוענות את הסצנה החדשה
+        var op = SceneManager.LoadSceneAsync(sceneName);
+        while (!op.isDone)
+            yield return null;
+        yield return null;
+
+        // 3. ממקמות את השחקן
+        var p = GameObject.FindGameObjectWithTag("Player");
+        if (p != null)
+            p.transform.position = new Vector3(newPlayerPos.x, newPlayerPos.y, p.transform.position.z);
+
+        // 4. אם בסצנה החדשה יש ערוגות – נתקדם בזמן מאז פעם אחרונה ששמרנו ערוגות
+        if (PlantManager.Instance != null && PlantManager.Instance.HasAnyPlotsInScene())
+        {
+            long nowTicks = DateTime.UtcNow.Ticks;
+            float deltaSeconds = 0f;
+
+            if (Data.lastRealTimeTicks != 0)
+            {
+                deltaSeconds = (float)new TimeSpan(nowTicks - Data.lastRealTimeTicks)
+                                           .TotalSeconds;
+            }
+
+            PlantManager.Instance.LoadAll(deltaSeconds);
+
+            Debug.Log("[GameManager] Loaded plants with deltaSeconds = " + deltaSeconds);
+        }
+    }
+
+
+
 
     // ===== SAVE =====
     public void SaveGame()
@@ -99,15 +166,21 @@ public class GameManager : MonoBehaviour
         // שם הסצנה
         Data.sceneName = SceneManager.GetActiveScene().name;
 
-        // זמן שמירה אחרון
-        Data.lastRealTimeTicks = DateTime.UtcNow.Ticks;
+        bool hasPlots = PlantManager.Instance != null && PlantManager.Instance.HasAnyPlotsInScene();
 
-        // שמירת GameData
+        // אם יש ערוגות בסצנה – זה רגע חשוב לצמחים, נעדכן lastRealTimeTicks
+        if (hasPlots)
+        {
+            Data.lastRealTimeTicks = DateTime.UtcNow.Ticks;
+        }
+
+        // שומרים את ה-GameData (כסף, עונה וכו’)
         SaveSystem.Save(Data);
 
-        // שמירת כל הערוגות
+        // שומרים את מצב הערוגות – אבל SaveAll כבר לא ידרוס אם אין ערוגות
         PlantManager.Instance?.SaveAll();
     }
+
 
     // ===== HELPERS FOR LOADING =====
     IEnumerator LoadAndPlace(string scene, Vector2 pos)

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 302182c9ff20b604d9d22ed6aff13dd0, type: 3}
-  m_Name: Cabernet_Sauvignon_seed
+  m_Name: Petit_verdot_Seed
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  id: Cabernet_Sauvignon_Seed
-  displayName: Cabernet Sauvignon
-  icon: {fileID: -4809956278208246938, guid: 71b061cb9e2fe6a4cb7713ef9edf27e6, type: 3}
+  id: Petit_verdot_Seed
+  displayName: Petit verdot
+  icon: {fileID: -2113338123601233596, guid: 1d286f30af8e29541a5631ce37f78d64, type: 3}
   stackable: 1
   maxStack: 99
   price: 0
   isSeed: 1
   growTimeSeconds: 10
-  harvestItem: {fileID: 11400000, guid: ef580fb1946b50e4faf98731989d932c, type: 2}
+  harvestItem: {fileID: 11400000, guid: 7a6c0259e5a66ab4ab9f1f63b741ade2, type: 2}
   harvestAmount: 10
   plantedPlotSprite: {fileID: -1765156354197853431, guid: 1f6c1f6556fa9b34baf6c726b9863abc, type: 3}
   readyPlotSprite: {fileID: -8074475992512578779, guid: c529a7e97676bc24682de68c787369ea, type: 3}

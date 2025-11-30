@@ -9,10 +9,12 @@ public class PlantPlotSave
     public bool isGrowing;
     public bool isReady;
     public float remainingTime;
+    public string seedId;
+    public string harvestItemId;
+    public int harvestAmount;
 }
 
 public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
-
 {
     [Header("Identity")]
     [SerializeField] private string plotId;   // למשל: "PLOT_1", "PLOT_2" לכל ערוגה
@@ -24,22 +26,25 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     [SerializeField] private Sprite emptySprite;
     [SerializeField] private Sprite plantedSprite;
     [SerializeField] private Sprite readySprite;
+
     [Header("VFX")]
     [SerializeField] private GameObject readyVfx;
-
-    [Header("Growth")]
-    [SerializeField] private float growTimeSeconds = 180f;
 
     [Header("UI (לא חובה)")]
     [SerializeField] private TMP_Text timerText;
 
     [Header("Harvest")]
-    [SerializeField] private string harvestItemId = "Cabernet_Sauvignon_Grap"; // לשנות ל-id של הענבים שלך
-    [SerializeField] private int harvestAmount = 10;
+    string seedId;
+
 
     bool isGrowing;
     bool isReady;
     float remainingTime;
+    private string harvestItemId;
+    private int harvestAmount;
+
+    // אופציונלי – אם תרצי לשמור איזה seed נשתל כאן
+
 
     public bool CanPlant => !isGrowing && !isReady;
     public string PlotId => plotId;
@@ -87,23 +92,36 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         }
     }
 
-
-    public void StartGrowth(string seedId)
+    // 👇 פה השינוי – מקבלת growSeconds מבחוץ
+    public void StartGrowth(ItemSO seed)
     {
-        if (!CanPlant) return;
+        if (!CanPlant || seed == null || !seed.isSeed) return;
+
+        seedId = seed.id;
 
         isGrowing = true;
         isReady = false;
-        remainingTime = growTimeSeconds;
+        remainingTime = seed.growTimeSeconds;
 
-        if (spriteRenderer != null) spriteRenderer.sprite = plantedSprite;
-        // כאן להוריד:
-        // if (timerText != null) timerText.gameObject.SetActive(true);
+        // להגדיר מה נקצור:
+        harvestItemId = seed.harvestItem != null ? seed.harvestItem.id : null;
+        harvestAmount = seed.harvestAmount;
+
+        // ספרייט בזמן גדילה:
+        if (spriteRenderer != null)
+        {
+            if (seed.plantedPlotSprite != null)
+                spriteRenderer.sprite = seed.plantedPlotSprite;
+            else
+                spriteRenderer.sprite = plantedSprite;
+        }
+
         if (readyVfx != null) readyVfx.SetActive(false);
 
         StopAllCoroutines();
         StartCoroutine(GrowRoutine());
     }
+
 
 
     System.Collections.IEnumerator GrowRoutine()
@@ -143,33 +161,38 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             id = plotId,
             isGrowing = isGrowing,
             isReady = isReady,
-            remainingTime = remainingTime
+            remainingTime = remainingTime,
+            seedId = seedId,
+            harvestItemId = harvestItemId,
+            harvestAmount = harvestAmount
         };
     }
 
-    // ---- טעינה (עם דלתא זמן אמיתי) ----
     public void LoadFrom(PlantPlotSave s, float deltaSeconds)
     {
         if (s == null) return;
+
+        seedId = s.seedId;
+        harvestItemId = s.harvestItemId;
+        harvestAmount = s.harvestAmount;
 
         isGrowing = s.isGrowing;
         isReady = s.isReady;
         remainingTime = s.remainingTime;
 
-        // אם הייתה באמצע גדילה – מחסירים את הזמן שעבר
+        // כמו שהיה אצלך – חישוב הזמן שעבר:
         if (isGrowing)
         {
             remainingTime -= deltaSeconds;
             if (remainingTime <= 0f)
             {
-                // בזמן שהמשחק היה סגור – הצמח כבר הספיק לגדול
                 isGrowing = false;
                 isReady = true;
                 remainingTime = 0f;
             }
         }
 
-        // לעדכן ספרייטים ו-Timer
+        // לעדכן ספרייטים:
         if (!isGrowing && !isReady)
         {
             ResetToEmpty();
@@ -178,15 +201,19 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         {
             if (spriteRenderer != null) spriteRenderer.sprite = readySprite;
             if (timerText != null) timerText.gameObject.SetActive(false);
+            if (readyVfx != null) readyVfx.SetActive(true);
         }
         else if (isGrowing)
         {
             if (spriteRenderer != null) spriteRenderer.sprite = plantedSprite;
             if (timerText != null) timerText.gameObject.SetActive(false);
+            if (readyVfx != null) readyVfx.SetActive(false);
+
             StopAllCoroutines();
             StartCoroutine(GrowRoutine());
         }
     }
+
     private void Harvest()
     {
         if (!isReady) return;
@@ -204,6 +231,7 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         // מאפסים את הערוגה לריקה
         ResetToEmpty();
     }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (timerText == null) return;
@@ -225,6 +253,4 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         if (timerText == null) return;
         timerText.gameObject.SetActive(false);
     }
-
-
 }

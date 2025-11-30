@@ -25,11 +25,17 @@ public class PlantManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    
+
     public void SaveAll()
     {
-        
         PlantPlot[] plots = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
+
+        // אם אין בכלל ערוגות בסצנה הזאת – לא שומרים (כדי לא לדרוס שמירה קיימת)
+        if (plots == null || plots.Length == 0)
+        {
+            Debug.Log("[PlantManager] SaveAll: no PlantPlots in this scene, skipping save.");
+            return;
+        }
 
         var wrapper = new PlantPlotsSaveWrapper();
         foreach (var p in plots)
@@ -38,7 +44,11 @@ public class PlantManager : MonoBehaviour
         string json = JsonUtility.ToJson(wrapper);
         PlayerPrefs.SetString(Key, json);
         PlayerPrefs.Save();
+
+        Debug.Log("[PlantManager] SaveAll: saved " + wrapper.plots.Count + " plots.");
     }
+
+
 
     // ===== LOAD ALL PLOTS =====
     public void LoadAll(float deltaSeconds)
@@ -65,15 +75,22 @@ public class PlantManager : MonoBehaviour
         }
     }
 
-    
+
     public void ResetAll()
     {
         PlayerPrefs.DeleteKey(Key);
 
-        
+
         PlantPlot[] plots = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
 
         foreach (var p in plots)
             p.ResetToEmpty();
     }
+
+    public bool HasAnyPlotsInScene()
+    {
+        PlantPlot[] plots = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
+        return plots != null && plots.Length > 0;
+    }
+
 }

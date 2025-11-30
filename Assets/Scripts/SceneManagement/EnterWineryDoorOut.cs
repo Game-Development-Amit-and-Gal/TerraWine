@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class EnterWineryDoor : MonoBehaviour
+public class EnterWineryDoorOut : MonoBehaviour
 {
     [Tooltip("שם הסצנה של החדר אירוח / פנים היקב")]
     public string sceneName = "WineryReception";
+
+    public Vector2 playerSpawnPosition;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(sceneName);
+            GameManager.Instance.ChangeScene(sceneName, playerSpawnPosition);
         }
     }
 }

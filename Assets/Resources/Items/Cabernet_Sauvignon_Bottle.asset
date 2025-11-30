@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Cabernet_Sauvignon_Bottle
   displayName: Cabernet Sauvignon Bottle
-  icon: {fileID: -1447383366951848951, guid: 52ad1663d65aa8e41b167d0cfc7b5876, type: 3}
+  icon: {fileID: -8054049482667927149, guid: 2702c2724237a5b4392ffeea4638f257, type: 3}
   stackable: 1
   maxStack: 99
   price: 0
+  isSeed: 0
+  growTimeSeconds: 180

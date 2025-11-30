@@ -10,13 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 302182c9ff20b604d9d22ed6aff13dd0, type: 3}
-  m_Name: Cabernet_Sauvignon_Grap
+  m_Name: Grenache_Grap
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  id: Cabernet_Sauvignon_Grap
-  displayName: Cabernet Sauvignon Grap
+  id: Grenache_Grap
+  displayName: Grenache Grap
   icon: {fileID: 2719153232368109570, guid: c0f135678b8eb1941bab89ed0bf4dbb0, type: 3}
   stackable: 1
   maxStack: 99
   price: 0
   isSeed: 0
   growTimeSeconds: 180
+  harvestItem: {fileID: 0}
+  harvestAmount: 10
+  plantedPlotSprite: {fileID: 0}
+  readyPlotSprite: {fileID: 0}

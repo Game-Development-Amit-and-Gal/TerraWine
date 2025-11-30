@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9dd4a205004a83347be0876b83c72036
+guid: 8d6d8c4a7875b5e4d92b2419c4dabecd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -42808061691357232
-    second: WhatsApp Image 2025-11-10 at 02.59.40_469085a9_0
+      213: -1501616773658509519
+    second: merlo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WhatsApp Image 2025-11-10 at 02.59.40_469085a9_0
+      name: merlo_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 96
-        width: 1006
-        height: 816
+        x: 110
+        y: 10
+        width: 249
+        height: 605
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0d71d517b4ae76ff0800000000000000
-      internalID: -42808061691357232
+      spriteID: 13ff051108f292be0800000000000000
+      internalID: -1501616773658509519
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WhatsApp Image 2025-11-10 at 02.59.40_469085a9_0: -42808061691357232
+      merlo_0: -1501616773658509519
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
