@@ -5,7 +5,7 @@ public class GlobalEventSys : MonoBehaviour
     private static GlobalEventSys instance;
     private void Awake()
     {
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
             return;

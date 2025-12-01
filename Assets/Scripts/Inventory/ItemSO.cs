@@ -13,6 +13,7 @@ public class ItemSO : ScriptableObject
     public bool stackable = true;
     [Min(1)] public int maxStack = 99;
     [Min(0)] public int price = 0;
+<<<<<<< HEAD
 
     [Header("סוג האייטם")]
     public bool isSeed;
@@ -28,6 +29,8 @@ public class ItemSO : ScriptableObject
     // (אופציונלי – אם תרצי ספרייטים שונים לערוגה לפי הזן)
     public Sprite plantedPlotSprite;
     public Sprite readyPlotSprite;
+=======
+>>>>>>> 3e08de63b0fa95385f0239e967b701537e9f8b1e
 
     private void OnValidate()
     {

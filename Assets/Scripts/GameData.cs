@@ -18,6 +18,6 @@ public class GameData
 [System.Serializable]
 public class OwnedBarrelData
 {
-    public string id;        
-    public bool isPremium;   
+    public string id;
+    public bool isPremium;
 }
