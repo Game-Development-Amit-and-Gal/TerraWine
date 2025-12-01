@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Intro Settings")]
     [SerializeField] private bool playIntro = true;
+    [SerializeField] private VideoPlayer introVideoPlayer;   
+    [SerializeField] private string introFileName = "game_video.mp4";
 
     void Awake()
     {
@@ -42,26 +46,32 @@ public class GameManager : MonoBehaviour
         if (mainMenuRoot != null)
             mainMenuRoot.gameObject.SetActive(false);
 
-        // אם לא רוצים אינטרו – פשוט מדלגים ישר למשחק
-        if (playIntro)
+        if (playIntro && introVideoPlayer != null)
         {
-            VideoPlayer videoPlayer = GameObject.Find("IntroVideoPlayer")?.GetComponent<VideoPlayer>();
-            if (videoPlayer != null && videoPlayer.clip != null)
-            {
-                videoPlayer.Play();
+            // בונים URL לקובץ מתוך StreamingAssets (עובד ב-WebGL)
+            string url = Path.Combine(Application.streamingAssetsPath, introFileName);
+            Debug.Log("[GameManager] Intro video URL: " + url);
 
-                // לחכות שיתחיל להתנגן
-                yield return new WaitUntil(() => videoPlayer.isPlaying);
-                // לחכות שיסתיים
-                yield return new WaitUntil(() => !videoPlayer.isPlaying);
-            }
-            else
-            {
-                Debug.LogWarning("[GameManager] No VideoPlayer or clip found. Skipping intro.");
-            }
+            introVideoPlayer.source = VideoSource.Url;
+            introVideoPlayer.url = url;
+
+            // להכין את הווידאו (חשוב ל-WebGL)
+            introVideoPlayer.Prepare();
+            yield return new WaitUntil(() => introVideoPlayer.isPrepared);
+
+            // פה כבר היה קליק על New Game → יש user gesture
+            introVideoPlayer.Play();
+
+            // לחכות עד שהסרט ייגמר
+            while (introVideoPlayer.isPlaying)
+                yield return null;
+        }
+        else
+        {
+            Debug.LogWarning("[GameManager] Intro disabled or VideoPlayer missing. Skipping intro.");
         }
 
-        // ↓ מכאן ממשיך אותו דבר כמו שהיה לך
+        // ↓ מכאן ממשיך בדיוק כמו שהיה לך
         Data = new GameData
         {
             sceneName = firstScene,
@@ -87,10 +97,11 @@ public class GameManager : MonoBehaviour
         PlantManager.Instance?.ResetAll();
         SaveSystem.Save(Data);
 
-        yield return StartCoroutine(LoadAndPlace(Data.sceneName,
-                                      new Vector2(Data.playerX, Data.playerY)));
+        yield return StartCoroutine(LoadAndPlace(
+            Data.sceneName,
+            new Vector2(Data.playerX, Data.playerY)
+        ));
     }
-
 
 
 
