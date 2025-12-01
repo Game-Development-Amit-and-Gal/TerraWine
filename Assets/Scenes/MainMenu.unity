@@ -1193,6 +1193,7 @@ MonoBehaviour:
   firstScene: SampleScene
   mainMenuCanvas: {fileID: 1775925191}
   mainMenuRoot: {fileID: 150341681}
+  playIntro: 0
 --- !u!4 &1427573477
 Transform:
   m_ObjectHideFlags: 0

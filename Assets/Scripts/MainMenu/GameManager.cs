@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     [Header("Main Menu World")]
     [SerializeField] private GameObject mainMenuRoot;
 
+    [Header("Intro Settings")]
+    [SerializeField] private bool playIntro = true;
+
     void Awake()
     {
         if (Instance != null)
@@ -39,20 +42,26 @@ public class GameManager : MonoBehaviour
         if (mainMenuRoot != null)
             mainMenuRoot.gameObject.SetActive(false);
 
-        VideoPlayer videoPlayer = GameObject.Find("IntroVideoPlayer")?.GetComponent<VideoPlayer>();
-        if (videoPlayer != null && videoPlayer.clip != null)
+        // אם לא רוצים אינטרו – פשוט מדלגים ישר למשחק
+        if (playIntro)
         {
-            videoPlayer.Play();
+            VideoPlayer videoPlayer = GameObject.Find("IntroVideoPlayer")?.GetComponent<VideoPlayer>();
+            if (videoPlayer != null && videoPlayer.clip != null)
+            {
+                videoPlayer.Play();
 
-            yield return new WaitUntil(() => videoPlayer.isPlaying);
-            yield return new WaitUntil(() => !videoPlayer.isPlaying);
-        }
-        else
-        {
-            Debug.LogWarning("[GameManager] No VideoPlayer or clip found. Skipping intro.");
+                // לחכות שיתחיל להתנגן
+                yield return new WaitUntil(() => videoPlayer.isPlaying);
+                // לחכות שיסתיים
+                yield return new WaitUntil(() => !videoPlayer.isPlaying);
+            }
+            else
+            {
+                Debug.LogWarning("[GameManager] No VideoPlayer or clip found. Skipping intro.");
+            }
         }
 
-        // מכאן ממשיכים כמו שיש לך:
+        // ↓ מכאן ממשיך אותו דבר כמו שהיה לך
         Data = new GameData
         {
             sceneName = firstScene,
@@ -83,7 +92,8 @@ public class GameManager : MonoBehaviour
     }
 
 
-    // ===== CONTINUE GAME =====
+
+
     public void ContinueGame()
     {
         var loaded = SaveSystem.Load();
@@ -93,7 +103,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // חישוב כמה זמן אמיתי עבר מאז השמירה (שימושי להמשך)
+        
         long nowTicks = DateTime.UtcNow.Ticks;
         float deltaSeconds = 0f;
         if (loaded.lastRealTimeTicks != 0)
@@ -104,12 +114,12 @@ public class GameManager : MonoBehaviour
 
         Data = loaded;
 
-        // טוענים סצנה + מחזירים שחקן + משחזרים ערוגות
+        
         StartCoroutine(LoadAndPlaceAndRestore(Data.sceneName,
                                               new Vector2(Data.playerX, Data.playerY),
                                               deltaSeconds));
     }
-    // ===== CHANGE SCENE DURING GAME =====
+    
     public void ChangeScene(string sceneName, Vector2 newPlayerPos)
     {
         StartCoroutine(ChangeSceneCoroutine(sceneName, newPlayerPos));
@@ -117,21 +127,21 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ChangeSceneCoroutine(string sceneName, Vector2 newPlayerPos)
     {
-        // 1. שומרות משחק + (אם יש ערוגות) מעדכנות lastRealTimeTicks ומצב ערוגות
+       
         SaveGame();
 
-        // 2. טוענות את הסצנה החדשה
+      
         var op = SceneManager.LoadSceneAsync(sceneName);
         while (!op.isDone)
             yield return null;
         yield return null;
 
-        // 3. ממקמות את השחקן
+       
         var p = GameObject.FindGameObjectWithTag("Player");
         if (p != null)
             p.transform.position = new Vector3(newPlayerPos.x, newPlayerPos.y, p.transform.position.z);
 
-        // 4. אם בסצנה החדשה יש ערוגות – נתקדם בזמן מאז פעם אחרונה ששמרנו ערוגות
+        
         if (PlantManager.Instance != null && PlantManager.Instance.HasAnyPlotsInScene())
         {
             long nowTicks = DateTime.UtcNow.Ticks;
