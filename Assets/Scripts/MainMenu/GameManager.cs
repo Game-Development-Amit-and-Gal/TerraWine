@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Intro Settings")]
     [SerializeField] private bool playIntro = true;
-    [SerializeField] private VideoPlayer introVideoPlayer;   
+    [SerializeField] private VideoPlayer introVideoPlayer;
     [SerializeField] private string introFileName = "game_video.mp4";
 
     void Awake()
@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        
+
         long nowTicks = DateTime.UtcNow.Ticks;
         float deltaSeconds = 0f;
         if (loaded.lastRealTimeTicks != 0)
@@ -125,12 +125,12 @@ public class GameManager : MonoBehaviour
 
         Data = loaded;
 
-        
+
         StartCoroutine(LoadAndPlaceAndRestore(Data.sceneName,
                                               new Vector2(Data.playerX, Data.playerY),
                                               deltaSeconds));
     }
-    
+
     public void ChangeScene(string sceneName, Vector2 newPlayerPos)
     {
         StartCoroutine(ChangeSceneCoroutine(sceneName, newPlayerPos));
@@ -138,21 +138,21 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ChangeSceneCoroutine(string sceneName, Vector2 newPlayerPos)
     {
-       
+
         SaveGame();
 
-      
+
         var op = SceneManager.LoadSceneAsync(sceneName);
         while (!op.isDone)
             yield return null;
         yield return null;
 
-       
+
         var p = GameObject.FindGameObjectWithTag("Player");
         if (p != null)
             p.transform.position = new Vector3(newPlayerPos.x, newPlayerPos.y, p.transform.position.z);
 
-        
+
         if (PlantManager.Instance != null && PlantManager.Instance.HasAnyPlotsInScene())
         {
             long nowTicks = DateTime.UtcNow.Ticks;

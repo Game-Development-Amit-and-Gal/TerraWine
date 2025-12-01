@@ -11,10 +11,10 @@ public class InventoryManager : MonoBehaviour
     [Min(1)] public int capacity = 20;
 
     [Header("אירועי UI")]
-    public UnityEvent onChanged;  
-    const string Key = "PROFILE::DEFAULT::INVENTORY"; 
+    public UnityEvent onChanged;
+    const string Key = "PROFILE::DEFAULT::INVENTORY";
 
-    private Dictionary<string, ItemSO> catalog = new(); 
+    private Dictionary<string, ItemSO> catalog = new();
     private List<InventorySlot> slots = new();
 
     public IReadOnlyList<InventorySlot> Slots => slots;
@@ -25,7 +25,7 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        
+
         foreach (var item in Resources.LoadAll<ItemSO>("Items"))
             if (!catalog.ContainsKey(item.id)) catalog.Add(item.id, item);
 
@@ -33,7 +33,7 @@ public class InventoryManager : MonoBehaviour
         onChanged?.Invoke();
     }
 
-  
+
 
     #region API
     public bool Add(string id, int amount = 1)
@@ -41,7 +41,7 @@ public class InventoryManager : MonoBehaviour
         if (amount <= 0 || !catalog.ContainsKey(id)) return false;
         var item = catalog[id];
 
-       
+
         if (item.stackable)
         {
             foreach (var s in slots)
@@ -56,7 +56,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-      
+
         while (amount > 0 && slots.Count < capacity)
         {
             int put = item.stackable ? Mathf.Min(item.maxStack, amount) : 1;
@@ -65,7 +65,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         Save(); onChanged?.Invoke();
-        return amount == 0; 
+        return amount == 0;
     }
 
     public bool Remove(string id, int amount = 1)
@@ -104,8 +104,8 @@ public class InventoryManager : MonoBehaviour
 
         if (!PlayerPrefs.HasKey(Key))
         {
-       
-            capacity = Mathf.Max(1, capacity); 
+
+            capacity = Mathf.Max(1, capacity);
             return;
         }
 
