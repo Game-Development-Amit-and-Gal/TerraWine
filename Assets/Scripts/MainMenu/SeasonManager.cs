@@ -43,10 +43,10 @@ public class SeasonManager : MonoBehaviour
         currentSeasonIndex = PlayerPrefs.GetInt(KEY_SEASON_INDEX, 0);
         currentDay = PlayerPrefs.GetInt(KEY_CURRENT_DAY, 1);
 
-        
+
         string lastDateStr = PlayerPrefs.GetString(KEY_LAST_DATE, System.DateTime.Now.ToString());
 
-       
+
         if (System.DateTime.
             TryParse(lastDateStr, out System.DateTime lastDate)) // parse last saved date to DateTime
         {
@@ -58,7 +58,8 @@ public class SeasonManager : MonoBehaviour
                 Debug.Log($"[SeasonManager] Advancing day for real time passage. Day {i + 1} of {daysPassed}.");
                 AdvanceDay();
             }
-        } else { Debug.LogWarning("[SeasonManager] Failed to parse last saved date."); }
+        }
+        else { Debug.LogWarning("[SeasonManager] Failed to parse last saved date."); }
         Debug.Log("[SeasonManager] Real time update complete.");
     }
 
@@ -73,7 +74,7 @@ public class SeasonManager : MonoBehaviour
 
             // move to next season
             currentSeasonIndex = (currentSeasonIndex + 1) % seasons.Length;
-            currentDay = 1; 
+            currentDay = 1;
 
             string newSeason = GetCurrentSeason();
             Debug.Log($"Season {oldSeason} has ended. Transferring to {newSeason}.");

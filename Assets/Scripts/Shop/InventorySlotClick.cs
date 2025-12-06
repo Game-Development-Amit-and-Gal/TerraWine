@@ -8,12 +8,12 @@ public class InventorySlotClick : MonoBehaviour, IPointerClickHandler
     [HideInInspector] public Image iconImage;
 
     [Header("מצב מכירה במשאית")]
-    [SerializeField] bool isTruckSell = false;   
-    [SerializeField] TruckSeller truckSeller;   
+    [SerializeField] bool isTruckSell = false;
+    [SerializeField] TruckSeller truckSeller;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-       
+
         if (eventData.button != PointerEventData.InputButton.Left)
             return;
 
@@ -27,7 +27,7 @@ public class InventorySlotClick : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-       
+
         ItemSO so = inv.GetDefinition(itemId);
         if (so == null)
         {
@@ -35,7 +35,7 @@ public class InventorySlotClick : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-       
+
         if (isTruckSell)
         {
             if (truckSeller == null)
@@ -44,19 +44,19 @@ public class InventorySlotClick : MonoBehaviour, IPointerClickHandler
                 return;
             }
 
-          
+
             if (!so.isWineBottle)
             {
                 Debug.Log($"[InventorySlotClick] {itemId} is not a wine bottle");
                 return;
             }
 
-          
+
             truckSeller.SellOneBottle(itemId);
-            return;    
+            return;
         }
 
-        
+
         if (so.isSeed)
         {
             if (PlantingController.Instance != null)
@@ -69,7 +69,7 @@ public class InventorySlotClick : MonoBehaviour, IPointerClickHandler
             Debug.Log($"[InventorySlotClick] {itemId} is NOT a seed (clicked normally).");
         }
 
-     
+
         var invUI = GetComponentInParent<InventoryUI>();
         if (invUI != null)
         {
