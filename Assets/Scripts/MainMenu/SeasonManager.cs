@@ -26,7 +26,7 @@ public class SeasonManager : MonoBehaviour
         }
 
         _instance = this;
-        DontDestroyOnLoad(gameObject);
+      
         LoadAndUpdateByRealTime();
         SaveState();
     }

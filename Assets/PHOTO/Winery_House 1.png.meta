@@ -1,0 +1,7174 @@
+fileFormatVersion: 2
+guid: 453707ee21327c8428b4f84468133580
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -42808061691357232
+    second: WhatsApp Image 2025-11-10 at 02.59.40_469085a9_0
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Winery_House 1_0
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 899
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7df6b056953190f40a2f0d523104cc09
+      internalID: 1254190897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_1
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 874
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53b141158e6c0654ab428ec338cb5591
+      internalID: -1516312528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_2
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 874
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b78395e64ba91c24e9b1e2a4f72910dc
+      internalID: 922586274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_3
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 849
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84e2481bb5821544e94dcdb898ae9985
+      internalID: 2144610492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_4
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 849
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6fd18982104ab240ad26b9ccbce8a0d
+      internalID: -1302643710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_5
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 849
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: feb351822e4247d469da115bc26ee1f7
+      internalID: -1741348045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_6
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 824
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdbbf09625ae7b247bc8a9a5a88f7a95
+      internalID: 443788876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_7
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 824
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbd5dc824bb278a48b8c3c47ca1072c9
+      internalID: -1141473621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_8
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 824
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e5eef74685831649876c8b9addceaff
+      internalID: -363219696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_9
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 799
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6f731719aaaa7d48b6604162b9d3cc1
+      internalID: -708926966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_10
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 799
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14076ba7c856f2a4fbb03c38f78df82e
+      internalID: -740914507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_11
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 799
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 524522a6773a1c749ba9bf7e6725b72e
+      internalID: -1203691891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_12
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 799
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe8e43d120a92c541acd74e93de76047
+      internalID: -1942557361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_13
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 774
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c959bfc82c637d4a93ed80899aa5185
+      internalID: -782205008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_14
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 774
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6a5aa061eec9a744bc3e06eda2a4d4a
+      internalID: 722413627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_15
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 774
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6412aa52614a5e34c90f51124aa85ac6
+      internalID: 644059504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_16
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 774
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55ab14b20fdea364ea118d24ccf3f302
+      internalID: -2124758293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_17
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 774
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00d9f8076582041458143c816d2cab2a
+      internalID: -1191765943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_18
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 749
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f9825601e57423468a4914dd843da78
+      internalID: 600048815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_19
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 749
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d820ad4c3a506c42a547247e8692789
+      internalID: -1321797002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_20
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 749
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 469f1f4227425e449a81aaf27cf62ae0
+      internalID: 858102940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_21
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 749
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94f4bab8ba3603d4ba627eb07b5c63fd
+      internalID: 776183806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_22
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 749
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e96d76f1596eba41b216d0a75da850a
+      internalID: -1584458508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_23
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 724
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c2df6c8bc414e64d8b25b8fe19d2198
+      internalID: 339910684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_24
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 724
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: dda667a1ae69d584c894ee1d6488f81c
+      internalID: 1020421689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_25
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 724
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9181319c08160894eb2e27f78627838b
+      internalID: -1372879269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_26
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 724
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44c301290fd4a30428423a7fe6cea8ef
+      internalID: -1191624752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_27
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 724
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17d08f4741d7b87448ee36abb0c33fd2
+      internalID: 1636084822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_28
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 724
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbf169aba32202f4bb52deebf900d9eb
+      internalID: -362361005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_29
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 699
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d14b4a6babb4aa8418bf9f03c7a1f95c
+      internalID: 1556393298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_30
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 699
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb890a6695c607d4b99feda683a13307
+      internalID: -894698211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_31
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 699
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: efaac952aa0a1fc40838a6aeb5fc5624
+      internalID: -1936054537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_32
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 699
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 422dd1c106c5f234497416993425eba9
+      internalID: 1586350515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_33
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 699
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7032f478e6915a4484ca615997eccce
+      internalID: -230871799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_34
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 699
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f974eb5a93c86945b872ae4d99211c0
+      internalID: -1474992625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_35
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 674
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdb245f09fb65114b9e74c878ccf87a8
+      internalID: 1692421258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_36
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 674
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3de2c11302db910439c169c484301b8d
+      internalID: 2145856144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_37
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 674
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 238b25afe9f8b124781074ff1d32e3fe
+      internalID: -1170724618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_38
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 674
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fed9875ae2eb7b46a0e2a955aef82f9
+      internalID: -2083668714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_39
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 674
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21626a8418e97444c9bbdeecd406b6ae
+      internalID: 1262797082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_40
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 674
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0aaf8b1cbbe05a9489f4b9332cff140f
+      internalID: -1836794791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_41
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 674
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ad4d0745c1dc454a9cff4bec2479137
+      internalID: -1410461268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_42
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 649
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8da9f338f17129949b05817a7867cab9
+      internalID: 1057013789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_43
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 649
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbf4ac83f73d6e54f81bfa8a5e74e3dd
+      internalID: -2003455416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_44
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 649
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07ffda0b7f3888c43b78edfa55a76ddc
+      internalID: -670337827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_45
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 649
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50f722823e46ee246b25795687300ff3
+      internalID: -1145349660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_46
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 649
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07b9408c3ecb31f4fa71829d333d4c8c
+      internalID: 656290571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_47
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 649
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a43963cdc5603e541ac0362954dd7dd0
+      internalID: 120773566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_48
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 649
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb0e65c5a75cef4408f7770ba9ba3995
+      internalID: 75452971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_49
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 649
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9cfd15b6a7b39a4c9915118e0f65fc4
+      internalID: 76707272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 624
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4be93c5088c2f3d4baf9ec9845bffc2d
+      internalID: 2142183679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_51
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 624
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4af06aa6daa2e3479606d0a1136e17e
+      internalID: 1154742758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_52
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 624
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4327c5dec59247349a7227ec4df4604f
+      internalID: -818252759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_53
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 624
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0644d85e614e3048a3d6257e7386b5f
+      internalID: 723765050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_54
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 624
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e9595149c83d7d408ad6c8ec4f3314d
+      internalID: -1250450930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_55
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 624
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c92e12ea53e559e49b561496fc433e83
+      internalID: -310000189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_56
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 624
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 576f5d1b64a745a48bdc51cd30acbbc5
+      internalID: -750036524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_57
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 624
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bbc086ab639f854d87f1abd7b75b2d1
+      internalID: 695243549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_58
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 624
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f327c5c68f3cdc74d8afffd3444e0bfd
+      internalID: -1543512418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_59
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 599
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52d32326c7965fc4a98802ef2fd15d41
+      internalID: -676758155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_60
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 599
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80e70ad9fb8b09e43a2ecab764dcd4e6
+      internalID: 906949230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_61
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 599
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0cc95667d789dd4582486da61d9acaa
+      internalID: -274758062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_62
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 599
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f0d11e6c51f5c44594766153ab06bcc
+      internalID: 1952870346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_63
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 599
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28d4fbc6b9ac1aa469eba09a4c8c7fc4
+      internalID: 240348187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_64
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 599
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c9f1c8e3e4fa9542bd2fa7b92250367
+      internalID: -1411718160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_65
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 599
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87d16724cf47cf74d9ae893651b09231
+      internalID: 1255350496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_66
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 599
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfa92ce8058bccc4694e7b608caca78b
+      internalID: -1619882631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_67
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 599
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e63f0c918f0faa943b55d4361d2e0d4e
+      internalID: -346840656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_68
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 574
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce41332044b99f54d887947d95f3ee12
+      internalID: 364157448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_69
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 574
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2615ef04f5821584b97f8607b108fd6d
+      internalID: -369350359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_70
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 574
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f361c5623678d43488a0d44989b838eb
+      internalID: 1843412640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_71
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 574
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 914aedf70d30c9745aa4a893194ad484
+      internalID: 1544468277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_72
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 574
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6f8626589127a948b8b470881e9b68a
+      internalID: -169624049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_73
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 574
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7f2cdff617e27a4facf3773be9e6176
+      internalID: -666440590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_74
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 574
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d130b6cc030369e4984df93be2824b18
+      internalID: -548399326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_75
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 574
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d763ed9175393384c8966500d83f6a41
+      internalID: 1472360191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_76
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 574
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 026d8beae50e371459edb0779ee93ba6
+      internalID: 1485333182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_77
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 574
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9040be68474bda349bc6b59171b4b8bd
+      internalID: -1650121933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_78
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 549
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47b5686c3f8c0b143acc94be286386e5
+      internalID: 51169258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_79
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 549
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 189cf6b552200af4b88bb679f9de714c
+      internalID: 1525657016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_80
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 549
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b7fdd4dc9e06fd4f93e1d64c602f01c
+      internalID: 1734969079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_81
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 549
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 545a0c297384fca4c98d264d1c1d968a
+      internalID: 271275643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_82
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 549
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2268f30e8b55df44896c7741da9e1d51
+      internalID: 608974903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_83
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 549
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7a709ebc86c49d4aba31b37a2acfcd2
+      internalID: 1832190488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_84
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 549
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 321951e672a34a342bd25564503d2bf4
+      internalID: -1108910033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_85
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 549
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e71b4f20bcd247f4da59680dae017d5e
+      internalID: 216396158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_86
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 549
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f8df3336f72d24d9c0f8e9bb796616
+      internalID: -963742582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_87
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 524
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6a18c6fb5f09a047a8b4d2c52cd862b
+      internalID: -1495174657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_88
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 524
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a46ea20702d3b6f43baeebe163250159
+      internalID: -1095105917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_89
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 524
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c97f5bab0e93a0e46b6fbf16bb490ada
+      internalID: 1043625625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_90
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 524
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c948582e09bf003489c20eff428cbad1
+      internalID: -583327008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_91
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 524
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9948d71ead711ff4c9ff79ed47e293e5
+      internalID: -30488521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_92
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 524
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1411b7bc34de7684f9f10b0e56db7a68
+      internalID: 781016176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_93
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 524
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a27dbebc2492e4458da22ce1179bee6
+      internalID: -145602348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_94
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 524
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63233b2a278ab824087ac4b4a222cb99
+      internalID: 1956508934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_95
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 524
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46d588d585e1a4b4d924c15204de675c
+      internalID: -231098227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_96
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 524
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 860fc2e0d38204c46ae5892f1c30fc98
+      internalID: -1036057942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_97
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 499
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 928e47d6c3eb8044e9811aff773ab9df
+      internalID: -1416098312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_98
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 499
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0cc76184b74da64797baa4f8ea4f6a4
+      internalID: 2069205569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_99
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 499
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3de889b5802bc3f48838d5ac5f84f61e
+      internalID: 1847254666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_100
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 499
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f858e38c5c8a93e4f94ba2faed137b7c
+      internalID: -477025597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_101
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 499
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52b8ae3ae9080e54d960d952abb3a847
+      internalID: -1471637076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_102
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 499
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8d75bfbc52da344289e583c24f1d4ef
+      internalID: 828802594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_103
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 499
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ce0b6cc84cc09a47baae3b6afdd368d
+      internalID: -525073696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_104
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 499
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: de8c044d30d4c584b9de1cd5fa07ac54
+      internalID: -1962746134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_105
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 499
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ec23f3e15f0da74ba5e151f97fe6195
+      internalID: -248991103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_106
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 474
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21dc802fec3795e438644efac2bb191a
+      internalID: -2042527289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_107
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 474
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51db5e413ed5967499703a1388e1f5c1
+      internalID: 1287190847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_108
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 474
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8abf6b5d21f5d12498efd4599680cf0d
+      internalID: 1312221558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_109
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 474
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8966f5a566553044cb7d8b739a288eba
+      internalID: 898959387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_110
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 474
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce1b9eac1c3b5004f8af6840ca3f9813
+      internalID: -551758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_111
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 474
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f38138c320124b4ba66984e046d9fd1
+      internalID: 1179753825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_112
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 474
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a39a95f42e5945f498b72afd4be0d39f
+      internalID: -1706309455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_113
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 474
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a2e829214fbc134a86e9d4bfaaa37fd
+      internalID: 551105361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_114
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 474
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeccdfe2fd36ede4d8cc91daca1c36bc
+      internalID: -1537056140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_115
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 474
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 454face0602409b46b61f46508d5bab2
+      internalID: -1948879748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_116
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 449
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93132629ebc9c85478891d7df1b884ea
+      internalID: 214564391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_117
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 449
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b87983c1a8193374fa0fa39606a37eb7
+      internalID: 72112886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_118
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 449
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5a268e70a52ea74f956ed23d014a841
+      internalID: 1447688613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_119
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 449
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dc2dd311736f8f4c8a0fb3a833a13b3
+      internalID: -1096147196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_120
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 449
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0655b8d37eae3a4590ae1bbc4461cce
+      internalID: -319492540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_121
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 449
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6ebe5590de48c24b859d660e105a1a9
+      internalID: 727546197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_122
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 449
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d03e0f1d61539b54593571492eafb9c5
+      internalID: 1051407372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_123
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 449
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6575f41e43bd82488fca340d7a4fe1f
+      internalID: -1798358835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_124
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 449
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d83ccdc07c2842e40aca9ab8c3a97192
+      internalID: 1956902530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_125
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 424
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85ad345b1a25e9144b3353cfb544560a
+      internalID: 2116738726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_126
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 424
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3b420fbc4afdc64aab42eac44a34f44
+      internalID: -1007069530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_127
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 424
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffd4f5fe2e358ba44809ffc1474ae797
+      internalID: 2116779377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_128
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 424
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: afdadc871659fa54db5107c55bf753f5
+      internalID: -874535753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_129
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 424
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 484ccffb8dfb770429c326936a6847b7
+      internalID: -1867228752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_130
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 424
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd61321770304684ebad7a957c11adc0
+      internalID: -1795151115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_131
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 424
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab2aa6e89b49e964db39509c4a27667f
+      internalID: -409893522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_132
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 424
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a74b86b25a7e90c4296f4b464632bc48
+      internalID: 749188993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_133
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 424
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 136c9352630d51c4aa0ea1402f23d06a
+      internalID: 1921133907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_134
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 424
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b21b8d17e4c30824c939df61d10042d1
+      internalID: 1326743328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_135
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 399
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b95bf6115edd0f48b0eb330467eae52
+      internalID: -635834468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_136
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 399
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c20ff13025e2e0d4da40dcd0030931c7
+      internalID: -677338289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_137
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 399
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f5eac1ea7599c946a784df16738aa18
+      internalID: -1293473751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_138
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 399
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54ed908deb0741e4794b59112f7b2e7e
+      internalID: -77398874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_139
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 399
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27eb4ce731aad1d46a16eb6f00c17602
+      internalID: -1536355513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_140
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 399
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35f9bc0a235121f4eae7ea32eecc3ede
+      internalID: 1436196941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_141
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 399
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d94d145158c08142b5d6fc93cf19752
+      internalID: 2139215165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_142
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 399
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e76b34632dc535349939421d6825c31c
+      internalID: 915267231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_143
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 399
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6ca72a6e903fb546876f69f1fb61b0e
+      internalID: 867058739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_144
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 374
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a81119cc61d28444ea16685b635ca5f6
+      internalID: -1213055340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_145
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 374
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0eb6396262d13f409f60f8ef6ce19ef
+      internalID: -1534425455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_146
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 374
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c3d4646a31d17e498290a15e9d1d863
+      internalID: 2076787018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_147
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 374
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 236d09e11a166db41885df854b6c4349
+      internalID: -561891870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_148
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 374
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: cde4e4fed4507f84598a4ae9b1f0e13e
+      internalID: -537437309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_149
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 374
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43dac6b83b574ce4e96d488c42d82d71
+      internalID: 326928917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_150
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 374
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9213e4a8a67fd74cba82b6d346cc0df
+      internalID: -2105611743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_151
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 374
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31d967a81a5586e4598571ca3e085302
+      internalID: 1271387820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_152
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 374
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1a5927fdf2d0aa4eafdf4da58789e58
+      internalID: -1263622947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_153
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 374
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c9f056e2370ded46b0151a92a60efae
+      internalID: -1735519548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_154
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 349
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0c061e565565b948ba35bce68c0f014
+      internalID: -528582454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_155
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 349
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e53e3368095a40b429b53c65563d1d18
+      internalID: -2029195719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_156
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 349
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00d7e195f9acc144a97e6a9e0de1ac6f
+      internalID: 1140789541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_157
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 349
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fe49ec0366713f41831692849ca3940
+      internalID: 1643251573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_158
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 349
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ca0e59d41dc88940857eb8c12560ec4
+      internalID: -1220297411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_159
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 349
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4039b5312e3ca964b91f52dd97665bc9
+      internalID: -1889038984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_160
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 349
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a8a91aa932bd794b8a739ae0c61dc52
+      internalID: 909857993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_161
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 349
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e17f6db971a2e940bc12c0d6eeb4b90
+      internalID: 557731449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_162
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 349
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5a37235a23b4b943844020de776b281
+      internalID: -34396390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_163
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 324
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f9e28651c7f3cf4197d127526de4901
+      internalID: -1151194024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_164
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 324
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a692d336d471cef4c84002ec0f144336
+      internalID: 408109011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_165
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 324
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d61b4fb7e9db4f42b3a8c38abb5d08e
+      internalID: -1555290458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_166
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 324
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12c961affc375ee439b123a8a8c1ef52
+      internalID: -2103072033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_167
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 324
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99f6dab85e040d541a5a3b70568a13fe
+      internalID: -248202904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_168
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 324
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad3156ba64ca6d64e94d6e17de3a6177
+      internalID: -149750017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_169
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 324
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d33858593ac55be47a0485039932e121
+      internalID: -1512003000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_170
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 324
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a84d0f14c5787e9478733c3f1f7433f2
+      internalID: -1352254916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_171
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 324
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b22c655ce08c6c4596d89ccead52919
+      internalID: -996529455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_172
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 324
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e990bc772a7c5784998a8f93ad3b89aa
+      internalID: 1928581939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_173
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 299
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfb6463f3ebaddb4fa02e1a9dcdecb7b
+      internalID: 1120288628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_174
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 299
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 286eafccf29c4da4d95d9fbb7d1e415f
+      internalID: 791007979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_175
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 299
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89a08debd850c7b49a15887db9992929
+      internalID: 754328355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_176
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 299
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: baba9ed3cac71384780ab73f6cf9a37a
+      internalID: 327947494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_177
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 299
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 894f7258d9dbe864aa1c921e7b251c4b
+      internalID: 2132067960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_178
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 299
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 555260c559e50364ea6fb9b2f87174f1
+      internalID: -1162867555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_179
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 299
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 622ba8a666fb3184db7ece30f8b2840d
+      internalID: -605738402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_180
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 299
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bedd87d16547e0d429293479b9ed306d
+      internalID: 1036182672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_181
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 299
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb4562073b249a647bc1f9082e97bfcf
+      internalID: 1831349417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_182
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 274
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c9775f3ce2238b4c864abbf8a442dbe
+      internalID: -173544945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_183
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 274
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0a66f1986058724ba2a19f64fde45a7
+      internalID: 1822530240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_184
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 274
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a677b389d77d5b4a82e4b62b9bba2f1
+      internalID: -583841103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_185
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 274
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3028f3ba6c9f72641b419fa8bba6afb0
+      internalID: 1023425687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_186
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 274
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b33044c46ec1c014b8f2907375d5033c
+      internalID: -1886079455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_187
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 274
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a1f867ed4c69c94c90a4afca4857272
+      internalID: -1887869261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_188
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 274
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 149f2050afc089a43b12802beac1582a
+      internalID: -1977985226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_189
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 274
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 888cf3585d18bf34583e1da5c5012e01
+      internalID: -1186987728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_190
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 274
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 272ad0c366aca864aa57beb2ab23122e
+      internalID: 960612260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_191
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 249
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a03f7ba610e1c684fba628cb1eb366a6
+      internalID: -1814373543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_192
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 249
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c05b75d41a75a1345955c02db9b6e19e
+      internalID: -526928377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_193
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 249
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44f27a2001f9a16449934e037273e8ca
+      internalID: -1471413593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_194
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 249
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a527af390cbacf54a8d2f15bbd710d47
+      internalID: 1180350459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_195
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 249
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebe62e91f12144744b5a83fbfe785250
+      internalID: 272670066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_196
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 249
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11a9e51c8215d8946b6548bca71ff847
+      internalID: 1445797345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_197
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 249
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34ec7ad956dde1c4f91747a68d455eaf
+      internalID: 1171786521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_198
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 249
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6afd42a2b9ee6164782d8818ceb93c5b
+      internalID: -169577966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_199
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 224
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6b440fae478e2e46bf2e8d419123ae8
+      internalID: 1232347037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_200
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 224
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff904877bd80f584cbe9770fb84e9b63
+      internalID: 291569199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_201
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 224
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 085e3a5854d33b14bacc8cfdf24a1393
+      internalID: 853516301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_202
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 224
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63ca596349bffad4a8e402dbf9b0a283
+      internalID: -197101545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_203
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 224
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4af357513d0b67459f23d0672099b7f
+      internalID: 1484173437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_204
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 224
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffab3a1f021d8aa498b430b9dadc6725
+      internalID: 1756145291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_205
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 224
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c399e5da00a344c4281d3d5e8ca62dbb
+      internalID: 123299662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_206
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 199
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 208b503fe1c13454585b85e39e8f41ed
+      internalID: -1240633708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_207
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 199
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: af8e8696f05f4f641af0f4a8a1b7a948
+      internalID: 594963010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_208
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 199
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4d6cd4086bae594d9d7b9541336afd3
+      internalID: 375005314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_209
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 199
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dba5cf0a484dc0418055f0cb9a2a60d
+      internalID: -2042940308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_210
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 199
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6685ae66fce98d247bb4504f8385935a
+      internalID: -762014038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_211
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 199
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 037672254eeb8674790d6b9dcc3bd900
+      internalID: 1137603259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_212
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 174
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16e4740f33f43c041ac80e5635c756b8
+      internalID: 985464808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_213
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 174
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf1de201b78a41044a41ffd474a174af
+      internalID: -2062372905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_214
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 174
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52d2f0fb76a761048ac5e3141ff7dc83
+      internalID: -1277738401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_215
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 174
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 626a3bf5efc9d0e4fbe9622ee14942e0
+      internalID: -529206723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_216
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 174
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 843204a39a3335c4abeb3019bf258dac
+      internalID: 287011760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_217
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 149
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3212405150e358545b00a90c598fc655
+      internalID: -1071317706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_218
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 149
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd18edf75ada50b428e2fa96505dad36
+      internalID: 649060627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_219
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 149
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: eed9ae6840f329f41a0123fe2525f9a5
+      internalID: 1849922077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_220
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 149
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88409188ecd9ccd458509a5ba0458107
+      internalID: -990919195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_221
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 124
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0167f9d5e373d774db0c326be2e2a0ec
+      internalID: 590668033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_222
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 124
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff087b1ee1538534ab51b66fe1e36fd9
+      internalID: -466544247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_223
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 124
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25e60247417a3f74389fea1ac1f8e2e1
+      internalID: 1636858365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_224
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 99
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3e5b93ff42e61644a0e58f4ff40a541
+      internalID: -115285701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_225
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 99
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1670b631978704543852c1685575654f
+      internalID: 1299093774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Winery_House 1_226
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 74
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      physicsShape:
+      - - {x: 0, y: -25}
+        - {x: 50, y: 0}
+        - {x: 0, y: 25}
+        - {x: -50, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78a564199c95a96459fbdfbd1c8d9683
+      internalID: 441164466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1fb0fbd19ae439f46b7f873ddc28d58f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceOnImport
+        value: True
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":true,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":100.0,"y":50.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":3,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Winery_House 1_0: 1254190897
+      Winery_House 1_1: -1516312528
+      Winery_House 1_10: -740914507
+      Winery_House 1_100: -477025597
+      Winery_House 1_101: -1471637076
+      Winery_House 1_102: 828802594
+      Winery_House 1_103: -525073696
+      Winery_House 1_104: -1962746134
+      Winery_House 1_105: -248991103
+      Winery_House 1_106: -2042527289
+      Winery_House 1_107: 1287190847
+      Winery_House 1_108: 1312221558
+      Winery_House 1_109: 898959387
+      Winery_House 1_11: -1203691891
+      Winery_House 1_110: -551758
+      Winery_House 1_111: 1179753825
+      Winery_House 1_112: -1706309455
+      Winery_House 1_113: 551105361
+      Winery_House 1_114: -1537056140
+      Winery_House 1_115: -1948879748
+      Winery_House 1_116: 214564391
+      Winery_House 1_117: 72112886
+      Winery_House 1_118: 1447688613
+      Winery_House 1_119: -1096147196
+      Winery_House 1_12: -1942557361
+      Winery_House 1_120: -319492540
+      Winery_House 1_121: 727546197
+      Winery_House 1_122: 1051407372
+      Winery_House 1_123: -1798358835
+      Winery_House 1_124: 1956902530
+      Winery_House 1_125: 2116738726
+      Winery_House 1_126: -1007069530
+      Winery_House 1_127: 2116779377
+      Winery_House 1_128: -874535753
+      Winery_House 1_129: -1867228752
+      Winery_House 1_13: -782205008
+      Winery_House 1_130: -1795151115
+      Winery_House 1_131: -409893522
+      Winery_House 1_132: 749188993
+      Winery_House 1_133: 1921133907
+      Winery_House 1_134: 1326743328
+      Winery_House 1_135: -635834468
+      Winery_House 1_136: -677338289
+      Winery_House 1_137: -1293473751
+      Winery_House 1_138: -77398874
+      Winery_House 1_139: -1536355513
+      Winery_House 1_14: 722413627
+      Winery_House 1_140: 1436196941
+      Winery_House 1_141: 2139215165
+      Winery_House 1_142: 915267231
+      Winery_House 1_143: 867058739
+      Winery_House 1_144: -1213055340
+      Winery_House 1_145: -1534425455
+      Winery_House 1_146: 2076787018
+      Winery_House 1_147: -561891870
+      Winery_House 1_148: -537437309
+      Winery_House 1_149: 326928917
+      Winery_House 1_15: 644059504
+      Winery_House 1_150: -2105611743
+      Winery_House 1_151: 1271387820
+      Winery_House 1_152: -1263622947
+      Winery_House 1_153: -1735519548
+      Winery_House 1_154: -528582454
+      Winery_House 1_155: -2029195719
+      Winery_House 1_156: 1140789541
+      Winery_House 1_157: 1643251573
+      Winery_House 1_158: -1220297411
+      Winery_House 1_159: -1889038984
+      Winery_House 1_16: -2124758293
+      Winery_House 1_160: 909857993
+      Winery_House 1_161: 557731449
+      Winery_House 1_162: -34396390
+      Winery_House 1_163: -1151194024
+      Winery_House 1_164: 408109011
+      Winery_House 1_165: -1555290458
+      Winery_House 1_166: -2103072033
+      Winery_House 1_167: -248202904
+      Winery_House 1_168: -149750017
+      Winery_House 1_169: -1512003000
+      Winery_House 1_17: -1191765943
+      Winery_House 1_170: -1352254916
+      Winery_House 1_171: -996529455
+      Winery_House 1_172: 1928581939
+      Winery_House 1_173: 1120288628
+      Winery_House 1_174: 791007979
+      Winery_House 1_175: 754328355
+      Winery_House 1_176: 327947494
+      Winery_House 1_177: 2132067960
+      Winery_House 1_178: -1162867555
+      Winery_House 1_179: -605738402
+      Winery_House 1_18: 600048815
+      Winery_House 1_180: 1036182672
+      Winery_House 1_181: 1831349417
+      Winery_House 1_182: -173544945
+      Winery_House 1_183: 1822530240
+      Winery_House 1_184: -583841103
+      Winery_House 1_185: 1023425687
+      Winery_House 1_186: -1886079455
+      Winery_House 1_187: -1887869261
+      Winery_House 1_188: -1977985226
+      Winery_House 1_189: -1186987728
+      Winery_House 1_19: -1321797002
+      Winery_House 1_190: 960612260
+      Winery_House 1_191: -1814373543
+      Winery_House 1_192: -526928377
+      Winery_House 1_193: -1471413593
+      Winery_House 1_194: 1180350459
+      Winery_House 1_195: 272670066
+      Winery_House 1_196: 1445797345
+      Winery_House 1_197: 1171786521
+      Winery_House 1_198: -169577966
+      Winery_House 1_199: 1232347037
+      Winery_House 1_2: 922586274
+      Winery_House 1_20: 858102940
+      Winery_House 1_200: 291569199
+      Winery_House 1_201: 853516301
+      Winery_House 1_202: -197101545
+      Winery_House 1_203: 1484173437
+      Winery_House 1_204: 1756145291
+      Winery_House 1_205: 123299662
+      Winery_House 1_206: -1240633708
+      Winery_House 1_207: 594963010
+      Winery_House 1_208: 375005314
+      Winery_House 1_209: -2042940308
+      Winery_House 1_21: 776183806
+      Winery_House 1_210: -762014038
+      Winery_House 1_211: 1137603259
+      Winery_House 1_212: 985464808
+      Winery_House 1_213: -2062372905
+      Winery_House 1_214: -1277738401
+      Winery_House 1_215: -529206723
+      Winery_House 1_216: 287011760
+      Winery_House 1_217: -1071317706
+      Winery_House 1_218: 649060627
+      Winery_House 1_219: 1849922077
+      Winery_House 1_22: -1584458508
+      Winery_House 1_220: -990919195
+      Winery_House 1_221: 590668033
+      Winery_House 1_222: -466544247
+      Winery_House 1_223: 1636858365
+      Winery_House 1_224: -115285701
+      Winery_House 1_225: 1299093774
+      Winery_House 1_226: 441164466
+      Winery_House 1_23: 339910684
+      Winery_House 1_24: 1020421689
+      Winery_House 1_25: -1372879269
+      Winery_House 1_26: -1191624752
+      Winery_House 1_27: 1636084822
+      Winery_House 1_28: -362361005
+      Winery_House 1_29: 1556393298
+      Winery_House 1_3: 2144610492
+      Winery_House 1_30: -894698211
+      Winery_House 1_31: -1936054537
+      Winery_House 1_32: 1586350515
+      Winery_House 1_33: -230871799
+      Winery_House 1_34: -1474992625
+      Winery_House 1_35: 1692421258
+      Winery_House 1_36: 2145856144
+      Winery_House 1_37: -1170724618
+      Winery_House 1_38: -2083668714
+      Winery_House 1_39: 1262797082
+      Winery_House 1_4: -1302643710
+      Winery_House 1_40: -1836794791
+      Winery_House 1_41: -1410461268
+      Winery_House 1_42: 1057013789
+      Winery_House 1_43: -2003455416
+      Winery_House 1_44: -670337827
+      Winery_House 1_45: -1145349660
+      Winery_House 1_46: 656290571
+      Winery_House 1_47: 120773566
+      Winery_House 1_48: 75452971
+      Winery_House 1_49: 76707272
+      Winery_House 1_5: -1741348045
+      Winery_House 1_50: 2142183679
+      Winery_House 1_51: 1154742758
+      Winery_House 1_52: -818252759
+      Winery_House 1_53: 723765050
+      Winery_House 1_54: -1250450930
+      Winery_House 1_55: -310000189
+      Winery_House 1_56: -750036524
+      Winery_House 1_57: 695243549
+      Winery_House 1_58: -1543512418
+      Winery_House 1_59: -676758155
+      Winery_House 1_6: 443788876
+      Winery_House 1_60: 906949230
+      Winery_House 1_61: -274758062
+      Winery_House 1_62: 1952870346
+      Winery_House 1_63: 240348187
+      Winery_House 1_64: -1411718160
+      Winery_House 1_65: 1255350496
+      Winery_House 1_66: -1619882631
+      Winery_House 1_67: -346840656
+      Winery_House 1_68: 364157448
+      Winery_House 1_69: -369350359
+      Winery_House 1_7: -1141473621
+      Winery_House 1_70: 1843412640
+      Winery_House 1_71: 1544468277
+      Winery_House 1_72: -169624049
+      Winery_House 1_73: -666440590
+      Winery_House 1_74: -548399326
+      Winery_House 1_75: 1472360191
+      Winery_House 1_76: 1485333182
+      Winery_House 1_77: -1650121933
+      Winery_House 1_78: 51169258
+      Winery_House 1_79: 1525657016
+      Winery_House 1_8: -363219696
+      Winery_House 1_80: 1734969079
+      Winery_House 1_81: 271275643
+      Winery_House 1_82: 608974903
+      Winery_House 1_83: 1832190488
+      Winery_House 1_84: -1108910033
+      Winery_House 1_85: 216396158
+      Winery_House 1_86: -963742582
+      Winery_House 1_87: -1495174657
+      Winery_House 1_88: -1095105917
+      Winery_House 1_89: 1043625625
+      Winery_House 1_9: -708926966
+      Winery_House 1_90: -583327008
+      Winery_House 1_91: -30488521
+      Winery_House 1_92: 781016176
+      Winery_House 1_93: -145602348
+      Winery_House 1_94: 1956508934
+      Winery_House 1_95: -231098227
+      Winery_House 1_96: -1036057942
+      Winery_House 1_97: -1416098312
+      Winery_House 1_98: 2069205569
+      Winery_House 1_99: 1847254666
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

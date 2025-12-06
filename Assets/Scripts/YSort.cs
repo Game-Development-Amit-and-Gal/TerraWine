@@ -3,13 +3,18 @@
 [RequireComponent(typeof(SpriteRenderer))]
 public class YSort : MonoBehaviour
 {
-    public int offset = 0;
+    [SerializeField] private int offset = 0;   
+
     private SpriteRenderer sr;
 
-    void Awake() => sr = GetComponent<SpriteRenderer>();
+    void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
 
     void LateUpdate()
     {
+       
         sr.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100) + offset;
     }
 }

@@ -22,7 +22,7 @@ public class PlantManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+      
     }
 
 

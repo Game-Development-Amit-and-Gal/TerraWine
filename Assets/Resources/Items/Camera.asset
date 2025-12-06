@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302182c9ff20b604d9d22ed6aff13dd0, type: 3}
   m_Name: Camera
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  id: 
+  id: CAMERA
   displayName: 
   icon: {fileID: 0}
   stackable: 1
   maxStack: 99
   price: 0
   isSeed: 0
+  isWineBottle: 0
+  category: 4
   growTimeSeconds: 180
   harvestItem: {fileID: 0}
   harvestAmount: 10

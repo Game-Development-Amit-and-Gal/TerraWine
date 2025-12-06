@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 1611664}
   - component: {fileID: 1611663}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0 (1)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,12 +202,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611662}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.39, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -52.20925, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1924053702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &15150189
 GameObject:
@@ -294,12 +294,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15150189}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.97, y: 9.83, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.037789, y: 8.97841, z: 0}
   m_LocalScale: {x: 0.95286, y: 0.95286, z: 0.95286}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 642651126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &25478678
 GameObject:
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 25478680}
   - component: {fileID: 25478679}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (29)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,12 +384,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 25478678}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -69.85919, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -127.45844, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &47932720
 GameObject:
@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 47932722}
   - component: {fileID: 47932721}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (10)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -474,12 +474,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47932720}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.87, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -25.72925, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &49738596
 GameObject:
@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 49738599}
   - component: {fileID: 49738600}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (17)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -567,11 +567,11 @@ Transform:
   m_GameObject: {fileID: 49738596}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 11.92, y: -0.27, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -45.679253, y: -3.0509899, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &49738599
 CircleCollider2D:
@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 52221371}
   - component: {fileID: 52221370}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (13)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -850,12 +850,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52221369}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 62.577217, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.9779663, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &62087426
 GameObject:
@@ -868,7 +868,7 @@ GameObject:
   - component: {fileID: 62087428}
   - component: {fileID: 62087427}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (13)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -940,12 +940,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62087426}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -77.67, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -135.26926, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &80721080
 GameObject:
@@ -959,7 +959,7 @@ GameObject:
   - component: {fileID: 80721081}
   - component: {fileID: 80721083}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Sector_Boundaries_Up_Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1032,11 +1032,11 @@ Transform:
   m_GameObject: {fileID: 80721080}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.8907, y: 9.1, z: 0}
+  m_LocalPosition: {x: -23.70855, y: 6.3190107, z: 0}
   m_LocalScale: {x: 88.13293, y: 0.8743, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 504101897}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &80721083
 BoxCollider2D:
@@ -1095,7 +1095,7 @@ GameObject:
   - component: {fileID: 90028922}
   - component: {fileID: 90028921}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0 (9)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1167,12 +1167,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 90028920}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.659103, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -94.258354, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1924053702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &100131273
 GameObject:
@@ -1187,7 +1187,7 @@ GameObject:
   - component: {fileID: 100131276}
   - component: {fileID: 100131277}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (19)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1260,11 +1260,11 @@ Transform:
   m_GameObject: {fileID: 100131273}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 4.4, y: -0.18, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -53.19925, y: -2.96099, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &100131276
 CircleCollider2D:
@@ -1328,7 +1328,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 449586501}
     m_Modifications:
     - target: {fileID: 2266389070010613148, guid: 77c2ba2fc9853d84596709b8b2e11b0d, type: 3}
       propertyPath: m_Pivot.x
@@ -1419,6 +1419,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77c2ba2fc9853d84596709b8b2e11b0d, type: 3}
+--- !u!224 &125549569 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2266389070010613148, guid: 77c2ba2fc9853d84596709b8b2e11b0d, type: 3}
+  m_PrefabInstance: {fileID: 125549568}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &129275806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,7 +1435,7 @@ GameObject:
   - component: {fileID: 129275808}
   - component: {fileID: 129275807}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0 (6)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1502,12 +1507,45 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129275806}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 70.7009, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 13.101646, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1924053702}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &179893615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 179893616}
+  m_Layer: 0
+  m_Name: Barrle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &179893616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179893615}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 83.60704, y: 1.9294, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 231153281}
+  - {fileID: 1530953639}
+  m_Father: {fileID: 1190004285}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &207762679
 GameObject:
@@ -1522,7 +1560,7 @@ GameObject:
   - component: {fileID: 207762682}
   - component: {fileID: 207762683}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (34)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1595,11 +1633,11 @@ Transform:
   m_GameObject: {fileID: 207762679}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 17.62, y: 3.84, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -39.979248, y: 1.05901, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &207762682
 CircleCollider2D:
@@ -1668,7 +1706,7 @@ GameObject:
   - component: {fileID: 224027207}
   - component: {fileID: 224027206}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (30)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1740,12 +1778,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224027205}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.905586, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -86.50484, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &228256000
 GameObject:
@@ -1758,7 +1796,7 @@ GameObject:
   - component: {fileID: 228256002}
   - component: {fileID: 228256001}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (22)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1830,12 +1868,59 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228256000}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -80.0791, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -137.67834, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &231153280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 231153281}
+  m_Layer: 0
+  m_Name: Stainless_Steel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &231153281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231153280}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1435054881}
+  - {fileID: 1267119942}
+  - {fileID: 2059931143}
+  - {fileID: 661333615}
+  - {fileID: 1060381881}
+  - {fileID: 460673347}
+  - {fileID: 438889177}
+  - {fileID: 500212464}
+  - {fileID: 1253952269}
+  - {fileID: 1270434985}
+  - {fileID: 1394248889}
+  - {fileID: 1072503530}
+  - {fileID: 2036271954}
+  - {fileID: 62087428}
+  - {fileID: 516836010}
+  - {fileID: 485755409}
+  m_Father: {fileID: 179893616}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &245739706
 GameObject:
@@ -1850,7 +1935,7 @@ GameObject:
   - component: {fileID: 245739709}
   - component: {fileID: 245739710}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (23)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1923,11 +2008,11 @@ Transform:
   m_GameObject: {fileID: 245739706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 58.88, y: 3.29, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: 1.2807503, y: 0.5090101, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &245739709
 CircleCollider2D:
@@ -1998,7 +2083,7 @@ GameObject:
   - component: {fileID: 260041861}
   - component: {fileID: 260041862}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (13)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2071,11 +2156,11 @@ Transform:
   m_GameObject: {fileID: 260041858}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 27.07, y: -0.35, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -30.529251, y: -3.1309898, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &260041861
 CircleCollider2D:
@@ -2144,7 +2229,7 @@ GameObject:
   - component: {fileID: 285507586}
   - component: {fileID: 285507585}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (6)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2216,12 +2301,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 285507584}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.369907, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -46.229343, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &311360058
 GameObject:
@@ -2282,7 +2367,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3089979040773461389, guid: 61ccf285ab4427442bc1ccffa040eb9e, type: 3}
+  m_Sprite: {fileID: 306222669, guid: f2459cf2adc89bb4884c4344d2487730, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2313,7 +2398,7 @@ GameObject:
   - component: {fileID: 324315943}
   - component: {fileID: 324315942}
   m_Layer: 5
-  m_Name: Canva_Shop
+  m_Name: Canva_Barrle_Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2395,7 +2480,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1312725042}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 449586501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2413,7 +2498,7 @@ GameObject:
   - component: {fileID: 373380814}
   - component: {fileID: 373380813}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2485,12 +2570,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373380812}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.083608, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -66.68286, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &384153090
 GameObject:
@@ -2608,7 +2693,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3089979040773461389, guid: 61ccf285ab4427442bc1ccffa040eb9e, type: 3}
+  m_Sprite: {fileID: 306222669, guid: f2459cf2adc89bb4884c4344d2487730, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2638,7 +2723,7 @@ GameObject:
   - component: {fileID: 388696834}
   - component: {fileID: 388696836}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: Sector_Boundaries_Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2711,11 +2796,11 @@ Transform:
   m_GameObject: {fileID: 388696833}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.6444, y: -8.5, z: 0}
+  m_LocalPosition: {x: -66.24365, y: -11.28099, z: 0}
   m_LocalScale: {x: 173.22952, y: 0.8743, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 504101897}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &388696836
 BoxCollider2D:
@@ -2985,7 +3070,7 @@ GameObject:
   - component: {fileID: 433404799}
   - component: {fileID: 433404798}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (28)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3057,12 +3142,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433404797}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -49.379196, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -106.97845, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &438889175
 GameObject:
@@ -3075,7 +3160,7 @@ GameObject:
   - component: {fileID: 438889177}
   - component: {fileID: 438889176}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (6)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3147,11 +3232,46 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438889175}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -46.56, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -104.159256, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 231153281}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &449586500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 449586501}
+  m_Layer: 0
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &449586501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449586500}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -26.00779, y: 0.85159, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2104783258}
+  - {fileID: 125549569}
+  - {fileID: 1033324657}
+  - {fileID: 324315945}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &460673345
@@ -3165,7 +3285,7 @@ GameObject:
   - component: {fileID: 460673347}
   - component: {fileID: 460673346}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (5)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3237,12 +3357,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 460673345}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.28, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -99.87925, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &464277137
 GameObject:
@@ -3255,7 +3375,7 @@ GameObject:
   - component: {fileID: 464277139}
   - component: {fileID: 464277138}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (14)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3327,12 +3447,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 464277137}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.849909, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -25.749342, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &485705194
 GameObject:
@@ -3345,7 +3465,7 @@ GameObject:
   - component: {fileID: 485705196}
   - component: {fileID: 485705195}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0 (3)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3417,12 +3537,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485705194}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.51, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -26.08925, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1924053702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &485755407
 GameObject:
@@ -3435,7 +3555,7 @@ GameObject:
   - component: {fileID: 485755409}
   - component: {fileID: 485755408}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 02_11_32 AM_0
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3507,12 +3627,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485755407}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.27, y: 2.85, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -72.86925, y: 0.06901002, z: 0}
   m_LocalScale: {x: 0.824, y: 0.7513, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &500212462
 GameObject:
@@ -3525,7 +3645,7 @@ GameObject:
   - component: {fileID: 500212464}
   - component: {fileID: 500212463}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (7)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3597,12 +3717,48 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500212462}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.84, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -108.439255, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &504101896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 504101897}
+  m_Layer: 0
+  m_Name: Sector_Boundaries
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &504101897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504101896}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 83.60704, y: 1.9294, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 388696835}
+  - {fileID: 1294780318}
+  - {fileID: 1061365113}
+  - {fileID: 2068651655}
+  - {fileID: 80721082}
+  m_Father: {fileID: 642651126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &516836008
 GameObject:
@@ -3615,7 +3771,7 @@ GameObject:
   - component: {fileID: 516836010}
   - component: {fileID: 516836009}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (14)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3687,12 +3843,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516836008}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -82.12, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -139.71925, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &539061354
 GameObject:
@@ -3705,7 +3861,7 @@ GameObject:
   - component: {fileID: 539061356}
   - component: {fileID: 539061355}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0 (11)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3777,12 +3933,79 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539061354}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -49.7191, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -107.31835, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1924053702}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &543000812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543000813}
+  m_Layer: 0
+  m_Name: Floor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &543000813
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543000812}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 83.60704, y: 1.9294, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 373380814}
+  - {fileID: 925637008}
+  - {fileID: 47932722}
+  - {fileID: 1831088069}
+  - {fileID: 1458736033}
+  - {fileID: 1264329472}
+  - {fileID: 2065518399}
+  - {fileID: 1849944334}
+  - {fileID: 669412636}
+  - {fileID: 228256002}
+  - {fileID: 1119017450}
+  - {fileID: 1468938766}
+  - {fileID: 1334593994}
+  - {fileID: 1666767960}
+  - {fileID: 908939612}
+  - {fileID: 1407589254}
+  - {fileID: 52221371}
+  - {fileID: 1953875820}
+  - {fileID: 707064573}
+  - {fileID: 719568955}
+  - {fileID: 464277139}
+  - {fileID: 433404799}
+  - {fileID: 285507586}
+  - {fileID: 25478680}
+  - {fileID: 1305250727}
+  - {fileID: 224027207}
+  - {fileID: 1531793051}
+  - {fileID: 2083120517}
+  - {fileID: 773101281}
+  - {fileID: 1848560881}
+  - {fileID: 2057623068}
+  - {fileID: 2091782033}
+  - {fileID: 1809819934}
+  - {fileID: 1460978379}
+  - {fileID: 1265092967}
+  - {fileID: 1570369946}
+  m_Father: {fileID: 1190004285}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &546544857
 GameObject:
@@ -3796,7 +4019,7 @@ GameObject:
   - component: {fileID: 546544858}
   - component: {fileID: 546544860}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (21)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3869,11 +4092,11 @@ Transform:
   m_GameObject: {fileID: 546544857}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: -2.88, y: -0.18, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -60.47925, y: -2.96099, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &546544860
 CircleCollider2D:
@@ -3922,7 +4145,7 @@ GameObject:
   - component: {fileID: 576866182}
   - component: {fileID: 576866181}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3994,12 +4217,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 576866180}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.6709, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -65.27015, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1924053702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &590604404
 GameObject:
@@ -4012,7 +4235,7 @@ GameObject:
   - component: {fileID: 590604406}
   - component: {fileID: 590604405}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0 (4)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4084,12 +4307,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590604404}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.57, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -13.029251, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1924053702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &607479501
 GameObject:
@@ -4238,7 +4461,7 @@ GameObject:
   - component: {fileID: 616073966}
   - component: {fileID: 616073965}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0 (2)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4310,11 +4533,47 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616073964}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.4491, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -39.15015, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 1924053702}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &642651125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 642651126}
+  m_Layer: 0
+  m_Name: World
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &642651126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642651125}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -26.00779, y: 0.85159, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 504101897}
+  - {fileID: 1128206604}
+  - {fileID: 15150192}
+  - {fileID: 1719795877}
+  - {fileID: 1190004285}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &661333613
@@ -4328,7 +4587,7 @@ GameObject:
   - component: {fileID: 661333615}
   - component: {fileID: 661333614}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (3)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4400,12 +4659,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661333613}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.37, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -90.96925, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &669412634
 GameObject:
@@ -4418,7 +4677,7 @@ GameObject:
   - component: {fileID: 669412636}
   - component: {fileID: 669412635}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (2)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4490,12 +4749,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669412634}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.15, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -56.44925, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &681775056
 GameObject:
@@ -4510,7 +4769,7 @@ GameObject:
   - component: {fileID: 681775059}
   - component: {fileID: 681775060}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (24)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4583,11 +4842,11 @@ Transform:
   m_GameObject: {fileID: 681775056}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 55.18, y: 3.17, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -2.4192505, y: 0.3890102, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &681775059
 CircleCollider2D:
@@ -4656,7 +4915,7 @@ GameObject:
   - component: {fileID: 707064573}
   - component: {fileID: 707064572}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (1)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4728,12 +4987,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 707064571}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.1037, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -66.70295, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &719568953
 GameObject:
@@ -4746,7 +5005,7 @@ GameObject:
   - component: {fileID: 719568955}
   - component: {fileID: 719568954}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (27)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4818,12 +5077,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719568953}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -90.3328, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -147.93205, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &773101279
 GameObject:
@@ -4836,7 +5095,7 @@ GameObject:
   - component: {fileID: 773101281}
   - component: {fileID: 773101280}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (16)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4908,12 +5167,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773101279}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.093605, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -15.505646, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &802413286
 GameObject:
@@ -4928,7 +5187,7 @@ GameObject:
   - component: {fileID: 802413289}
   - component: {fileID: 802413290}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (10)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5001,11 +5260,11 @@ Transform:
   m_GameObject: {fileID: 802413286}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 38.37, y: -0.42, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -19.229252, y: -3.20099, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &802413289
 CircleCollider2D:
@@ -5076,7 +5335,7 @@ GameObject:
   - component: {fileID: 803184164}
   - component: {fileID: 803184165}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (11)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5149,11 +5408,11 @@ Transform:
   m_GameObject: {fileID: 803184161}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 34.46, y: -0.39, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -23.139252, y: -3.17099, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &803184164
 CircleCollider2D:
@@ -5224,7 +5483,7 @@ GameObject:
   - component: {fileID: 865138944}
   - component: {fileID: 865138945}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (26)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5297,11 +5556,11 @@ Transform:
   m_GameObject: {fileID: 865138941}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 47.58, y: 3.36, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -10.019249, y: 0.57901, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &865138944
 CircleCollider2D:
@@ -5370,7 +5629,7 @@ GameObject:
   - component: {fileID: 908939612}
   - component: {fileID: 908939611}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (8)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5442,24 +5701,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908939610}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.623608, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -35.975643, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &919115790 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4648147496014700031, guid: 77c2ba2fc9853d84596709b8b2e11b0d, type: 3}
-  m_PrefabInstance: {fileID: 125549568}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eaf47160ac7cd044a40ad26896a65b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryUI
 --- !u!1 &921145615
 GameObject:
   m_ObjectHideFlags: 0
@@ -5473,7 +5721,7 @@ GameObject:
   - component: {fileID: 921145618}
   - component: {fileID: 921145619}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (8)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5546,11 +5794,11 @@ Transform:
   m_GameObject: {fileID: 921145615}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 45.76, y: -0.55, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -11.839252, y: -3.3309898, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &921145618
 CircleCollider2D:
@@ -5619,7 +5867,7 @@ GameObject:
   - component: {fileID: 925637008}
   - component: {fileID: 925637007}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (18)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5691,12 +5939,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925637006}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -90.31271, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -147.91196, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &984044897
 GameObject:
@@ -5711,7 +5959,7 @@ GameObject:
   - component: {fileID: 984044900}
   - component: {fileID: 984044901}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (14)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5784,11 +6032,11 @@ Transform:
   m_GameObject: {fileID: 984044897}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 23.26, y: -0.29, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -34.33925, y: -3.0709898, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &984044900
 CircleCollider2D:
@@ -5859,7 +6107,7 @@ GameObject:
   - component: {fileID: 1005824631}
   - component: {fileID: 1005824632}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (27)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5932,11 +6180,11 @@ Transform:
   m_GameObject: {fileID: 1005824628}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 43.88, y: 3.36, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -13.71925, y: 0.57901, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1005824631
 CircleCollider2D:
@@ -5994,6 +6242,119 @@ MonoBehaviour:
   premiumColor: {r: 0.35, g: 0.2, b: 0.08, a: 1}
   owned: 0
   premiumOwned: 0
+--- !u!1001 &1033324656
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 449586501}
+    m_Modifications:
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372506455459606149, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+      propertyPath: m_Name
+      value: Canva_Shop
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+--- !u!224 &1033324657 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1052773886892818956, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+  m_PrefabInstance: {fileID: 1033324656}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1033324658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3476439760365613781, guid: 37dc724d9cf9e174a90efc1a15c0b62d, type: 3}
+  m_PrefabInstance: {fileID: 1033324656}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eaf47160ac7cd044a40ad26896a65b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryUI
 --- !u!1 &1052759358
 GameObject:
   m_ObjectHideFlags: 0
@@ -6007,7 +6368,7 @@ GameObject:
   - component: {fileID: 1052759361}
   - component: {fileID: 1052759362}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (18)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6080,11 +6441,11 @@ Transform:
   m_GameObject: {fileID: 1052759358}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 8.08, y: -0.19, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -49.51925, y: -2.97099, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1052759361
 CircleCollider2D:
@@ -6153,7 +6514,7 @@ GameObject:
   - component: {fileID: 1060381881}
   - component: {fileID: 1060381880}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (4)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6225,12 +6586,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060381879}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.77, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -95.36925, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1061365111
 GameObject:
@@ -6244,7 +6605,7 @@ GameObject:
   - component: {fileID: 1061365112}
   - component: {fileID: 1061365114}
   m_Layer: 0
-  m_Name: Square (2)
+  m_Name: Sector_Boundaries_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6317,11 +6678,11 @@ Transform:
   m_GameObject: {fileID: 1061365111}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -85.1, y: -4.3, z: 0}
+  m_LocalPosition: {x: -142.69925, y: -7.08099, z: 0}
   m_LocalScale: {x: 1, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 504101897}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1061365114
 BoxCollider2D:
@@ -6380,7 +6741,7 @@ GameObject:
   - component: {fileID: 1072503530}
   - component: {fileID: 1072503529}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (11)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6452,12 +6813,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072503528}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -68.76, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -126.35925, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1085246395
 GameObject:
@@ -6471,7 +6832,7 @@ GameObject:
   - component: {fileID: 1085246396}
   - component: {fileID: 1085246398}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (40)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6544,11 +6905,11 @@ Transform:
   m_GameObject: {fileID: 1085246395}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: -5.19, y: 3.79, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -62.78925, y: 1.0090101, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1085246398
 CircleCollider2D:
@@ -6599,7 +6960,7 @@ GameObject:
   - component: {fileID: 1085419845}
   - component: {fileID: 1085419846}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (16)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6672,11 +7033,11 @@ Transform:
   m_GameObject: {fileID: 1085419842}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 15.7, y: -0.25, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -41.89925, y: -3.03099, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1085419845
 CircleCollider2D:
@@ -6745,7 +7106,7 @@ GameObject:
   - component: {fileID: 1119017450}
   - component: {fileID: 1119017449}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (12)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6817,12 +7178,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119017448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.103607, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -15.495644, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1120872350
 GameObject:
@@ -6837,7 +7198,7 @@ GameObject:
   - component: {fileID: 1120872353}
   - component: {fileID: 1120872354}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (22)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6910,11 +7271,11 @@ Transform:
   m_GameObject: {fileID: 1120872350}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: -6.46, y: -0.18, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -64.05925, y: -2.96099, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1120872353
 CircleCollider2D:
@@ -7172,12 +7533,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128206598}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.8, y: -2.8, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.207789, y: -3.6515899, z: 0}
   m_LocalScale: {x: 0.8805, y: 0.8743, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 642651126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1138426207
 GameObject:
@@ -7192,7 +7553,7 @@ GameObject:
   - component: {fileID: 1138426210}
   - component: {fileID: 1138426211}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (33)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7265,11 +7626,11 @@ Transform:
   m_GameObject: {fileID: 1138426207}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 21.16, y: 4, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -36.43925, y: 1.2190101, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1138426210
 CircleCollider2D:
@@ -7340,7 +7701,7 @@ GameObject:
   - component: {fileID: 1155621625}
   - component: {fileID: 1155621626}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (37)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7413,11 +7774,11 @@ Transform:
   m_GameObject: {fileID: 1155621622}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 6.03, y: 3.94, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -51.569252, y: 1.1590102, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1155621625
 CircleCollider2D:
@@ -7488,7 +7849,7 @@ GameObject:
   - component: {fileID: 1169076608}
   - component: {fileID: 1169076609}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (32)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7561,11 +7922,11 @@ Transform:
   m_GameObject: {fileID: 1169076605}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 24.94, y: 3.76, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -32.65925, y: 0.9790101, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1169076608
 CircleCollider2D:
@@ -7634,7 +7995,7 @@ GameObject:
   - component: {fileID: 1171806854}
   - component: {fileID: 1171806853}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0 (5)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7706,12 +8067,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171806852}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 57.630898, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.03164673, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1924053702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1188466158
 GameObject:
@@ -7724,7 +8085,7 @@ GameObject:
   - component: {fileID: 1188466160}
   - component: {fileID: 1188466159}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0 (13)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7796,12 +8157,46 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188466158}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.528206, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -68.12746, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1924053702}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1190004284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1190004285}
+  m_Layer: 0
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1190004285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190004284}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 179893616}
+  - {fileID: 543000813}
+  - {fileID: 1924053702}
+  m_Father: {fileID: 642651126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1197078089
 GameObject:
@@ -7816,7 +8211,7 @@ GameObject:
   - component: {fileID: 1197078092}
   - component: {fileID: 1197078093}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (30)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7889,11 +8284,11 @@ Transform:
   m_GameObject: {fileID: 1197078089}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 32.38, y: 3.64, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -25.21925, y: 0.8590102, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1197078092
 CircleCollider2D:
@@ -7964,7 +8359,7 @@ GameObject:
   - component: {fileID: 1206048897}
   - component: {fileID: 1206048898}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (4)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8037,11 +8432,11 @@ Transform:
   m_GameObject: {fileID: 1206048894}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 60.5, y: -0.33, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: 2.9007492, y: -3.1109898, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1206048897
 CircleCollider2D:
@@ -8112,7 +8507,7 @@ GameObject:
   - component: {fileID: 1246368791}
   - component: {fileID: 1246368792}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (5)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8185,11 +8580,11 @@ Transform:
   m_GameObject: {fileID: 1246368788}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 57.04, y: -0.4, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -0.5592499, y: -3.18099, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1246368791
 CircleCollider2D:
@@ -8258,7 +8653,7 @@ GameObject:
   - component: {fileID: 1253952269}
   - component: {fileID: 1253952268}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (8)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8330,12 +8725,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253952267}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -55.29, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -112.88925, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1264329470
 GameObject:
@@ -8348,7 +8743,7 @@ GameObject:
   - component: {fileID: 1264329472}
   - component: {fileID: 1264329471}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (20)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8420,12 +8815,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264329470}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -69.8391, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -127.438354, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1265092965
 GameObject:
@@ -8438,7 +8833,7 @@ GameObject:
   - component: {fileID: 1265092967}
   - component: {fileID: 1265092966}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (17)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8510,12 +8905,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265092965}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 62.567215, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.967964, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1267119940
 GameObject:
@@ -8528,7 +8923,7 @@ GameObject:
   - component: {fileID: 1267119942}
   - component: {fileID: 1267119941}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (1)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8600,12 +8995,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267119940}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.4, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -81.99925, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1270434983
 GameObject:
@@ -8618,7 +9013,7 @@ GameObject:
   - component: {fileID: 1270434985}
   - component: {fileID: 1270434984}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (9)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8690,12 +9085,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270434983}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -59.8, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -117.39925, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1294780316
 GameObject:
@@ -8709,7 +9104,7 @@ GameObject:
   - component: {fileID: 1294780317}
   - component: {fileID: 1294780319}
   m_Layer: 0
-  m_Name: Square (3)
+  m_Name: Sector_Boundaries_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8782,11 +9177,11 @@ Transform:
   m_GameObject: {fileID: 1294780316}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 52.6, y: -5.01, z: 0}
+  m_LocalPosition: {x: -4.9992523, y: -7.79099, z: 0}
   m_LocalScale: {x: 1, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 504101897}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1294780319
 BoxCollider2D:
@@ -8981,7 +9376,7 @@ GameObject:
   - component: {fileID: 1305250727}
   - component: {fileID: 1305250726}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (15)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9053,12 +9448,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305250725}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 52.323517, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.275734, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1312725041
 GameObject:
@@ -9162,7 +9557,7 @@ GameObject:
   - component: {fileID: 1334593994}
   - component: {fileID: 1334593993}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (5)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9234,12 +9629,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1334593992}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.623608, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -35.975643, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1373544471
 GameObject:
@@ -9252,7 +9647,7 @@ GameObject:
   - component: {fileID: 1373544473}
   - component: {fileID: 1373544472}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0 (8)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9324,12 +9719,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373544471}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -62.780003, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -120.37926, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1924053702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1394248887
 GameObject:
@@ -9342,7 +9737,7 @@ GameObject:
   - component: {fileID: 1394248889}
   - component: {fileID: 1394248888}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (10)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9414,12 +9809,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394248887}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -64.25, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -121.84925, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1407589252
 GameObject:
@@ -9432,7 +9827,7 @@ GameObject:
   - component: {fileID: 1407589254}
   - component: {fileID: 1407589253}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (25)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9504,12 +9899,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1407589252}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -59.605495, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -117.20474, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1420807643
 GameObject:
@@ -9524,7 +9919,7 @@ GameObject:
   - component: {fileID: 1420807646}
   - component: {fileID: 1420807647}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (6)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9597,11 +9992,11 @@ Transform:
   m_GameObject: {fileID: 1420807643}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 53.58, y: -0.58, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -4.019249, y: -3.3609898, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1420807646
 CircleCollider2D:
@@ -9670,7 +10065,7 @@ GameObject:
   - component: {fileID: 1435054881}
   - component: {fileID: 1435054880}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9742,12 +10137,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435054879}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.4, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -81.99925, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1447066713
 GameObject:
@@ -9896,7 +10291,7 @@ GameObject:
   - component: {fileID: 1458736033}
   - component: {fileID: 1458736032}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (4)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9968,12 +10363,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458736031}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.39, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -46.20925, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1460978377
 GameObject:
@@ -9986,7 +10381,7 @@ GameObject:
   - component: {fileID: 1460978379}
   - component: {fileID: 1460978378}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (34)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10058,12 +10453,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460978377}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -59.615498, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -117.21475, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1468938764
 GameObject:
@@ -10076,7 +10471,7 @@ GameObject:
   - component: {fileID: 1468938766}
   - component: {fileID: 1468938765}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (23)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10148,12 +10543,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468938764}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -39.125496, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -96.72475, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1506267030
 GameObject:
@@ -10271,7 +10666,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3089979040773461389, guid: 61ccf285ab4427442bc1ccffa040eb9e, type: 3}
+  m_Sprite: {fileID: 306222669, guid: f2459cf2adc89bb4884c4344d2487730, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10302,7 +10697,7 @@ GameObject:
   - component: {fileID: 1510057077}
   - component: {fileID: 1510057078}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (31)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10375,11 +10770,11 @@ Transform:
   m_GameObject: {fileID: 1510057074}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 28.64, y: 3.64, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -28.959251, y: 0.8590102, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1510057077
 CircleCollider2D:
@@ -10437,6 +10832,74 @@ MonoBehaviour:
   premiumColor: {r: 0.35, g: 0.2, b: 0.08, a: 1}
   owned: 0
   premiumOwned: 0
+--- !u!1 &1530953638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1530953639}
+  m_Layer: 0
+  m_Name: Wood
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1530953639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530953638}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1206048896}
+  - {fileID: 245739708}
+  - {fileID: 681775058}
+  - {fileID: 1903246207}
+  - {fileID: 865138943}
+  - {fileID: 1005824630}
+  - {fileID: 1812373940}
+  - {fileID: 1553192454}
+  - {fileID: 1197078091}
+  - {fileID: 1510057076}
+  - {fileID: 1169076607}
+  - {fileID: 1138426209}
+  - {fileID: 207762681}
+  - {fileID: 1536722185}
+  - {fileID: 2016398212}
+  - {fileID: 1155621624}
+  - {fileID: 1586571142}
+  - {fileID: 1962606039}
+  - {fileID: 1085246397}
+  - {fileID: 1246368790}
+  - {fileID: 1420807645}
+  - {fileID: 1704607590}
+  - {fileID: 921145617}
+  - {fileID: 1605904484}
+  - {fileID: 802413288}
+  - {fileID: 803184163}
+  - {fileID: 1578558480}
+  - {fileID: 260041860}
+  - {fileID: 984044899}
+  - {fileID: 2054256950}
+  - {fileID: 1085419844}
+  - {fileID: 49738598}
+  - {fileID: 1052759360}
+  - {fileID: 100131275}
+  - {fileID: 2141692990}
+  - {fileID: 546544859}
+  - {fileID: 1120872352}
+  m_Father: {fileID: 179893616}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1531793049
 GameObject:
   m_ObjectHideFlags: 0
@@ -10448,7 +10911,7 @@ GameObject:
   - component: {fileID: 1531793051}
   - component: {fileID: 1531793050}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (3)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10520,12 +10983,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531793049}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.14, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -56.45925, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1536722183
 GameObject:
@@ -10540,7 +11003,7 @@ GameObject:
   - component: {fileID: 1536722186}
   - component: {fileID: 1536722187}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (35)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10613,11 +11076,11 @@ Transform:
   m_GameObject: {fileID: 1536722183}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 13.87, y: 3.79, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -43.72925, y: 1.0090101, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1536722186
 CircleCollider2D:
@@ -10688,7 +11151,7 @@ GameObject:
   - component: {fileID: 1553192455}
   - component: {fileID: 1553192456}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (29)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10761,11 +11224,11 @@ Transform:
   m_GameObject: {fileID: 1553192452}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 36.2, y: 3.64, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -21.39925, y: 0.8590102, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1553192455
 CircleCollider2D:
@@ -10834,7 +11297,7 @@ GameObject:
   - component: {fileID: 1570369946}
   - component: {fileID: 1570369945}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (35)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10906,12 +11369,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570369944}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.661888, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -76.26114, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1578558478
 GameObject:
@@ -10926,7 +11389,7 @@ GameObject:
   - component: {fileID: 1578558481}
   - component: {fileID: 1578558482}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (12)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10999,11 +11462,11 @@ Transform:
   m_GameObject: {fileID: 1578558478}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 30.68, y: -0.32, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -26.91925, y: -3.1009898, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1578558481
 CircleCollider2D:
@@ -11074,7 +11537,7 @@ GameObject:
   - component: {fileID: 1586571143}
   - component: {fileID: 1586571144}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (38)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11147,11 +11610,11 @@ Transform:
   m_GameObject: {fileID: 1586571140}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 2.24, y: 4.04, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -55.35925, y: 1.2590101, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1586571143
 CircleCollider2D:
@@ -11222,7 +11685,7 @@ GameObject:
   - component: {fileID: 1605904485}
   - component: {fileID: 1605904486}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (9)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11295,11 +11758,11 @@ Transform:
   m_GameObject: {fileID: 1605904482}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 42.21, y: -0.52, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -15.389252, y: -3.3009899, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1605904485
 CircleCollider2D:
@@ -11368,7 +11831,7 @@ GameObject:
   - component: {fileID: 1666767960}
   - component: {fileID: 1666767959}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (24)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11440,12 +11903,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666767958}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -59.605495, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -117.20474, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1704607588
 GameObject:
@@ -11460,7 +11923,7 @@ GameObject:
   - component: {fileID: 1704607591}
   - component: {fileID: 1704607592}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (7)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11533,11 +11996,11 @@ Transform:
   m_GameObject: {fileID: 1704607588}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 49.76, y: -0.61, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -7.8392525, y: -3.3909898, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1704607591
 CircleCollider2D:
@@ -11728,11 +12191,11 @@ Transform:
   m_GameObject: {fileID: 1719795873}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.25, y: 0, z: -10}
+  m_LocalPosition: {x: 12.75779, y: -0.85159, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 642651126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1719795878
 MonoBehaviour:
@@ -11851,7 +12314,7 @@ GameObject:
   - component: {fileID: 1809819934}
   - component: {fileID: 1809819933}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (9)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11923,12 +12386,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809819932}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.613605, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -35.985645, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1812373938
 GameObject:
@@ -11943,7 +12406,7 @@ GameObject:
   - component: {fileID: 1812373941}
   - component: {fileID: 1812373942}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (28)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12016,11 +12479,11 @@ Transform:
   m_GameObject: {fileID: 1812373938}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 40.1, y: 3.64, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -17.499252, y: 0.8590102, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1812373941
 CircleCollider2D:
@@ -12089,7 +12552,7 @@ GameObject:
   - component: {fileID: 1815551002}
   - component: {fileID: 1815551001}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0 (12)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12161,12 +12624,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815551000}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.598206, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -81.19746, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1924053702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1831088067
 GameObject:
@@ -12179,7 +12642,7 @@ GameObject:
   - component: {fileID: 1831088069}
   - component: {fileID: 1831088068}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (19)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12251,12 +12714,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831088067}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -49.3591, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -106.95835, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1848560879
 GameObject:
@@ -12269,7 +12732,7 @@ GameObject:
   - component: {fileID: 1848560881}
   - component: {fileID: 1848560880}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (32)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12341,12 +12804,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848560879}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -39.135498, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -96.73475, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1849944332
 GameObject:
@@ -12359,7 +12822,7 @@ GameObject:
   - component: {fileID: 1849944334}
   - component: {fileID: 1849944333}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (21)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12431,12 +12894,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849944332}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.885498, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -86.48475, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1900180646
 GameObject:
@@ -12526,7 +12989,7 @@ GameObject:
   - component: {fileID: 1903246208}
   - component: {fileID: 1903246209}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (25)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12599,11 +13062,11 @@ Transform:
   m_GameObject: {fileID: 1903246205}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 51.36, y: 3.32, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -6.23925, y: 0.53901005, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &1903246208
 CircleCollider2D:
@@ -12661,6 +13124,51 @@ MonoBehaviour:
   premiumColor: {r: 0.35, g: 0.2, b: 0.08, a: 1}
   owned: 0
   premiumOwned: 0
+--- !u!1 &1924053701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1924053702}
+  m_Layer: 0
+  m_Name: Wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1924053702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924053701}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 83.60704, y: 1.9294, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 576866182}
+  - {fileID: 2050475132}
+  - {fileID: 616073966}
+  - {fileID: 1373544473}
+  - {fileID: 590604406}
+  - {fileID: 90028922}
+  - {fileID: 1611664}
+  - {fileID: 1997992331}
+  - {fileID: 485705196}
+  - {fileID: 539061356}
+  - {fileID: 1171806854}
+  - {fileID: 1815551002}
+  - {fileID: 129275808}
+  - {fileID: 1188466160}
+  m_Father: {fileID: 1190004285}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1935662457
 GameObject:
   m_ObjectHideFlags: 0
@@ -12810,7 +13318,7 @@ GameObject:
   - component: {fileID: 1953875820}
   - component: {fileID: 1953875819}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (26)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12882,12 +13390,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953875818}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.651886, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -76.25114, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1954878279
 PrefabInstance:
@@ -12903,7 +13411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623605105346020578, guid: e4e8a0056ec8ae047a8e48c4c9373a60, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.73512
+      value: 3.7351208
       objectReference: {fileID: 0}
     - target: {fileID: 7623605105346020578, guid: e4e8a0056ec8ae047a8e48c4c9373a60, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12919,15 +13427,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623605105346020578, guid: e4e8a0056ec8ae047a8e48c4c9373a60, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7623605105346020578, guid: e4e8a0056ec8ae047a8e48c4c9373a60, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7623605105346020578, guid: e4e8a0056ec8ae047a8e48c4c9373a60, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7623605105346020578, guid: e4e8a0056ec8ae047a8e48c4c9373a60, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -12960,7 +13468,7 @@ GameObject:
   - component: {fileID: 1962606040}
   - component: {fileID: 1962606042}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (39)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13033,11 +13541,11 @@ Transform:
   m_GameObject: {fileID: 1962606037}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: -1.5, y: 3.99, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -59.09925, y: 1.2090101, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!114 &1962606040
 MonoBehaviour:
@@ -13174,7 +13682,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3089979040773461389, guid: 61ccf285ab4427442bc1ccffa040eb9e, type: 3}
+  m_Sprite: {fileID: 306222669, guid: f2459cf2adc89bb4884c4344d2487730, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13203,7 +13711,7 @@ GameObject:
   - component: {fileID: 1997992331}
   - component: {fileID: 1997992330}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0 (10)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13275,12 +13783,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997992329}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75.8391, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -133.43835, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1924053702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2000452019 stripped
 MonoBehaviour:
@@ -13306,7 +13814,7 @@ GameObject:
   - component: {fileID: 2016398213}
   - component: {fileID: 2016398214}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (36)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13379,11 +13887,11 @@ Transform:
   m_GameObject: {fileID: 2016398210}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 9.82, y: 3.79, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -47.77925, y: 1.0090101, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &2016398213
 CircleCollider2D:
@@ -13452,7 +13960,7 @@ GameObject:
   - component: {fileID: 2036271954}
   - component: {fileID: 2036271953}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (12)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13524,12 +14032,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036271952}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -73.16, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -130.75925, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2050475130
 GameObject:
@@ -13542,7 +14050,7 @@ GameObject:
   - component: {fileID: 2050475132}
   - component: {fileID: 2050475131}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 01_07_26 PM_0 (7)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13614,12 +14122,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050475130}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -88.9, y: 3.711, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -146.49925, y: 0.9300101, z: 0}
   m_LocalScale: {x: 1.0141, y: 1.1998895, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1924053702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2054256948
 GameObject:
@@ -13634,7 +14142,7 @@ GameObject:
   - component: {fileID: 2054256951}
   - component: {fileID: 2054256952}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (15)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13707,11 +14215,11 @@ Transform:
   m_GameObject: {fileID: 2054256948}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 19.45, y: -0.23, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -38.14925, y: -3.01099, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &2054256951
 CircleCollider2D:
@@ -13780,7 +14288,7 @@ GameObject:
   - component: {fileID: 2057623068}
   - component: {fileID: 2057623067}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (7)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13852,12 +14360,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057623066}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.613605, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -35.985645, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2059931141
 GameObject:
@@ -13870,7 +14378,7 @@ GameObject:
   - component: {fileID: 2059931143}
   - component: {fileID: 2059931142}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 13, 2025, 01_51_03 AM_0 (2)
+  m_Name: Stainless_Steel_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13942,12 +14450,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059931141}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.97, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -86.56925, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2065518397
 GameObject:
@@ -13960,7 +14468,7 @@ GameObject:
   - component: {fileID: 2065518399}
   - component: {fileID: 2065518398}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (11)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14032,12 +14540,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065518397}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 52.343605, y: -2.3974416, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.2556458, y: -5.1784315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2068651652
 GameObject:
@@ -14051,7 +14559,7 @@ GameObject:
   - component: {fileID: 2068651654}
   - component: {fileID: 2068651653}
   m_Layer: 0
-  m_Name: Square (4)
+  m_Name: Sector_Boundaries_Up_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14170,11 +14678,11 @@ Transform:
   m_GameObject: {fileID: 2068651652}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -64.2143, y: 8.9, z: 0}
+  m_LocalPosition: {x: -121.81355, y: 6.11901, z: 0}
   m_LocalScale: {x: 87.72063, y: 0.8743, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 504101897}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2070677970
 GameObject:
@@ -14262,7 +14770,7 @@ GameObject:
   - component: {fileID: 2083120517}
   - component: {fileID: 2083120516}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (31)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14334,12 +14842,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083120515}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -80.0891, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -137.68835, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2091782031
 GameObject:
@@ -14352,7 +14860,7 @@ GameObject:
   - component: {fileID: 2091782033}
   - component: {fileID: 2091782032}
   m_Layer: 0
-  m_Name: 7e9b8715-df87-41b9-b66e-a45c9b553e08_0 (33)
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14424,12 +14932,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2091782031}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -59.615498, y: -6.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -117.21475, y: -8.86099, z: 0}
   m_LocalScale: {x: 1.0013578, y: 1.0813426, z: 1.0059}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 543000813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2104783257
 PrefabInstance:
@@ -14437,7 +14945,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 449586501}
     m_Modifications:
     - target: {fileID: 694456866507984365, guid: d086def2a66300f42b47413c833996b9, type: 3}
       propertyPath: m_Name
@@ -14446,7 +14954,19 @@ PrefabInstance:
     - target: {fileID: 862069694292271955, guid: d086def2a66300f42b47413c833996b9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 919115790}
+      objectReference: {fileID: 0}
+    - target: {fileID: 862069694292271955, guid: d086def2a66300f42b47413c833996b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6311106707812647289, guid: d086def2a66300f42b47413c833996b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1033324658}
+    - target: {fileID: 6311106707812647289, guid: d086def2a66300f42b47413c833996b9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Toggle
+      objectReference: {fileID: 0}
     - target: {fileID: 8067444623510515819, guid: d086def2a66300f42b47413c833996b9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -14532,6 +15052,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d086def2a66300f42b47413c833996b9, type: 3}
+--- !u!224 &2104783258 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8067444623510515819, guid: d086def2a66300f42b47413c833996b9, type: 3}
+  m_PrefabInstance: {fileID: 2104783257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2141692988
 GameObject:
   m_ObjectHideFlags: 0
@@ -14545,7 +15070,7 @@ GameObject:
   - component: {fileID: 2141692991}
   - component: {fileID: 2141692992}
   m_Layer: 0
-  m_Name: ChatGPT Image Nov 11, 2025, 02_23_16 PM_0 (20)
+  m_Name: Woden_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14618,11 +15143,11 @@ Transform:
   m_GameObject: {fileID: 2141692988}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.11489404, w: 0.99337775}
-  m_LocalPosition: {x: 0.8, y: -0.09, z: 0}
-  m_LocalScale: {x: 0.8058803, y: 0.69836146, z: 0.92929}
+  m_LocalPosition: {x: -56.79925, y: -2.8709898, z: 0}
+  m_LocalScale: {x: 0.80588025, y: 0.6983615, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1530953639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.195}
 --- !u!58 &2141692991
 CircleCollider2D:
@@ -14684,118 +15209,6 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 80721082}
-  - {fileID: 2068651655}
-  - {fileID: 1719795877}
-  - {fileID: 1061365113}
-  - {fileID: 1294780318}
-  - {fileID: 388696835}
-  - {fileID: 1128206604}
-  - {fileID: 125549568}
-  - {fileID: 576866182}
-  - {fileID: 2050475132}
-  - {fileID: 616073966}
-  - {fileID: 1373544473}
-  - {fileID: 590604406}
-  - {fileID: 90028922}
-  - {fileID: 1611664}
-  - {fileID: 1997992331}
-  - {fileID: 485705196}
-  - {fileID: 539061356}
-  - {fileID: 1171806854}
-  - {fileID: 1815551002}
-  - {fileID: 129275808}
-  - {fileID: 1188466160}
-  - {fileID: 373380814}
-  - {fileID: 925637008}
-  - {fileID: 47932722}
-  - {fileID: 1831088069}
-  - {fileID: 1458736033}
-  - {fileID: 1264329472}
-  - {fileID: 2065518399}
-  - {fileID: 1849944334}
-  - {fileID: 669412636}
-  - {fileID: 228256002}
-  - {fileID: 1119017450}
-  - {fileID: 1468938766}
-  - {fileID: 1334593994}
-  - {fileID: 1666767960}
-  - {fileID: 908939612}
-  - {fileID: 1407589254}
-  - {fileID: 52221371}
-  - {fileID: 1953875820}
-  - {fileID: 707064573}
-  - {fileID: 719568955}
-  - {fileID: 464277139}
-  - {fileID: 433404799}
-  - {fileID: 285507586}
-  - {fileID: 25478680}
-  - {fileID: 1305250727}
-  - {fileID: 224027207}
-  - {fileID: 1531793051}
-  - {fileID: 2083120517}
-  - {fileID: 773101281}
-  - {fileID: 1848560881}
-  - {fileID: 2057623068}
-  - {fileID: 2091782033}
-  - {fileID: 1809819934}
-  - {fileID: 1460978379}
-  - {fileID: 1265092967}
-  - {fileID: 1570369946}
-  - {fileID: 1206048896}
-  - {fileID: 245739708}
-  - {fileID: 681775058}
-  - {fileID: 1903246207}
-  - {fileID: 865138943}
-  - {fileID: 1005824630}
-  - {fileID: 1812373940}
-  - {fileID: 1553192454}
-  - {fileID: 1197078091}
-  - {fileID: 1510057076}
-  - {fileID: 1169076607}
-  - {fileID: 1138426209}
-  - {fileID: 207762681}
-  - {fileID: 1536722185}
-  - {fileID: 2016398212}
-  - {fileID: 1155621624}
-  - {fileID: 1586571142}
-  - {fileID: 1962606039}
-  - {fileID: 1085246397}
-  - {fileID: 1246368790}
-  - {fileID: 1420807645}
-  - {fileID: 1704607590}
-  - {fileID: 921145617}
-  - {fileID: 1605904484}
-  - {fileID: 802413288}
-  - {fileID: 803184163}
-  - {fileID: 1578558480}
-  - {fileID: 260041860}
-  - {fileID: 984044899}
-  - {fileID: 2054256950}
-  - {fileID: 1085419844}
-  - {fileID: 49738598}
-  - {fileID: 1052759360}
-  - {fileID: 100131275}
-  - {fileID: 2141692990}
-  - {fileID: 546544859}
-  - {fileID: 1120872352}
-  - {fileID: 1435054881}
-  - {fileID: 1267119942}
-  - {fileID: 2059931143}
-  - {fileID: 661333615}
-  - {fileID: 1060381881}
-  - {fileID: 460673347}
-  - {fileID: 438889177}
-  - {fileID: 500212464}
-  - {fileID: 1253952269}
-  - {fileID: 1270434985}
-  - {fileID: 1394248889}
-  - {fileID: 1072503530}
-  - {fileID: 2036271954}
-  - {fileID: 62087428}
-  - {fileID: 516836010}
-  - {fileID: 485755409}
+  - {fileID: 642651126}
   - {fileID: 1954878279}
-  - {fileID: 2104783257}
-  - {fileID: 15150192}
-  - {fileID: 324315945}
+  - {fileID: 449586501}

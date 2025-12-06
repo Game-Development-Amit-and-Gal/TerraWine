@@ -23,7 +23,7 @@ public class PlantingController : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        
 
         if (cursorSprite != null)
             cursorSprite.enabled = false;

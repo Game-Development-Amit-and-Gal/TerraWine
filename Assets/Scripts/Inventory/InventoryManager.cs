@@ -11,10 +11,10 @@ public class InventoryManager : MonoBehaviour
     [Min(1)] public int capacity = 20;
 
     [Header("אירועי UI")]
-    public UnityEvent onChanged;  
-    const string Key = "PROFILE::DEFAULT::INVENTORY"; 
+    public UnityEvent onChanged;
+    const string Key = "PROFILE::DEFAULT::INVENTORY";
 
-    private Dictionary<string, ItemSO> catalog = new(); 
+    private Dictionary<string, ItemSO> catalog = new();
     private List<InventorySlot> slots = new();
 
     public IReadOnlyList<InventorySlot> Slots => slots;
@@ -23,17 +23,14 @@ public class InventoryManager : MonoBehaviour
     {
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
-        
+        // טוען את כל האייטמים מהתיקייה Resources/Items
         foreach (var item in Resources.LoadAll<ItemSO>("Items"))
             if (!catalog.ContainsKey(item.id)) catalog.Add(item.id, item);
 
         Load();
         onChanged?.Invoke();
     }
-
-  
 
     #region API
     public bool Add(string id, int amount = 1)
@@ -56,7 +53,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-      
+     
         while (amount > 0 && slots.Count < capacity)
         {
             int put = item.stackable ? Mathf.Min(item.maxStack, amount) : 1;
@@ -65,7 +62,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         Save(); onChanged?.Invoke();
-        return amount == 0; 
+        return amount == 0;
     }
 
     public bool Remove(string id, int amount = 1)
@@ -87,6 +84,32 @@ public class InventoryManager : MonoBehaviour
     {
         int c = 0; foreach (var s in slots) if (s.id == id) c += s.amount; return c;
     }
+
+ 
+    public ItemSO GetDefinition(string id)
+    {
+        if (string.IsNullOrEmpty(id)) return null;
+        return catalog.TryGetValue(id, out var item) ? item : null;
+    }
+
+ 
+    public List<InventorySlot> GetAllWineBottleSlots()
+    {
+        List<InventorySlot> result = new List<InventorySlot>();
+
+        foreach (var s in slots)
+        {
+            if (string.IsNullOrEmpty(s.id) || s.amount <= 0) continue;
+
+            var item = GetDefinition(s.id);
+            if (item != null && item.isWineBottle && s.amount > 0)
+            {
+                result.Add(s);
+            }
+        }
+
+        return result;
+    }
     #endregion
 
     #region Save/Load
@@ -104,8 +127,7 @@ public class InventoryManager : MonoBehaviour
 
         if (!PlayerPrefs.HasKey(Key))
         {
-       
-            capacity = Mathf.Max(1, capacity); 
+            capacity = Mathf.Max(1, capacity);
             return;
         }
 

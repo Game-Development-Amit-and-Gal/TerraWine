@@ -15,8 +15,17 @@ EditorBuildSettings:
     path: Assets/Scenes/basement.unity
     guid: bb0b2598d075a324abb51eb7ba573eb3
   - enabled: 1
+    path: Assets/Scenes/WorldMap.unity
+    guid: 076dd9591a943034094ebb0049fa81ca
+  - enabled: 1
     path: Assets/Scenes/wine.unity
     guid: d1af9e24fea313f4db34304b69100c39
+  - enabled: 1
+    path: Assets/Scenes/Iron.unity
+    guid: ff44166475540ee4a9c8c2f1bd5a94b7
+  - enabled: 1
+    path: Assets/Scenes/Wood.unity
+    guid: 0546c9a8d57e36440a72bdbddcb80c51
   - enabled: 1
     path: Assets/Scenes/WineryReception.unity
     guid: bd28519504e9e8e4a8282ac4c3eb44cf
