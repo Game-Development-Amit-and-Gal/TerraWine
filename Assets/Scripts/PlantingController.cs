@@ -1,43 +1,53 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;   // Input System החדש
+using UnityEngine.InputSystem;   // Required for the new Input System (Keyboard/Mouse)
 
+/// <summary>
+/// Handles seed selection, planting logic, and the visual cursor seed icon.
+/// This controller sits between the inventory and the farmland.
+/// </summary>
 public class PlantingController : MonoBehaviour
 {
     public static PlantingController Instance { get; private set; }
 
-    [SerializeField] private float cursorWorldHeight = 1f;
+    [SerializeField] private float cursorWorldHeight = 1f;     // Desired height (in world units) of the seed icon
+                                                               // when used as the cursor
 
     [Header("Cursor Seed")]
-    [SerializeField] private SpriteRenderer cursorSprite;  // האייקון שמזיזים עם העכבר
+    [SerializeField] private SpriteRenderer cursorSprite;      // The seed icon that follows the mouse cursor
 
-    // הזרע שנבחר כרגע (ItemSO)
+    // The currently selected seed (stored as ItemSO)
     private ItemSO currentSeedItem;
 
+    /// <summary>
+    /// True if a seed is currently selected from inventory.
+    /// </summary>
     public bool HasSeed => currentSeedItem != null;
 
     void Awake()
     {
+        // Singleton pattern: avoids having more than one controller
         if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
-        
 
+        // Disable cursor sprite on start (no seed selected yet)
         if (cursorSprite != null)
             cursorSprite.enabled = false;
 
-        // בהתחלה – להראות את סמן העכבר הרגיל
+        // Ensure normal mouse cursor is visible while no seed is selected
         Cursor.visible = true;
     }
 
     /// <summary>
-    /// נבחר זרע מהאינבנטורי.
+    /// Called when a seed is selected from inventory.
+    /// Updates cursor icon + hides normal mouse cursor.
     /// </summary>
     public void SelectSeed(ItemSO item)
     {
-        // אם קיבלת פריט שהוא לא זרע – מנקים בחירה
+        // If null or not a seed → cancel selection
         if (item == null || !item.isSeed)
         {
             ClearSelection();
@@ -46,6 +56,7 @@ public class PlantingController : MonoBehaviour
 
         currentSeedItem = item;
 
+        // Show the cursor seed icon and resize it
         if (cursorSprite != null)
         {
             cursorSprite.sprite = item.icon;
@@ -53,12 +64,12 @@ public class PlantingController : MonoBehaviour
             SetCursorSpriteSize(item.icon);
         }
 
-        // מסתיר את סמן העכבר הרגיל – עכשיו רואים רק את האייקון
+        // Hide default mouse cursor → we now use the seed icon instead
         Cursor.visible = false;
     }
 
     /// <summary>
-    /// ביטול בחירת זרע.
+    /// Unselects the seed and restores the default cursor.
     /// </summary>
     public void ClearSelection()
     {
@@ -67,29 +78,30 @@ public class PlantingController : MonoBehaviour
         if (cursorSprite != null)
             cursorSprite.enabled = false;
 
-        // מחזיר את סמן העכבר הרגיל
+        // Restore the normal mouse cursor
         Cursor.visible = true;
     }
 
     void OnDisable()
     {
-        // ביטוח: אם האובייקט נכבה – לא להשאיר את העכבר מוסתר
+        // Safety measure: if controller is disabled, always show cursor again
         Cursor.visible = true;
     }
 
-    void Update()
+    private void Update()
     {
-        // קליק ימני מבטל בחירה של זרע
+        // Right-click cancels seed selection
         if (HasSeed && Mouse.current != null &&
             Mouse.current.rightButton.wasPressedThisFrame)
         {
             ClearSelection();
         }
 
-        // אם אין זרע נבחר – לא צריך להזיז את האייקון
-        if (!HasSeed || cursorSprite == null || Camera.main == null) return;
+        // If no seed or no sprite, stop tracking cursor
+        if (!HasSeed || cursorSprite == null || Camera.main == null)
+            return;
 
-        // להזיז את אייקון הזרע עם העכבר
+        // Follow mouse position with the seed icon
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Vector3 world = Camera.main.ScreenToWorldPoint(mousePos);
         world.z = 0f;
@@ -97,8 +109,8 @@ public class PlantingController : MonoBehaviour
     }
 
     /// <summary>
-    /// ניסיון לשתול בערוגה מסוימת.
-    /// נקרא מתוך PlantPlot כשעושים עליו קליק.
+    /// Called from PlantPlot after clicking a plot.
+    /// Attempts to plant the selected seed on that plot.
     /// </summary>
     public bool TryPlantOn(PlantPlot plot)
     {
@@ -107,25 +119,26 @@ public class PlantingController : MonoBehaviour
 
         string seedId = currentSeedItem.id;
 
-        // כמה זרעים יש לפני השתילה
+        // Check how many seeds the player has
         int countBefore = InventoryManager.Instance.CountOf(seedId);
 
-        // אין זרעים? ננקה בחירה
+        // If none → cancel selection and fail
         if (countBefore <= 0)
         {
             ClearSelection();
             return false;
         }
 
+        // Cannot plant if the plot is occupied or ready
         if (!plot.CanPlant) return false;
 
-        // מורידים זרע אחד מהאינבנטורי
+        // Remove exactly 1 seed from inventory
         InventoryManager.Instance.Remove(seedId, 1);
 
-        // מתחילים גדילה בערוגה – לפי ה-ItemSO (שם הזן, זמן גדילה, harvest וכו')
+        // Start seed growth in the plot
         plot.StartGrowth(currentSeedItem);
 
-        // אם אחרי ההורדה לא נשארו זרעים – לנקות בחירה
+        // If that was the last seed → cancel selection automatically
         int countAfter = InventoryManager.Instance.CountOf(seedId);
         if (countAfter <= 0)
         {
@@ -136,17 +149,19 @@ public class PlantingController : MonoBehaviour
     }
 
     /// <summary>
-    /// התאמת גודל הספייט של הזרע לגובה בעולם.
+    /// Dynamically adjusts icon scale so its height matches `cursorWorldHeight`.
+    /// Prevents oddly sized cursor icons depending on source sprite resolution.
     /// </summary>
     private void SetCursorSpriteSize(Sprite sprite)
     {
         if (sprite == null || cursorSprite == null)
             return;
 
+        // Pixel-to-unit conversion amount
         float unitsPerPixel = 1f / sprite.pixelsPerUnit;
         float spriteHeightInWorld = sprite.rect.height * unitsPerPixel;
 
-        // כמה צריך למתוח/לכווץ כדי שהגובה יהיה cursorWorldHeight
+        // Needed scale to match desired height
         float scale = cursorWorldHeight / spriteHeightInWorld;
 
         cursorSprite.transform.localScale = new Vector3(scale, scale, 1f);
