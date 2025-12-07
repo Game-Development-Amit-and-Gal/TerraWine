@@ -2,22 +2,32 @@
 using UnityEngine.EventSystems;
 using TMPro;
 
+/// <summary>
+/// Serializable save data for one plant plot.
+/// Stores state, remaining time, and harvest info.
+/// </summary>
 [System.Serializable]
 public class PlantPlotSave
 {
-    public string id;
-    public bool isGrowing;
-    public bool isReady;
-    public float remainingTime;
-    public string seedId;
-    public string harvestItemId;
-    public int harvestAmount;
+    public string id;              // Unique plot ID (e.g., PLOT_1)
+    public bool isGrowing;         // Currently growing?
+    public bool isReady;           // Ready to harvest?
+    public float remainingTime;    // Seconds left to grow
+
+    public string seedId;          // ID of planted seed
+    public string harvestItemId;   // Item produced from harvest
+    public int harvestAmount;      // Amount produced
 }
 
-public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+/// <summary>
+/// A clickable plant plot that can grow a seed,
+/// show a timer, and harvest when done.
+/// </summary>
+public class PlantPlot : MonoBehaviour,
+    IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Identity")]
-    [SerializeField] private string plotId;   // למשל: "PLOT_1", "PLOT_2" לכל ערוגה
+    [SerializeField] private string plotId; // Unique ID per plot
 
     [Header("Renderer")]
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -28,62 +38,66 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     [SerializeField] private Sprite readySprite;
 
     [Header("VFX")]
-    [SerializeField] private GameObject readyVfx;
+    [SerializeField] private GameObject readyVfx;     // Glow when ready
 
-    [Header("UI (לא חובה)")]
-    [SerializeField] private TMP_Text timerText;
+    [Header("UI (optional)")]
+    [SerializeField] private TMP_Text timerText;      // Timer above plot
 
-    [Header("Harvest")]
-    string seedId;
+    // Runtime state
+    private bool isGrowing;
+    private bool isReady;
+    private float remainingTime;
 
-
-    bool isGrowing;
-    bool isReady;
-    float remainingTime;
+    // Harvest info (set when planting)
+    private string seedId;
     private string harvestItemId;
     private int harvestAmount;
 
-    // אופציונלי – אם תרצי לשמור איזה seed נשתל כאן
-
-
+    /// <summary>True if nothing is planted or finished.</summary>
     public bool CanPlant => !isGrowing && !isReady;
+
+    /// <summary>Unique plot ID.</summary>
     public string PlotId => plotId;
 
-    void Awake()
+    private void Awake()
     {
         if (spriteRenderer == null)
             spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Start()
+    private void Start()
     {
         ResetToEmpty();
     }
 
+    /// <summary>
+    /// Clears the plot to empty state (no crop).
+    /// </summary>
     public void ResetToEmpty()
     {
         isGrowing = false;
         isReady = false;
         remainingTime = 0f;
+
         if (spriteRenderer != null) spriteRenderer.sprite = emptySprite;
         if (timerText != null) timerText.gameObject.SetActive(false);
         if (readyVfx != null) readyVfx.SetActive(false);
     }
 
+    /// <summary>
+    /// Handles click: harvest if ready, or plant if allowed.
+    /// </summary>
     public void OnPointerClick(PointerEventData eventData)
     {
-        // רק קליק שמאלי
         if (eventData.button != PointerEventData.InputButton.Left)
             return;
 
-        // אם הצמח מוכן – קודם כל לקצור
         if (isReady)
         {
             Harvest();
             return;
         }
 
-        // אם אפשר לשתול וגם יש Seed נבחר
         if (CanPlant &&
             PlantingController.Instance != null &&
             PlantingController.Instance.HasSeed)
@@ -92,22 +106,22 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         }
     }
 
-    // 👇 פה השינוי – מקבלת growSeconds מבחוץ
+    /// <summary>
+    /// Starts growth using a seed configuration (ItemSO).
+    /// </summary>
     public void StartGrowth(ItemSO seed)
     {
         if (!CanPlant || seed == null || !seed.isSeed) return;
 
         seedId = seed.id;
-
-        isGrowing = true;
-        isReady = false;
         remainingTime = seed.growTimeSeconds;
-
-        // להגדיר מה נקצור:
         harvestItemId = seed.harvestItem != null ? seed.harvestItem.id : null;
         harvestAmount = seed.harvestAmount;
 
-        // ספרייט בזמן גדילה:
+        isGrowing = true;
+        isReady = false;
+
+        // Change sprite upon planting
         if (spriteRenderer != null)
         {
             if (seed.plantedPlotSprite != null)
@@ -122,9 +136,10 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         StartCoroutine(GrowRoutine());
     }
 
-
-
-    System.Collections.IEnumerator GrowRoutine()
+    /// <summary>
+    /// Coroutine that counts down while growing.
+    /// </summary>
+    private System.Collections.IEnumerator GrowRoutine()
     {
         while (remainingTime > 0f && isGrowing)
         {
@@ -133,7 +148,7 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             yield return null;
         }
 
-        if (!isGrowing) yield break;  // במקרה שעצרו ידנית
+        if (!isGrowing) yield break;
 
         isGrowing = false;
         isReady = true;
@@ -144,16 +159,65 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         if (readyVfx != null) readyVfx.SetActive(true);
     }
 
-    void UpdateTimerUI()
+    /// <summary>
+    /// Converts seconds to text like "1:23".
+    /// </summary>
+    private void UpdateTimerUI()
     {
+        float minutesInSeconds = 60f;
+        int zero = 0;
         if (timerText == null) return;
-        if (remainingTime < 0) remainingTime = 0;
-        int minutes = Mathf.FloorToInt(remainingTime / 60f);
-        int seconds = Mathf.FloorToInt(remainingTime % 60f);
+
+        if (remainingTime < zero) remainingTime = zero;
+
+        int minutes = Mathf.FloorToInt(remainingTime / minutesInSeconds);
+        int seconds = Mathf.FloorToInt(remainingTime % minutesInSeconds);
         timerText.text = $"{minutes:0}:{seconds:00}";
     }
 
-    // ---- שמירה ----
+    /// <summary>
+    /// Harvests the ready crop into inventory.
+    /// </summary>
+    private void Harvest()
+    {
+        if (!isReady) return;
+        if (InventoryManager.Instance == null)
+        {
+            Debug.LogWarning("[PlantPlot] Tried to harvest but no InventoryManager in scene");
+            return;
+        }
+
+        bool ok = InventoryManager.Instance.Add(harvestItemId, harvestAmount);
+        Debug.Log($"[PlantPlot] Harvested {harvestAmount}x {harvestItemId}, success={ok}");
+
+        ResetToEmpty();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (timerText == null) return;
+
+        if (isGrowing)
+        {
+            timerText.gameObject.SetActive(true);
+            UpdateTimerUI();
+        }
+        else if (isReady)
+        {
+            timerText.text = "Ready!";
+            timerText.gameObject.SetActive(true);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (timerText == null) return;
+        timerText.gameObject.SetActive(false);
+    }
+
+    // ---------------- Save/Load ----------------
+
+    /// <summary>Returns the current plot state for saving.</summary>
     public PlantPlotSave GetSave()
     {
         return new PlantPlotSave
@@ -168,11 +232,15 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         };
     }
 
+    /// <summary>
+    /// Restores the plot state from save data.
+    /// deltaSeconds: how long the player was offline.
+    /// </summary>
     public void LoadFrom(PlantPlotSave s, float deltaSeconds)
     {
-        if (s == null) return;
+        if (s == null) return; 
 
-        seedId = s.seedId;
+        seedId = s.seedId; 
         harvestItemId = s.harvestItemId;
         harvestAmount = s.harvestAmount;
 
@@ -180,7 +248,7 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         isReady = s.isReady;
         remainingTime = s.remainingTime;
 
-        // כמו שהיה אצלך – חישוב הזמן שעבר:
+        // Apply offline progression
         if (isGrowing)
         {
             remainingTime -= deltaSeconds;
@@ -192,7 +260,7 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             }
         }
 
-        // לעדכן ספרייטים:
+        // Restore correct visuals
         if (!isGrowing && !isReady)
         {
             ResetToEmpty();
@@ -212,45 +280,5 @@ public class PlantPlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             StopAllCoroutines();
             StartCoroutine(GrowRoutine());
         }
-    }
-
-    private void Harvest()
-    {
-        if (!isReady) return;
-
-        if (InventoryManager.Instance == null)
-        {
-            Debug.LogWarning("[PlantPlot] Tried to harvest but no InventoryManager in scene");
-            return;
-        }
-
-        // מוסיפים את הענבים לתיק
-        bool ok = InventoryManager.Instance.Add(harvestItemId, harvestAmount);
-        Debug.Log($"[PlantPlot] Harvested {harvestAmount}x {harvestItemId}, success={ok}");
-
-        // מאפסים את הערוגה לריקה
-        ResetToEmpty();
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (timerText == null) return;
-
-        if (isGrowing)
-        {
-            timerText.gameObject.SetActive(true);
-            UpdateTimerUI(); // לוודא שהטקסט מעודכן לזמן הנוכחי
-        }
-        else if (isReady)
-        {
-            timerText.text = "Ready!";
-            timerText.gameObject.SetActive(true);
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (timerText == null) return;
-        timerText.gameObject.SetActive(false);
     }
 }
