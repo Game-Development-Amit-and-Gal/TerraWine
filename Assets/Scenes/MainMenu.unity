@@ -163,6 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 238639772}
   - component: {fileID: 238639773}
+  - component: {fileID: 238639774}
   m_Layer: 0
   m_Name: TutorialManager
   m_TagString: Untagged
@@ -205,7 +206,7 @@ MonoBehaviour:
   - sceneName: SampleScene
     steps:
     - message: "\"Hey, wake up, kiddo.\r\nI heard someone stole our secret family
-        recipe\u2026\r\nBut don't panic.\r\n\r\nA recipe is only the beginning.\r\nWhat
+        recipe\u2026\r\nBut don't panic.\n\r\nA recipe is only the beginning.\r\nWhat
         really matters is you, your taste,\r\nand the choices you make in this vineyard.\r\n\r\nTogether,
         we\u2019ll build a new legend \u2013 your own wine.\"\r\n\r\nBefore anything
         else, let me show you how to play.\r\nPress Next to learn how the vineyard
@@ -218,13 +219,12 @@ MonoBehaviour:
         (WASD
         / arrow keys or your joystick).
 
-        
 
-        Walk close to the fields
-        and objects to interact with them.
+        Walk close to the fields and objects
+        to interact with them.
 
-        Take a look around and get comfortable
-        with your new vineyard.'
+        Take a look around and get comfortable with
+        your new vineyard.'
       targetObjectName: Player
       arrowOffset: {x: -257, y: -213}
       hideSceneUI: 1
@@ -232,13 +232,28 @@ MonoBehaviour:
         other resources.\r\nYou will use these items to plant, harvest and make wine.\r\n\r\nLater,
         we\u2019ll use the bag to choose which seeds to plant."
       targetObjectName: BAG
-      arrowOffset: {x: -220, y: -150}
+      arrowOffset: {x: -220, y: -100}
       hideSceneUI: 0
   - sceneName: WorldMap
     steps: []
   - sceneName: wine
     steps: []
   sceneUiRootName: UI
+--- !u!114 &238639774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238639771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22710a3417e490448bbaedecd79c99d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  targetUI: {fileID: 0}
+  fadedAlpha: 0.3
+  fadeDuration: 0.5
 --- !u!1 &365685941
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,10 +286,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 923109120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22, y: -83}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1192, y: -571}
+  m_SizeDelta: {x: 192, y: 73.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &365685943
 MonoBehaviour:
@@ -361,7 +376,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -1094.9614, y: -517.94495, z: -964.44946, w: -377.46774}
+  m_margin: {x: -1037.8599, y: -282.9018, z: -1041.2539, w: -470.43988}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -830,9 +845,9 @@ RectTransform:
   - {fileID: 399763750}
   m_Father: {fileID: 1775925192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.449}
-  m_AnchorMin: {x: 0.23856248, y: 0.5}
-  m_AnchorMax: {x: 0.23856248, y: 0.5}
-  m_AnchoredPosition: {x: 24.810547, y: 41.1099}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 603.81055, y: 41.1099}
   m_SizeDelta: {x: 381.5085, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &755884149
@@ -1455,10 +1470,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 923109120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 887, y: -142}
-  m_SizeDelta: {x: 600.4844, y: 916.7307}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -367, y: 551}
+  m_SizeDelta: {x: 597.8, y: 899.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1333585703
 MonoBehaviour:
@@ -1675,9 +1690,9 @@ RectTransform:
   - {fileID: 896544108}
   m_Father: {fileID: 1775925192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.099}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -489.9018, y: -163.4068}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 590, y: -163.4068}
   m_SizeDelta: {x: 307.6989, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1534251082
@@ -1705,17 +1720,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534251082}
-  m_LocalRotation: {x: -0, y: -0, z: 0.27082518, w: 0.9626286}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.029293219, y: 0.025665207, z: 0.3643021, w: 0.9304662}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0000012093963}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 923109120}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 31.427}
+  m_LocalEulerAnglesHint: {x: 2.052, y: 3.965, z: 42.834}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -257, y: -213}
-  m_SizeDelta: {x: 230.532, y: 244.6205}
+  m_AnchoredPosition: {x: -91, y: -140}
+  m_SizeDelta: {x: 180.325, y: 190.3941}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1534251084
 MonoBehaviour:
@@ -1823,10 +1838,10 @@ RectTransform:
   - {fileID: 885831818}
   m_Father: {fileID: 923109120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -869.5295, y: -538.06177}
-  m_SizeDelta: {x: 607.059, y: 152.1234}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 303.53, y: 76.062}
+  m_SizeDelta: {x: 607.059, y: 152.12341}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624312727
 MonoBehaviour:
@@ -2065,12 +2080,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2214,9 +2229,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

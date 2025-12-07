@@ -5,6 +5,7 @@ using UnityEngine;
 /// </summary>
 public class WorldMapButton : MonoBehaviour
 {
+    // Set a world map Name
     [SerializeField] private string worldMapSceneName = "WorldMap";
 
     // we don't have a player in the world map, so position is not important
