@@ -200,6 +200,9 @@ public class TutorialManager : MonoBehaviour
     /// Updates the tutorial text, scene UI visibility and arrow
     /// based on the current step.
     /// </summary>
+    /// 
+    private float faded = 0.2f;
+    private float originalAlpha = 1f;
     private void ShowCurrentStep()
     {
         if (currentGuide == null || tutorialText == null)
@@ -214,8 +217,20 @@ public class TutorialManager : MonoBehaviour
         if (currentSceneUiRoot != null)
             currentSceneUiRoot.SetActive(!step.hideSceneUI);
 
-        // 2) Update text
-        tutorialText.text = step.message;
+        if (!step.hideSceneUI)
+        {
+            var fader = currentSceneUiRoot.GetComponent<UITransparencyGroup>();
+            fader?.RestoreAlpha(faded);
+
+        }
+        else
+        {
+            var fader = currentSceneUiRoot?.GetComponent<UITransparencyGroup>();
+            fader?.RestoreAlpha(originalAlpha);
+        }
+
+            // 2) Update text
+            tutorialText.text = step.message;
 
         // 3) Update arrow
         if (arrow == null)

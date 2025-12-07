@@ -2,68 +2,100 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Handles barrel behavior: starting aging (wine production), finishing it,
+/// and harvesting bottles when ready.
+/// Works together with BarrelUI for player interactions.
+/// </summary>
 public class Barrel : MonoBehaviour, IPointerClickHandler
 {
+    // ---------------------- Identity ----------------------
     [Header("Identity")]
-    [SerializeField] private string barrelId = "BARREL_1";   // אם יהיו כמה חביות, אפשר לתת לכל אחת id אחר (לעתיד לשמירה)
+    [SerializeField] private string barrelId = "BARREL_1"; // Unique ID (useful for saving if you have multiple barrels)
 
+    // ---------------------- Item IDs ----------------------
     [Header("Items")]
-    [SerializeField] private string grapeItemId = "Cabernet_Sauvignon_Grap";
-    [SerializeField] private string bottleItemId = "Cabernet_Sauvignon_Bottle";
-    [SerializeField] private int grapesPerBottle = 5;
+    [SerializeField] private string grapeItemId = "Cabernet_Sauvignon_Grap";      // Inventory ID for grapes
+    [SerializeField] private string bottleItemId = "Cabernet_Sauvignon_Bottle";  // Inventory ID for resulting wine bottle
+    [SerializeField] private int grapesPerBottle = 5;                             // Grapes required per bottle
 
+    // ---------------------- Wine Aging Data ----------------------
     [Header("Aging Times (seconds)")]
-    [SerializeField] private float semiDrySeconds = 20f;   // 2 דקות
-    [SerializeField] private float drySeconds = 300f;       // 5 דקות
+    [SerializeField] private float semiDrySeconds = 20f;  // Example: 20 seconds (representing 2 minutes)
+    [SerializeField] private float drySeconds = 300f;     // Example: 300 seconds (5 minutes)
 
+    // ---------------------- UI Reference ----------------------
     [Header("UI")]
-    [SerializeField] private BarrelUI ui;   // נגרור את הפאנל של ה-UI לכאן
+    [SerializeField] private BarrelUI ui; // UI panel for selecting amount and wine type
 
-    // סטייט של החבית
-    int grapesInside = 0;
-    bool isAging = false;
-    bool isReady = false;
+    // ---------------------- Barrel State ----------------------
+    int grapesInside = 0;      // Grapes currently inside barrel
+    bool isAging = false;      // TRUE while aging is in progress
+    bool isReady = false;      // TRUE when wine is done aging
     float remainingSeconds = 0f;
     float totalSeconds = 0f;
-    bool isDry = false;   // true = יבש, false = חצי יבש
 
+    // Reset values to clear the barrel
+    float resetSeconds = 0f;
+    int resetGrapesInside = 0;
+    bool resetIsAgingAndReady = false;
+
+    bool isDry = false; // TRUE = Dry wine, FALSE = Semi-Dry
+
+    // ---------------------- Public Properties ----------------------
     public int GrapesPerBottle => grapesPerBottle;
     public float SemiDrySeconds => semiDrySeconds;
     public float DrySeconds => drySeconds;
 
+    /// <summary>
+    /// Handles clicking on the barrel in the scene:
+    /// - If empty → open UI to choose grapes & wine type
+    /// - If wine ready → harvest bottles
+    /// - If still aging → show debug message
+    /// </summary>
     public void OnPointerClick(PointerEventData eventData)
     {
-        // אם החבית פנויה – פותחים UI לבחור כמה ענבים וכמה זמן
+        // Only react to left mouse button
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
+
+        // If barrel is empty and not aging → open UI
         if (!isAging && !isReady)
         {
             if (InventoryManager.Instance == null || ui == null) return;
 
+            // Count available grapes in player's inventory
             int grapesInBag = InventoryManager.Instance.CountOf(grapeItemId);
+
+            // Open UI for selection
             ui.OpenForBarrel(this, grapesInBag);
         }
-        // אם היין מוכן – קוטפות בקבוקים
+        // If wine is ready → collect bottles
         else if (isReady)
         {
             HarvestBottles();
         }
         else
         {
-            // עדיין מתיישן – אפשר להציג הודעה אם תרצי
+            // Still aging → not ready
             Debug.Log("[Barrel] Wine is still aging...");
         }
     }
 
-    // קריאה מ-BarrelUI אחרי שהשחקן בחר כמות וזמן
+    /// <summary>
+    /// Called by BarrelUI after the player chooses amount of grapes and wine type.
+    /// Starts the aging process.
+    /// </summary>
     public void StartAging(int grapesToUse, bool makeDry)
     {
-        if (isAging || isReady) return;
-        if (InventoryManager.Instance == null) return;
+        if (isAging || isReady) return;                 // Prevent restarting aging
+        if (InventoryManager.Instance == null) return;  // Safety check
 
-        // משתמשים רק במכפלות של 5
+        // Only allow multiples of grapesPerBottle
         int usableGrapes = (grapesToUse / grapesPerBottle) * grapesPerBottle;
         if (usableGrapes <= 0) return;
 
-        // מוודאים שיש מספיק ענבים
+        // Check inventory amount
         int inBag = InventoryManager.Instance.CountOf(grapeItemId);
         if (inBag < usableGrapes)
         {
@@ -71,7 +103,7 @@ public class Barrel : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        // מורידים ענבים מהתיק
+        // Remove grapes from inventory
         bool removed = InventoryManager.Instance.Remove(grapeItemId, usableGrapes);
         if (!removed)
         {
@@ -79,57 +111,75 @@ public class Barrel : MonoBehaviour, IPointerClickHandler
             return;
         }
 
+        // Store grapes and set wine type
         grapesInside = usableGrapes;
         isDry = makeDry;
+
+        // Choose proper aging time
         totalSeconds = makeDry ? drySeconds : semiDrySeconds;
         remainingSeconds = totalSeconds;
+
+        // Set state to start aging
         isAging = true;
         isReady = false;
 
+        // Stop any old routines and start a new one
         StopAllCoroutines();
         StartCoroutine(AgingRoutine());
 
         Debug.Log($"[Barrel] Started aging {grapesInside} grapes for {(makeDry ? "dry" : "semi-dry")} wine. Time={totalSeconds}s");
     }
 
+    /// <summary>
+    /// Coroutine that simulates wine aging over time.
+    /// </summary>
     System.Collections.IEnumerator AgingRoutine()
     {
-        while (remainingSeconds > 0f && isAging)
+        // Decrease time every frame until done
+        while (remainingSeconds > resetSeconds && isAging)
         {
             remainingSeconds -= Time.deltaTime;
-            // כאן אפשר לעדכן UI של טיימר אם תרצי
+            // Optional: update UI timer here
             yield return null;
         }
 
         if (!isAging) yield break;
 
+        // Wine finished aging
         isAging = false;
         isReady = true;
-        remainingSeconds = 0f;
+        remainingSeconds = resetSeconds;
 
         Debug.Log("[Barrel] Wine is ready!");
     }
 
+    /// <summary>
+    /// Converts the aged grapes inside the barrel into bottled wine.
+    /// Adds bottles to inventory and resets barrel.
+    /// </summary>
     void HarvestBottles()
     {
-        if (!isReady || grapesInside <= 0) return;
+        if (!isReady || grapesInside <= resetGrapesInside) return;
         if (InventoryManager.Instance == null) return;
 
+        // Calculate number of bottles
         int bottles = grapesInside / grapesPerBottle;
-        if (bottles <= 0)
+        int noBottles = 0; // avoid magic numbers
+        if (bottles <= noBottles)
         {
             Debug.LogWarning("[Barrel] No full bottles to harvest");
             return;
         }
 
+        // Add bottles to inventory
         bool added = InventoryManager.Instance.Add(bottleItemId, bottles);
         Debug.Log($"[Barrel] Harvested {bottles} bottles of wine. success={added}");
 
-        // מאפסים חבית
-        grapesInside = 0;
-        isReady = false;
-        isAging = false;
-        totalSeconds = 0f;
-        remainingSeconds = 0f;
+        // Reset barrel to empty state
+        grapesInside = resetGrapesInside;
+        isReady = resetIsAgingAndReady;
+        isAging = resetIsAgingAndReady;
+        totalSeconds = resetSeconds;
+        remainingSeconds = resetSeconds;
     }
 }
