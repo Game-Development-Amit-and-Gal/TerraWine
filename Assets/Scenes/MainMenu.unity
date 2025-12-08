@@ -214,17 +214,9 @@ MonoBehaviour:
       targetObjectName: 
       arrowOffset: {x: 0, y: 0}
       hideSceneUI: 1
-    - message: 'To move around the farm, use the movement controls
-
-        (WASD
-        / arrow keys or your joystick).
-
-
-        Walk close to the fields and objects
-        to interact with them.
-
-        Take a look around and get comfortable with
-        your new vineyard.'
+    - message: "To move around the farm, use the movement controls\n arrow keys.\n\nWalk
+        close to the fields and objects to interact with them.\nTake a look around
+        and get comfortable with your new vineyard."
       targetObjectName: Player
       arrowOffset: {x: -257, y: -213}
       hideSceneUI: 1
@@ -2461,7 +2453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   mainMenuCanvas: {fileID: 1775925191}
   mainMenuRoot: {fileID: 1821054806}
-  playIntro: 0
+  playIntro: 1
   introVideoPlayer: {fileID: 1222537245}
   introFileName: game_video.mp4
 --- !u!4 &2133828406 stripped
