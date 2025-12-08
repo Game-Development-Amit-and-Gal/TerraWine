@@ -157,7 +157,7 @@ Assets/
 ### Key Scripts
 
 - **GameManager** – controls overall game flow and holds `GameData`.  
-  [View GameManager.cs][(https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/main/Assets/Scripts/MainMenu/GameManager.cs)]
+  [View GameManager.cs][(https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/main/Assets/Scripts/MainMenu/GameManager.cs)
 
 - **GameData** – stores persistent data like years, seasons, coins, and competition state.  
   [View GameData.cs](https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/main/Assets/Scripts/MainMenu/GameData.cs)
