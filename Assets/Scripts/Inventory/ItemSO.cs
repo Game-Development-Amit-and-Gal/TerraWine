@@ -164,4 +164,5 @@ public class ItemSO : ScriptableObject
         if (!stackable)
             maxStack = 1;
     }
+
 }

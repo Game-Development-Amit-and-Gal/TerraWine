@@ -17,8 +17,10 @@ MonoBehaviour:
   icon: {fileID: -6263536802651633628, guid: bcb02297e517e694b97d5ff43553d620, type: 3}
   stackable: 1
   maxStack: 99
-  price: 0
+  price: 10
   isSeed: 1
+  isWineBottle: 0
+  category: 0
   growTimeSeconds: 10
   harvestItem: {fileID: 11400000, guid: 592681780197f7a47bd60cd4ad370f64, type: 2}
   harvestAmount: 10

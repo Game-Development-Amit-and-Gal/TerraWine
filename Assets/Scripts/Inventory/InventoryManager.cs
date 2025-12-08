@@ -137,6 +137,30 @@ public class InventoryManager : MonoBehaviour
         capacity = Mathf.Max(1, data.capacity);
         slots.AddRange(data.slots ?? new List<InventorySlot>());
     }
+    public bool AddCategory(ItemCategory category, int amountPerItem = 99)
+    {
+        bool allAdded = true;
+
+        foreach (var kvp in catalog)
+        {
+            ItemSO item = kvp.Value;
+
+           
+            if (item.category != category)
+                continue;
+
+       
+            bool ok = Add(item.id, amountPerItem);
+
+        
+            if (!ok)
+                allAdded = false;
+        }
+
+        return allAdded; 
+    }
+   
+    
 
     public void ResetAll()
     {

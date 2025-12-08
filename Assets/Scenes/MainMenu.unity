@@ -218,13 +218,13 @@ MonoBehaviour:
         (WASD
         / arrow keys or your joystick).
 
-        
 
-        Walk close to the fields
-        and objects to interact with them.
 
-        Take a look around and get comfortable
-        with your new vineyard.'
+        Walk close to the fields and objects
+        to interact with them.
+
+        Take a look around and get comfortable with
+        your new vineyard.'
       targetObjectName: Player
       arrowOffset: {x: -257, y: -213}
       hideSceneUI: 1
@@ -234,10 +234,6 @@ MonoBehaviour:
       targetObjectName: BAG
       arrowOffset: {x: -220, y: -150}
       hideSceneUI: 0
-  - sceneName: WorldMap
-    steps: []
-  - sceneName: wine
-    steps: []
   sceneUiRootName: UI
 --- !u!1 &365685941
 GameObject:

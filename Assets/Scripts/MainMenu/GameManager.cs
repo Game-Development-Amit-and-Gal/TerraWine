@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
             InventoryManager.Instance.Add("Cabernet_Sauvignon_Seed", 5);
             InventoryManager.Instance.Add("Grenache_Seed", 5);
             InventoryManager.Instance.Add("Petit_verdot_Seed", 1);
+            InventoryManager.Instance.Add("Garden_bed", 1);
+            InventoryManager.Instance.AddCategory(ItemCategory.Update, 1);
         }
         else
         {
