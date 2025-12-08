@@ -1,81 +1,203 @@
-**# TerraWine - משחק ניהול יין ואסטרטגיה**
+# TerraWine 
 
-## **תיאור כללי**
+TerraWine is a single-player strategy and management game where you play as the owner of a small winery competing in regional wine competitions.
 
-TerraWine הוא משחק אסטרטגיה-ניהול המדמה את תהליך גידול היין לאורך עונות השנה. השחקן נדרש לנהל את המשאבים שלו, לטפל בכרמים, ולבצע החלטות מושכלות שיקבעו את איכות היין הסופי שלו.
+Your goal is to build the most successful winery you can within three in-game years:
+- Produce as many wine bottles as possible.
+- Improve the quality of your wines.
+- Increase the reputation and publicity of your winery.
+- Beat the other vineyards around you in the recurring wine competitions.
 
-## **חזון המשחק**
+Every in-game year is divided into three seasons. At the end of each three-season cycle, a wine competition takes place. After three full years, the final competition decides the overall winner.
 
-המטרה המרכזית של TerraWine היא לשלב בין חוויה מרגיעה של ניהול חווה לבין אתגרים אסטרטגיים שמדמים תעשיית ייצור היין. המשחק מעודד תכנון לטווח ארוך, ניתוח נתונים, ותגובה לשינויים עונתיים וסביבתיים.
+## World & Core Loop
 
-## **שלבי המשחק (Seasons)**
+You are the owner of a vineyard and winery:
 
-### **1. Earth Season - עונת הקרקע**
+- **Vineyard (Field):**  
+  Grow different grape varieties and manage your plots.
 
-בשלב זה השחקן מתמקד בהכנת האדמה, איזון משאבים, והשקיה נכונה.
+- **Cellar & Barrels:**  
+  Age your wine in barrels, control quality, and prepare bottles.
 
-* דישון הקרקע ושיפור תנאי הצמיחה.
-* ניטור מזג האוויר והסתגלות לשינויי אקלים.
+- **Selling:**  
+  Sell bottles to a supplier to earn money and unlock more options and resources.
 
-### **2. Vine Season - עונת הגפנים**
+- **World Map & Risky Actions:**  
+  To get more resources you can:
+  - Take risky actions like trying to steal from other wineries.
+  - Explore and look for resources on your own.
+  - Take temporary jobs to earn extra income.
 
-כאן מתבצע שלב הגידול והטיפוח.
+But you are not alone:
+- **Other wineries can also try to steal from you**, damage your progress, or get an advantage before the next wine competition.
 
-* גיזום, ריסוס והשקיה מדויקת.
-* ניהול עובדים והתמודדות עם מחלות בצמחים.
+Use your resources, timing, and decisions wisely over three in-game years and three recurring competitions to try and become the best winery in the region.
 
-### **3. Winery Season - עונת היקב**
 
-בשלב זה השחקן מעבד את הענבים ליין.
+## Screenshots
 
-* בחירת שיטות התססה.
-* איזון בין איכות, טעם וכמות.
-* שיווק המוצר הסופי בהתאם לביקוש בשוק.
 
-## **מטרת השחקן**
+![Main menu](Docs/Images/main_menu.png)
+![Vineyard scene](Docs/Images/vineyard_scene.png)
+![Barrel room](Docs/Images/barrel_room.png)
 
-ליצור יין באיכות הגבוהה ביותר, תוך שמירה על רווחיות ואיזון סביבתי. השחקן נמדד לפי פרמטרים של איכות, זמן, ותכנון כלכלי.
+## Gameplay Overview
 
-## **מכניקות משחק עיקריות**
+In TerraWine you manage a small vineyard and winery across several seasons:
 
-* **ניהול משאבים:** כסף, מים, דשן, עובדים.
-* **מערכת זמן עונתית:** כל עונה משפיעה ישירות על המשאבים והתוצאות.
-* **שוק דינמי:** מחירי יין משתנים לפי איכות ומוניטין.
-* **אירועים רנדומליים:** מזג אוויר קיצוני, מחלות, או ביקורות שוק מפתיעות.
+- Plant different grape varieties (Cabernet Sauvignon, Grenache, Petit Verdot, etc.).
+- Harvest grapes at the right time to balance quantity and quality.
+- Age your wine in barrels and track how many bottles you can produce.
+- Sell bottles from the wine truck to earn coins and improve your economy.
+- Upgrade your vineyard, cellar and designs to increase efficiency and prestige.
+- Compete in recurring wine competitions against nearby wineries.
+- Take risks on the world map: explore, take side jobs, or even try to steal resources –  
+  but remember that **other wineries can also steal from you**.
 
-## **גרפיקה וסגנון אמנותי**
 
-המשחק מתבסס על סגנון **semi-realistic stylized** עם צבעים חמימים המדגישים את אווירת הכפר והטבע. הדגש הוא על עיצוב נקי, חוויית משתמש נוחה, ואנימציות רכות המדמות את מחזור החיים של הכרם.
-
-## **קהל יעד**
-
-* שחקנים שאוהבים משחקי ניהול, סימולציה וכלכלה.
-* קהל בוגר יותר (18+) שמתעניין בתרבות היין והחקלאות.
-* מתאים גם ללימוד מושגים בסיסיים על תהליך ייצור היין.
-
-## **מטרות הפיתוח**
-
-1. יצירת חוויית משחק אסטרטגית ועמוקה אך נגישה למתחילים.
-2. שילוב בין נתונים אמיתיים של ייצור יין למכניקות משחק מהנות.
-3. יצירת קהילה סביב המשחק (פורומים, דירוגים, טורנירים קלים).
-
-## **תוכניות עתידיות**
-
-* הרחבת המשחק למצב מרובה משתתפים (Co-op / תחרות).
-* הוספת עונות חדשות וזן ענבים ייחודיים.
-* שילוב תכונות AI לניהול חכם של עובדים ומחירים בשוק.
-
-## **צוות הפיתוח**
-
-* **רעיון ותכנון:** Amit Nachum
-* **פיתוח וביצוע:** Unity Engine (C#)
-* **עיצוב אמנותי:** גרפיקה בסגנון טבע-אירופי
-* **מוזיקה וסאונד:** נעימות כפריות רגועות בסגנון אקוסטי
-
-## **זכויות יוצרים ורישוי**
+## Controls
 
 
 
-**נכתב על ידי:** Gal Maymon and Amit Nachum
-**גרסה:** 1.0
-**תאריך:** נובמבר 2025
+| Action                 | Keyboard / Mouse       |
+|------------------------|------------------------|
+| Move                   | Arrow keys             |
+| Interact               | E                      |
+| Open truckInventory    | I                      |
+
+## Features
+
+- Plant and harvest multiple grape varieties (Cabernet Sauvignon, Grenache, Petit Verdot, etc.).
+- Barrel and cellar system that turns harvested grapes into wine bottles over time.
+- Wine truck for selling bottles and earning coins.
+- Inventory system with clear categories (Resources, Wine Bottles, Design, etc.).
+- Economy system that tracks player coins, income and upgrades.
+- Recurring wine competitions every three seasons, with a final competition after three years.
+- World map with risky actions: explore, take side jobs, or try to steal from other wineries.
+- Other wineries can also steal from you, forcing you to plan your strategy carefully.
+- 2.5D vineyard world with fields, cellar and surrounding wineries.
+
+## Tech Stack
+
+- **Engine:** Unity 6 (2025.x)
+- **Language:** C#
+- **Target Platform:** PC (Windows)
+- **Version Control:** Git + GitHub
+- **Distribution:** itch.io <!-- TODO: add the link to your itch.io page -->
+
+
+### Option 1 – Play the build
+
+1. Download the latest release from the **Releases** page.
+2. Extract the zip file.
+3. Run `TerraWine.exe`.
+
+### Option 2 – Open the project in Unity
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/<your-user>/TerraWine.git <!-- TODO: add the link to your itch.io page -->
+   ```
+2. Open the folder in **Unity 6 (2025.x)**.
+3. Open `Assets/Scenes/MainMenu.unity`.
+4. Press **Play** in the Unity editor.
+
+## Project Structure
+
+```text
+Assets/
+  _Recovery/                  # Unity auto-recovery data (not game logic)
+  Editor/                     # Editor-related scripts/settings (if used)
+  Item/                       # Item-related assets (prefabs/sprites for items)
+  Materials/                  # Shared materials for the project
+
+  Photo/                      # Reference / in-game photos
+    Garden/
+      Graps/                  # Grapes / vineyard images
+      Materials/              # Extra materials/textures
+      Wine_Bottle/            # Wine bottle images
+
+  PlayerPrefsEditor/          # Third-party tool for editing PlayerPrefs
+    Documentation/
+    Editor/
+    Editor Resources/
+    Samples/
+  PreFabs/                    # Reusable prefabs (trees, props, UI, etc.)
+
+  Resources/
+    Items/                    # ScriptableObject item definitions (seeds, bottles, etc.)
+
+  Scenes/                     # Main scenes of the game
+    (MainMenu, Garden, Wine_Scene, WorldMap, etc.)
+
+  Scripts/                    # All gameplay C# scripts
+    Garden/                   # Planting, plots, trees and garden logic
+    Inventory/                # Inventory system & UI
+    MainMenu/                 # Main menu, intro and start-game logic
+    SceneManagement/          # GameManager, scene loading and global flow
+    Shop/                     # Shop / truck / selling systems
+    Wine_Scenes/              # Wine making, barrels and cellar logic
+    WorldMap/                 # World map movement and events
+
+  Settings/
+    Scenes/                   # Unity 6 scene settings/assets
+    Sprites/                  # Sprite collections / atlases
+    StreamingAssets/          # Assets loaded at runtime
+
+  TextMesh Pro/               # TMP fonts and resources
+    Examples & Extras/
+    Fonts/
+    Resources/
+
+  Tile/                       # Tilemap assets for the 2.5D world (if used)
+
+
+### Key Scripts
+
+- **GameManager** – controls overall game flow and holds `GameData`.  
+  [View GameManager.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Core/GameManager.cs)
+
+- **GameData** – stores persistent data like years, seasons, coins, and competition state.  
+  [View GameData.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Core/GameData.cs)
+
+- **SeasonManager** – manages seasons and triggers wine competitions.  
+  [View SeasonManager.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/MainMenu/SeasonManager.cs)
+
+- **EconomyManager** – handles player coins, prices and income.  
+  [View EconomyManager.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Core/EconomyManager.cs)
+
+- **InventoryManager** – manages all items the player owns and notifies the UI when something changes.  
+  [View InventoryManager.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Inventory/InventoryManager.cs)
+
+- **InventoryUI** – draws the inventory grid and category filters for the player.  
+  [View InventoryUI.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Inventory/InventoryUI.cs)
+
+- **ItemSO** – ScriptableObject definition for seeds, wine bottles, designs and more.  
+  [View ItemSO.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Inventory/ItemSO.cs)
+
+- **TruckSeller** – allows selling wine bottles from the truck to earn coins.  
+  [View TruckSeller.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Wine_Scenes/TruckSeller.cs)
+
+- **BarrelPurchase** – controls buying barrels and turning grapes into bottles over time.  
+  [View BarrelPurchase.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Wine_Scenes/BarrelPurchase.cs)
+
+
+## Contributing
+
+TerraWine is currently developed as a student project by a small team.
+
+If you want to suggest improvements or report bugs, you can:
+
+1. Open an **Issue** in this repository.
+2. (Optional) Fork the repo and submit a **Pull Request** with a clear description of your changes.
+
+Please keep commits small and focused, and add comments to any complex game logic you change.
+
+## Credits
+
+>
+
+- **Gal Maymon** – Game design, programming, art direction.
+- **Amit Nachum* – Programming, systems design.
+
