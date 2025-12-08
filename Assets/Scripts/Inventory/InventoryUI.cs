@@ -229,67 +229,45 @@ public class InventoryUI : MonoBehaviour
     }
 
 
-
-
-
     void Redraw()
     {
-        // Remove all previously spawned slot UI elements from the grid
         foreach (Transform c in gridParent)
             Destroy(c.gameObject);
 
-        // Get a reference to the InventoryManager
         var inv = InventoryManager.Instance;
-        if (inv == null) return;   // Safety check: if no inventory exists, stop
+        if (inv == null) return;
 
-        // Cache the current bag capacity locally for use in this draw cycle
         int capacity = inv.capacity;
 
 
-        // Temporary list to store only slots that match the current tab/category
         List<InventorySlot> filtered = new List<InventorySlot>();
 
-        // avoid magic numebr
-        int zero = 0;
-
-        // Go through all inventory slots
         foreach (var s in inv.Slots)
         {
-            // Skip empty or invalid slots
-            if (string.IsNullOrEmpty(s.id) || s.amount <= zero)
+            if (string.IsNullOrEmpty(s.id) || s.amount <= 0)
                 continue;
 
-            // Get the item definition associated with this slot
             ItemSO so = inv.GetDefinition(s.id);
             if (so == null)
                 continue;
 
-            // Skip items that don't belong to the currently selected category/tab
             if (so.category != currentCategory)
                 continue;
 
-            // Slot passed all checks, add it to our filtered results
             filtered.Add(s);
         }
 
 
-
-        // Create exactly 'capacity' UI slots, even if some are empty
         for (int i = 0; i < capacity; i++)
         {
-            // Spawn a visual slot UI element under the grid
             var go = Instantiate(slotPrefab, gridParent);
 
-            // Locate the child objects that hold icon, amount text, and price text
             var imgTr = go.transform.Find("Icon");
             var amountTr = go.transform.Find("Amount");
             var priceTr = go.transform.Find("Price");
 
-            // Cache UI components for faster access
             var img = imgTr.GetComponent<Image>();
             var amountTxt = amountTr.GetComponent<TMP_Text>();
-
-            // Price UI (exists only in Buy/Sell modes)
             TMP_Text priceTxt = null;
             Image priceIcon = null;
             if (priceTr != null)
@@ -299,98 +277,76 @@ public class InventoryUI : MonoBehaviour
             }
 
 
-            // If this slot index corresponds to an actual filtered inventory item
+
             if (i < filtered.Count)
             {
-                var s = filtered[i];   // The slot to display
+                var s = filtered[i];
 
-                // Get the ScriptableObject definition for this item
                 ItemSO so = inv.GetDefinition(s.id);
                 if (so != null)
                 {
-                    // Display the correct sprite
                     img.sprite = so.icon;
                     img.enabled = true;
                 }
                 else
                 {
-                    // No icon available → hide image
                     img.enabled = false;
                 }
 
-
-                // Show item amount only if more than 1 (avoid showing “1”)
                 amountTxt.text = s.amount > 1 ? s.amount.ToString() : "";
 
-                // If we have price UI elements (Sell/Buy modes only)
                 if (priceTxt != null || priceIcon != null)
                 {
-                    // Only wine bottles display pricing information
                     if (so != null && so.isWineBottle)
                     {
-                        // Calculate total value based on quantity
                         int totalValue = so.price * s.amount;
-
-                        // Show the price value (₪ = Shekel symbol)
                         if (priceTxt != null)
                             priceTxt.text = $"₪{totalValue}";
 
-                        // Make sure price icon/label is visible
+
                         if (priceIcon != null)
                             priceIcon.enabled = true;
                         if (priceTr != null)
                             priceTr.gameObject.SetActive(true);
                     }
-
                     else
                     {
-                        // Not a wine bottle (or item has no price) → clear all price info
 
                         if (priceTxt != null)
-                            priceTxt.text = "";        // Remove text
+                            priceTxt.text = "";
 
                         if (priceIcon != null)
-                            priceIcon.enabled = false; // Hide the price icon
-
+                            priceIcon.enabled = false;
                         if (priceTr != null)
-                            priceTr.gameObject.SetActive(false); // Hide the entire price UI
+                            priceTr.gameObject.SetActive(false);
                     }
-
-
-                    // If this slot has click functionality (Buy/Sell/Inspect)
-                    var click = go.GetComponent<InventorySlotClick>();
-                    if (click != null)
-                    {
-                        // Assign the item ID so the click script knows which item was selected
-                        click.itemId = s.id;
-
-                        // Provide a reference to the icon image (used for updating visuals)
-                        click.iconImage = img;
-                    }
-
                 }
-                // Case: this slot index does NOT match any real inventory item
-                else
+
+                var click = go.GetComponent<InventorySlotClick>();
+                if (click != null)
                 {
-                    // Empty slot → no icon and no amount text
-                    img.enabled = false;
-                    amountTxt.text = "";
+                    click.itemId = s.id;
+                    click.iconImage = img;
+                }
+            }
+            else
+            {
+                img.enabled = false;
+                amountTxt.text = "";
 
-                    // Remove any price UI (only relevant in Sell/Buy screens)
-                    if (priceTxt != null)
-                        priceTxt.text = "";
-                    if (priceIcon != null)
-                        priceIcon.enabled = false;
-                    if (priceTr != null)
-                        priceTr.gameObject.SetActive(false);
 
-                    // If slot supports clicking, clear its assigned item
-                    var click = go.GetComponent<InventorySlotClick>();
-                    if (click != null)
-                    {
-                        click.itemId = "";   // No item assigned
-                        click.iconImage = img;
-                    }
+                if (priceTxt != null)
+                    priceTxt.text = "";
+                if (priceIcon != null)
+                    priceIcon.enabled = false;
+                if (priceTr != null)
+                    priceTr.gameObject.SetActive(false);
+
+                var click = go.GetComponent<InventorySlotClick>();
+                if (click != null)
+                {
+                    click.itemId = "";
+                    click.iconImage = img;
                 }
             }
         }

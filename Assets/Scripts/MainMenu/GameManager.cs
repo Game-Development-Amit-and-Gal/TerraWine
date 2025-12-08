@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     private int playerXs = 0;
     private int playerYs = 0;
     private enum seasons { None,Earth, War, Judge }
+
+    [Obsolete]
     void Awake()
     {
         // If another GameManager already exists → destroy this duplicate
@@ -111,7 +113,6 @@ public class GameManager : MonoBehaviour
             InventoryManager.Instance.Add("Cabernet_Sauvignon_Seed", 5); // Starter seeds
             InventoryManager.Instance.Add("Grenache_Seed", 5);
             InventoryManager.Instance.Add("Petit_verdot_Seed", 1);
-            InventoryManager.Instance.Add("Garden_bed", 1);
             InventoryManager.Instance.AddCategory(ItemCategory.Update, 1);
         }
         else

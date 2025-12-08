@@ -652,11 +652,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8114280628966599043, guid: d086def2a66300f42b47413c833996b9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -55
+      value: -419
       objectReference: {fileID: 0}
     - target: {fileID: 8114280628966599043, guid: d086def2a66300f42b47413c833996b9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 58
+      value: 143
       objectReference: {fileID: 0}
     - target: {fileID: 8214920202244401386, guid: d086def2a66300f42b47413c833996b9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -676,11 +676,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8214920202244401386, guid: d086def2a66300f42b47413c833996b9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -267
+      value: -239
       objectReference: {fileID: 0}
     - target: {fileID: 8214920202244401386, guid: d086def2a66300f42b47413c833996b9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 151
+      value: 161
       objectReference: {fileID: 0}
     - target: {fileID: 8402565262918420138, guid: d086def2a66300f42b47413c833996b9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -336325,6 +336325,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 222195216}
     m_Modifications:
+    - target: {fileID: 16551663258272039, guid: c70368ab800dd324181785e493a5496a, type: 3}
+      propertyPath: isBuyUI
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 16551663258272039, guid: c70368ab800dd324181785e493a5496a, type: 3}
       propertyPath: truckSeller
       value: 

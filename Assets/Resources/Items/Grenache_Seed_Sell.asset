@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 302182c9ff20b604d9d22ed6aff13dd0, type: 3}
-  m_Name: Cabernet_Sauvignon_seed
+  m_Name: Grenache_Seed_Sell
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  id: Cabernet_Sauvignon_Seed
-  displayName: Cabernet Sauvignon
-  icon: {fileID: -4809956278208246938, guid: 71b061cb9e2fe6a4cb7713ef9edf27e6, type: 3}
+  id: Grenache_Seed_Sell
+  displayName: Grenache
+  icon: {fileID: -6263536802651633628, guid: bcb02297e517e694b97d5ff43553d620, type: 3}
   stackable: 1
   maxStack: 99
-  price: 0
-  isSeed: 1
+  price: 10
+  isSeed: 0
   isWineBottle: 0
-  category: 0
+  category: 3
   growTimeSeconds: 10
-  harvestItem: {fileID: 11400000, guid: ef580fb1946b50e4faf98731989d932c, type: 2}
+  harvestItem: {fileID: 11400000, guid: 592681780197f7a47bd60cd4ad370f64, type: 2}
   harvestAmount: 10
   plantedPlotSprite: {fileID: -1765156354197853431, guid: 1f6c1f6556fa9b34baf6c726b9863abc, type: 3}
   readyPlotSprite: {fileID: -8074475992512578779, guid: c529a7e97676bc24682de68c787369ea, type: 3}
