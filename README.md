@@ -84,7 +84,7 @@ In TerraWine you manage a small vineyard and winery across several seasons:
 - **Language:** C#
 - **Target Platform:** PC (Windows)
 - **Version Control:** Git + GitHub
-- **Distribution:** itch.io <!-- TODO: add the link to your itch.io page -->
+- **Distribution:** itch.io https://amit-and-gal.itch.io/terrawine
 
 
 ### Option 1 – Play the build
@@ -97,7 +97,7 @@ In TerraWine you manage a small vineyard and winery across several seasons:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/<your-user>/TerraWine.git <!-- TODO: add the link to your itch.io page -->
+   git clone https://github.com/Game-Development-Amit-and-Gal/TerraWine
    ```
 2. Open the folder in **Unity 6 (2025.x)**.
 3. Open `Assets/Scenes/MainMenu.unity`.
@@ -108,15 +108,15 @@ In TerraWine you manage a small vineyard and winery across several seasons:
 ```text
 Assets/
   _Recovery/                  # Unity auto-recovery data (not game logic)
-  Editor/                     # Editor-related scripts/settings (if used)
-  Item/                       # Item-related assets (prefabs/sprites for items)
+  Editor/                     # Editor-related scripts/settings (if used)     
   Materials/                  # Shared materials for the project
 
   Photo/                      # Reference / in-game photos
     Garden/
       Graps/                  # Grapes / vineyard images
-      Materials/              # Extra materials/textures
-      Wine_Bottle/            # Wine bottle images
+    Materials/              # Extra materials/textures
+    Wine_Bottle/            # Wine bottle images
+    item/                   # Sead image
 
   PlayerPrefsEditor/          # Third-party tool for editing PlayerPrefs
     Documentation/
@@ -157,31 +157,30 @@ Assets/
 ### Key Scripts
 
 - **GameManager** – controls overall game flow and holds `GameData`.  
-  [View GameManager.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Core/GameManager.cs)
+  [View GameManager.cs][(https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/main/Assets/Scripts/MainMenu/GameManager.cs)]
 
 - **GameData** – stores persistent data like years, seasons, coins, and competition state.  
-  [View GameData.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Core/GameData.cs)
+  [View GameData.cs](https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/main/Assets/Scripts/MainMenu/GameData.cs)
 
 - **SeasonManager** – manages seasons and triggers wine competitions.  
-  [View SeasonManager.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/MainMenu/SeasonManager.cs)
+  [View SeasonManager.cs](https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/main/Assets/Scripts/MainMenu/SeasonManager.cs)
 
 - **EconomyManager** – handles player coins, prices and income.  
-  [View EconomyManager.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Core/EconomyManager.cs)
+  [View EconomyManager.cs](https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/main/Assets/Scripts/MainMenu/EconomyManager.cs)
 
 - **InventoryManager** – manages all items the player owns and notifies the UI when something changes.  
-  [View InventoryManager.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Inventory/InventoryManager.cs)
+  [View InventoryManager.cs](https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/main/Assets/Scripts/Inventory/InventoryManager.cs)
 
 - **InventoryUI** – draws the inventory grid and category filters for the player.  
-  [View InventoryUI.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Inventory/InventoryUI.cs)
+  [View InventoryUI.cs](https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/main/Assets/Scripts/Inventory/InventoryUI.cs)
 
 - **ItemSO** – ScriptableObject definition for seeds, wine bottles, designs and more.  
-  [View ItemSO.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Inventory/ItemSO.cs)
+  [View ItemSO.cs](https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/main/Assets/Scripts/Inventory/ItemSO.cs)
 
 - **TruckSeller** – allows selling wine bottles from the truck to earn coins.  
-  [View TruckSeller.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Wine_Scenes/TruckSeller.cs)
+  [View TruckSeller.cs](https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/main/Assets/Scripts/Garden/TruckSeller.cs)
 
-- **BarrelPurchase** – controls buying barrels and turning grapes into bottles over time.  
-  [View BarrelPurchase.cs](https://github.com/<your-user>/TerraWine/blob/main/Assets/Scripts/Wine_Scenes/BarrelPurchase.cs)
+
 
 
 ## Contributing
