@@ -151,6 +151,7 @@ Assets/
     Resources/
 
   Tile/                       # Tilemap assets for the 2.5D world (if used)
+```
 
 
 ### Key Scripts
@@ -199,5 +200,5 @@ Please keep commits small and focused, and add comments to any complex game logi
 >
 
 - **Gal Maymon** – Game design, programming, art direction.
-- **Amit Nachum* – Programming, systems design.
+- **Amit Nachum** – Programming, systems design.
 
