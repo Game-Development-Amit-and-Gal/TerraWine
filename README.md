@@ -60,11 +60,11 @@ In TerraWine you manage a small vineyard and winery across several seasons:
 
 
 
-| Action                 | Keyboard / Mouse       |
-|------------------------|------------------------|
-| Move                   | Arrow keys             |
-| Interact               | E                      |
-| Open truckInventory    | I                      |
+| Action                     | Keyboard / Mouse                 |
+|----------------------------|----------------------------------|
+| Move                       | Arrow keys                       |
+| Open truckInventory        | E                                |
+| Open Bag / Shop / World Map| Click UI buttons with the mouse  |
 
 ## Features
 
