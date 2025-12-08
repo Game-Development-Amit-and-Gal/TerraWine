@@ -1,20 +1,60 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Handles top-down player movement using the new Input System,
+/// plays directional walking animations, and adds an idle breathing effect.
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    // ------------------------------
+    //  MOVEMENT SETTINGS
+    // ------------------------------
+
+    [Header("Movement")]
+    [Tooltip("Player movement speed in world units per second.")]
     public float moveSpeed = 3f;
 
+    [Tooltip("Minimum movement required to register movement (prevents tiny floating input).")]
+    public float movementThreshold = 0.01f;
+
+    [Tooltip("Diagonal normalization threshold (when vector length is above this, normalize).")]
+    public float diagonalNormalizeThreshold = 1f;
+
+    // ------------------------------
+    //  ANIMATION SETTINGS
+    // ------------------------------
+
+    [Header("Directional Sprite Animation")]
+    [Tooltip("Animation frames for walking downward.")]
     public Sprite[] walkDown;
+
+    [Tooltip("Animation frames for walking upward.")]
     public Sprite[] walkUp;
+
+    [Tooltip("Animation frames for walking right.")]
     public Sprite[] walkRight;
+
+    [Tooltip("Animation frames for walking left.")]
     public Sprite[] walkLeft;
 
-    public float frameDuration = 0.15f; // כמה זמן כל פריים מוצג
+    [Tooltip("Time (seconds) before switching to next animation frame.")]
+    public float frameDuration = 0.15f;
 
-    // פרמטרים לנשימה
-    public float breatheAmplitude = 0.03f; // כמה חזק הנשימה (0.02–0.05 זה עדין)
-    public float breatheSpeed = 1.5f;      // מהירות הנשימה
+    // ------------------------------
+    //  IDLE BREATHING EFFECT
+    // ------------------------------
+
+    [Header("Idle Breathing Effect")]
+    [Tooltip("Breathing height change (recommended 0.02–0.05).")]
+    public float breatheAmplitude = 0.03f;
+
+    [Tooltip("Breathing animation speed.")]
+    public float breatheSpeed = 1.5f;
+
+    // ------------------------------
+    //  INTERNAL STATE (DO NOT TOUCH)
+    // ------------------------------
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -26,80 +66,86 @@ public class PlayerMovement : MonoBehaviour
     private enum Direction { Down, Up, Right, Left }
     private Direction currentDir = Direction.Down;
 
-    private Vector3 baseScale; // הגודל המקורי של הדמות
+    private Vector3 baseScale;  // Original scale to restore from breathing
 
-    void Awake()
+    // ------------------------------
+    //  UNITY METHODS
+    // ------------------------------
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        baseScale = transform.localScale; // שומרים את הגודל ההתחלתי
+        baseScale = transform.localScale; // Cache original model size
     }
 
-    void Update()
+    private void Update()
     {
-        // קלט מה־Input System החדש
+
+        int zero = 0;
+        float zero_f = 0f;
+        // ---------------------------------------
+        //  INPUT HANDLING (New Input System)
+        // ---------------------------------------
+
         movement = Vector2.zero;
         var keyboard = Keyboard.current;
+
         if (keyboard != null)
         {
-            if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed)
-                movement.x = -1f;
-
-            if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed)
-                movement.x = 1f;
-
-            if (keyboard.upArrowKey.isPressed || keyboard.wKey.isPressed)
-                movement.y = 1f;
-
-            if (keyboard.downArrowKey.isPressed || keyboard.sKey.isPressed)
-                movement.y = -1f;
+            if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed) movement.x = -1f;
+            if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed) movement.x = 1f;
+            if (keyboard.upArrowKey.isPressed || keyboard.wKey.isPressed) movement.y = 1f;
+            if (keyboard.downArrowKey.isPressed || keyboard.sKey.isPressed) movement.y = -1f;
         }
 
-        // נורמליזציה לאלכסון
-        if (movement.sqrMagnitude > 1f)
+        // Normalize diagonal movement to prevent faster speed
+        if (movement.sqrMagnitude > diagonalNormalizeThreshold)
             movement = movement.normalized;
 
-        bool isMoving = movement.sqrMagnitude > 0.01f;
+        bool isMoving = movement.sqrMagnitude > movementThreshold;
 
-        // עדכון כיוון לפי התנועה
+        // ---------------------------------------
+        //  DIRECTION & ANIMATION FRAME CONTROL
+        // ---------------------------------------
+
         if (isMoving)
         {
+            // Decide whether we are mainly moving horizontally or vertically
             if (Mathf.Abs(movement.x) > Mathf.Abs(movement.y))
-            {
-                currentDir = movement.x > 0 ? Direction.Right : Direction.Left;
-            }
+                currentDir = movement.x > zero ? Direction.Right : Direction.Left;
             else
-            {
-                currentDir = movement.y > 0 ? Direction.Up : Direction.Down;
-            }
+                currentDir = movement.y > zero ? Direction.Up : Direction.Down;
 
-            // עדכון פריים של ההליכה
+            // Advance animation frames
             frameTimer += Time.deltaTime;
             if (frameTimer >= frameDuration)
             {
-                frameTimer = 0f;
+                frameTimer = zero_f;
                 frameIndex++;
             }
         }
         else
         {
-            // עומדת – תמיד פריים ראשון
-            frameIndex = 0;
-            frameTimer = 0f;
+            // When idle, reset animation to frame 0
+            frameIndex = zero;
+            frameTimer = zero_f;
         }
 
-        // בחירה של הספרייט הנכון לפי כיוון ופריים
+        // Apply correct sprite frame
         Sprite[] currentAnim = GetCurrentAnimArray();
-        if (currentAnim != null && currentAnim.Length > 0)
+        if (currentAnim != null && currentAnim.Length > zero)
         {
             frameIndex %= currentAnim.Length;
             sr.sprite = currentAnim[frameIndex];
         }
 
-        // ---------- נשימה ----------
+        // ---------------------------------------
+        //  IDLE BREATHING ANIMATION
+        // ---------------------------------------
+
         if (!isMoving)
         {
-            // נשימה עדינה בציר ה-Y
             float t = Time.time * breatheSpeed;
             float scaleOffset = 1f + Mathf.Sin(t) * breatheAmplitude;
 
@@ -111,17 +157,23 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            // בזמן הליכה – גודל רגיל
-            transform.localScale = baseScale;
+            transform.localScale = baseScale; // No breathing when walking
         }
-        // ----------------------------
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
+        // Physics-based movement
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
+    // ------------------------------
+    //  HELPER METHODS
+    // ------------------------------
+
+    /// <summary>
+    /// Returns animation array according to current facing direction.
+    /// </summary>
     private Sprite[] GetCurrentAnimArray()
     {
         switch (currentDir)

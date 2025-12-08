@@ -3,33 +3,38 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
 
+/// <summary>
+///   This class Is a Singleton based class that manages 
+///   the Inventory UI and other resources of the Player's Inventory
+/// </summary>
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance { get; private set; }
+    public static InventoryManager Instance { get; private set; } // Set the Singleton
 
-    [Header("הגדרות תיק")]
-    [Min(1)] public int capacity = 20;
+    [Header("Bag Settings")]
+    [Min(1)] public int capacity = 20; // Set its Capacity
 
-    [Header("אירועי UI")]
-    public UnityEvent onChanged;
-    const string Key = "PROFILE::DEFAULT::INVENTORY";
+    [Header("Event UI")]
+    public UnityEvent onChanged; // Fires when Inventory updates (UI listens to this)
+    const string Key = "PROFILE::DEFAULT::INVENTORY"; // Key Used to store inventory JSON in PlayerPrefs
 
-    private Dictionary<string, ItemSO> catalog = new();
-    private List<InventorySlot> slots = new();
+    private Dictionary<string, ItemSO> catalog = new(); // Store all possible item Definitions
+                                                        // Key = Item Id, Value = Item 
+    private List<InventorySlot> slots = new();         // Player's current inventory
 
-    public IReadOnlyList<InventorySlot> Slots => slots;
+    public IReadOnlyList<InventorySlot> Slots => slots; // Getter method
 
-    void Awake()
+    void Awake() // Ensures Only one Instance Exists
     {
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
 
-        // טוען את כל האייטמים מהתיקייה Resources/Items
+        // Load all the Resources/Items
         foreach (var item in Resources.LoadAll<ItemSO>("Items"))
             if (!catalog.ContainsKey(item.id)) catalog.Add(item.id, item);
 
-        Load();
-        onChanged?.Invoke();
+        Load(); //Loads inventory from saved PlayerPrefs.
+        onChanged?.Invoke();  // Updates UI automatically if assigned
     }
 
     #region API
@@ -113,7 +118,9 @@ public class InventoryManager : MonoBehaviour
     #endregion
 
     #region Save/Load
-    void Save()
+    void Save()  /* Converts inventory data into JSON.
+                    Saves it using the key. 
+                */
     {
         var data = new InventorySave { capacity = capacity, slots = slots };
         var json = JsonUtility.ToJson(data);
@@ -123,19 +130,29 @@ public class InventoryManager : MonoBehaviour
 
     void Load()
     {
+        // Clear any previous runtime data to avoid duplicates
         slots.Clear();
+        int one = 1;
 
+        // Check if inventory data was saved before
+        // If it doesn't exist, just keep the current capacity (at least 1)
         if (!PlayerPrefs.HasKey(Key))
         {
-            capacity = Mathf.Max(1, capacity);
-            return;
+            capacity = Mathf.Max(one, capacity);  // Ensure minimum capacity = 1
+            return; // Nothing to load, exit
         }
 
+        // Retrieve the saved JSON string from PlayerPrefs
         var json = PlayerPrefs.GetString(Key);
+
+        // Convert the JSON back into an InventorySave class instance
         var data = JsonUtility.FromJson<InventorySave>(json);
 
-        capacity = Mathf.Max(1, data.capacity);
-        slots.AddRange(data.slots ?? new List<InventorySlot>());
+        // Restore bag capacity (again ensure it’s never lower than 1)
+        capacity = Mathf.Max(one, data.capacity);
+
+        // Restore saved slots, if no slots were saved then use an empty list
+        slots.AddRange(data.slots ?? new List<InventorySlot>()); // ?? is A Coalescing operator same as -> if (condition) do ... else ..
     }
     public bool AddCategory(ItemCategory category, int amountPerItem = 99)
     {
@@ -162,11 +179,14 @@ public class InventoryManager : MonoBehaviour
    
     
 
+
     public void ResetAll()
     {
-        slots.Clear();
-        PlayerPrefs.DeleteKey(Key);
-        Save(); onChanged?.Invoke();
+        slots.Clear();                 // Remove all items from the inventory (empty it)
+        PlayerPrefs.DeleteKey(Key);     // Delete the saved inventory data from PlayerPrefs
+        Save();                         // Save the now–empty inventory state
+        onChanged?.Invoke();            // Notify the UI so it updates immediately
     }
+
     #endregion
 }

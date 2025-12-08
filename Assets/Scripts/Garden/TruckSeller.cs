@@ -7,28 +7,28 @@ using TMPro;
 [RequireComponent(typeof(Collider2D))]
 public class TruckSeller : MonoBehaviour
 {
-    [Header("מכירה דרך המשאית")]
-    [Tooltip("כפול על המחיר – 1 = 100%, 0.5 = 50% וכו'")]
+    [Header("Selling through the truck")] // Abillity to Sell wine through the truck
+    [Tooltip("Modification on the Price '")]
     [Range(0f, 2f)]
     [SerializeField] private float priceMultiplier = 1f;
 
-    [Tooltip("האם להשתמש ב-Trigger כדי לזהות שחקן ליד המשאית")]
+    [Tooltip(" Trigger in order to Identify whether the player stands near the truck")] 
     [SerializeField] private bool useTrigger = true;
 
-    [Header("UI של מכירה")]
+    [Header("Sell UI")]
     [SerializeField] private GameObject sellPanel;   
     [SerializeField] private TMP_Text summaryText;    
 
     private bool playerInside = false;
 
-    private void Start()
+    private void Start() // Hide the panel at first
     {
       
         if (sellPanel != null)
             sellPanel.SetActive(false);
     }
 
-    private void Reset()
+    private void Reset() // Automatically sets the truck's collider to Trigger mode so it can detect players entering. 
     {
 
         var col = GetComponent<Collider2D>();
@@ -36,23 +36,23 @@ public class TruckSeller : MonoBehaviour
             col.isTrigger = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) // 
     {
         if (!useTrigger) return;
         if (!other.CompareTag("Player")) return;
 
-        playerInside = true;
-        Debug.Log("[TruckSeller] נכנסת לאיזור המשאית – לחצי E כדי לפתוח מכירה");
+        playerInside = true; // Player can press E 
+        Debug.Log("[In Range] Press E in order to open a sale"); 
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other) 
     {
         if (!useTrigger) return;
         if (!other.CompareTag("Player")) return;
 
-        playerInside = false;
+        playerInside = false; // Player can't press E to open a sale
         ClosePanel();
-        Debug.Log("[TruckSeller] יצאת מאיזור המשאית");
+        Debug.Log("[Out of Range] Can't open a sale here");
     }
 
     private void Update()
@@ -61,7 +61,7 @@ public class TruckSeller : MonoBehaviour
         if (Keyboard.current == null) return;
 
      
-        if (Keyboard.current.eKey.wasPressedThisFrame)
+        if (Keyboard.current.eKey.wasPressedThisFrame) // After the player is near the Truck and pressed E open the sale pannel
         {
             TogglePanel();
         }
@@ -69,11 +69,11 @@ public class TruckSeller : MonoBehaviour
 
 
 
-    private void TogglePanel()
+    private void TogglePanel() // Open the sale pannel
     {
         if (sellPanel == null)
         {
-            Debug.LogWarning("[TruckSeller] אין sellPanel מחובר באינספקטור");
+            Debug.LogWarning("[TruckSeller] No Pannel has been inserted in the inspector");
             return;
         }
 
@@ -81,13 +81,13 @@ public class TruckSeller : MonoBehaviour
         var invUI = sellPanel.GetComponent<InventoryUI>();
 
       
-        bool wantOpen = !sellPanel.activeSelf;
+        bool wantOpen = !sellPanel.activeSelf; // if the player want to open the pannel
 
         if (invUI != null)
         {
             if (wantOpen)
             {
-                invUI.Open();   
+                invUI.Open();   //Open the Inventory
             }
             else
             {
@@ -107,104 +107,111 @@ public class TruckSeller : MonoBehaviour
     }
 
 
-    private void ClosePanel()
+    private void ClosePanel() // Close the panel
     {
         if (sellPanel != null)
-            sellPanel.SetActive(false);
+            sellPanel.SetActive(false); // hide the pannel on the game
     }
 
     private void RefreshPreview()
     {
         if (summaryText == null) return;
 
-        int preview = CalculateTotalWineValue();
+        int preview = CalculateTotalWineValue(); // Calculate Total Wine bottles value
         if (preview > 0)
-            summaryText.text = $"את עומדת לקבל ₪{preview} על כל בקבוקי היין";
+            summaryText.text = $" ₪{preview} for all Your Wine Bottles"; // for all Your Wine Bottles
         else
-            summaryText.text = "אין לך בקבוקי יין למכירה";
+            summaryText.text = "No Wine Bottles for Sale";
     }
 
     private int CalculateTotalWineValue()
     {
-        if (InventoryManager.Instance == null) return 0;
+        int indicator = 0; // avoid magic numbers
+        if (InventoryManager.Instance == null) return indicator; // If the Inventory isnt initialized return.
 
-        List<InventorySlot> wineSlots = InventoryManager.Instance.GetAllWineBottleSlots();
-        int totalMoney = 0;
+        List<InventorySlot> wineSlots = InventoryManager.Instance.GetAllWineBottleSlots(); // Get the total Wine Bottles
+        int totalMoney = 0; // init the total return value
+
+        int zero = 0; // avoid magic numbers
 
         foreach (var slot in wineSlots)
         {
-            ItemSO item = InventoryManager.Instance.GetDefinition(slot.id);
-            if (item == null || slot.amount <= 0) continue;
+            ItemSO item = InventoryManager.Instance.GetDefinition(slot.id); // Get the current Item information
+            if (item == null || slot.amount <= zero) continue; // If its null or there aren't any bottles continue.
 
-            int pricePerBottle = Mathf.Max(0, item.price);
+            int pricePerBottle = Mathf.Max(zero, item.price);  // init the current's kind information
             int amount = slot.amount;
 
-            int value = Mathf.RoundToInt(pricePerBottle * amount * priceMultiplier);
-            totalMoney += value;
+            int value = Mathf.RoundToInt(pricePerBottle * amount * priceMultiplier); // Get the total value per the current kind
+            totalMoney += value; // Add it to the return value
         }
 
         return totalMoney;
     }
 
     
-    public void ConfirmSellAllWine()
+    public void ConfirmSellAllWine() // Sells the Wine and add the money to the player
     {
+        int zero = 0;
         int totalMoney = SellAllWineInternal();
 
-        if (totalMoney > 0)
+        if (totalMoney > zero) // If there was profit add it to the player's total balance
         {
             GameManager.Instance.AddMoney(totalMoney);
-            Debug.Log($"[TruckSeller] נמכרו בקבוקי יין ב-{totalMoney}. יתרה חדשה: {GameManager.Instance.Data.money}");
+            Debug.Log($"[TruckSeller] Sold wine bottles for {totalMoney}₪. New balance: {GameManager.Instance.Data.money}");
         }
-        else
+        else // Else, No profit has been made.
         {
-            Debug.Log("[TruckSeller] אין מה למכור או המחיר יצא 0");
+            Debug.Log("[TruckSeller] There’s nothing to sell or the price is 0");
         }
 
+        ClosePanel(); // Close Pannel
+    }
+
+
+    public void CancelSell() // Player Regrets, and is cancelling the sale
+    {
+        Debug.Log("[TruckSeller] You cancelled the sale");
         ClosePanel();
     }
 
 
-    public void CancelSell()
+    private int SellAllWineInternal() //Sell all the Wine Bottle and adding the profit to the players balance
     {
-        Debug.Log("[TruckSeller] ביטלת את המכירה");
-        ClosePanel();
-    }
 
-
-    private int SellAllWineInternal()
-    {
+        int indicator = 0;
+        int zero = 0;
         if (InventoryManager.Instance == null || GameManager.Instance == null)
         {
-            Debug.LogWarning("[TruckSeller] חסר InventoryManager או GameManager");
-            return 0;
+            Debug.LogWarning("[TruckSeller] Missing InventoryManager or GameManager"); // Missing in the inspector
+            return indicator;
         }
 
-        List<InventorySlot> wineSlots = InventoryManager.Instance.GetAllWineBottleSlots();
-        if (wineSlots.Count == 0)
+        List<InventorySlot> wineSlots = InventoryManager.Instance.GetAllWineBottleSlots(); // Get all the wine bottles
+        if (wineSlots.Count == zero)
         {
-            return 0;
+            return indicator;
         }
 
         int totalMoney = 0;
 
-        foreach (var slot in new List<InventorySlot>(wineSlots))
+        foreach (var slot in new List<InventorySlot>(wineSlots)) // Traverse each wine kind and extract its total value and add to the total sum
         {
-            ItemSO item = InventoryManager.Instance.GetDefinition(slot.id);
-            if (item == null || slot.amount <= 0) continue;
+            ItemSO item = InventoryManager.Instance.GetDefinition(slot.id); // get the wine information
+            if (item == null || slot.amount <= zero) continue;  // if there aren't any continue to the next Kind
 
-            int pricePerBottle = Mathf.Max(0, item.price);
-            int amount = slot.amount;
+            int pricePerBottle = Mathf.Max(zero, item.price); // Get its price per bottle
+            int amount = slot.amount; // The amount of bottles
 
-            int value = Mathf.RoundToInt(pricePerBottle * amount * priceMultiplier);
+            int value = Mathf.RoundToInt(pricePerBottle * amount * priceMultiplier); // Total value for the Kind of Wine
             totalMoney += value;
 
-            InventoryManager.Instance.Remove(slot.id, amount);
+            InventoryManager.Instance.Remove(slot.id, amount); // Remove the Bottle
         }
 
         return totalMoney;
     }
-    public void SellOneBottle(string itemId)
+    public void SellOneBottle(string itemId) // Same Function as the above But calculates the value for One bottle
     {
         if (InventoryManager.Instance == null || GameManager.Instance == null)
         {
