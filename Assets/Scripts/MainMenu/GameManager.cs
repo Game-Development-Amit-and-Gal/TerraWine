@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
     public void NewGame()
     {
         StartCoroutine(NewGameFlow());
+        TutorialManager.tutorialIsRunning = true;
+        TutorialManager.tutorialIsRunningGardenScene = true;
     }
 
 
@@ -141,6 +143,7 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
+        TutorialManager.tutorialIsRunning = false;
         // Try to load previously saved game data
         var loaded = SaveSystem.Load();
         if (loaded == null)                         // If no save exists:

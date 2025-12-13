@@ -29,6 +29,7 @@ public class TilemapPathfinder2D : MonoBehaviour
     [Tooltip("Tilemap that defines the walkable area (e.g. Grass).")]
     [SerializeField] private Tilemap groundTilemap;
 
+
     [Tooltip("LayerMask for obstacles (house, fence, truck, etc.).")]
     [SerializeField] private LayerMask obstacleMask;
 
@@ -191,13 +192,14 @@ public class TilemapPathfinder2D : MonoBehaviour
                 Vector3Int cell = new Vector3Int(cellOrigin.x + x, cellOrigin.y + y, 0);
 
                 // center of this tile in world space
-                Vector3 worldCenter = groundTilemap.GetCellCenterWorld(cell);
+                Vector3 worldCenter = groundTilemap.GetCellCenterWorld(cell); 
                 Vector2 worldPos2D = new Vector2(worldCenter.x, worldCenter.y);
 
                 bool hasTile = groundTilemap.HasTile(cell);
+
                 bool hasObstacle = HasObstacleAt(worldPos2D);
 
-                bool walkable = hasTile && !hasObstacle;
+                bool walkable =  (hasTile) && (!hasObstacle);
 
                 grid[x, y] = new Node(x, y, walkable, worldPos2D);
             }

@@ -176,13 +176,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (TutorialManager.tutorialIsRunning) return;
+
         HandleInputOrAutoMove();
         HandleAnimation();
     }
 
     private void FixedUpdate()
     {
-        ApplyMovement();
+        if(TutorialManager.tutorialIsRunning) return;
+            ApplyMovement();
+        
     }
 
     // ------------------------------
