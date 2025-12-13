@@ -335192,7 +335192,7 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 8
-  cellSize: 1
+  cellSize: 1.5
   drawDebugGrid: 1
 --- !u!4 &1584734439
 Transform:
@@ -336786,16 +336786,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 760305145647686701, guid: 13e44a176a0bf744fa85307dc834bbe9, type: 3}
+      propertyPath: feetOffset.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 760305145647686701, guid: 13e44a176a0bf744fa85307dc834bbe9, type: 3}
+      propertyPath: frameDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 760305145647686701, guid: 13e44a176a0bf744fa85307dc834bbe9, type: 3}
       propertyPath: movementThreshold
       value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 760305145647686701, guid: 13e44a176a0bf744fa85307dc834bbe9, type: 3}
       propertyPath: autoMoveStopDistance
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 804518413396638849, guid: 13e44a176a0bf744fa85307dc834bbe9, type: 3}
       propertyPath: m_SortingOrder
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 804518413396638849, guid: 13e44a176a0bf744fa85307dc834bbe9, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2639572684404638844, guid: 13e44a176a0bf744fa85307dc834bbe9, type: 3}
       propertyPath: m_Name

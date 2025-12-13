@@ -2,13 +2,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 /// <summary>
 /// 2D A* pathfinder that builds a grid directly from a Tilemap.
 /// The Tilemap defines the walkable area (e.g. Grass).
 /// Cells that overlap an obstacle collider are marked as not walkable.
+/// 
+/// Editor support:
+/// - Builds the grid in Edit Mode (so you can see debug gizmos without Play)
+/// - Rebuilds when values change in the Inspector (OnValidate)
+/// 
+/// Obstacle filtering:
+/// - Can ignore Trigger colliders so triggers do NOT block walking.
 /// </summary>
+[ExecuteAlways]
 public class TilemapPathfinder2D : MonoBehaviour
 {
+    // ------------------------------
+    // Tilemap & obstacle settings
+    // ------------------------------
+
     [Header("Tilemap & Layers")]
     [Tooltip("Tilemap that defines the walkable area (e.g. Grass).")]
     [SerializeField] private Tilemap groundTilemap;
@@ -16,13 +32,39 @@ public class TilemapPathfinder2D : MonoBehaviour
     [Tooltip("LayerMask for obstacles (house, fence, truck, etc.).")]
     [SerializeField] private LayerMask obstacleMask;
 
-    [Tooltip("Size of each debug square in world units (visual only).")]
-    [SerializeField] private float cellSize = 1f;
+    // ------------------------------
+    // Obstacle filtering
+    // ------------------------------
+
+    [Header("Obstacle Filtering")]
+    [Tooltip("If true, colliders marked as Trigger will NOT block the path.")]
+    [SerializeField] private bool ignoreTriggerObstacles = true;
+
+    [Tooltip("If true, checks all colliders at point and blocks only if a SOLID collider exists. " +
+             "Recommended when you may have both trigger + solid colliders overlapping.")]
+    [SerializeField] private bool checkAllCollidersAtPoint = true;
+
+    // ------------------------------
+    // Debug
+    // ------------------------------
 
     [Header("Debug")]
+    [Tooltip("If true, draw the debug grid gizmos in the Scene view.")]
     [SerializeField] private bool drawDebugGrid = false;
 
+    [Tooltip("If true, draw gizmos even when the object is NOT selected.")]
+    [SerializeField] private bool drawWhenNotSelected = false;
+
+    [Tooltip("Debug wire cube size relative to tile cell size (1 = full cell).")]
+    [SerializeField] private float debugCubeScale = 0.9f;
+
+    [Tooltip("Log grid build info to Console.")]
+    [SerializeField] private bool logBuildInfo = true;
+
+    // ------------------------------
     // Internal grid data
+    // ------------------------------
+
     private Vector3Int cellOrigin;   // bottom-left cell index in the tilemap
     private Vector2Int gridSize;     // number of cells in X/Y
     private Node[,] grid;
@@ -48,15 +90,64 @@ public class TilemapPathfinder2D : MonoBehaviour
         }
     }
 
+    // ------------------------------
+    // Unity lifecycle
+    // ------------------------------
+
     private void Awake()
     {
+        // Awake runs only in Play Mode. In Edit Mode we rebuild via OnEnable/OnValidate.
+        if (Application.isPlaying)
+            BuildGridFromTilemap();
+    }
+
+    private void OnEnable()
+    {
+        // ExecuteAlways makes this run in Edit Mode too.
+        // Build only if debug is enabled (avoids editor slowdown).
+        TryBuildGridIfNeeded();
+    }
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        // Called in editor when inspector values change.
+        // Build only if debug is enabled (avoids editor slowdown).
+        TryBuildGridIfNeeded();
+    }
+#endif
+
+    private void TryBuildGridIfNeeded()
+    {
+        if (!groundTilemap) return;
+        if (!drawDebugGrid) return;
+
         BuildGridFromTilemap();
+    }
+
+    // ------------------------------
+    // Gizmos
+    // ------------------------------
+
+    private void OnDrawGizmos()
+    {
+        if (!drawWhenNotSelected) return;
+        DrawGridGizmosIfReady();
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (!drawDebugGrid || grid == null)
+        if (drawWhenNotSelected) return;
+        DrawGridGizmosIfReady();
+    }
+
+    private void DrawGridGizmosIfReady()
+    {
+        if (!drawDebugGrid || grid == null || groundTilemap == null)
             return;
+
+        Vector3 cellWorldSize = groundTilemap.cellSize;
+        Vector3 cubeSize = cellWorldSize * debugCubeScale;
 
         for (int x = 0; x < gridSize.x; x++)
         {
@@ -64,15 +155,20 @@ public class TilemapPathfinder2D : MonoBehaviour
             {
                 Node n = grid[x, y];
                 Gizmos.color = n.walkable ? Color.green : Color.red;
-                Gizmos.DrawWireCube(n.worldPos, Vector3.one * (cellSize * 0.9f));
+                Gizmos.DrawWireCube(n.worldPos, cubeSize);
             }
         }
     }
 
+    // ------------------------------
+    // Grid building
+    // ------------------------------
+
     /// <summary>
-    /// Builds a grid over the Grass tilemap.
+    /// Builds a grid over the ground tilemap.
     /// Every cell inside the tilemap bounds is walkable by default,
-    /// unless it has no tile or overlaps an obstacle collider.
+    /// unless it has no tile or overlaps a SOLID obstacle collider.
+    /// Triggers can be ignored based on ignoreTriggerObstacles.
     /// </summary>
     public void BuildGridFromTilemap()
     {
@@ -98,9 +194,8 @@ public class TilemapPathfinder2D : MonoBehaviour
                 Vector3 worldCenter = groundTilemap.GetCellCenterWorld(cell);
                 Vector2 worldPos2D = new Vector2(worldCenter.x, worldCenter.y);
 
-                // walkable only if there is a tile AND no obstacle
                 bool hasTile = groundTilemap.HasTile(cell);
-                bool hasObstacle = Physics2D.OverlapPoint(worldPos2D, obstacleMask);
+                bool hasObstacle = HasObstacleAt(worldPos2D);
 
                 bool walkable = hasTile && !hasObstacle;
 
@@ -108,8 +203,13 @@ public class TilemapPathfinder2D : MonoBehaviour
             }
         }
 
-        Debug.Log($"[TilemapPathfinder2D] Grid built. Size: {gridSize.x} x {gridSize.y}");
+        if (logBuildInfo)
+            Debug.Log($"[TilemapPathfinder2D] Grid built. Size: {gridSize.x} x {gridSize.y}");
     }
+
+    // ------------------------------
+    // Pathfinding API
+    // ------------------------------
 
     /// <summary>
     /// Finds a path from startWorld to targetWorld.
@@ -119,7 +219,8 @@ public class TilemapPathfinder2D : MonoBehaviour
     {
         if (grid == null)
         {
-            Debug.LogWarning("[TilemapPathfinder2D] Grid not built yet.");
+            if (logBuildInfo)
+                Debug.LogWarning("[TilemapPathfinder2D] Grid not built yet. Call BuildGridFromTilemap().");
             return null;
         }
 
@@ -128,11 +229,12 @@ public class TilemapPathfinder2D : MonoBehaviour
 
         if (startNode == null || targetNode == null || !targetNode.walkable)
         {
-            Debug.Log("[TilemapPathfinder2D] Start or target invalid/not walkable.");
+            if (logBuildInfo)
+                Debug.Log("[TilemapPathfinder2D] Start or target invalid / not walkable.");
             return null;
         }
 
-        // Reset all nodes
+        // Reset node costs
         foreach (Node n in grid)
         {
             n.gCost = float.MaxValue;
@@ -149,16 +251,7 @@ public class TilemapPathfinder2D : MonoBehaviour
 
         while (openSet.Count > 0)
         {
-            Node current = openSet[0];
-            for (int i = 1; i < openSet.Count; i++)
-            {
-                if (openSet[i].fCost < current.fCost ||
-                    (Mathf.Approximately(openSet[i].fCost, current.fCost) &&
-                     openSet[i].hCost < current.hCost))
-                {
-                    current = openSet[i];
-                }
-            }
+            Node current = GetLowestCostNode(openSet);
 
             if (current == targetNode)
                 return RetracePath(startNode, targetNode);
@@ -185,13 +278,36 @@ public class TilemapPathfinder2D : MonoBehaviour
             }
         }
 
-        Debug.Log("[TilemapPathfinder2D] No path found.");
+        if (logBuildInfo)
+            Debug.Log("[TilemapPathfinder2D] No path found.");
+
         return null;
     }
 
-    // ---------- helpers ----------
+    // ------------------------------
+    // A* helpers
+    // ------------------------------
 
-    private float Heuristic(Node a, Node b)
+    private static Node GetLowestCostNode(List<Node> openSet)
+    {
+        Node best = openSet[0];
+
+        for (int i = 1; i < openSet.Count; i++)
+        {
+            Node candidate = openSet[i];
+
+            bool lowerF = candidate.fCost < best.fCost;
+            bool equalFLowerH = Mathf.Approximately(candidate.fCost, best.fCost) &&
+                                candidate.hCost < best.hCost;
+
+            if (lowerF || equalFLowerH)
+                best = candidate;
+        }
+
+        return best;
+    }
+
+    private static float Heuristic(Node a, Node b)
     {
         // Manhattan distance (4-directional movement)
         return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
@@ -206,33 +322,34 @@ public class TilemapPathfinder2D : MonoBehaviour
         {
             nodes.Add(current);
             current = current.parent;
+            if (current == null) return null; // safety (should not happen)
         }
+
         nodes.Add(startNode);
         nodes.Reverse();
 
         List<Vector3> worldPath = new List<Vector3>(nodes.Count);
         foreach (Node n in nodes)
-        {
             worldPath.Add(new Vector3(n.worldPos.x, n.worldPos.y, 0f));
-        }
+
         return worldPath;
     }
 
     private IEnumerable<Node> GetNeighbours(Node node)
     {
-        // 4 neighbours (no diagonals) – good for your farm style
-        int[,] offsets =
+        // 4-neighbour grid (no diagonals)
+        Vector2Int[] offsets =
         {
-            {  1,  0 },
-            { -1,  0 },
-            {  0,  1 },
-            {  0, -1 }
+            new Vector2Int( 1,  0),
+            new Vector2Int(-1,  0),
+            new Vector2Int( 0,  1),
+            new Vector2Int( 0, -1),
         };
 
-        for (int i = 0; i < offsets.GetLength(0); i++)
+        foreach (var o in offsets)
         {
-            int nx = node.x + offsets[i, 0];
-            int ny = node.y + offsets[i, 1];
+            int nx = node.x + o.x;
+            int ny = node.y + o.y;
 
             if (nx >= 0 && nx < gridSize.x && ny >= 0 && ny < gridSize.y)
                 yield return grid[nx, ny];
@@ -250,5 +367,45 @@ public class TilemapPathfinder2D : MonoBehaviour
             return null;
 
         return grid[gx, gy];
+    }
+
+    // ------------------------------
+    // Obstacle filtering (Triggers)
+    // ------------------------------
+
+    private bool HasObstacleAt(Vector2 worldPos)
+    {
+        return checkAllCollidersAtPoint ? HasObstacleAt_All(worldPos) : HasObstacleAt_Single(worldPos);
+    }
+
+    private bool HasObstacleAt_Single(Vector2 worldPos)
+    {
+        Collider2D hit = Physics2D.OverlapPoint(worldPos, obstacleMask);
+        if (hit == null)
+            return false;
+
+        if (ignoreTriggerObstacles && hit.isTrigger)
+            return false;
+
+        return true;
+    }
+
+    private bool HasObstacleAt_All(Vector2 worldPos)
+    {
+        Collider2D[] hits = Physics2D.OverlapPointAll(worldPos, obstacleMask);
+        if (hits == null || hits.Length == 0)
+            return false;
+
+        foreach (Collider2D h in hits)
+        {
+            if (h == null) continue;
+
+            if (ignoreTriggerObstacles && h.isTrigger)
+                continue;
+
+            return true; // found a solid obstacle
+        }
+
+        return false;
     }
 }

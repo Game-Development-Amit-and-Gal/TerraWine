@@ -19,8 +19,6 @@ public class MiniMapClickToMove : MonoBehaviour
 
     [Tooltip("Pathfinder that knows how to find a path on the grass area.")]
     [SerializeField] private TilemapPathfinder2D pathfinder;
-    // אם עברת ל-TilemapPathfinder2D במקום GridPathfinder,
-    // פשוט תשני פה את הטייפ ל-TilemapPathfinder2D ותשאירי את שאר הקוד אותו דבר.
 
     private void Update()
     {
@@ -77,13 +75,12 @@ public class MiniMapClickToMove : MonoBehaviour
             return;
         }
 
-        // Ask the pathfinder for a path from player position to the clicked target.
+        // Ask the pathfinder for a path from the player's FEET to the clicked target.
         List<Vector3> path = pathfinder.FindPath(
-            playerMovement.transform.position,
-            worldTarget
+            playerMovement.FeetPosition,   // start from feet
+            worldTarget                    // target position
         );
 
-        // הוספתי את שלושת השורות הבאות:
         if (path == null)
         {
             Debug.Log("[MiniMapClickToMove] FindPath returned NULL for target: " + worldTarget);
@@ -96,10 +93,10 @@ public class MiniMapClickToMove : MonoBehaviour
             return;
         }
 
-        Debug.Log("[MiniMapClickToMove] Path found with " + path.Count + " points. First=" + path[0] + ", Last=" + path[path.Count - 1]);
+        Debug.Log("[MiniMapClickToMove] Path found with " + path.Count +
+                  " points. First=" + path[0] + ", Last=" + path[path.Count - 1]);
 
         // Give the full path to PlayerMovement (it will walk point by point).
         playerMovement.SetPath(path);
-
     }
 }

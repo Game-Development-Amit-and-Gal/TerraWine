@@ -4,8 +4,13 @@ using UnityEngine.InputSystem;
 
 /// <summary>
 /// Handles top-down player movement using the new Input System,
-/// plays directional walking animations, adds an idle breathing effect,
+/// plays directional walking animations,
 /// and supports automatic movement along a path (for mini-map pathfinding).
+///
+/// FIX (מה שביקשת):
+/// - התנועה האוטומטית הולכת "על הצירים" (לנקודה הבאה במסלול בלבד: ימינה/שמאלה/למעלה/למטה)
+/// - אבל כיוון האנימציה מחושב קדימה (look-ahead) וננעל/מתעדכן רק כשמתקדמים בנקודות המסלול,
+///   כדי שזה ייראה כאילו מחזיקים למשל למעלה+ימינה, בלי ריצוד כל קובייה.
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer))]
 public class PlayerMovement : MonoBehaviour
@@ -38,21 +43,47 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("How close to zero distance we allow before dividing (safety against zero-length vectors).")]
     [SerializeField] private float minDistanceForDirection = 0.0001f;
 
-    /// <summary>
-    /// Queue of world positions that form the path.
-    /// The player walks from one point to the next.
-    /// </summary>
-    private readonly Queue<Vector3> pathPoints = new Queue<Vector3>();
+    [Header("Auto Move Animation LookAhead")]
+    [Tooltip("כמה נקודות קדימה לחשב את כיוון האנימציה (לא את הפיזיקה).")]
+    [SerializeField] private int animLookAhead = 6;
 
-    /// <summary>
-    /// The current point along the path that we are moving towards.
-    /// </summary>
-    private Vector3 currentPathTarget;
+    // ------------------------------
+    //  FEET / GROUND OFFSET
+    // ------------------------------
 
-    /// <summary>
-    /// True while we have a valid path to follow.
-    /// </summary>
+    [Header("Feet / Ground Offset")]
+    [Tooltip("Offset from Rigidbody position to the character's feet (Y negative = down).")]
+    [SerializeField] private Vector2 feetOffset = new Vector2(0f, -0.5f);
+
+    /// <summary> World position of the character's feet (rb.position + offset). </summary>
+    public Vector2 FeetPosition => rb.position + feetOffset;
+
+    // ------------------------------
+    //  DEBUG – PATH DRAWING
+    // ------------------------------
+
+    [Header("Debug Path")]
+    [SerializeField] private bool drawPathGizmos = true;
+
+    // Stores the last path for drawing in SceneView
+    private readonly List<Vector3> debugPathPoints = new List<Vector3>();
+
+    // ------------------------------
+    //  PATH STATE (LIST + INDEX)
+    // ------------------------------
+
+    private readonly List<Vector3> activePath = new List<Vector3>();
+    private int pathIndex = 0;
+
     private bool hasPath = false;
+
+    // For animation direction stability (update only when pathIndex changes)
+    private int lastAnimPathIndex = -1;
+    private Vector2 cachedAnimMovement = Vector2.zero;
+
+    // Optional debug targets
+    private Vector3 currentMoveTarget;
+    private Vector3 currentLookTarget;
 
     // ------------------------------
     //  ANIMATION SETTINGS
@@ -75,32 +106,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float frameDuration = 0.15f;
 
     // ------------------------------
-    //  IDLE BREATHING EFFECT
-    // ------------------------------
-
-    [Header("Idle Breathing Effect")]
-    [Tooltip("Breathing height change (recommended 0.02–0.05).")]
-    [SerializeField] private float breatheAmplitude = 0.03f;
-
-    [Tooltip("Breathing animation speed.")]
-    [SerializeField] private float breatheSpeed = 1.5f;
-
-    // ------------------------------
     //  INTERNAL STATE
     // ------------------------------
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
 
-    /// <summary>
-    /// The movement vector decided in Update (keyboard or auto move).
-    /// </summary>
+    /// <summary> Movement direction for PHYSICS (actual movement). </summary>
     private Vector2 desiredMovement;
 
-    /// <summary>
-    /// The actual movement applied in FixedUpdate (used for animation).
-    /// </summary>
-    private Vector2 lastFrameMovement;
+    /// <summary> Movement direction for ANIMATION (visual intent). </summary>
+    private Vector2 animMovement;
 
     private float frameTimer = 0f;
     private int frameIndex = 0;
@@ -114,14 +130,14 @@ public class PlayerMovement : MonoBehaviour
     //  PUBLIC API
     // ------------------------------
 
-    /// <summary>
-    /// Called by the pathfinding system (MiniMapClickToMove) to start
-    /// automatically walking along a full path.
-    /// </summary>
-    /// <param name="worldPath">List of world positions (waypoints) from start to goal.</param>
     public void SetPath(List<Vector3> worldPath)
     {
-        pathPoints.Clear();
+        activePath.Clear();
+        debugPathPoints.Clear();
+
+        pathIndex = 0;
+        lastAnimPathIndex = -1;
+        cachedAnimMovement = Vector2.zero;
 
         if (worldPath == null || worldPath.Count == 0)
         {
@@ -131,44 +147,24 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        Debug.Log("[PlayerMovement] SetPath with " + worldPath.Count +
-                  " points. First=" + worldPath[0] +
-                  " Last=" + worldPath[worldPath.Count - 1]);
-
-        // Enqueue all points in the path
-        foreach (Vector3 point in worldPath)
-        {
-            pathPoints.Enqueue(point);
-        }
-
-        if (pathPoints.Count == 0)
-        {
-            Debug.Log("[PlayerMovement] After enqueue, pathPoints is EMPTY.");
-            hasPath = false;
-            useAutoMove = false;
-            return;
-        }
-
-        // Take the first target
-        currentPathTarget = pathPoints.Dequeue();
-        Debug.Log("[PlayerMovement] First path target = " + currentPathTarget);
+        activePath.AddRange(worldPath);
+        debugPathPoints.AddRange(worldPath);
 
         hasPath = true;
         useAutoMove = true;
+
+        Debug.Log("[PlayerMovement] SetPath with " + worldPath.Count +
+                  " points. First=" + worldPath[0] +
+                  " Last=" + worldPath[worldPath.Count - 1]);
     }
 
-    /// <summary>
-    /// Backwards-compatible helper: move in a straight line to a single target,
-    /// by creating a tiny "path" of one point.
-    /// </summary>
     public void SetAutoMoveTarget(Vector3 worldTarget)
     {
-        List<Vector3> singlePointPath = new List<Vector3> { worldTarget };
-        SetPath(singlePointPath);
+        SetPath(new List<Vector3> { worldTarget });
     }
 
     // ------------------------------
-    //  UNITY METHODS
+    //  UNITY
     // ------------------------------
 
     private void Awake()
@@ -176,14 +172,12 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         baseScale = transform.localScale;
-
-        Debug.Log("[PlayerMovement] Awake on " + gameObject.name);
     }
 
     private void Update()
     {
         HandleInputOrAutoMove();
-        HandleAnimationAndBreathing();
+        HandleAnimation();
     }
 
     private void FixedUpdate()
@@ -192,109 +186,144 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // ------------------------------
-    //  LOGIC: INPUT / AUTO MOVE
+    //  INPUT / AUTO MOVE
     // ------------------------------
+
+    // הופך וקטור לכאילו "לחיצות מקשים" (-1/0/1 לכל ציר), ומשאיר אלכסון נורמליזד
+    private Vector2 QuantizeLikeKeys(Vector2 v)
+    {
+        float x = Mathf.Abs(v.x) > 0.001f ? Mathf.Sign(v.x) : 0f;
+        float y = Mathf.Abs(v.y) > 0.001f ? Mathf.Sign(v.y) : 0f;
+
+        Vector2 dir = new Vector2(x, y);
+        if (dir.sqrMagnitude > 1f) dir = dir.normalized;
+        return dir;
+    }
 
     private void HandleInputOrAutoMove()
     {
         desiredMovement = Vector2.zero;
+        animMovement = Vector2.zero;
 
-        if (hasPath)
+        // -------- מצב אוטומטי: תנועה על הצירים, אנימציה "כאילו מקשים" --------
+        if (hasPath && useAutoMove && activePath.Count > 0)
         {
-            Vector2 currentPos = rb.position;
-            Vector2 target2D = new Vector2(currentPathTarget.x, currentPathTarget.y);
-            Vector2 toTarget = target2D - currentPos;
-            float distance = toTarget.magnitude;
+            Vector2 feetPos = FeetPosition;
 
-            Debug.Log($"[PlayerMovement] hasPath pos={currentPos}, target={target2D}, dist={distance}");
+            // להתקדם במסלול אם כבר הגענו לנקודה הנוכחית
+            while (pathIndex < activePath.Count)
+            {
+                Vector2 p = new Vector2(activePath[pathIndex].x, activePath[pathIndex].y);
+                if (Vector2.Distance(feetPos, p) > autoMoveStopDistance)
+                    break;
 
-            // Reached the current point in the path
-            if (distance <= autoMoveStopDistance)
-            {
-                if (pathPoints.Count > 0)
-                {
-                    // Move on to the next point in the path
-                    currentPathTarget = pathPoints.Dequeue();
-                    Debug.Log("[PlayerMovement] Reached path point, next target=" + currentPathTarget +
-                              " remaining=" + pathPoints.Count);
-                }
-                else
-                {
-                    // Finished the whole path
-                    Debug.Log("[PlayerMovement] Finished path.");
-                    hasPath = false;
-                    useAutoMove = false;
-                    desiredMovement = Vector2.zero;
-                    return;
-                }
-            }
-            else
-            {
-                // Move towards currentPathTarget
-                float safeDistance = Mathf.Max(distance, minDistanceForDirection);
-                desiredMovement = toTarget / safeDistance; // normalized direction
-                Debug.Log("[PlayerMovement] desiredMovement=" + desiredMovement);
-            }
-        }
-        else
-        {
-            // Keyboard (new Input System)
-            var keyboard = Keyboard.current;
-            if (keyboard != null)
-            {
-                if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed) desiredMovement.x = -1f;
-                if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed) desiredMovement.x = 1f;
-                if (keyboard.upArrowKey.isPressed || keyboard.wKey.isPressed) desiredMovement.y = 1f;
-                if (keyboard.downArrowKey.isPressed || keyboard.sKey.isPressed) desiredMovement.y = -1f;
+                pathIndex++;
             }
 
-            // Normalize diagonal keyboard movement
+            // סיימנו מסלול
+            if (pathIndex >= activePath.Count)
+            {
+                hasPath = false;
+                useAutoMove = false;
+                desiredMovement = Vector2.zero;
+                animMovement = Vector2.zero;
+                cachedAnimMovement = Vector2.zero;
+                return;
+            }
+
+            // 1) MOVEMENT (פיזיקה): לכיוון הנקודה הבאה בלבד (זה שומר על הליכה על הצירים)
+            currentMoveTarget = activePath[pathIndex];
+            Vector2 nextTarget = new Vector2(currentMoveTarget.x, currentMoveTarget.y);
+            Vector2 toNext = nextTarget - feetPos;
+
+            float dist = toNext.magnitude;
+            if (dist < minDistanceForDirection) dist = minDistanceForDirection;
+
+            // ברוב המקרים זה יהיה (1,0) או (0,1) כי המסלול הוא 4-כיוונים
+            desiredMovement = toNext / dist;
+
+            // 2) ANIMATION (ויזואלי): מחשבים קדימה רק כשנכנסים ל-node חדש
+            if (pathIndex != lastAnimPathIndex)
+            {
+                int lookIndex = Mathf.Min(pathIndex + animLookAhead, activePath.Count - 1);
+                currentLookTarget = activePath[lookIndex];
+
+                Vector2 lookTarget2D = new Vector2(currentLookTarget.x, currentLookTarget.y);
+                Vector2 toLook = lookTarget2D - feetPos;
+
+                // זה ייתן למשל למעלה+ימינה גם אם פיזית כרגע הולכים רק ימינה
+                cachedAnimMovement = QuantizeLikeKeys(toLook);
+                lastAnimPathIndex = pathIndex;
+            }
+
+            // מחזיקים כיוון אנימציה יציב בין tiles
+            animMovement = cachedAnimMovement;
+
+            // אם משום מה יצא אפס - נפולבק לכיוון התנועה הפיזי
+            if (animMovement == Vector2.zero)
+                animMovement = QuantizeLikeKeys(desiredMovement);
+
+            // נורמליזציה של אלכסון (למקרה שהמסלול שלך כן מחזיר אלכסון)
             if (desiredMovement.sqrMagnitude > diagonalNormalizeThreshold)
                 desiredMovement = desiredMovement.normalized;
+
+            return;
         }
+
+        // -------- מצב חופשי – מקלדת --------
+        var keyboard = Keyboard.current;
+        if (keyboard != null)
+        {
+            if (keyboard.leftArrowKey.isPressed || keyboard.aKey.isPressed) desiredMovement.x = -1f;
+            if (keyboard.rightArrowKey.isPressed || keyboard.dKey.isPressed) desiredMovement.x = 1f;
+            if (keyboard.upArrowKey.isPressed || keyboard.wKey.isPressed) desiredMovement.y = 1f;
+            if (keyboard.downArrowKey.isPressed || keyboard.sKey.isPressed) desiredMovement.y = -1f;
+        }
+
+        // נורמליזציה של אלכסון מהמקלדת
+        if (desiredMovement.sqrMagnitude > diagonalNormalizeThreshold)
+            desiredMovement = desiredMovement.normalized;
+
+        // במצב ידני, האנימציה עוקבת אחרי הקלט בפועל
+        animMovement = desiredMovement;
+
+        // איפוס cache כדי שלא "יישאר" כיוון אנימציה מהאוטומט
+        lastAnimPathIndex = -1;
+        cachedAnimMovement = Vector2.zero;
     }
 
     // ------------------------------
-    //  LOGIC: MOVEMENT PHYSICS
+    //  MOVEMENT PHYSICS
     // ------------------------------
 
     private void ApplyMovement()
     {
-        // Movement step this physics frame
         Vector2 step = desiredMovement * moveSpeed * Time.fixedDeltaTime;
-
-        // Store for animation (direction & "is moving")
-        lastFrameMovement = step;
-
-        // Move with Rigidbody2D so collisions still work
         rb.MovePosition(rb.position + step);
 
-        // Keep transform in sync on Z axis
+        // שמירה על אותו Z
         transform.position = new Vector3(rb.position.x, rb.position.y, transform.position.z);
-
-        Debug.Log("[PlayerMovement] ApplyMovement step=" + step + " newPos=" + rb.position);
     }
 
     // ------------------------------
-    //  LOGIC: ANIMATION & BREATHING
+    //  ANIMATION
     // ------------------------------
 
-    private void HandleAnimationAndBreathing()
+    private void HandleAnimation()
     {
         const float zeroFloat = 0f;
         const int zeroInt = 0;
 
-        bool isMoving = lastFrameMovement.sqrMagnitude > (movementThreshold * movementThreshold);
+        // חשוב: האנימציה מתבססת על animMovement ולא על desiredMovement
+        bool isMoving = animMovement.sqrMagnitude > (movementThreshold * movementThreshold);
 
         if (isMoving)
         {
-            // Decide direction from last frame movement
-            if (Mathf.Abs(lastFrameMovement.x) > Mathf.Abs(lastFrameMovement.y))
-                currentDir = lastFrameMovement.x > zeroFloat ? Direction.Right : Direction.Left;
+            if (Mathf.Abs(animMovement.x) > Mathf.Abs(animMovement.y))
+                currentDir = animMovement.x > zeroFloat ? Direction.Right : Direction.Left;
             else
-                currentDir = lastFrameMovement.y > zeroFloat ? Direction.Up : Direction.Down;
+                currentDir = animMovement.y > zeroFloat ? Direction.Up : Direction.Down;
 
-            // Advance animation frames
             frameTimer += Time.deltaTime;
             if (frameTimer >= frameDuration)
             {
@@ -315,37 +344,63 @@ public class PlayerMovement : MonoBehaviour
             sr.sprite = currentAnim[frameIndex];
         }
 
-        // Breathing when idle
-        if (!isMoving)
-        {
-            float t = Time.time * breatheSpeed;
-            float scaleOffset = 1f + Mathf.Sin(t) * breatheAmplitude;
-
-            transform.localScale = new Vector3(
-                baseScale.x,
-                baseScale.y * scaleOffset,
-                baseScale.z
-            );
-        }
-        else
-        {
-            transform.localScale = baseScale;
-        }
+        transform.localScale = baseScale;
     }
-
-    // ------------------------------
-    //  HELPERS
-    // ------------------------------
 
     private Sprite[] GetCurrentAnimArray()
     {
+        Sprite[] fallback = (walkDown != null && walkDown.Length > 0) ? walkDown : null;
+        Sprite[] result = null;
+
         switch (currentDir)
         {
-            case Direction.Down: return walkDown;
-            case Direction.Up: return walkUp;
-            case Direction.Right: return walkRight;
-            case Direction.Left: return walkLeft;
+            case Direction.Down:
+                result = (walkDown != null && walkDown.Length > 0) ? walkDown : fallback;
+                break;
+
+            case Direction.Up:
+                result = (walkUp != null && walkUp.Length > 0) ? walkUp : fallback;
+                break;
+
+            case Direction.Right:
+                result = (walkRight != null && walkRight.Length > 0) ? walkRight : fallback;
+                break;
+
+            case Direction.Left:
+                result = (walkLeft != null && walkLeft.Length > 0) ? walkLeft : walkRight;
+                if (result == null || result.Length == 0) result = fallback;
+                break;
         }
-        return null;
+
+        return result;
+    }
+
+    // ------------------------------
+    //  GIZMOS – ציור המסלול
+    // ------------------------------
+
+    private void OnDrawGizmos()
+    {
+        if (!drawPathGizmos) return;
+
+        if (debugPathPoints != null && debugPathPoints.Count > 0)
+        {
+            Gizmos.color = Color.cyan;
+
+            for (int i = 0; i < debugPathPoints.Count; i++)
+            {
+                Gizmos.DrawSphere(debugPathPoints[i], 0.06f);
+                if (i < debugPathPoints.Count - 1)
+                    Gizmos.DrawLine(debugPathPoints[i], debugPathPoints[i + 1]);
+            }
+        }
+
+        // יעד תנועה (ה-node הבא) בצהוב
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(currentMoveTarget, 0.10f);
+
+        // יעד look-ahead (רק לכיוון אנימציה) באדום
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(currentLookTarget, 0.10f);
     }
 }
