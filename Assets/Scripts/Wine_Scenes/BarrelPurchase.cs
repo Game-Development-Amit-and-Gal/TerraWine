@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;   // Needed for IPointerClickHandler interaction
 
 /// <summary>
-/// Represents a purchaseable barrel in the scene.  
+/// Represents a purchaseable barrel in the scene.
 /// Handles visual feedback (color/transparency), purchase logic,
 /// saving ownership status, and detecting user clicks.
 /// </summary>
@@ -24,6 +24,11 @@ public class BarrelPurchase : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Color normalColor = new Color(0.6f, 0.4f, 0.2f, 1f);   // Not actively used anymore
     [SerializeField] private Color premiumColor = new Color(0.35f, 0.2f, 0.08f, 1f); // Premium/expensive look
 
+    // ---------------------- Link to Production Script ----------------------
+    [Header("Production (Barrel script)")]
+    [Tooltip("Drag the Barrel component here (usually same GameObject). Disabled until purchased.")]
+    [SerializeField] private Barrel barrel; // זה הסקריפט של הייצור (Aging/Recipes)
+
     // ---------------------- Runtime State ----------------------
     [Header("State (runtime only)")]
     [SerializeField] private bool owned = false;        // Has the barrel been purchased?
@@ -34,16 +39,14 @@ public class BarrelPurchase : MonoBehaviour, IPointerClickHandler
 
     private void Reset()
     {
-        // Auto-assign SpriteRenderer if it was forgotten in the Inspector
         if (spriteRenderer == null)
             spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (barrel == null)
+            barrel = GetComponent<Barrel>(); // אם Barrel על אותו אובייקט
     }
 
 #if UNITY_EDITOR
-    /// <summary>
-    /// Automatically assigns a unique ID while editing if none exists.
-    /// Prevents accidental duplication when copying objects in the editor.
-    /// </summary>
     private void OnValidate()
     {
         if (string.IsNullOrEmpty(barrelId))
@@ -53,6 +56,13 @@ public class BarrelPurchase : MonoBehaviour, IPointerClickHandler
         }
     }
 #endif
+
+    private void Awake()
+    {
+        // לפני טעינה, נבטיח שברירת המחדל היא "נעול" כדי שלא יקרה מצב ש-Barrel מגיב לפני שקנינו
+        if (barrel == null) barrel = GetComponent<Barrel>();
+        if (barrel != null) barrel.enabled = false;
+    }
 
     private void Start()
     {
@@ -75,20 +85,18 @@ public class BarrelPurchase : MonoBehaviour, IPointerClickHandler
             {
                 Color c = spriteRenderer.color;
                 if (data.isPremium)
-                {
-                    c = premiumColor; // Use premium look
-                }
-                c.a = 1f; // Fully visible
+                    c = premiumColor;
+
+                c.a = 1f;
                 spriteRenderer.color = c;
             }
         }
+
+        // הכי חשוב: להדליק/לכבות את Barrel לפי owned
+        if (barrel == null) barrel = GetComponent<Barrel>();
+        if (barrel != null) barrel.enabled = owned;
     }
 
-    /// <summary>
-    /// A barrel is purchasable only if:
-    /// - It is not already owned
-    /// - Its sprite is set with the semi-transparent alpha
-    /// </summary>
     private bool IsPurchasable()
     {
         if (owned) return false;
@@ -98,38 +106,25 @@ public class BarrelPurchase : MonoBehaviour, IPointerClickHandler
         return Mathf.Approximately(c.a, purchasableAlpha);
     }
 
-    /// <summary>
-    /// Saves purchase ownership into GameData + writes to disk.
-    /// </summary>
     private void SaveOwned(bool isPremium)
     {
         if (GameManager.Instance == null || GameManager.Instance.Data == null)
             return;
 
-        // Ensure list exists
         if (GameManager.Instance.Data.ownedBarrels == null)
             GameManager.Instance.Data.ownedBarrels = new List<OwnedBarrelData>();
 
         var list = GameManager.Instance.Data.ownedBarrels;
         var existing = list.Find(b => b.id == barrelId);
 
-        // Create or update entry
         if (existing == null)
-        {
             list.Add(new OwnedBarrelData { id = barrelId, isPremium = isPremium });
-        }
         else
-        {
             existing.isPremium = isPremium;
-        }
 
-        // Persist to save file
         SaveSystem.Save(GameManager.Instance.Data);
     }
 
-    /// <summary>
-    /// Attempts to purchase a normal barrel.
-    /// </summary>
     public void BuyNormal()
     {
         if (!IsPurchasable())
@@ -144,7 +139,6 @@ public class BarrelPurchase : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        // Deduct cost; if failed, cancel purchase
         if (!GameManager.Instance.TrySpendMoney(normalPrice))
         {
             Debug.Log("[Barrel] Not enough money for normal barrel.");
@@ -154,7 +148,6 @@ public class BarrelPurchase : MonoBehaviour, IPointerClickHandler
         owned = true;
         premiumOwned = false;
 
-        // Fully visible normal sprite
         if (spriteRenderer != null)
         {
             Color c = spriteRenderer.color;
@@ -163,12 +156,14 @@ public class BarrelPurchase : MonoBehaviour, IPointerClickHandler
         }
 
         SaveOwned(false);
+
+        // עכשיו הייצור מותר
+        if (barrel == null) barrel = GetComponent<Barrel>();
+        if (barrel != null) barrel.enabled = true;
+
         Debug.Log("[Barrel] Bought NORMAL barrel.");
     }
 
-    /// <summary>
-    /// Attempts to purchase a premium barrel.
-    /// </summary>
     public void BuyPremium()
     {
         if (!IsPurchasable())
@@ -183,7 +178,6 @@ public class BarrelPurchase : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        // Deduct cost; if failed, cancel purchase
         if (!GameManager.Instance.TrySpendMoney(premiumPrice))
         {
             Debug.Log("[Barrel] Not enough money for premium barrel.");
@@ -193,7 +187,6 @@ public class BarrelPurchase : MonoBehaviour, IPointerClickHandler
         owned = true;
         premiumOwned = true;
 
-        // Fully visible premium color
         if (spriteRenderer != null)
         {
             Color c = premiumColor;
@@ -202,26 +195,26 @@ public class BarrelPurchase : MonoBehaviour, IPointerClickHandler
         }
 
         SaveOwned(true);
+
+        // עכשיו הייצור מותר
+        if (barrel == null) barrel = GetComponent<Barrel>();
+        if (barrel != null) barrel.enabled = true;
+
         Debug.Log("[Barrel] Bought PREMIUM barrel.");
     }
 
-    /// <summary>
-    /// Detects when the barrel is clicked and opens the purchase UI.
-    /// Only responds to left mouse button.
-    /// </summary>
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button != PointerEventData.InputButton.Left)
             return;
 
-        // Open purchase UI based on this barrel
+        // אם כבר קנוי — לא פותחים חנות.
+        // Barrel (Script הייצור) יקבל את הלחיצה ויפתח מתכונים.
+        if (owned) return;
+
         if (BarrelShopUI.Instance != null)
-        {
             BarrelShopUI.Instance.Open(this);
-        }
         else
-        {
             Debug.LogWarning("[Barrel] No BarrelShopUI in scene.");
-        }
     }
 }

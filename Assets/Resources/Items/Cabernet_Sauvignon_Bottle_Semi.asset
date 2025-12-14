@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 302182c9ff20b604d9d22ed6aff13dd0, type: 3}
-  m_Name: Cabernet_Sauvignon_Bottle
+  m_Name: Cabernet_Sauvignon_Bottle_Semi
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  id: Cabernet_Sauvignon_Bottle
-  displayName: Cabernet Sauvignon Bottle
+  id: Cabernet_Sauvignon_Bottle_Drt
+  displayName: Cabernet Sauvignon Dry
   icon: {fileID: -8054049482667927149, guid: 2702c2724237a5b4392ffeea4638f257, type: 3}
   stackable: 1
   maxStack: 99
-  price: 10
+  price: 20
   isSeed: 0
   isWineBottle: 1
   category: 1

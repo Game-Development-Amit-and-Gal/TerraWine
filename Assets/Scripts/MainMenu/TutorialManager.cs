@@ -103,7 +103,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+       
 
         // Make sure the tutorial panel starts hidden.
         if (panel != null)

@@ -32,7 +32,8 @@ public class GameData
     // Collections of owned items and barrels
     public List<InventoryItem> inventory = new List<InventoryItem>();  // All items in player's inventory
     public List<OwnedBarrelData> ownedBarrels = new List<OwnedBarrelData>(); // All cellar barrels the player owns
-
+    public List<string> unlockedRecipeIds = new List<string>();
+    public List<BarrelAgingSave> barrelAging = new List<BarrelAgingSave>();
     // Tutorial progress flags
     public bool tutorialCompleted;       // General tutorial finished?
     public bool sampleSceneGuideDone;    // Intro scene guide completed?
@@ -49,4 +50,24 @@ public class OwnedBarrelData
 {
     public string id;        // Barrel type identifier (matches ScriptableObject barrel ID)
     public bool isPremium;   // True if the barrel is a premium/high-quality one
+}
+
+
+
+[Serializable]
+public class BarrelAgingSave
+{
+    public string barrelId;
+
+    public bool isAging;
+    public bool isReady;
+
+    public string recipeId;
+    public WineDryness dryness;
+
+    public long agingStartTicks;
+    public long agingEndTicks;
+
+    public string bottleItemId;
+    public int bottleAmount;
 }
