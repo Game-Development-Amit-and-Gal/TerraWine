@@ -35,6 +35,10 @@ public class TutorialManager : MonoBehaviour
     private string currentSceneName;
     private SceneGuide currentGuide;
     private int currentStepIndex = 0;
+    public static bool tutorialIsRunning = false;
+    public static bool tutorialIsRunningGardenScene = false;
+    public static Action GrandpaStoppedTalking;
+
 
     /// <summary>
     /// Configuration for a single scene's tutorial.
@@ -89,6 +93,7 @@ public class TutorialManager : MonoBehaviour
         /// If false, the scene UI will stay visible.
         /// </summary>
         public bool hideSceneUI = false;
+        
     }
 
     #region Unity lifecycle
@@ -129,6 +134,12 @@ public class TutorialManager : MonoBehaviour
     #endregion
 
     #region Scene handling
+
+
+
+
+
+
 
     /// <summary>
     /// Called automatically whenever a new scene is loaded.
@@ -209,7 +220,9 @@ public class TutorialManager : MonoBehaviour
             return;
 
         if (currentStepIndex < 0 || currentStepIndex >= currentGuide.steps.Length)
+        {
             return;
+        }
 
         Step step = currentGuide.steps[currentStepIndex];
 
@@ -326,11 +339,15 @@ public class TutorialManager : MonoBehaviour
     /// </summary>
     public void OnNextStep()
     {
+
         if (currentGuide == null)
         {
             CloseGuide();
+            tutorialIsRunning = false;
             return;
         }
+
+
 
         currentStepIndex++;
 
@@ -338,6 +355,7 @@ public class TutorialManager : MonoBehaviour
         if (currentStepIndex >= currentGuide.steps.Length)
         {
             CloseGuide();
+            tutorialIsRunning = false;
         }
         else
         {
@@ -391,6 +409,8 @@ public class TutorialManager : MonoBehaviour
         // Reset runtime state.
         currentGuide = null;
         currentStepIndex = 0;
+
+        GrandpaStoppedTalking?.Invoke();
     }
 
     #endregion

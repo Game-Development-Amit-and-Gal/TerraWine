@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("[GameManager] NEW GAME clicked -> deleting old save");
         SaveSystem.Delete();                 // <-- קריטי: מוחק save ישן
         StartCoroutine(NewGameFlow());
+        TutorialManager.tutorialIsRunning = true;
+        TutorialManager.tutorialIsRunningGardenScene = true;
     }
 
     private IEnumerator NewGameFlow()
@@ -140,6 +142,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("[GameManager] CONTINUE clicked");
 
+        TutorialManager.tutorialIsRunning = false;
+        // Try to load previously saved game data
         var loaded = SaveSystem.Load();
         if (loaded == null)
         {

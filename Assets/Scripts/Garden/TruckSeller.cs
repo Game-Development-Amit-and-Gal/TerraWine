@@ -17,7 +17,10 @@ public class TruckSeller : MonoBehaviour
 
     [Header("Sell UI")]
     [SerializeField] private GameObject sellPanel;   
-    [SerializeField] private TMP_Text summaryText;    
+    [SerializeField] private TMP_Text summaryText;
+    [SerializeField] private MiniMapClickToMove clickMover;
+    [SerializeField] private PlayerMovement regularMover;
+    private bool enable = true;
 
     private bool playerInside = false;
 
@@ -26,6 +29,9 @@ public class TruckSeller : MonoBehaviour
       
         if (sellPanel != null)
             sellPanel.SetActive(false);
+
+        clickMover = GetComponent<MiniMapClickToMove>();
+        regularMover = GetComponent<PlayerMovement>();
     }
 
     private void Reset() // Automatically sets the truck's collider to Trigger mode so it can detect players entering. 
@@ -63,6 +69,9 @@ public class TruckSeller : MonoBehaviour
      
         if (Keyboard.current.eKey.wasPressedThisFrame) // After the player is near the Truck and pressed E open the sale pannel
         {
+            clickMover.enabled = !enable;
+            regularMover.enabled = !enable;
+            enable = !enable;
             TogglePanel();
         }
     }
@@ -93,10 +102,10 @@ public class TruckSeller : MonoBehaviour
             {
                 invUI.Close();
             }
+            
         }
         else
         {
-            
             sellPanel.SetActive(wantOpen);
         }
 
@@ -111,6 +120,7 @@ public class TruckSeller : MonoBehaviour
     {
         if (sellPanel != null)
             sellPanel.SetActive(false); // hide the pannel on the game
+            
     }
 
     private void RefreshPreview()

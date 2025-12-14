@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 /// <summary>
 /// Handles click interactions on an inventory slot.
@@ -87,7 +88,15 @@ public class InventorySlotClick : MonoBehaviour, IPointerClickHandler
         var invUI = GetComponentInParent<InventoryUI>();
         if (invUI != null)
         {
+
+            if (invUI.CompareTag("BAG"))
+            {
+                // for tutorial level 
+                bool check = InventoryManager.openedBagGardenTutorial = false;
+                Debug.Log("Value of BAG is changed from " + check + " Into " + !check);
+            }
             invUI.Close();
+
         }
     }
 }

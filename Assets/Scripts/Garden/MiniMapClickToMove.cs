@@ -17,11 +17,17 @@ public class MiniMapClickToMove : MonoBehaviour
     [Tooltip("PlayerMovement component that will receive the path to follow.")]
     [SerializeField] private PlayerMovement playerMovement;
 
+
     [Tooltip("Pathfinder that knows how to find a path on the grass area.")]
     [SerializeField] private TilemapPathfinder2D pathfinder;
 
     private void Update()
     {
+        if (TutorialManager.tutorialIsRunning)
+        {
+            Debug.Log("Tutorial is still running due to bool value");
+            return;
+        }
         // Use the new Input System. If there is no mouse, do nothing.
         if (Mouse.current == null)
             return;
@@ -35,6 +41,8 @@ public class MiniMapClickToMove : MonoBehaviour
             Debug.LogWarning("[MiniMapClickToMove] Missing miniMapCamera or playerMovement reference.");
             return;
         }
+
+
 
         // Mouse position in screen pixels.
         Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
