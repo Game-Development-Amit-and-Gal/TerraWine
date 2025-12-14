@@ -121,7 +121,9 @@ public class InventoryUI : MonoBehaviour
     {
         // Flip the panel’s current visibility state (open ↔ closed)
         bool newState = !panel.activeSelf;
+        bool tutorialState = true;
 
+        SetOpenBagTutorial(tutorialState, panel);
         // Apply the new visibility to the main inventory panel
         panel.SetActive(newState);
 
@@ -141,6 +143,8 @@ public class InventoryUI : MonoBehaviour
         // Show the bottom UI sections as well
         SetExtraUiActive(true);
 
+
+
         // Refresh the inventory display immediately
         Redraw();
     }
@@ -150,6 +154,7 @@ public class InventoryUI : MonoBehaviour
     {
         // Hide the inventory panel
         panel.SetActive(false);
+
 
         // Hide the bottom UI sections as well
         SetExtraUiActive(false);
@@ -349,6 +354,15 @@ public class InventoryUI : MonoBehaviour
                     click.iconImage = img;
                 }
             }
+        }
+    }
+   public static void SetOpenBagTutorial(bool openBagTutorial,GameObject panel)
+    {
+        if (panel.CompareTag("BAG"))
+        {
+            // for tutorial level 
+            bool check = InventoryManager.openedBagGardenTutorial = openBagTutorial;
+            Debug.Log("Value of BAG is changed from " + check + " Into " + !check);
         }
     }
 }
