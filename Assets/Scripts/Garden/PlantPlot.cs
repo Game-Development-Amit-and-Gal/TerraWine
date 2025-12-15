@@ -112,6 +112,7 @@ public class PlantPlot : MonoBehaviour,
     public void StartGrowth(ItemSO seed)
     {
         if (!CanPlant || seed == null || !seed.isSeed) return;
+        TutorialManager.Instance?.SetFlag("Press vineyard");
 
         seedId = seed.id;
         remainingTime = seed.growTimeSeconds;
@@ -152,6 +153,7 @@ public class PlantPlot : MonoBehaviour,
 
         isGrowing = false;
         isReady = true;
+        TutorialManager.Instance?.SetFlag("Vineyard Redy");
         remainingTime = 0f;
 
         if (spriteRenderer != null) spriteRenderer.sprite = readySprite;
@@ -188,6 +190,7 @@ public class PlantPlot : MonoBehaviour,
         }
 
         bool ok = InventoryManager.Instance.Add(harvestItemId, harvestAmount);
+        TutorialManager.Instance?.SetFlag("Is Ready");
         Debug.Log($"[PlantPlot] Harvested {harvestAmount}x {harvestItemId}, success={ok}");
 
         ResetToEmpty();
@@ -267,6 +270,7 @@ public class PlantPlot : MonoBehaviour,
         }
         else if (isReady)
         {
+            
             if (spriteRenderer != null) spriteRenderer.sprite = readySprite;
             if (timerText != null) timerText.gameObject.SetActive(false);
             if (readyVfx != null) readyVfx.SetActive(true);

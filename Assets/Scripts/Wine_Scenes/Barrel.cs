@@ -47,7 +47,7 @@ public class Barrel : MonoBehaviour, IPointerDownHandler
     private void Awake()
     {
         if (ui == null)
-            ui = FindObjectOfType<BarrelUI>();
+            ui = UnityEngine.Object.FindFirstObjectByType<BarrelUI>();
     }
 
     private void Start()

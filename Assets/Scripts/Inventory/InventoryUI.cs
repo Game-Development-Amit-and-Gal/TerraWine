@@ -78,6 +78,7 @@ public class InventoryUI : MonoBehaviour
         {
             // Show standard category bottoms when inventory is active
             if (ResourcesBottom != null)
+                TutorialManager.Instance?.SetFlag("Bag Open");
                 ResourcesBottom.SetActive(active);
 
             if (WineBottlesBottom != null)
@@ -154,6 +155,7 @@ public class InventoryUI : MonoBehaviour
     {
         // Hide the inventory panel
         panel.SetActive(false);
+        TutorialManager.Instance?.SetFlag("Bag Close");
 
 
         // Hide the bottom UI sections as well
@@ -180,6 +182,7 @@ public class InventoryUI : MonoBehaviour
     {
         // Switch the active tab/category to Resources
         currentCategory = ItemCategory.Resources;
+        
 
         // Refresh the UI to display only items from this category
         Redraw();

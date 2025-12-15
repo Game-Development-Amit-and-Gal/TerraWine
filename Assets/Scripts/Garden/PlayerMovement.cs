@@ -6,11 +6,6 @@ using UnityEngine.InputSystem;
 /// Handles top-down player movement using the new Input System,
 /// plays directional walking animations,
 /// and supports automatic movement along a path (for mini-map pathfinding).
-///
-/// FIX (מה שביקשת):
-/// - התנועה האוטומטית הולכת "על הצירים" (לנקודה הבאה במסלול בלבד: ימינה/שמאלה/למעלה/למטה)
-/// - אבל כיוון האנימציה מחושב קדימה (look-ahead) וננעל/מתעדכן רק כשמתקדמים בנקודות המסלול,
-///   כדי שזה ייראה כאילו מחזיקים למשל למעלה+ימינה, בלי ריצוד כל קובייה.
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer))]
 public class PlayerMovement : MonoBehaviour
@@ -127,6 +122,47 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 baseScale;
 
     // ------------------------------
+    //  TUTORIAL MOVEMENT GATE
+    // ------------------------------
+
+    [Header("Tutorial Gate")]
+    [Tooltip("If true: allows arrow-key movement even while tutorial is running.")]
+    [SerializeField] private bool allowMoveDuringTutorial = false;
+
+    [Tooltip("If true: blocks auto-move/path while tutorial is running.")]
+    [SerializeField] private bool blockAutoMoveDuringTutorial = true;
+    [SerializeField] private string moveWithArrowsFlagName = "Move arrow keys";
+    private bool moveFlagSent = false;
+
+    /// <summary>
+    /// Call from TutorialManager when you want to allow / disallow movement during a tutorial step.
+    /// </summary>
+    public void SetAllowMoveDuringTutorial(bool allow)
+    {
+        allowMoveDuringTutorial = allow;
+        if (allow) moveFlagSent = false;
+
+
+        if (!allow)
+        {
+            // stop movement immediately
+            desiredMovement = Vector2.zero;
+            animMovement = Vector2.zero;
+
+            // optionally stop auto move
+            if (blockAutoMoveDuringTutorial)
+            {
+                hasPath = false;
+                useAutoMove = false;
+                activePath.Clear();
+                pathIndex = 0;
+                cachedAnimMovement = Vector2.zero;
+                lastAnimPathIndex = -1;
+            }
+        }
+    }
+
+    // ------------------------------
     //  PUBLIC API
     // ------------------------------
 
@@ -176,7 +212,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (TutorialManager.tutorialIsRunning) return;
+        if (TutorialManager.tutorialIsRunning && !allowMoveDuringTutorial)
+            return;
+
 
         HandleInputOrAutoMove();
         HandleAnimation();
@@ -184,8 +222,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(TutorialManager.tutorialIsRunning) return;
-            ApplyMovement();
+        if (TutorialManager.tutorialIsRunning && !allowMoveDuringTutorial)
+            return;
+        ApplyMovement();
         
     }
 
@@ -208,6 +247,15 @@ public class PlayerMovement : MonoBehaviour
     {
         desiredMovement = Vector2.zero;
         animMovement = Vector2.zero;
+        if (TutorialManager.tutorialIsRunning && allowMoveDuringTutorial && blockAutoMoveDuringTutorial)
+        {
+            hasPath = false;
+            useAutoMove = false;
+            activePath.Clear();
+            pathIndex = 0;
+            cachedAnimMovement = Vector2.zero;
+            lastAnimPathIndex = -1;
+        }
 
         // -------- מצב אוטומטי: תנועה על הצירים, אנימציה "כאילו מקשים" --------
         if (hasPath && useAutoMove && activePath.Count > 0)
@@ -283,6 +331,18 @@ public class PlayerMovement : MonoBehaviour
             if (keyboard.upArrowKey.isPressed || keyboard.wKey.isPressed) desiredMovement.y = 1f;
             if (keyboard.downArrowKey.isPressed || keyboard.sKey.isPressed) desiredMovement.y = -1f;
         }
+        // --- NEW: fire tutorial flag once when player actually tries to move with keys ---
+        if (!moveFlagSent &&
+            TutorialManager.tutorialIsRunning &&
+            allowMoveDuringTutorial &&
+            desiredMovement.sqrMagnitude > 0.0001f)
+        {
+            if (TutorialManager.Instance != null)
+                TutorialManager.Instance.SetFlag(moveWithArrowsFlagName);
+
+            moveFlagSent = true;
+        }
+
 
         // נורמליזציה של אלכסון מהמקלדת
         if (desiredMovement.sqrMagnitude > diagonalNormalizeThreshold)

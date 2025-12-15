@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        
 
         if (!introController) introController = FindObjectOfType<IntroController>();
         if (!sceneLoader) sceneLoader = FindObjectOfType<SceneLoader>();

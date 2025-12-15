@@ -71,6 +71,7 @@ public class InventorySlotClick : MonoBehaviour, IPointerClickHandler
         // ========== PLANTING MODE (Seed selection) ==========
         if (so.isSeed)
         {
+            TutorialManager.Instance?.SetFlag("Press Seed");
             if (PlantingController.Instance != null)
             {
                 // Select the seed to plant
