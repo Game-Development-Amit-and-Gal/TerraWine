@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
             money = startingMoney,
             season = (int)seasons.Earth,
             lastRealTimeTicks = DateTime.UtcNow.Ticks,
+            wineScore = 0,
+
 
             tutorialCompleted = false,
             sampleSceneGuideDone = false,

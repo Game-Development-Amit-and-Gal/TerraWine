@@ -212,11 +212,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
   panel: {fileID: 35155697}
   tutorialText: {fileID: 763222774}
-  arrow: {fileID: 696294038}
+  arrow: {fileID: 1289897165}
   gotItButton: {fileID: 8698948}
   panel2: {fileID: 394271075}
   tutorialText2: {fileID: 1518040411}
-  arrow2: {fileID: 843047221}
+  arrow2: {fileID: 527368224}
   gotItButton2: {fileID: 292720817}
   overrideGotItPosition: 0
   gotItAnchoredPosPanel1: {x: 0, y: 0}
@@ -259,13 +259,78 @@ MonoBehaviour:
         other resources.\r\nYou will use these items to plant, harvest and make wine.\r\n\r\nLater,
         we\u2019ll use the bag to choose which seeds to plant."
       targetObjectName: BAG
-      arrowOffset: {x: -220, y: -100}
+      arrowOffset: {x: -220, y: -50}
       hideSceneUI: 0
       overridePanelChoice: 0
       panelChoice: 0
-      nextMode: 0
+      nextMode: 2
       secondsToAutoNext: 2
-      requiredFlagName: 
+      requiredFlagName: Bag Open
+      allowMovementDuringThisStep: 0
+    - message: "Now it\u2019s time \nto plant some seeds.\nIn the vineyard, \nclick
+        on one of the seeds."
+      targetObjectName: Player
+      arrowOffset: {x: -900, y: 200}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 2
+      requiredFlagName: Press Seed
+      allowMovementDuringThisStep: 0
+    - message: "Click on one of the vineyard \nplots to plant the seed.\nYou can
+        use the arrow keys to move \ncloser to the vineyard plots."
+      targetObjectName: Player
+      arrowOffset: {x: -900, y: 200}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 2
+      requiredFlagName: Press vineyard
+      allowMovementDuringThisStep: 1
+    - message: "we need to wait for the \ngrapes to grow.\n\nTo see how much time
+        is left, \nhover your mouse over the \nvineyard plot."
+      targetObjectName: Player
+      arrowOffset: {x: -900, y: 200}
+      hideSceneUI: 1
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 2
+      requiredFlagName: Vineyard Redy
+      allowMovementDuringThisStep: 0
+    - message: 'The grapes are ready
+
+        press to harvest them.'
+      targetObjectName: Player
+      arrowOffset: {x: -900, y: 200}
+      hideSceneUI: 1
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 2
+      requiredFlagName: Is Ready
+      allowMovementDuringThisStep: 0
+    - message: Click on your bag to see the grapes inside it.
+      targetObjectName: BAG
+      arrowOffset: {x: -220, y: -50}
+      hideSceneUI: 0
+      overridePanelChoice: 0
+      panelChoice: 0
+      nextMode: 2
+      secondsToAutoNext: 2
+      requiredFlagName: Bag Open
+      allowMovementDuringThisStep: 0
+    - message: Press ESC to close the bag.
+      targetObjectName: Player
+      arrowOffset: {x: 0, y: 200}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 2
+      requiredFlagName: Bag Close
       allowMovementDuringThisStep: 0
   - sceneName: WorldMap
     panelChoice: 0
@@ -317,6 +382,14 @@ PrefabInstance:
     - target: {fileID: 2395292096355234753, guid: a8359bbf5a380ae43a282a4f5573958c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3260721451862127091, guid: a8359bbf5a380ae43a282a4f5573958c, type: 3}
+      propertyPath: offset.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3260721451862127091, guid: a8359bbf5a380ae43a282a4f5573958c, type: 3}
+      propertyPath: offset.y
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5471628221533018139, guid: a8359bbf5a380ae43a282a4f5573958c, type: 3}
       propertyPath: m_Pivot.x
@@ -400,7 +473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6726972142424815103, guid: a8359bbf5a380ae43a282a4f5573958c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6772151344734512582, guid: a8359bbf5a380ae43a282a4f5573958c, type: 3}
       propertyPath: m_IsActive
@@ -786,6 +859,11 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!224 &527368224 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7805297039051469389, guid: a8359bbf5a380ae43a282a4f5573958c, type: 3}
+  m_PrefabInstance: {fileID: 344879177}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &577582562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -794,6 +872,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 238639772}
     m_Modifications:
+    - target: {fileID: 214911334900741527, guid: bcf6c6a6fbb6afb43b39dd6b630a5ff6, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 214911334900741527, guid: bcf6c6a6fbb6afb43b39dd6b630a5ff6, type: 3}
+      propertyPath: offset.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 214911334900741527, guid: bcf6c6a6fbb6afb43b39dd6b630a5ff6, type: 3}
+      propertyPath: offset.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 495628553259672866, guid: bcf6c6a6fbb6afb43b39dd6b630a5ff6, type: 3}
       propertyPath: m_Name
       value: TutorialCanva 1
@@ -899,6 +989,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcf6c6a6fbb6afb43b39dd6b630a5ff6, type: 3}
+--- !u!1 &600070808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600070809}
+  - component: {fileID: 600070810}
+  m_Layer: 0
+  m_Name: WineScoreSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &600070809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600070808}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1744896438}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &600070810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600070808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794dad1f3de36914fb0b9828c7bfcb12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WineScoreSystem
 --- !u!1001 &631461533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -964,11 +1098,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7237119917520818705, guid: adfa6d3b56ab1df4a871d41425eb34c1, type: 3}
   m_PrefabInstance: {fileID: 631461533}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &696294038 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5825114121498110110, guid: bcf6c6a6fbb6afb43b39dd6b630a5ff6, type: 3}
-  m_PrefabInstance: {fileID: 577582562}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &754088108 stripped
 RectTransform:
@@ -1120,11 +1249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!224 &843047221 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1921779483237210742, guid: a8359bbf5a380ae43a282a4f5573958c, type: 3}
-  m_PrefabInstance: {fileID: 344879177}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &896544107
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,6 +1528,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 100028653}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1289897165 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7827026077335741755, guid: bcf6c6a6fbb6afb43b39dd6b630a5ff6, type: 3}
+  m_PrefabInstance: {fileID: 577582562}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1362965525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,6 +1924,7 @@ Transform:
   - {fileID: 2018651405}
   - {fileID: 238639772}
   - {fileID: 1362965526}
+  - {fileID: 600070809}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1744896439

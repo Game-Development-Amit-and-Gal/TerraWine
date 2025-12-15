@@ -26,7 +26,8 @@ public class GameData
     public float playerX, playerY;    // Saved player position in world space
     public int money;                 // Player's current money amount
     public int season = 1;            // Current in-game season (default: 1)
-
+    public int wineScore = 0;
+    public int hineScore = 0;   
     public long lastRealTimeTicks;    // Timestamp for real-time progression (offline growth)
 
     // Collections of owned items and barrels
