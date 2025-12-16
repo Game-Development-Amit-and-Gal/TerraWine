@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302182c9ff20b604d9d22ed6aff13dd0, type: 3}
+  m_Name: Pinot_Noir_Seed
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  id: Pinot_Noir_Seed
+  displayName: Pinot_Noir_Seed
+  icon: {fileID: 0}
+  stackable: 1
+  maxStack: 99
+  price: 10
+  isSeed: 1
+  isWineBottle: 0
+  category: 0
+  growTimeSeconds: 180
+  harvestItem: {fileID: 11400000, guid: 72016440f2984b3469f3a4da5845d9c2, type: 2}
+  harvestAmount: 10
+  plantedPlotSprite: {fileID: 0}
+  readyPlotSprite: {fileID: 0}

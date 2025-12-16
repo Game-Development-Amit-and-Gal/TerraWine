@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab48d64a5a8b6ef4da3c7538aa3bbfe6, type: 3}
+  m_Name: Cabernet_Reserve
+  m_EditorClassIdentifier: Assembly-CSharp::WineRecipeSO
+  id: Cabernet_Reserve
+  wineName: Cabernet Reserve
+  barrelPrefab: {fileID: 282442552408457495, guid: 302c31ecbf4cff5488372c5b7c8db883, type: 3}
+  barrelIcon: {fileID: -1930839144553695791, guid: ff96fc988489f314eb9c6becb29352f9, type: 3}
+  grapes:
+  - itemName: Cabernet_Sauvignon_Grap
+    amount: 10
+  semiDry:
+    timeSeconds: 300
+    bottleItem: {fileID: 11400000, guid: fe327b606b3932444905b28f3d9352de, type: 2}
+    bottleAmount: 1
+    rating: 3
+  dry:
+    timeSeconds: 570
+    bottleItem: {fileID: 11400000, guid: 1d82d8dc000096643aa56eed85e4d8d9, type: 2}
+    bottleAmount: 1
+    rating: 4
+  defaultBottleAmount: 1
+  defaultRating: 5
+  defaultGrapeAmount: 1

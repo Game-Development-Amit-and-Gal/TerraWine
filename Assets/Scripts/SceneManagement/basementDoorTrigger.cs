@@ -14,6 +14,7 @@ public class basementDoorTrigger : MonoBehaviour
         // Check if the object that touched this trigger is the Player
         if (other.CompareTag("Player"))
         {
+            TutorialManager.Instance?.SetFlag("Basement");
             // Load the target scene immediately
             SceneManager.LoadScene(sceneName);
         }

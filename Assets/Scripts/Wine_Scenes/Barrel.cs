@@ -79,9 +79,14 @@ public class Barrel : MonoBehaviour, IPointerDownHandler
         }
 
         if (ui != null)
+        {
+            TutorialManager.Instance?.SetFlag("barrel");
             ui.OpenForBarrel(this);
+        }
         else
+        {
             Debug.LogWarning("[Barrel] No BarrelUI in scene.");
+        }
     }
 
     public bool TryStartRecipe(string selectedRecipeId, WineDryness selectedDryness)

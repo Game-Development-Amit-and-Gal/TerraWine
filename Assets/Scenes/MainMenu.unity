@@ -225,7 +225,11 @@ MonoBehaviour:
   - sceneName: SampleScene
     panelChoice: 0
     steps:
-    - message: "\"Hey, wake up, kiddo.\r\nI heard someone stole our secret family
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: "\"Hey, wake up, kiddo.\r\nI heard someone stole our secret family
         recipe\u2026\r\nBut don't panic.\n\r\nA recipe is only the beginning.\r\nWhat
         really matters is you, your taste,\r\nand the choices you make in this vineyard.\r\n\r\nTogether,
         we\u2019ll build a new legend \u2013 your own wine.\"\r\n\r\nBefore anything
@@ -240,7 +244,11 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: 
       allowMovementDuringThisStep: 0
-    - message: 'To move around the farm,
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: 'To move around the farm,
 
         use the movement controls
 
@@ -255,7 +263,11 @@ MonoBehaviour:
       secondsToAutoNext: 4
       requiredFlagName: Move arrow keys
       allowMovementDuringThisStep: 1
-    - message: "This is your bag.\r\n\r\nHere you can see your seeds, grapes and
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: "This is your bag.\r\n\r\nHere you can see your seeds, grapes and
         other resources.\r\nYou will use these items to plant, harvest and make wine.\r\n\r\nLater,
         we\u2019ll use the bag to choose which seeds to plant."
       targetObjectName: BAG
@@ -267,7 +279,11 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Bag Open
       allowMovementDuringThisStep: 0
-    - message: "Now it\u2019s time \nto plant some seeds.\nIn the vineyard, \nclick
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: "Now it\u2019s time \nto plant some seeds.\nIn the vineyard, \nclick
         on one of the seeds."
       targetObjectName: Player
       arrowOffset: {x: -900, y: 200}
@@ -278,7 +294,11 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Press Seed
       allowMovementDuringThisStep: 0
-    - message: "Click on one of the vineyard \nplots to plant the seed.\nYou can
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: "Click on one of the vineyard \nplots to plant the seed.\nYou can
         use the arrow keys to move \ncloser to the vineyard plots."
       targetObjectName: Player
       arrowOffset: {x: -900, y: 200}
@@ -289,7 +309,11 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Press vineyard
       allowMovementDuringThisStep: 1
-    - message: "we need to wait for the \ngrapes to grow.\n\nTo see how much time
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: "we need to wait for the \ngrapes to grow.\n\nTo see how much time
         is left, \nhover your mouse over the \nvineyard plot."
       targetObjectName: Player
       arrowOffset: {x: -900, y: 200}
@@ -300,7 +324,11 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Vineyard Redy
       allowMovementDuringThisStep: 0
-    - message: 'The grapes are ready
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: 'The grapes are ready
 
         press to harvest them.'
       targetObjectName: Player
@@ -312,7 +340,11 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Is Ready
       allowMovementDuringThisStep: 0
-    - message: Click on your bag to see the grapes inside it.
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: Click on your bag to see the grapes inside it.
       targetObjectName: BAG
       arrowOffset: {x: -220, y: -50}
       hideSceneUI: 0
@@ -322,7 +354,11 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Bag Open
       allowMovementDuringThisStep: 0
-    - message: Press ESC to close the bag.
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: Press ESC to close the bag.
       targetObjectName: Player
       arrowOffset: {x: 0, y: 200}
       hideSceneUI: 0
@@ -332,13 +368,129 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Bag Close
       allowMovementDuringThisStep: 0
-  - sceneName: WorldMap
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: Enter the winery
+      targetObjectName: Player
+      arrowOffset: {x: -1050, y: -500}
+      hideSceneUI: 1
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 2
+      requiredFlagName: Winery
+      allowMovementDuringThisStep: 1
+  - sceneName: WineryReception
     panelChoice: 0
-    steps: []
+    steps:
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: "Go to the Basement \nusing the arrow keys."
+      targetObjectName: Player
+      arrowOffset: {x: 800, y: -400}
+      hideSceneUI: 1
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 0
+      requiredFlagName: Basement
+      allowMovementDuringThisStep: 1
+  - sceneName: Basement
+    panelChoice: 0
+    steps:
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: "Go to the right door \nusing the arrow keys."
+      targetObjectName: Player
+      arrowOffset: {x: 200, y: 200}
+      hideSceneUI: 1
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 0
+      requiredFlagName: Right door
+      allowMovementDuringThisStep: 1
   - sceneName: wine
     panelChoice: 0
-    steps: []
+    steps:
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: Press the barrel
+      targetObjectName: Player
+      arrowOffset: {x: 900, y: 100}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 0
+      requiredFlagName: barrel
+      allowMovementDuringThisStep: 1
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: Press the Young Cabernet
+      targetObjectName: Player
+      arrowOffset: {x: 200, y: 400}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 0
+      requiredFlagName: Young Cabernet
+      allowMovementDuringThisStep: 0
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: Press confirm
+      targetObjectName: Player
+      arrowOffset: {x: 200, y: 400}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 0
+      requiredFlagName: confirm
+      allowMovementDuringThisStep: 0
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: Press the barrel
+      targetObjectName: Player
+      arrowOffset: {x: 900, y: 100}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 0
+      requiredFlagName: barrel
+      allowMovementDuringThisStep: 1
+    - hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: Go back to the yard.
+      targetObjectName: Player
+      arrowOffset: {x: 900, y: 100}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 0
+      secondsToAutoNext: 0
+      requiredFlagName: 
+      allowMovementDuringThisStep: 0
   sceneUiRootName: UI
+  worldRootName: World
 --- !u!114 &238639774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +519,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 238639772}
     m_Modifications:
+    - target: {fileID: 1057263261227217469, guid: a8359bbf5a380ae43a282a4f5573958c, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1708373968657144141, guid: a8359bbf5a380ae43a282a4f5573958c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -389,7 +545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3260721451862127091, guid: a8359bbf5a380ae43a282a4f5573958c, type: 3}
       propertyPath: offset.y
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5471628221533018139, guid: a8359bbf5a380ae43a282a4f5573958c, type: 3}
       propertyPath: m_Pivot.x
@@ -882,7 +1038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 214911334900741527, guid: bcf6c6a6fbb6afb43b39dd6b630a5ff6, type: 3}
       propertyPath: offset.y
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 495628553259672866, guid: bcf6c6a6fbb6afb43b39dd6b630a5ff6, type: 3}
       propertyPath: m_Name

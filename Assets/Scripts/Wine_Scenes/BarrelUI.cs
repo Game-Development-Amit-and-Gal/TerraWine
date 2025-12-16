@@ -261,11 +261,13 @@ public class BarrelUI : MonoBehaviour
         detailsText.text = sb.ToString();
 
         if (confirmButton != null)
+            TutorialManager.Instance?.SetFlag("Young Cabernet");
             confirmButton.interactable = hasAll && outp.bottleItem != null;
     }
 
     private void OnConfirm()
     {
+        TutorialManager.Instance?.SetFlag("confirm");
         if (currentBarrel == null || string.IsNullOrWhiteSpace(selectedRecipeId))
         {
             Close();

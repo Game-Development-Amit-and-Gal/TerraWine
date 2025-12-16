@@ -49,7 +49,10 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private string sceneUiRootName = "UI";
     // Name of the root GameObject that holds the scene's UI.
     // This object can be disabled per-step and re-enabled afterwards.
+    [Header("Scene WORLD root")]
+    [SerializeField] private string worldRootName = "World"; 
 
+    private GameObject currentWorldRoot;
     // Runtime state
     private GameObject currentSceneUiRoot;
     private string currentSceneName;
@@ -59,6 +62,8 @@ public class TutorialManager : MonoBehaviour
     public static bool tutorialIsRunningGardenScene = false;
     public static Action GrandpaStoppedTalking;
     private PlayerMovement playerMover;
+    private readonly Dictionary<GameObject, bool> _originalActive = new();
+    private readonly HashSet<GameObject> _touchedThisStep = new();
 
     public enum PanelChoice { Panel1, Panel2 }
 
@@ -117,6 +122,14 @@ public class TutorialManager : MonoBehaviour
     [Serializable]
     public class Step
     {
+        [Header("Per-step UI visibility (relative to Scene UI root)")]
+        public List<string> hideUiPaths = new List<string>(); // מה להסתיר בצעד הזה
+        public List<string> showUiPaths = new List<string>(); // אופציונלי: מה להכריח להציג בצעד הזה
+        [Header("Per-step WORLD visibility (relative to World root)")]
+        public List<string> hideWorldPaths = new List<string>();
+        public List<string> showWorldPaths = new List<string>();
+
+
         /// <summary>
         /// Text to display for this step.
         /// </summary>
@@ -269,6 +282,7 @@ public class TutorialManager : MonoBehaviour
 
             currentSceneUiRoot = null;
             currentGuide = null;
+            currentWorldRoot = null;
             currentStepIndex = 0;
             return;
         }
@@ -302,6 +316,7 @@ public class TutorialManager : MonoBehaviour
 
         // Find the scene UI root (do not disable yet; that is per-step).
         currentSceneUiRoot = GameObject.Find(sceneUiRootName);
+        currentWorldRoot = GameObject.Find(worldRootName);
 
         // Start from the first step.
         currentStepIndex = 0;
@@ -376,7 +391,9 @@ public class TutorialManager : MonoBehaviour
 
     private void ShowCurrentStep()
     {
+
         StopAutoAdvance();
+        RestorePerStepVisibility();
 
         if (currentGuide == null || currentGuide.steps == null || currentGuide.steps.Length == 0)
             return;
@@ -469,6 +486,13 @@ public class TutorialManager : MonoBehaviour
                 activeArrow.gameObject.SetActive(false);
             }
         }
+        if (!step.hideSceneUI)
+        {
+            ApplyPerStepVisibility(step);
+        }
+        ApplyPerStepWorldVisibility(step);
+
+
 
         // 4) Auto-advance logic (time / flag / flag->time)
         StartAutoAdvanceForStep(step);
@@ -676,7 +700,7 @@ public class TutorialManager : MonoBehaviour
 
         StopAutoAdvance();
 
-       
+
         ClearAllFlags();
 
         if (currentGuide == null)
@@ -710,6 +734,8 @@ public class TutorialManager : MonoBehaviour
     /// </summary>
     private void CloseGuide()
     {
+        RestorePerStepVisibility();
+
         StopAutoAdvance();
 
         if (GameManager.Instance != null && GameManager.Instance.Data != null)
@@ -773,6 +799,89 @@ public class TutorialManager : MonoBehaviour
         if (p != null)
             playerMover = p.GetComponent<PlayerMovement>();
     }
+
+    private void RestorePerStepVisibility()
+    {
+        foreach (var go in _touchedThisStep)
+        {
+            if (go == null) continue;
+            if (_originalActive.TryGetValue(go, out bool wasActive))
+                go.SetActive(wasActive);
+        }
+
+        _touchedThisStep.Clear();
+        _originalActive.Clear();
+    }
+
+    private void SetActiveByUiPath(string path, bool active)
+    {
+        if (currentSceneUiRoot == null) return;
+        if (string.IsNullOrWhiteSpace(path)) return;
+
+        var t = currentSceneUiRoot.transform.Find(path);
+        if (t == null)
+        {
+            Debug.LogWarning($"[Tutorial] UI path not found under '{sceneUiRootName}': {path}");
+            return;
+        }
+
+        var go = t.gameObject;
+
+        if (!_originalActive.ContainsKey(go))
+            _originalActive[go] = go.activeSelf;
+
+        go.SetActive(active);
+        _touchedThisStep.Add(go);
+    }
+
+    private void ApplyPerStepVisibility(Step step)
+    {
+        if (step == null) return;
+
+        // קודם show ואז hide כדי שיהיה עקבי
+        if (step.showUiPaths != null)
+            foreach (var p in step.showUiPaths)
+                SetActiveByUiPath(p, true);
+
+        if (step.hideUiPaths != null)
+            foreach (var p in step.hideUiPaths)
+                SetActiveByUiPath(p, false);
+    }
+    private void SetActiveByWorldPath(string path, bool active)
+    {
+        if (currentWorldRoot == null) return;
+        if (string.IsNullOrWhiteSpace(path)) return;
+
+        var t = currentWorldRoot.transform.Find(path);
+        if (t == null)
+        {
+            Debug.LogWarning($"[Tutorial] WORLD path not found under '{worldRootName}': {path}");
+            return;
+        }
+
+        var go = t.gameObject;
+
+        if (!_originalActive.ContainsKey(go))
+            _originalActive[go] = go.activeSelf;
+
+        go.SetActive(active);
+        _touchedThisStep.Add(go);
+    }
+
+    private void ApplyPerStepWorldVisibility(Step step)
+    {
+        if (step == null) return;
+
+        if (step.showWorldPaths != null)
+            foreach (var p in step.showWorldPaths)
+                SetActiveByWorldPath(p, true);
+
+        if (step.hideWorldPaths != null)
+            foreach (var p in step.hideWorldPaths)
+                SetActiveByWorldPath(p, false);
+    }
+
+
 
 
     #endregion

@@ -17,6 +17,7 @@ public class EnterWineryDoor : MonoBehaviour
         // Only react when the object entering the trigger is the Player
         if (other.CompareTag("Player"))
         {
+            TutorialManager.Instance?.SetFlag("Winery");
             // Use the GameManager to properly change scenes and place the Player
             GameManager.Instance.ChangeScene(sceneName, playerSpawnPosition);
         }

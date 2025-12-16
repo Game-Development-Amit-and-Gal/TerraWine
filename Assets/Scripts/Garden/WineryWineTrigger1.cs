@@ -23,7 +23,9 @@ public class WineryWineTrigger : MonoBehaviour
         // Only respond to the Player entering the trigger
         if (other.CompareTag("Player"))
         {
+            TutorialManager.Instance?.SetFlag("Right door");
             SceneManager.LoadScene(sceneName);
         }
+        
     }
 }
