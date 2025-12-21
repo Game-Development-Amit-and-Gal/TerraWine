@@ -21,12 +21,12 @@ MonoBehaviour:
     amount: 1
   semiDry:
     timeSeconds: 0
-    bottleItem: {fileID: 11400000, guid: e016b83d058b0d045a9429250947aa7b, type: 2}
+    bottleItem: {fileID: 11400000, guid: e707dfbf49b571b49a3d8d5b04107928, type: 2}
     bottleAmount: 1
     rating: 1
   dry:
     timeSeconds: 0
-    bottleItem: {fileID: 11400000, guid: 7edf7e5d3c604bb4d9113951513a09b0, type: 2}
+    bottleItem: {fileID: 11400000, guid: d8619d9044e267643871292cc49d6462, type: 2}
     bottleAmount: 1
     rating: 5
   defaultBottleAmount: 1

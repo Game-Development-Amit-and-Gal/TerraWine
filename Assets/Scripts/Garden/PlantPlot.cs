@@ -115,7 +115,8 @@ public class PlantPlot : MonoBehaviour,
         TutorialManager.Instance?.SetFlag("Press vineyard");
 
         seedId = seed.id;
-        remainingTime = seed.growTimeSeconds;
+        //remainingTime = seed.growTimeSeconds;
+        remainingTime = 10f; // Dont forget to change that
         harvestItemId = seed.harvestItem != null ? seed.harvestItem.id : null;
         harvestAmount = seed.harvestAmount;
 

@@ -113,7 +113,7 @@ public class ItemSO : ScriptableObject
     [Header("Seed Settings")]
     [Tooltip("Only used if this item is a seed.")]
     [Min(1)]
-    public float growTimeSeconds = 180f;
+    public float growTimeSeconds = 180f; 
 
     /// <summary>
     /// Item that is produced when harvesting a plot planted with this seed.
