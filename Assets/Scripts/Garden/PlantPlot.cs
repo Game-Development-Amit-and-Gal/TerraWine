@@ -28,6 +28,7 @@ public class PlantPlot : MonoBehaviour,
 {
     [Header("Identity")]
     [SerializeField] private string plotId; // Unique ID per plot
+    [SerializeField] private GardenBed bed;
 
     [Header("Renderer")]
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -63,6 +64,7 @@ public class PlantPlot : MonoBehaviour,
     {
         if (spriteRenderer == null)
             spriteRenderer = GetComponent<SpriteRenderer>();
+        bed ??= GetComponent<GardenBed>();
     }
 
     private void Start()
@@ -82,6 +84,8 @@ public class PlantPlot : MonoBehaviour,
         if (spriteRenderer != null) spriteRenderer.sprite = emptySprite;
         if (timerText != null) timerText.gameObject.SetActive(false);
         if (readyVfx != null) readyVfx.SetActive(false);
+
+        bed?.ClearCrop();
     }
 
     /// <summary>
@@ -135,6 +139,7 @@ public class PlantPlot : MonoBehaviour,
         if (readyVfx != null) readyVfx.SetActive(false);
 
         StopAllCoroutines();
+        bed?.PlantSeed();
         StartCoroutine(GrowRoutine());
     }
 
@@ -160,6 +165,7 @@ public class PlantPlot : MonoBehaviour,
         if (spriteRenderer != null) spriteRenderer.sprite = readySprite;
         if (timerText != null) timerText.gameObject.SetActive(false);
         if (readyVfx != null) readyVfx.SetActive(true);
+        bed?.SetMature();
     }
 
     /// <summary>
@@ -263,12 +269,24 @@ public class PlantPlot : MonoBehaviour,
                 remainingTime = 0f;
             }
         }
+        // >>> ADD THIS HERE <<<
+        if (!isGrowing && !isReady)
+        {
+            bed?.ClearCrop();
+        }
+        else
+        {
+            bed?.PlantSeed();
+            if (isReady) bed?.SetMature();
+        }
+
 
         // Restore correct visuals
         if (!isGrowing && !isReady)
         {
             ResetToEmpty();
         }
+
         else if (isReady)
         {
             

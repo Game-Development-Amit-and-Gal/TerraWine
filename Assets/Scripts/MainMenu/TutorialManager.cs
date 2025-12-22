@@ -673,12 +673,15 @@ public class TutorialManager : MonoBehaviour
         {
             case "SampleScene":
                 data.sampleSceneGuideDone = true;
+                Debug.Log("Ended SampleScene");
                 break;
             case "WorldMap":
                 data.worldMapGuideDone = true;
+                Debug.Log("Ended World Map Scene");
                 break;
             case "Cellar":
                 data.cellarGuideDone = true;
+                Debug.Log("Ended CellarGuide");
                 break;
         }
     }
@@ -716,6 +719,8 @@ public class TutorialManager : MonoBehaviour
         {
             CloseGuide();
             tutorialIsRunning = false;
+            EnemyStateMachine.EndTutorial();
+            Debug.Log("Executing enemy patrol");
         }
         else
         {

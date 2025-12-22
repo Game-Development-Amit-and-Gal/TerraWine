@@ -303,3 +303,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotClick
   itemId: 
   iconImage: {fileID: 0}
+  isTruckSell: 0
+  truckSeller: {fileID: 0}

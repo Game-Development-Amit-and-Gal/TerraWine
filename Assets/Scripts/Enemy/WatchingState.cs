@@ -48,6 +48,22 @@ public class WatchingState : MonoBehaviour
         active = true;
     }
 
+        
+    public void Deactivate()
+    {
+        active = false;
+        idx = 0;
+
+        if (rb)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
+
+        SetActiveEnemy(false);
+    }
+
+
 
     public void SetActiveEnemy(bool on)
     {
@@ -67,4 +83,17 @@ public class WatchingState : MonoBehaviour
         if (Vector2.Distance(rb.position, target) <= reachDistance)
             idx = (idx + 1) % patrolPoints.Length;
     }
+
+
+    private void OnEnable()
+    {
+        SetActiveEnemy(true);
+        ActivatePatrol();   // called once when state becomes active
+    }
+
+    private void OnDisable()
+    {
+        Deactivate();
+    }
+
 }

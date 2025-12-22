@@ -410,4 +410,72 @@ public class TilemapPathfinder2D : MonoBehaviour
 
         return false;
     }
+
+    public Vector2 SnapToNearestWalkable(Vector2 worldPos, int maxRadius = 30)
+    {
+        if (grid == null) BuildGridFromTilemap();
+
+        Vector3Int c = groundTilemap.WorldToCell(worldPos);
+        int cx = c.x - cellOrigin.x;
+        int cy = c.y - cellOrigin.y;
+
+        bool In(int x, int y) => x >= 0 && x < gridSize.x && y >= 0 && y < gridSize.y;
+
+        // If already valid
+        if (In(cx, cy) && grid[cx, cy].walkable)
+            return grid[cx, cy].worldPos;
+
+        // Search around
+        for (int r = 1; r <= maxRadius; r++)
+        {
+            for (int dx = -r; dx <= r; dx++)
+                for (int dy = -r; dy <= r; dy++)
+                {
+                    int x = cx + dx, y = cy + dy;
+                    if (!In(x, y)) continue;
+                    if (grid[x, y].walkable)
+                        return grid[x, y].worldPos;
+                }
+        }
+
+        return worldPos; // fallback
+    }
+
+    public bool TryGetApproachTile(Vector2 obstacleWorld, Vector2 fromWorld, out Vector2 approachWorld)
+    {
+        approachWorld = obstacleWorld;
+        if (grid == null) BuildGridFromTilemap();
+
+        Vector3Int bedCell = groundTilemap.WorldToCell(obstacleWorld);
+
+        // direction from thief -> bed
+        Vector2 d = obstacleWorld - fromWorld;
+
+        // preferred side to stand on (approach from the side the thief comes from)
+        // if bed is to the right of thief => thief comes from left => stand LEFT of bed => (-1,0)
+        Vector3Int[] preferred =
+            Mathf.Abs(d.x) >= Mathf.Abs(d.y)
+            ? (d.x >= 0 ? new[] { new Vector3Int(-1, 0, 0), new Vector3Int(0, -1, 0), new Vector3Int(0, 1, 0), new Vector3Int(1, 0, 0) }
+                        : new[] { new Vector3Int(1, 0, 0), new Vector3Int(0, -1, 0), new Vector3Int(0, 1, 0), new Vector3Int(-1, 0, 0) })
+            : (d.y >= 0 ? new[] { new Vector3Int(0, -1, 0), new Vector3Int(-1, 0, 0), new Vector3Int(1, 0, 0), new Vector3Int(0, 1, 0) }
+                        : new[] { new Vector3Int(0, 1, 0), new Vector3Int(-1, 0, 0), new Vector3Int(1, 0, 0), new Vector3Int(0, -1, 0) });
+
+        foreach (var off in preferred)
+        {
+            Vector3Int c = bedCell + off;
+            Vector2 w = (Vector2)groundTilemap.GetCellCenterWorld(c);
+
+            Node n = WorldToNode(w);
+            if (n != null && n.walkable)
+            {
+                approachWorld = n.worldPos;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
 }

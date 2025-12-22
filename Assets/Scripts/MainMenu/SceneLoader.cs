@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,9 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class SceneLoader : MonoBehaviour
 {
+    
+     private List<String> notInGarden = new() { "iron,basement,stone,Manager_Office,wine,Winery Reception,wood" };
+     public static bool playerIsNotInGarden = false;
     /// <summary>
     /// Load a scene and place the Player at the given position.
     /// Does NOT restore any plants – only movement/teleportation.
@@ -88,6 +92,13 @@ public class SceneLoader : MonoBehaviour
             PlantManager.Instance.LoadAll(deltaSeconds);
 
             Debug.Log("[SceneLoader] Loaded plants with deltaSeconds = " + deltaSeconds);
+        }
+        if (notInGarden.Contains(sceneName))
+        {
+            playerIsNotInGarden = true;
+        }
+        else {
+            playerIsNotInGarden = false;
         }
     }
 

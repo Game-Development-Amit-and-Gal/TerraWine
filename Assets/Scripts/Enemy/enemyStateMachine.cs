@@ -1,22 +1,45 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal.Internal;
+using UnityEngine.SceneManagement;
 
-public class EnemyStateMachine : MonoBehaviour
+public class EnemyStateMachine : StateMachine
 {
+    [SerializeField] private IdleState idle;          // or TutorialWaitState
     [SerializeField] private WatchingState watcher;
+    [SerializeField] private ThiefState thief;
 
-    void Awake()
+    private static bool tutorialEnded = false;
+    private bool watching = false;  
+
+    private void Awake()
     {
-        if (!watcher) watcher = GetComponent<WatchingState>();
+        idle ??= GetComponent<IdleState>();
+        watcher ??= GetComponent<WatchingState>();
+        thief ??= GetComponent<ThiefState>();
+        AddState(idle)
+            .AddState(watcher)
+            .AddTransition(idle, IsTutorialEnd, watcher)
+            .AddTransition(watcher, () => watching && SceneLoader.playerIsNotInGarden , thief);
+
+        // optional: make sure we start hidden/stopped
+        watcher.Deactivate();
     }
 
-    void Update()
+    // Call THIS when tutorial finishes
+    public static void EndTutorial()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        tutorialEnded = true;
+    }
+    private bool IsTutorialEnd() {
+        if (tutorialEnded)
         {
-            bool on = true;
-            watcher.SetActiveEnemy(on);
-            watcher.ActivatePatrol();
+            watching = true;
+            return true;
         }
+        else
+        {
+            return false;
+        }
+        
     }
 }
