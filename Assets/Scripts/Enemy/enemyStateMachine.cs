@@ -16,6 +16,7 @@ public class EnemyStateMachine : StateMachine
         idle ??= GetComponent<IdleState>();
         watcher ??= GetComponent<WatchingState>();
         thief ??= GetComponent<ThiefState>();
+            base
             .AddState(idle)
             .AddState(watcher)
             .AddState(thief)
