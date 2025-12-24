@@ -16,8 +16,9 @@ public class EnemyStateMachine : StateMachine
         idle ??= GetComponent<IdleState>();
         watcher ??= GetComponent<WatchingState>();
         thief ??= GetComponent<ThiefState>();
-        AddState(idle)
+            .AddState(idle)
             .AddState(watcher)
+            .AddState(thief)
             .AddTransition(idle, IsTutorialEnd, watcher)
             .AddTransition(watcher, () => watching && SceneLoader.playerIsNotInGarden , thief);
 
