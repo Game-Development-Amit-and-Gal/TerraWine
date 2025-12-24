@@ -77,9 +77,9 @@ public class TilemapPathfinder2D : MonoBehaviour
         public bool walkable;
         public Vector2 worldPos;
 
-        public float gCost;
-        public float hCost;
-        public float fCost => gCost + hCost;
+        public float gCost; //accumulating cost from the start node to the current node
+        public float hCost; //huristic cost: any approach to problem solving that employs a pragmatic method that is not fully optimized,
+        public float fCost => gCost + hCost; //Goal: minimize fCost.
         public Node parent;
 
         public Node(int x, int y, bool walkable, Vector2 worldPos)
@@ -411,7 +411,7 @@ public class TilemapPathfinder2D : MonoBehaviour
         return false;
     }
 
-    public Vector2 SnapToNearestWalkable(Vector2 worldPos, int maxRadius = 30) // From an Illegal Tile position find the nearest valid tile to start trigger A* for the enemy.
+    public Vector2 SnapToNearestWalkable(Vector2 worldPos, int maxRadius = 30) // From an Illegal Tile position find the nearest valid tile to start and trigger A* for the enemy.
     {
         if (grid == null) BuildGridFromTilemap();
 
@@ -442,7 +442,7 @@ public class TilemapPathfinder2D : MonoBehaviour
         return worldPos; // fallback,instead of returning null.
     }
 
-    public bool TryGetApproachTile(Vector2 obstacleWorld, Vector2 fromWorld, out Vector2 approachWorld)
+    public bool TryGetApproachTile(Vector2 obstacleWorld, Vector2 fromWorld, out Vector2 approachWorld) // this function choose a sutiable tile near the Bed Garden to steal the crop
     {
         approachWorld = obstacleWorld;
         if (grid == null) BuildGridFromTilemap();
