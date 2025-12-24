@@ -253,20 +253,20 @@ public class TilemapPathfinder2D : MonoBehaviour
 
         while (openSet.Count > 0)
         {
-            Node current = GetLowestCostNode(openSet);
+            Node current = GetLowestCostNode(openSet); // get the lowest weight since Csharp doesnt have a min heap
 
-            if (current == targetNode)
+            if (current == targetNode) // found the target then return the path
                 return RetracePath(startNode, targetNode);
 
-            openSet.Remove(current);
-            closedSet.Add(current);
+            openSet.Remove(current); // mark as visited
+            closedSet.Add(current); 
 
             foreach (Node neighbor in GetNeighbours(current))
             {
-                if (!neighbor.walkable || closedSet.Contains(neighbor))
+                if (!neighbor.walkable || closedSet.Contains(neighbor))//Non walkable or already visited then continue on
                     continue;
 
-                float tentativeG = current.gCost + 1f;
+                float tentativeG = current.gCost + 1f; // 
 
                 if (tentativeG < neighbor.gCost)
                 {
@@ -411,15 +411,15 @@ public class TilemapPathfinder2D : MonoBehaviour
         return false;
     }
 
-    public Vector2 SnapToNearestWalkable(Vector2 worldPos, int maxRadius = 30)
+    public Vector2 SnapToNearestWalkable(Vector2 worldPos, int maxRadius = 30) // From an Illegal Tile position find the nearest valid tile to start trigger A* for the enemy.
     {
         if (grid == null) BuildGridFromTilemap();
 
-        Vector3Int c = groundTilemap.WorldToCell(worldPos);
+        Vector3Int c = groundTilemap.WorldToCell(worldPos); //WorldMap{float} -> tileMap{int}
         int cx = c.x - cellOrigin.x;
         int cy = c.y - cellOrigin.y;
 
-        bool In(int x, int y) => x >= 0 && x < gridSize.x && y >= 0 && y < gridSize.y;
+        bool In(int x, int y) => x >= 0 && x < gridSize.x && y >= 0 && y < gridSize.y; //lambda function in order to check if a position [i,j] is in range.
 
         // If already valid
         if (In(cx, cy) && grid[cx, cy].walkable)
@@ -438,7 +438,8 @@ public class TilemapPathfinder2D : MonoBehaviour
                 }
         }
 
-        return worldPos; // fallback
+        Debug.LogWarning("No walkable tile found near " + worldPos);
+        return worldPos; // fallback,instead of returning null.
     }
 
     public bool TryGetApproachTile(Vector2 obstacleWorld, Vector2 fromWorld, out Vector2 approachWorld)
