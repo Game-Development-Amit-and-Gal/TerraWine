@@ -10,7 +10,7 @@ public class ThiefState : MonoBehaviour
     [SerializeField] private float speed = 3f;
     [SerializeField] private float waypointReach = 0.05f;
 
-    private GardenManager garden;
+    private GardenManager garden;//General indicator in the garden's bed state in terms of crop that is currently growing,finished or if the bed is empty.
     private GardenBed target;
 
     private Rigidbody2D rb;
