@@ -97,7 +97,7 @@
 * `ThiefState.cs`:(https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/tutorial-flags/Assets/Scripts/Enemy/ThiefState.cs)
   מצב בו האויב יוצא לגניבה כאשר השחקן אינו נוכח בגינה והיבול מוכן לבצירה ואיסוף.
 
-* TileMapFinder2D: (https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/tutorial-flags/Assets/Scripts/Garden/TilemapPathfinder2D.cs)
+* `TileMapFinder2D`: (https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/tutorial-flags/Assets/Scripts/Garden/TilemapPathfinder2D.cs)
   הוספה של פונקציונאליות לאלגוריתם מסלול קצר A* עבור האויב.  
 ---
 
