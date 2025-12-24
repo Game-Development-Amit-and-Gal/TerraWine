@@ -1,6 +1,4 @@
-# 🕵️‍♂️ אויב במשחק TerraWine – רצף פיתוח ומצגת
-
-מסמך זה מסכם את **רצף הפיתוח והחשיבה** מאחורי הוספת האויב (הגנב) למשחק **TerraWine**, כפי שהוצג בפרזנטציה היום.
+# 🕵️‍♂️ אויב במשחק TerraWine – רצף פיתוח ומצגת.
 
 המטרה היא לתת תמונה ברורה של:
 
@@ -14,7 +12,7 @@
 ## 🎮 קישור למשחק (itch.io)
 
 🔗 **קישור למשחק:**
-*(להוסיף כאן קישור ל‑itch.io לאחר ההעלאה)*
+*(https://amit-and-gal.itch.io/terrawine)*
 
 ---
 
@@ -38,7 +36,6 @@
 
 * **State Machine (FSM)**
 * חלוקה למצבים ברורים
-* הימנעות מ‑pathfinding מורכב (Tilemap / A*)
 
 המיקוד היה:
 
@@ -86,20 +83,19 @@
 
 ## 🛠️ קבצי קוד שנוספו / שונו
 
-*(קישורים יתווספו לאחר העלאה לריפו)*
 
-* `StateMachine.cs`
-  מנוע כללי לניהול מצבים (Enable / Disable של קומפוננטות)
 
-* `enemyStateMachine.cs`
+* `enemyStateMachine.cs`(https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/tutorial-flags/Assets/Scripts/Enemy/enemyStateMachine.cs)
   חיבור בין האויב למצבים הספציפיים שלו
 
-* `WatchingState.cs`
+* `WatchingState.cs`: (https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/tutorial-flags/Assets/Scripts/Enemy/WatchingState.cs)
   מימוש התנועה וההתנהגות של מצב הצפייה / סיור
 
-* `Cycle.cs`
-  רכיב עזר שמגדיר מסלול סיור באמצעות נקודות כילדים ב‑Hierarchy
 
+* `Cycle.cs`:(https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/tutorial-flags/Assets/Scripts/Cycle/Cycle.cs)
+  רכיב עזר שמגדיר מסלול סיור באמצעות נקודות כילדים ב‑Hierarchy
+* `ThiefState.cs`:(https://github.com/Game-Development-Amit-and-Gal/TerraWine/blob/tutorial-flags/Assets/Scripts/Enemy/ThiefState.cs)
+  מצב בו האויב יוצא לגניבה כאשר השחקן אינו נוכח בגינה והיבול מוכן לבצירה ואיסוף.
 ---
 
 ## 🔄 רעיונות שניסינו בדרך
@@ -109,10 +105,7 @@
   * מורכב מדי לצורך המשחק
   * יצר בעיות קצה ו‑bugs
 
-* שימוש במערכים ידניים של נקודות ❌
-
-  * שביר
-  * תלוי באינספקטור
+*
 
 * מעבר לנקודות סיור מבוססות `Transform` ✅
 
@@ -123,11 +116,6 @@
 ---
 
 ## 🖥️ בעיות ידועות (UI / לוגיקה)
-
-* אין עדיין משתנה ברור שמייצג:
-
-  * "השחקן נמצא במרתף"
-  * "השחקן אינו בכרם"
 
 * ה‑UI והלוגיקה עדיין לא מופרדים לחלוטין
 
