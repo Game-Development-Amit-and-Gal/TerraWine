@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302182c9ff20b604d9d22ed6aff13dd0, type: 3}
   m_Name: Merlot_Grap
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  id: Merlot_Grap
-  displayName: Merlot_Grap
-  icon: {fileID: 0}
+  id: Merlo_Grap
+  displayName: Merlo Grap
+  icon: {fileID: 8166710274925509176, guid: 9fa626accc8dcf64ea67551d40a915c3, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

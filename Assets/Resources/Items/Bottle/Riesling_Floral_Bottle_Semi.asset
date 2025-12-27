@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Riesling_Floral_Bottle_Semi
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Riesling_Floral_Bottle_Semi
-  displayName: ' (Semi-Dry)'
+  displayName: Riesling Floral Semi
   icon: {fileID: 5836210104819536848, guid: 29009637f2b1c104a8926140cac6b15d, type: 3}
   stackable: 1
   maxStack: 99

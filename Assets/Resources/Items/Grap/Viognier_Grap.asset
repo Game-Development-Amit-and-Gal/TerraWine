@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Viognier_Grap
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Viognier_Grap
-  displayName: Viognier_Grap
-  icon: {fileID: 0}
+  displayName: Viognier
+  icon: {fileID: 1526677283588466130, guid: 9b58ee45207dc184089eecd1d9854012, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

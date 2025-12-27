@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "Sparkling_Terra_Cuv\xE9e_Bottle_Dry"
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: "Sparkling_Terra_Cuv\xE9e_Bottle_Dry"
-  displayName: ' (Dry)'
+  displayName: "Sparkling Terra Cuv\xE9e Dry"
   icon: {fileID: 0}
   stackable: 1
   maxStack: 99

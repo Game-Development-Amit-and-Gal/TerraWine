@@ -1,147 +1,132 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class SeasonManager : MonoBehaviour
 {
-    private static SeasonManager _instance;   // Singleton instance to prevent duplicates
+    private static SeasonManager _instance;
 
-    // Names of the seasons in the game (ordered cycle)
     [SerializeField] private string[] seasons = { "Earth", "Vine", "Winery" };
-
-    // How many in-game days each season lasts
     [SerializeField] private int totalDaysInSeason = 15;
+    [SerializeField] private int maxYears = 3;
 
-    private int currentDay = 1;               // Current day inside the active season
-    private int currentSeasonIndex = 0;       // Index of current season from the 'seasons' array
-
-    // PlayerPrefs keys used to persist season progress
-    private const string KEY_SEASON_INDEX = "TW_SeasonIndex";
-    private const string KEY_CURRENT_DAY = "TW_CurrentDay";
-    public string KEY_LAST_DATE = "TW_LastDate";  // Saved last login in real-world time
+    private int currentDay = 1;
+    private int currentSeasonIndex = 0;
+    private int currentYear = 1;
 
     private void Awake()
     {
-        Debug.Log("[SeasonManager] Awake – I EXIST in this scene!");
-
-        // Enforce singleton → destroy duplicate season managers in other scenes
         if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
             return;
         }
-
         _instance = this;
 
-        // Load saved season/day and adjust based on real-world time passed
-        LoadAndUpdateByRealTime();
-
-        // Always save again to establish/update timestamp
-        SaveState();
+        LoadAndUpdateByRealTimeFromJson();
     }
 
-    /// <summary>
-    /// Loads saved season data and updates the current season/day
-    /// based on how many real-world days have passed.
-    /// </summary>
-    private void LoadAndUpdateByRealTime()
+    private void LoadAndUpdateByRealTimeFromJson()
     {
-        int getIntDefault = 0; // avoid magic numebrs
-        int getintDefault_one = 1;
-        Debug.Log("[SeasonManager] Loading saved state and updating by real time.");
-
-        // If no date saved → this is the first time playing
-        if (!PlayerPrefs.HasKey(KEY_LAST_DATE))
+        var gm = GameManager.Instance;
+        if (gm == null || gm.Data == null)
         {
-            SaveState();
+            Debug.LogWarning("[SeasonManager] No GameManager/Data yet.");
             return;
         }
 
-        // Load last saved values
+        // 1) Load current state from JSON
+        currentYear = Mathf.Max(1, gm.Data.calendarYear);
+        currentSeasonIndex = Mathf.Clamp(gm.Data.calendarSeasonIndex, 0, seasons.Length - 1);
+        currentDay = Mathf.Clamp(gm.Data.calendarDay, 1, totalDaysInSeason);
 
-        currentSeasonIndex = PlayerPrefs.GetInt(KEY_SEASON_INDEX, getIntDefault);
-        currentDay = PlayerPrefs.GetInt(KEY_CURRENT_DAY, getintDefault_one);
+        long nowTicks = DateTime.UtcNow.Ticks;
+        long lastTicks = gm.Data.calendarLastUpdateTicks;
 
-        // Last login date saved as a string
-        string lastDateStr = PlayerPrefs.GetString(KEY_LAST_DATE, System.DateTime.Now.ToString());
+        Debug.Log($"[SeasonManager] BEFORE JSON: Y={currentYear} S={currentSeasonIndex} D={currentDay} last={TicksToLocal(lastTicks)} now={TicksToLocal(nowTicks)}");
 
-        // Try converting back into a valid DateTime structure
-        if (System.DateTime.TryParse(lastDateStr, out System.DateTime lastDate))
+        // 2) First time (or old save) -> set timestamp and save
+        if (lastTicks <= 0)
         {
-            // Calculate real-world time passed since last login
-            System.TimeSpan timePassed = System.DateTime.Now - lastDate;
-            int daysPassed = (int)timePassed.TotalDays;
-
-            Debug.Log($"[SeasonManager] Real time passed since last save: {daysPassed} days.");
-
-            // For each day passed in real life, advance in-game time
-            for (int i = 0; i < daysPassed; i++)
-            {
-                Debug.Log($"[SeasonManager] Advancing day for real time passage. Day {i + 1} of {daysPassed}.");
-                AdvanceDay();
-            }
-        }
-        else
-        {
-            Debug.LogWarning("[SeasonManager] Failed to parse last saved date.");
+            gm.Data.calendarLastUpdateTicks = nowTicks;
+            CommitToJsonAndSave();
+            return;
         }
 
-        Debug.Log("[SeasonManager] Real time update complete.");
+        // 3) Compute real time passed
+        var passed = new TimeSpan(nowTicks - lastTicks);
+        int daysPassed = Mathf.Max(0, (int)passed.TotalDays);
+
+        Debug.Log($"[SeasonManager] Offline passed: {passed.TotalHours:F1}h -> daysPassed={daysPassed}");
+
+        // 4) Advance in-game days
+        for (int i = 0; i < daysPassed; i++)
+            AdvanceDayInternal();
+
+        // 5) Update timestamp + save
+        gm.Data.calendarLastUpdateTicks = nowTicks;
+        CommitToJsonAndSave();
+
+        Debug.Log($"[SeasonManager] AFTER JSON: Y={gm.Data.calendarYear} S={gm.Data.calendarSeasonIndex} D={gm.Data.calendarDay} last={TicksToLocal(gm.Data.calendarLastUpdateTicks)}");
     }
 
-    /// <summary>
-    /// Move forward by one in-game day and transition to the next season if needed.
-    /// </summary>
-    public void AdvanceDay()
+    private void CommitToJsonAndSave()
+    {
+        var gm = GameManager.Instance;
+        if (gm == null || gm.Data == null) return;
+
+        gm.Data.calendarYear = currentYear;
+        gm.Data.calendarSeasonIndex = currentSeasonIndex;
+        gm.Data.calendarDay = currentDay;
+
+        gm.SaveGame(); // כותב savegame.json
+    }
+
+    private void AdvanceDayInternal()
     {
         currentDay++;
-        Debug.Log($"Advancing to Day {currentDay} of Season {GetCurrentSeason()}.");
 
-        // If the season exceeded its end → reset day and rotate to next season
         if (currentDay > totalDaysInSeason)
         {
-            int firstDay = 1; // avoid magic numbers
-            string oldSeason = GetCurrentSeason();
+            currentDay = 1;
 
-            // Move to the next season in the list (looping with %)
+            int oldSeasonIndex = currentSeasonIndex;
             currentSeasonIndex = (currentSeasonIndex + 1) % seasons.Length;
-            currentDay =firstDay;
 
-            string newSeason = GetCurrentSeason();
-            Debug.Log($"Season {oldSeason} has ended. Transferring to {newSeason}.");
+            // Winery -> Earth => שנה עולה
+            if (oldSeasonIndex == seasons.Length - 1 && currentSeasonIndex == 0)
+            {
+                currentYear++;
+                if (currentYear > maxYears) currentYear = maxYears;
+            }
         }
     }
 
-    private void OnApplicationQuit()
+    public void ResetForNewGame()
     {
-        Debug.Log("[SeasonManager] Application quitting, saving state.");
-        SaveState();
+        currentSeasonIndex = 0;
+        currentDay = 1;
+        currentYear = 1;
+
+        var gm = GameManager.Instance;
+        if (gm != null && gm.Data != null)
+        {
+            gm.Data.calendarYear = 1;
+            gm.Data.calendarSeasonIndex = 0;
+            gm.Data.calendarDay = 1;
+            gm.Data.calendarLastUpdateTicks = DateTime.UtcNow.Ticks;
+            gm.SaveGame();
+        }
     }
 
-    private void OnApplicationPause(bool pause)
+    private string TicksToLocal(long ticks)
     {
-        Debug.Log($"[SeasonManager] Application pause: {pause}");
-
-        // Save only when the game is actually paused (not resumed)
-        if (pause)
-            SaveState();
+        if (ticks <= 0) return "n/a";
+        return new DateTime(ticks, DateTimeKind.Utc).ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
     }
 
-    /// <summary>
-    /// Saves the current season/day and the last time the game was running.
-    /// </summary>
-    private void SaveState()
-    {
-        Debug.Log($"[SeasonManager] Saving state.");
-
-        PlayerPrefs.SetInt(KEY_SEASON_INDEX, currentSeasonIndex);
-        PlayerPrefs.SetInt(KEY_CURRENT_DAY, currentDay);
-        PlayerPrefs.SetString(KEY_LAST_DATE, System.DateTime.Now.ToString());
-        PlayerPrefs.Save();
-
-        Debug.Log($"[SeasonManager] State saved.");
-    }
-
-    // Public accessors for other systems
+    // Public accessors
     public string GetCurrentSeason() => seasons[currentSeasonIndex];
     public int GetCurrentDay() => currentDay;
-    public int GetTotalDaysInSeason() => totalDaysInSeason;
+    public int GetCurrentSeasonIndex() => currentSeasonIndex;
+    public int GetCurrentYear() => currentYear;
 }

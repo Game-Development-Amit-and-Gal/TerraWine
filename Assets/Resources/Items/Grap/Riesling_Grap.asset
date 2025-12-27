@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Riesling_Grap
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Riesling_Grap
-  displayName: Riesling_Grap
-  icon: {fileID: 0}
+  displayName: Riesling
+  icon: {fileID: -3937050711764283364, guid: ec978e50106f418478e4dacd5f12c498, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

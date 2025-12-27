@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Muscat_Dessert_Bottle_Dry
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Muscat_Dessert_Bottle_Dry
-  displayName: ' (Dry)'
+  displayName: Muscat Dessert Dry
   icon: {fileID: 0}
   stackable: 1
   maxStack: 99

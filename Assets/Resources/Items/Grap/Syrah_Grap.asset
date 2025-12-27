@@ -13,10 +13,16 @@ MonoBehaviour:
   m_Name: Syrah_Grap
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Syrah_Grap
-  displayName: Syrah Grap
-  icon: {fileID: 2036744634665428523, guid: 56c4b6d82a609ec4c8925ec25d394156, type: 3}
+  displayName: 'Syrah '
+  icon: {fileID: -1239761697910049777, guid: 5d99e9786619c464e876959fe03e45bd, type: 3}
   stackable: 1
   maxStack: 99
   price: 0
   isSeed: 0
+  isWineBottle: 0
+  category: 0
   growTimeSeconds: 180
+  harvestItem: {fileID: 0}
+  harvestAmount: 10
+  plantedPlotSprite: {fileID: 0}
+  readyPlotSprite: {fileID: 0}

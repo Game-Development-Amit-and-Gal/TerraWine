@@ -25,4 +25,4 @@ MonoBehaviour:
   harvestItem: {fileID: 11400000, guid: ef580fb1946b50e4faf98731989d932c, type: 2}
   harvestAmount: 10
   plantedPlotSprite: {fileID: -1765156354197853431, guid: 1f6c1f6556fa9b34baf6c726b9863abc, type: 3}
-  readyPlotSprite: {fileID: -8074475992512578779, guid: c529a7e97676bc24682de68c787369ea, type: 3}
+  readyPlotSprite: {fileID: -9125285651472365343, guid: 35774a7eb7445114ba1bea9f25eb2f04, type: 3}

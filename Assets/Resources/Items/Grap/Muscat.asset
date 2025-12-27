@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Muscat
   displayName: Muscat
-  icon: {fileID: 0}
+  icon: {fileID: -332323998995242468, guid: 46372e1433cc6c642bd3f41857604eba, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

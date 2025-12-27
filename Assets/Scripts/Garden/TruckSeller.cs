@@ -130,6 +130,7 @@ public class TruckSeller : MonoBehaviour
 
     private void ClosePanelAndRestoreMovement()
     {
+        InventoryTooltipUI.Instance?.Hide();
         // Close panel (prefer InventoryUI.Close if exists)
         if (sellPanel != null)
         {

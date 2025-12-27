@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "Terra_Grand_Cuv\xE9e_Bottle_Semi"
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: "Terra_Grand_Cuv\xE9e_Bottle_Semi"
-  displayName: ' (Semi-Dry)'
+  displayName: "Terra Grand Cuv\xE9e Semi"
   icon: {fileID: 1899592229231607416, guid: 5387822bbd9b87445a2fb3915212b160, type: 3}
   stackable: 1
   maxStack: 99

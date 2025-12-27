@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Muscat_Seed
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Muscat_Seed
-  displayName: Muscat_Seed
+  displayName: Muscat
   icon: {fileID: 0}
   stackable: 1
   maxStack: 99
@@ -25,4 +25,4 @@ MonoBehaviour:
   harvestItem: {fileID: 11400000, guid: 5d291d24bbab8ba4aaed5baf884b6048, type: 2}
   harvestAmount: 10
   plantedPlotSprite: {fileID: 0}
-  readyPlotSprite: {fileID: 0}
+  readyPlotSprite: {fileID: 8742127631758984121, guid: ad14c980b3048f44fbaae8b5439c9caf, type: 3}

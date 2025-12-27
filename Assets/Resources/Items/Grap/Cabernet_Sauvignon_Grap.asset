@@ -13,10 +13,16 @@ MonoBehaviour:
   m_Name: Cabernet_Sauvignon_Grap
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Cabernet_Sauvignon_Grap
-  displayName: Cabernet Sauvignon Grap
+  displayName: Cabernet Sauvignon
   icon: {fileID: 2719153232368109570, guid: c0f135678b8eb1941bab89ed0bf4dbb0, type: 3}
   stackable: 1
   maxStack: 99
   price: 0
   isSeed: 0
+  isWineBottle: 0
+  category: 0
   growTimeSeconds: 180
+  harvestItem: {fileID: 0}
+  harvestAmount: 10
+  plantedPlotSprite: {fileID: 0}
+  readyPlotSprite: {fileID: 0}

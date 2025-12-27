@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BORDEAUX_BLEND_Bottle_Semi
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: BORDEAUX_BLEND_Bottle_Semi
-  displayName: ' (Semi-Dry)'
+  displayName: BORDEAUX BLEND Semi
   icon: {fileID: 6971285612985424239, guid: 71a7b551f57f50d4dad4408549c9f926, type: 3}
   stackable: 1
   maxStack: 99

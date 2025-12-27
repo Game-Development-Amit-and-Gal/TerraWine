@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Colombard_Fresh_Bottle_Dry
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Colombard_Fresh_Bottle_Dry
-  displayName: Colombard Fresh (Dry)
+  displayName: Colombard Fresh Dry
   icon: {fileID: 6002130003233122791, guid: ffe625abfcf84a3419df79b8316aa1fb, type: 3}
   stackable: 1
   maxStack: 99

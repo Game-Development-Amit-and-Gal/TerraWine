@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Merlot_Easygoing_Bottle 1
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Merlot_Easygoing_Bottle_Semi
-  displayName: Merlot Easygoing Semi Dry
+  displayName: Merlot Easygoing Semi
   icon: {fileID: -1501616773658509519, guid: 8d6d8c4a7875b5e4d92b2419c4dabecd, type: 3}
   stackable: 1
   maxStack: 99

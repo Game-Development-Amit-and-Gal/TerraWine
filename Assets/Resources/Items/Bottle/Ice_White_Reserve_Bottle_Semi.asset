@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ice_White_Reserve_Bottle_Semi
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Ice_White_Reserve_Bottle_Semi
-  displayName: Ice White Reserve (Semi-Dry)
+  displayName: Ice White Reserve Semi
   icon: {fileID: 0}
   stackable: 1
   maxStack: 99

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Riesling_Seed
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Riesling_Seed
-  displayName: Riesling_Seed
+  displayName: Riesling
   icon: {fileID: 0}
   stackable: 1
   maxStack: 99
@@ -25,4 +25,4 @@ MonoBehaviour:
   harvestItem: {fileID: 11400000, guid: 612bfe273e78d364992e7d60c592202b, type: 2}
   harvestAmount: 10
   plantedPlotSprite: {fileID: 0}
-  readyPlotSprite: {fileID: 0}
+  readyPlotSprite: {fileID: -3937050711764283364, guid: 6ca77657e7b23a94fb9142867dda2dff, type: 3}

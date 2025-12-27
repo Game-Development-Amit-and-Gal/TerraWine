@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Petit_verdot_Grap
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Petit_verdot_Grap
-  displayName: Petit verdot Grap
-  icon: {fileID: 8166710274925509176, guid: 9fa626accc8dcf64ea67551d40a915c3, type: 3}
+  displayName: 'Petit verdot '
+  icon: {fileID: 7794159406338443351, guid: fa1b41456f9967c409ea2a9870fb8f3b, type: 3}
   stackable: 1
   maxStack: 99
   price: 0
   isSeed: 0
+  isWineBottle: 0
+  category: 0
   growTimeSeconds: 10
   harvestItem: {fileID: 0}
   harvestAmount: 10

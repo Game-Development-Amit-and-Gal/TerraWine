@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Viognier_Seed
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Viognier_Seed
-  displayName: Viognier_Seed
+  displayName: Viognier
   icon: {fileID: 0}
   stackable: 1
   maxStack: 99
@@ -25,4 +25,4 @@ MonoBehaviour:
   harvestItem: {fileID: 11400000, guid: 95567673a7192ad4b9bcd2245195e8bb, type: 2}
   harvestAmount: 10
   plantedPlotSprite: {fileID: 0}
-  readyPlotSprite: {fileID: 0}
+  readyPlotSprite: {fileID: 1526677283588466130, guid: e7a72b3f82f0d1349b749e43aac75c61, type: 3}

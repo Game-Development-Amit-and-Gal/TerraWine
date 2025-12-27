@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Colombard_Seed
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Colombard_Seed
-  displayName: Colombard_Seed
-  icon: {fileID: 0}
+  displayName: Colombard
+  icon: {fileID: -6263536802651633628, guid: bcb02297e517e694b97d5ff43553d620, type: 3}
   stackable: 1
   maxStack: 99
   price: 20
   isSeed: 1
   isWineBottle: 0
   category: 0
-  growTimeSeconds: 600
+  growTimeSeconds: 3
   harvestItem: {fileID: 11400000, guid: 6943cb6fa977a6a4b94a279397cdb15d, type: 2}
   harvestAmount: 10
   plantedPlotSprite: {fileID: 0}
-  readyPlotSprite: {fileID: 0}
+  readyPlotSprite: {fileID: 3010051013469113003, guid: d157383c89ab3f74fabc19e5ac05f1ec, type: 3}

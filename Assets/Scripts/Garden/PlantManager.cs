@@ -18,6 +18,7 @@ class PlantPlotsSaveWrapper
 /// </summary>
 public class PlantManager : MonoBehaviour
 {
+    public bool HasLoaded { get; private set; }
     // ------------- STATIC SINGLETON ------------- //
 
     public static PlantManager Instance { get; private set; }   // global access point
@@ -36,7 +37,7 @@ public class PlantManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
+        HasLoaded = false;
         // Otherwise, this becomes the real instance
         Instance = this;
     }
@@ -90,35 +91,56 @@ public class PlantManager : MonoBehaviour
     /// </summary>
     public void LoadAll(float deltaSeconds)
     {
-        // If no save file exists, don't do anything
-        if (!PlayerPrefs.HasKey(Key)) return;
+        HasLoaded = false; // חשוב: לפני הכל
 
-        // Load raw JSON text from PlayerPrefs
-        string json = PlayerPrefs.GetString(Key);
-
-        // Convert JSON back into a wrapper class
-        var wrapper = JsonUtility.FromJson<PlantPlotsSaveWrapper>(json);
-
-        // If the wrapper or list is null, nothing to restore
-        if (wrapper == null || wrapper.plots == null) return;
-
-        // Find all PlantPlots currently visible in the scene
+        // תמיד נביא את החלקות שבסצנה (כדי שנוכל גם לאפס מי שלא קיימת בשמירה)
         PlantPlot[] plotsInScene = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
 
-        // Loop through each saved record
+        // אם אין שמירה - פשוט נבטיח שהכל נקי ונצא
+        if (!PlayerPrefs.HasKey(Key))
+        {
+            foreach (var p in plotsInScene)
+                if (p != null) p.ResetToEmpty();
+
+            HasLoaded = true;
+            return;
+        }
+
+        string json = PlayerPrefs.GetString(Key);
+        var wrapper = JsonUtility.FromJson<PlantPlotsSaveWrapper>(json);
+
+        if (wrapper == null || wrapper.plots == null)
+        {
+            foreach (var p in plotsInScene)
+                if (p != null) p.ResetToEmpty();
+
+            HasLoaded = true;
+            return;
+        }
+
+        // map: plotId -> PlantPlot
+        var map = new Dictionary<string, PlantPlot>(plotsInScene.Length);
+        foreach (var p in plotsInScene)
+        {
+            if (p == null) continue;
+            if (string.IsNullOrEmpty(p.PlotId)) continue;
+            map[p.PlotId] = p;
+        }
+
+        // קודם נאפס הכל
+        foreach (var p in plotsInScene)
+            if (p != null) p.ResetToEmpty();
+
+        // ואז נטען את מי שיש בשמירה
         foreach (var saved in wrapper.plots)
         {
-            // Try to match saved plot ID with real plot in the scene
-            foreach (var plot in plotsInScene)
-            {
-                // If IDs match, restore the saved state into this plot
-                if (plot.PlotId == saved.id)
-                {
-                    plot.LoadFrom(saved, deltaSeconds); // applies offline growth
-                    break; // Stop searching once matched
-                }
-            }
+            if (saved == null || string.IsNullOrEmpty(saved.id)) continue;
+
+            if (map.TryGetValue(saved.id, out var plot) && plot != null)
+                plot.LoadFrom(saved, deltaSeconds);
         }
+
+        HasLoaded = true; // הכי חשוב בסוף
     }
 
     // -------------------------------------------------- //
@@ -156,4 +178,38 @@ public class PlantManager : MonoBehaviour
         PlantPlot[] plots = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
         return plots != null && plots.Length > 0;
     }
+    public int GetGrowingPlotsCount()
+    {
+        if (!HasLoaded) return 0;
+
+        PlantPlot[] plots = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
+
+        int count = 0;
+        foreach (var p in plots)
+        {
+            if (p != null && p.IsGrowing)
+                count++;
+        }
+        return count;
+    }
+    public bool EnemyRaid_TryStealRandomPlant(out string stolenInfo)
+    {
+        stolenInfo = null;
+
+        PlantPlot[] plots = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
+        if (plots == null || plots.Length == 0) return false;
+
+        List<PlantPlot> ready = new();
+        foreach (var p in plots)
+        {
+            if (p != null && p.IsReady)
+                ready.Add(p);
+        }
+
+        if (ready.Count == 0) return false;
+
+        var pick = ready[UnityEngine.Random.Range(0, ready.Count)];
+        return pick.EnemyRaid_TryStealHarvest(out stolenInfo);
+    }
+
 }

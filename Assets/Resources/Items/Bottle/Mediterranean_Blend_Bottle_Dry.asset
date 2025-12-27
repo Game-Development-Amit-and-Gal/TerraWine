@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mediterranean_Blend_Bottle_Dry
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Mediterranean_Blend_Bottle_Dry
-  displayName: ' (Dry)'
+  displayName: Mediterranean Blend Dry
   icon: {fileID: 0}
   stackable: 1
   maxStack: 99

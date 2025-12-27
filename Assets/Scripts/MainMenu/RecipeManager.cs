@@ -109,4 +109,45 @@ public class RecipeManager : MonoBehaviour
         if (string.IsNullOrEmpty(s)) return s;
         return s.Replace("(Clone)", "").Trim();
     }
+    public string GetRandomLockedRecipeId(bool onlyThoseWithBarrel = false)
+    {
+        if (catalog.Count == 0)
+        {
+            Debug.LogWarning("[RecipeManager] catalog empty - no recipes loaded.");
+            return null;
+        }
+
+        var gm = GameManager.Instance;
+        if (gm == null || gm.Data == null)
+        {
+            Debug.LogWarning("[RecipeManager] GameManager/Data is NULL.");
+            return null;
+        }
+
+        var unlocked = gm.Data.unlockedRecipeIds ??= new List<string>();
+
+        // בונים רשימת מועמדים: כל המתכונים ב-Resources שלא פתוחים עדיין
+        List<string> candidates = new List<string>();
+        foreach (var kv in catalog)
+        {
+            var id = kv.Key;
+            var r = kv.Value;
+
+            if (string.IsNullOrWhiteSpace(id) || r == null) continue;
+            if (unlocked.Contains(id)) continue;
+
+            if (onlyThoseWithBarrel && r.barrelPrefab == null)
+                continue;
+
+            candidates.Add(id);
+        }
+
+        if (candidates.Count == 0)
+        {
+            Debug.Log("[RecipeManager] No locked recipes left to reward.");
+            return null;
+        }
+
+        return candidates[Random.Range(0, candidates.Count)];
+    }
 }

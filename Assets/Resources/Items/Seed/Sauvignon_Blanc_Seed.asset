@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sauvignon_Blanc_Seed
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Sauvignon_Blanc_Seed
-  displayName: Sauvignon_Blanc_Seed
+  displayName: Sauvignon
   icon: {fileID: 0}
   stackable: 1
   maxStack: 99
@@ -25,4 +25,4 @@ MonoBehaviour:
   harvestItem: {fileID: 11400000, guid: 9d2b483a50d2123469d3499a7fcd8139, type: 2}
   harvestAmount: 10
   plantedPlotSprite: {fileID: 0}
-  readyPlotSprite: {fileID: 0}
+  readyPlotSprite: {fileID: 7334114065413605044, guid: 6a73cdbbca1cc434f993d12d2a1713e3, type: 3}

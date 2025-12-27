@@ -47,7 +47,14 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        
+        // Ensure EnemyRaidManager exists (persistent)
+        if (EnemyRaidManager.Instance == null)
+        {
+            var go = new GameObject("EnemyRaidManager");
+            go.AddComponent<EnemyRaidManager>();
+        }
+
+
 
         if (!introController) introController = FindObjectOfType<IntroController>();
         if (!sceneLoader) sceneLoader = FindObjectOfType<SceneLoader>();
@@ -61,20 +68,29 @@ public class GameManager : MonoBehaviour
     public void NewGame()
     {
         Debug.Log("[GameManager] NEW GAME clicked -> deleting old save");
-        SaveSystem.Delete();                 // <-- קריטי: מוחק save ישן
+        SaveSystem.Delete();
+
+        var sm = FindFirstObjectByType<SeasonManager>();
+        if (sm != null) sm.ResetForNewGame();
+
         StartCoroutine(NewGameFlow());
         TutorialManager.tutorialIsRunning = true;
         TutorialManager.tutorialIsRunningGardenScene = true;
     }
+
 
     private IEnumerator NewGameFlow()
     {
         if (introController != null)
             yield return introController.PlayIntroIfNeeded();
 
-        // Create brand new profile
         Data = new GameData
         {
+            calendarYear = 1,
+            calendarSeasonIndex = 0,
+            calendarDay = 1,
+            calendarLastUpdateTicks = DateTime.UtcNow.Ticks,
+
             sceneName = firstScene,
             playerX = playerXs,
             playerY = playerYs,
@@ -82,21 +98,34 @@ public class GameManager : MonoBehaviour
             season = (int)seasons.Earth,
             lastRealTimeTicks = DateTime.UtcNow.Ticks,
             wineScore = 0,
+            securityLevel = 0,
+            dailyActionsUsed = 0,
+            dailyActionsResetTicks = 0,
+            lastRaidTicks = 0,
+            stolenRecipeIds = new List<string>(),
+            raidLog = new List<string>(),
+            waterMax = 20,
+            waterCurrent = 5,
 
+            waterLastUpdateTicks = DateTime.UtcNow.Ticks,
+            waterGrowingCountSnapshot = 0,
+            waterDrainRemainder = 0f,
 
             tutorialCompleted = false,
             sampleSceneGuideDone = false,
             worldMapGuideDone = false,
             cellarGuideDone = false,
 
-            // כדי שלא יהיה מצב שגיים דאטה בונה רשימות עם שאריות
             inventory = new List<InventoryItem>(),
             ownedBarrels = new List<OwnedBarrelData>(),
             barrelAging = new List<BarrelAgingSave>(),
-            unlockedRecipeIds = new List<string>() // <-- תמיד מאפסים
+            unlockedRecipeIds = new List<string>()
         };
 
-        // Unlock starting recipes
+        // ✅ הוספה: אתחול קווטה אחרי יצירת Data
+        ActionQuotaManager.Instance?.InitializeForCurrentProfile();
+
+        // Unlock starting recipes...
         if (startingRecipeIds != null)
         {
             foreach (var recipeId in startingRecipeIds)
@@ -107,9 +136,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        Debug.Log("[GameManager] NewGame unlockedRecipeIds = " + string.Join(", ", Data.unlockedRecipeIds));
-
-        // שמירה מידית כדי לנעול את הניו-גיים החדש לפני טעינת סצנה
         SaveSystem.Save(Data);
 
         // Reset inventory and give starting items
@@ -119,6 +145,7 @@ public class GameManager : MonoBehaviour
             InventoryManager.Instance.Add("Cabernet_Sauvignon_Seed", 5);
             InventoryManager.Instance.Add("Grenache_Seed", 5);
             InventoryManager.Instance.Add("Petit_verdot_Seed", 1);
+            InventoryManager.Instance.Add("Colombard_Seed", 2);
             InventoryManager.Instance.AddCategory(ItemCategory.Update, 1);
         }
         else
@@ -145,7 +172,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("[GameManager] CONTINUE clicked");
 
         TutorialManager.tutorialIsRunning = false;
-        // Try to load previously saved game data
+
         var loaded = SaveSystem.Load();
         if (loaded == null)
         {
@@ -155,8 +182,14 @@ public class GameManager : MonoBehaviour
 
         Data = loaded;
 
-        if (Data.unlockedRecipeIds == null)
-            Data.unlockedRecipeIds = new List<string>();
+        if (Data.unlockedRecipeIds == null) Data.unlockedRecipeIds = new List<string>();
+        if (Data.stolenRecipeIds == null) Data.stolenRecipeIds = new List<string>();
+        if (Data.raidLog == null) Data.raidLog = new List<string>();
+
+        // ✅ הוספה: אתחול קווטה אחרי שטענת Data מהשמירה
+        ActionQuotaManager.Instance?.InitializeForCurrentProfile();
+
+        EnemyRaidManager.Instance?.ScheduleRaidOnNextSceneLoad("continue");
 
         Debug.Log("[GameManager] Continue unlockedRecipeIds = " + string.Join(", ", Data.unlockedRecipeIds));
 
@@ -178,6 +211,8 @@ public class GameManager : MonoBehaviour
 
     public void ChangeScene(string sceneName, Vector2 newPlayerPos)
     {
+        EnemyRaidManager.Instance?.ScheduleRaidOnNextSceneLoad("scene_change");
+
         if (sceneLoader != null)
         {
             StartCoroutine(
@@ -189,6 +224,7 @@ public class GameManager : MonoBehaviour
             );
         }
     }
+
 
     public void SaveGame()
     {

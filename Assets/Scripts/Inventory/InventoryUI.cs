@@ -61,6 +61,7 @@ public class InventoryUI : MonoBehaviour
 
         // Stop listening to inventory change events when UI is hidden
         InventoryManager.Instance.onChanged.RemoveListener(Redraw);
+        InventoryTooltipUI.Instance?.Hide();
 
         // Hide any bottom UI sections when the panel closes
         SetExtraUiActive(false);
@@ -121,6 +122,7 @@ public class InventoryUI : MonoBehaviour
     public void Toggle()
     {
         // Flip the panel’s current visibility state (open ↔ closed)
+        InventoryTooltipUI.Instance?.Hide();
         bool newState = !panel.activeSelf;
         bool tutorialState = true;
 
@@ -156,7 +158,7 @@ public class InventoryUI : MonoBehaviour
         // Hide the inventory panel
         panel.SetActive(false);
         TutorialManager.Instance?.SetFlag("Bag Close");
-
+        InventoryTooltipUI.Instance?.Hide();
 
         // Hide the bottom UI sections as well
         SetExtraUiActive(false);
@@ -309,7 +311,7 @@ public class InventoryUI : MonoBehaviour
                     {
                         int totalValue = so.price * s.amount;
                         if (priceTxt != null)
-                            priceTxt.text = $"₪{totalValue}";
+                            priceTxt.text = $"{totalValue}";
 
 
                         if (priceIcon != null)

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LATE_HARVEST_RED_Bottle_Semi
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: LATE_HARVEST_RED_Bottle_Semi
-  displayName: ' (Semi-Dry)'
+  displayName: LATE_HARVEST RED Semi
   icon: {fileID: -422923575333994825, guid: 3b8d226174d90e6408a6d95310616743, type: 3}
   stackable: 1
   maxStack: 99

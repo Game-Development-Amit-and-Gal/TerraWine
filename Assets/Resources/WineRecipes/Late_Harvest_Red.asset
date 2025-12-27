@@ -18,15 +18,15 @@ MonoBehaviour:
   barrelIcon: {fileID: -1930839144553695791, guid: ff96fc988489f314eb9c6becb29352f9, type: 3}
   grapes:
   - itemName: Syrah_Grap
-    amount: 1
+    amount: 10
   semiDry:
     timeSeconds: 0
-    bottleItem: {fileID: 11400000, guid: e016b83d058b0d045a9429250947aa7b, type: 2}
+    bottleItem: {fileID: 11400000, guid: a92928f42a6dd6545aee0ac89180213b, type: 2}
     bottleAmount: 1
     rating: 1
   dry:
     timeSeconds: 0
-    bottleItem: {fileID: 11400000, guid: 7edf7e5d3c604bb4d9113951513a09b0, type: 2}
+    bottleItem: {fileID: 11400000, guid: 9c6aec370d9f4974dba738cc2dea7f35, type: 2}
     bottleAmount: 1
     rating: 5
   defaultBottleAmount: 1

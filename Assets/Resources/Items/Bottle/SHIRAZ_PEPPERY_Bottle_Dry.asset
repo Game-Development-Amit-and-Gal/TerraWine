@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SHIRAZ_PEPPERY_Bottle_Dry
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: SHIRAZ_PEPPERY_Bottle_Dry
-  displayName: Shiraz Peppery (Dry)
+  displayName: Shiraz Peppery Dry
   icon: {fileID: -4904486956560252596, guid: e2cbbec8efdc933449f985badd4ff91b, type: 3}
   stackable: 1
   maxStack: 99

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ice_White_Reserve_Bottle_Dry
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Ice_White_Reserve_Bottle_Dry
-  displayName: Ice White Reserve (Dry)
+  displayName: Ice White Reserve Dry
   icon: {fileID: 0}
   stackable: 1
   maxStack: 99

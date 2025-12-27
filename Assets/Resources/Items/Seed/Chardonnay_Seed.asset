@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chardonnay_Seed
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Chardonnay_Seed
-  displayName: Chardonnay_Seed
+  displayName: Chardonnay
   icon: {fileID: 0}
   stackable: 1
   maxStack: 99
@@ -25,4 +25,4 @@ MonoBehaviour:
   harvestItem: {fileID: 11400000, guid: e3414c02256e0cd4eac0a657672ba7a8, type: 2}
   harvestAmount: 10
   plantedPlotSprite: {fileID: 0}
-  readyPlotSprite: {fileID: 0}
+  readyPlotSprite: {fileID: -8175782202087421644, guid: 0847a66ddb698d849a3ad25042910991, type: 3}

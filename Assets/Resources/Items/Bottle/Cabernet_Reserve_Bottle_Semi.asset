@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cabernet_Reserve_Bottle_Semi
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Cabernet_Reserve_Bottle_Semi
-  displayName: ' (Semi-Dry)'
+  displayName: Cabernet Reserve Semi
   icon: {fileID: -4092880614486310252, guid: ba62904939330c742acb1d3c16ffdc64, type: 3}
   stackable: 1
   maxStack: 99

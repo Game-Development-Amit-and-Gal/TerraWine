@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pinot_Noir_Elegant_Bottle_Semi
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Pinot_Noir_Elegant_Bottle_Semi
-  displayName: ' (Semi-Dry)'
+  displayName: Pinot Noir Elegant Semi
   icon: {fileID: 6045412853661934398, guid: dbcfaf75f779f0b40bf8cf7d56515880, type: 3}
   stackable: 1
   maxStack: 99

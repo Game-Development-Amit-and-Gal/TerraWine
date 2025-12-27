@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OLD_VINE_MERLOT_RESERVE_Bottle_Semi
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: OLD_VINE_MERLOT_RESERVE_Bottle_Semi
-  displayName: ' (Semi-Dry)'
+  displayName: OLD_VINE_MERLOT RESERVE Semi
   icon: {fileID: 0}
   stackable: 1
   maxStack: 99

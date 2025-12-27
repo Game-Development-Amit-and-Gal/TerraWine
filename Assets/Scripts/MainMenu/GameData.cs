@@ -27,8 +27,33 @@ public class GameData
     public int money;                 // Player's current money amount
     public int season = 1;            // Current in-game season (default: 1)
     public int wineScore = 0;
-    public int hineScore = 0;   
+    public int hineScore = 0;
     public long lastRealTimeTicks;    // Timestamp for real-time progression (offline growth)
+
+
+    // Daily actions (reset every day at 08:00)
+    public int dailyActionsUsed = 0;         // כמה פעולות נוצלו מאז הריסט האחרון
+    public long dailyActionsResetTicks = 0;
+    public int waterCurrent = 20;
+    public int waterMax = 20;
+
+    public long waterLastUpdateTicks = 0;      // UTC ticks
+    public int waterGrowingCountSnapshot = 0;  // כמה עציצים גדלו בעת העדכון האחרון
+    public float waterDrainRemainder = 0f;     // צבירת שברים לירידה חלקה
+                                               // ---------------- SEASONS / CALENDAR ----------------
+    public int calendarYear = 1;        // 1..3 (או בלי הגבלה אם תרצי)
+    public int calendarSeasonIndex = 0; // 0=Earth, 1=Vine, 2=Winery
+    public int calendarDay = 1;         // 1..15
+
+    public long calendarLastUpdateTicks = 0; // UTC ticks לחישוב זמן שעבר (אופציונלי)
+
+
+
+
+    public int securityLevel = 0;                 // רמת אבטחה (שדרוגים)
+    public long lastRaidTicks = 0;                // מתי היה Raid אחרון (UTC ticks)
+    public List<string> stolenRecipeIds = new();  // מתכונים שנגנבו (כדי להחזיר בעתיד)
+    public List<string> raidLog = new();          // יומן אירועים (אופציונלי)
 
     // Collections of owned items and barrels
     public List<InventoryItem> inventory = new List<InventoryItem>();  // All items in player's inventory

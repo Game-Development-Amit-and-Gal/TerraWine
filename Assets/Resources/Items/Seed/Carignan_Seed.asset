@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Carignan_Seed
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Carignan_Seed
-  displayName: Carignan_Seed
+  displayName: Carignan
   icon: {fileID: 0}
   stackable: 1
   maxStack: 99
@@ -25,4 +25,4 @@ MonoBehaviour:
   harvestItem: {fileID: 11400000, guid: dd74a0b5a9607834ebebdb61748f0093, type: 2}
   harvestAmount: 10
   plantedPlotSprite: {fileID: 0}
-  readyPlotSprite: {fileID: 0}
+  readyPlotSprite: {fileID: -7380244599877616279, guid: bb596fc3b099fe54daaca41cc50c596f, type: 3}

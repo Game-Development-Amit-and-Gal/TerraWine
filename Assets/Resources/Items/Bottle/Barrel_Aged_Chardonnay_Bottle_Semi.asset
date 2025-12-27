@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Barrel_Aged_Chardonnay_Bottle_Semi
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Barrel_Aged_Chardonnay_Bottle_Semi
-  displayName: ' (Semi-Dry)'
+  displayName: Barrel_Aged Chardonnay Bottle Semi
   icon: {fileID: -5700874683044463595, guid: a96b791bf49aa324a8a5ba87de27a0b2, type: 3}
   stackable: 1
   maxStack: 99
