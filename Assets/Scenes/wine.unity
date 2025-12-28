@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::basementDoorTrigger
   sceneName: basement
+  playerSpawnPosition: {x: 0, y: 0}
 --- !u!61 &15150191
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -958,11 +959,11 @@ Transform:
   m_GameObject: {fileID: 62087426}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.910004, y: 0, z: 0}
+  m_LocalPosition: {x: -135.26926, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1072503530}
+  m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &80721080
 GameObject:
@@ -2152,6 +2153,7 @@ Transform:
   - {fileID: 1253952269}
   - {fileID: 1270434985}
   - {fileID: 1394248889}
+  - {fileID: 62087428}
   - {fileID: 1072503530}
   - {fileID: 2036271954}
   - {fileID: 516836010}
@@ -7567,8 +7569,7 @@ Transform:
   m_LocalPosition: {x: -126.35925, y: -1.7809899, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 62087428}
+  m_Children: []
   m_Father: {fileID: 231153281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1085246395
@@ -12550,7 +12551,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1589091868

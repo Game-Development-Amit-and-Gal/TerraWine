@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Services.Authentication;
+using System.Threading.Tasks;
 
 /// <summary>
 /// Wrapper class used to store a list of plot saves as JSON.
@@ -25,7 +27,7 @@ public class PlantManager : MonoBehaviour
 
     // Key used in PlayerPrefs storage (acts like a file name)
     const string Key = "PROFILE::DEFAULT::PLANTS";
-
+    private const string CloudKey = "plants_v1";
     /// <summary>
     /// Ensures only ONE PlantManager exists (singleton pattern).
     /// </summary>
@@ -50,36 +52,40 @@ public class PlantManager : MonoBehaviour
     /// Saves every PlantPlot in the current scene into PlayerPrefs.
     /// Does NOT overwrite if no plots exist (prevents clearing previous saves).
     /// </summary>
-    public void SaveAll()
+    public async void SaveAll()
     {
-        // Finds ALL PlantPlot components in the open scene (Unity 6 style)
         PlantPlot[] plots = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
 
-        // If there are no plots at all (e.g., different scene), skip the save
         if (plots == null || plots.Length == 0)
         {
             Debug.Log("[PlantManager] SaveAll: no PlantPlots in this scene, skipping save.");
             return;
         }
 
-        // Create a wrapper object to store all plot saves
         var wrapper = new PlantPlotsSaveWrapper();
-
-        // Convert each PlantPlot to a PlantPlotSave object
         foreach (var p in plots)
             wrapper.plots.Add(p.GetSave());
 
-        // Convert the wrapper to JSON text
         string json = JsonUtility.ToJson(wrapper);
 
-        // Save JSON into PlayerPrefs under a key
+        // 1) שמירה מקומית (כמו שיש לך)
         PlayerPrefs.SetString(Key, json);
-
-        // Ensures it is written immediately to disk
         PlayerPrefs.Save();
+
+        // 2) שמירה לענן (רק אם מחוברת)
+        try
+        {
+            if (AuthenticationService.Instance.IsSignedIn)
+                await CloudSaveSystem.SaveStringAsync(CloudKey, json);
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning("[PlantManager] Cloud Save failed: " + e.Message);
+        }
 
         Debug.Log("[PlantManager] SaveAll: saved " + wrapper.plots.Count + " plots.");
     }
+
 
     // -------------------------------------------------- //
     // --------------------- LOAD ----------------------- //
@@ -89,24 +95,40 @@ public class PlantManager : MonoBehaviour
     /// Loads saved PlantPlot data and restores their state visually.
     /// deltaSeconds = Time passed while the game was closed (offline growth).
     /// </summary>
-    public void LoadAll(float deltaSeconds)
+    public async void LoadAll(float deltaSeconds)
     {
-        HasLoaded = false; // חשוב: לפני הכל
+        HasLoaded = false;
 
-        // תמיד נביא את החלקות שבסצנה (כדי שנוכל גם לאפס מי שלא קיימת בשמירה)
         PlantPlot[] plotsInScene = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
 
-        // אם אין שמירה - פשוט נבטיח שהכל נקי ונצא
-        if (!PlayerPrefs.HasKey(Key))
-        {
-            foreach (var p in plotsInScene)
-                if (p != null) p.ResetToEmpty();
+        // 0) קודם לנסות להביא JSON מהענן
+        string json = null;
 
-            HasLoaded = true;
-            return;
+        try
+        {
+            if (AuthenticationService.Instance.IsSignedIn)
+                json = await CloudSaveSystem.LoadStringAsync(CloudKey);
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning("[PlantManager] Cloud Load failed, fallback to local: " + e.Message);
         }
 
-        string json = PlayerPrefs.GetString(Key);
+        // 1) fallback: אם אין בענן, לוקחים מקומי
+        if (string.IsNullOrEmpty(json))
+        {
+            if (!PlayerPrefs.HasKey(Key))
+            {
+                foreach (var p in plotsInScene)
+                    if (p != null) p.ResetToEmpty();
+
+                HasLoaded = true;
+                return;
+            }
+
+            json = PlayerPrefs.GetString(Key);
+        }
+
         var wrapper = JsonUtility.FromJson<PlantPlotsSaveWrapper>(json);
 
         if (wrapper == null || wrapper.plots == null)
@@ -118,7 +140,6 @@ public class PlantManager : MonoBehaviour
             return;
         }
 
-        // map: plotId -> PlantPlot
         var map = new Dictionary<string, PlantPlot>(plotsInScene.Length);
         foreach (var p in plotsInScene)
         {
@@ -127,11 +148,9 @@ public class PlantManager : MonoBehaviour
             map[p.PlotId] = p;
         }
 
-        // קודם נאפס הכל
         foreach (var p in plotsInScene)
             if (p != null) p.ResetToEmpty();
 
-        // ואז נטען את מי שיש בשמירה
         foreach (var saved in wrapper.plots)
         {
             if (saved == null || string.IsNullOrEmpty(saved.id)) continue;
@@ -140,8 +159,9 @@ public class PlantManager : MonoBehaviour
                 plot.LoadFrom(saved, deltaSeconds);
         }
 
-        HasLoaded = true; // הכי חשוב בסוף
+        HasLoaded = true;
     }
+
 
     // -------------------------------------------------- //
     // ------------------- RESET ALL -------------------- //
@@ -163,6 +183,12 @@ public class PlantManager : MonoBehaviour
         // Reset each plot visually and internally
         foreach (var p in plots)
             p.ResetToEmpty();
+        try
+        {
+            if (AuthenticationService.Instance.IsSignedIn)
+                _ = CloudSaveSystem.DeleteAsync(CloudKey);
+        }
+        catch { }
     }
 
     // -------------------------------------------------- //

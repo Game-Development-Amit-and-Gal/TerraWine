@@ -36,11 +36,21 @@ public class TutorialManager : MonoBehaviour
 
     [Header("Got It Button (Panel 2)")]
     [SerializeField] private RectTransform gotItButton2; // "Got It" button for Panel 2 (optional but recommended).
+    [Header("Tutorial UI (Panel 3)")]
+    [SerializeField] private GameObject panel3;
+    [SerializeField] private TMP_Text tutorialText3;
+
+    [Header("Arrow (Panel 3)")]
+    [SerializeField] private RectTransform arrow3;
+
+    [Header("Got It Button (Panel 3)")]
+    [SerializeField] private RectTransform gotItButton3;
 
     [Header("Got It Position (per panel)")]
     [SerializeField] private bool overrideGotItPosition = false;
     [SerializeField] private Vector2 gotItAnchoredPosPanel1 = Vector2.zero;
     [SerializeField] private Vector2 gotItAnchoredPosPanel2 = Vector2.zero;
+    [SerializeField] private Vector2 gotItAnchoredPosPanel3 = Vector2.zero;
 
     [Header("Per-scene guides")]
     [SerializeField] private SceneGuide[] guides;       // All guides for all scenes.
@@ -65,7 +75,7 @@ public class TutorialManager : MonoBehaviour
     private readonly Dictionary<GameObject, bool> _originalActive = new();
     private readonly HashSet<GameObject> _touchedThisStep = new();
 
-    public enum PanelChoice { Panel1, Panel2 }
+    public enum PanelChoice { Panel1, Panel2, Panel3 }
 
     private GameObject activePanel;
     private TMP_Text activeText;
@@ -218,6 +228,9 @@ public class TutorialManager : MonoBehaviour
 
         if (arrow2 != null)
             arrow2.gameObject.SetActive(false);
+        if (panel3 != null) panel3.SetActive(false);
+        if (arrow3 != null) arrow3.gameObject.SetActive(false);
+        
 
         // Make sure the "Got It" button starts hidden (both panels).
         if (gotItButton != null)
@@ -225,6 +238,7 @@ public class TutorialManager : MonoBehaviour
 
         if (gotItButton2 != null)
             gotItButton2.gameObject.SetActive(false);
+        if (gotItButton3 != null) gotItButton3.gameObject.SetActive(false);
 
         // Clear active references at start.
         activePanel = null;
@@ -262,23 +276,19 @@ public class TutorialManager : MonoBehaviour
         // Never show tutorials on the main menu.
         if (scene.name == "MainMenu")
         {
-            if (panel != null)
-                panel.SetActive(false);
+            if (panel != null) panel.SetActive(false);
+            if (panel2 != null) panel2.SetActive(false);
+            if (panel3 != null) panel3.SetActive(false);
 
-            if (panel2 != null)
-                panel2.SetActive(false);
+            if (arrow != null) arrow.gameObject.SetActive(false);
+            if (arrow2 != null) arrow2.gameObject.SetActive(false);
+            if (arrow3 != null) arrow3.gameObject.SetActive(false);
 
-            if (arrow != null)
-                arrow.gameObject.SetActive(false);
+            if (gotItButton != null) gotItButton.gameObject.SetActive(false);
+            if (gotItButton2 != null) gotItButton2.gameObject.SetActive(false);
+            if (gotItButton3 != null) gotItButton3.gameObject.SetActive(false);
 
-            if (arrow2 != null)
-                arrow2.gameObject.SetActive(false);
-
-            if (gotItButton != null)
-                gotItButton.gameObject.SetActive(false);
-
-            if (gotItButton2 != null)
-                gotItButton2.gameObject.SetActive(false);
+            tutorialIsRunning = false;
 
             currentSceneUiRoot = null;
             currentGuide = null;
@@ -286,6 +296,7 @@ public class TutorialManager : MonoBehaviour
             currentStepIndex = 0;
             return;
         }
+
 
         TryShowGuideForScene(scene.name);
     }
@@ -296,40 +307,36 @@ public class TutorialManager : MonoBehaviour
     /// </summary>
     private void TryShowGuideForScene(string sceneName)
     {
+        tutorialIsRunning = false; // ✅ ברירת מחדל: אין טוטוריאל עד שנוכיח אחרת
+
         if (GameManager.Instance == null || GameManager.Instance.Data == null)
             return;
 
         var data = GameManager.Instance.Data;
 
-        // If all tutorials are completed, do nothing.
         if (data.tutorialCompleted)
             return;
 
-        // Find the guide for this scene.
         currentGuide = Array.Find(guides, g => g.sceneName == sceneName);
         if (currentGuide == null || currentGuide.steps == null || currentGuide.steps.Length == 0)
             return;
 
-        // If this specific scene guide was already completed, do nothing.
         if (IsSceneGuideAlreadyDone(sceneName, data))
             return;
 
-        // Find the scene UI root (do not disable yet; that is per-step).
         currentSceneUiRoot = GameObject.Find(sceneUiRootName);
         currentWorldRoot = GameObject.Find(worldRootName);
 
-        // Start from the first step.
         currentStepIndex = 0;
-
-        // Pick the correct UI panel for this guide's first step (Step can override scene default).
         SelectPanel(GetEffectivePanelChoiceForStep(currentGuide.steps[currentStepIndex]));
 
-        // Show the tutorial UI for this guide.
         if (activePanel != null)
             activePanel.SetActive(true);
 
+        tutorialIsRunning = true;  // ✅ רק אם באמת מצאנו מדריך ומציגים אותו
         ShowCurrentStep();
     }
+
 
     #endregion
 
@@ -362,32 +369,65 @@ public class TutorialManager : MonoBehaviour
     /// </summary>
     private void SelectPanel(PanelChoice choice)
     {
-        // Hide both panels first.
+        // Hide all panels
         if (panel != null) panel.SetActive(false);
         if (panel2 != null) panel2.SetActive(false);
+        if (panel3 != null) panel3.SetActive(false);
 
-        // Hide both arrows first.
+        // Hide all arrows
         if (arrow != null) arrow.gameObject.SetActive(false);
         if (arrow2 != null) arrow2.gameObject.SetActive(false);
+        if (arrow3 != null) arrow3.gameObject.SetActive(false);
 
-        // Hide both "Got It" buttons first.
+        // Hide all Got It buttons
         if (gotItButton != null) gotItButton.gameObject.SetActive(false);
         if (gotItButton2 != null) gotItButton2.gameObject.SetActive(false);
+        if (gotItButton3 != null) gotItButton3.gameObject.SetActive(false);
 
-        // Decide which set to activate. If Panel2 is not assigned, fallback to Panel1.
-        bool usePanel2 = (choice == PanelChoice.Panel2) && panel2 != null && tutorialText2 != null;
+        // Choose active set (with fallbacks)
+        bool canUsePanel2 = (choice == PanelChoice.Panel2) && panel2 != null && tutorialText2 != null;
+        bool canUsePanel3 = (choice == PanelChoice.Panel3) && panel3 != null && tutorialText3 != null;
 
-        activePanel = usePanel2 ? panel2 : panel;
-        activeText = usePanel2 ? tutorialText2 : tutorialText;
-        activeArrow = usePanel2 ? arrow2 : arrow;
-        activeGotItButton = usePanel2 ? gotItButton2 : gotItButton;
+        if (canUsePanel3)
+        {
+            activePanel = panel3;
+            activeText = tutorialText3;
+            activeArrow = arrow3 != null ? arrow3 : arrow; // fallback arrow
+            activeGotItButton = gotItButton3 != null ? gotItButton3 : gotItButton; // fallback button
+        }
+        else if (canUsePanel2)
+        {
+            activePanel = panel2;
+            activeText = tutorialText2;
+            activeArrow = arrow2 != null ? arrow2 : arrow;
+            activeGotItButton = gotItButton2 != null ? gotItButton2 : gotItButton;
+        }
+        else
+        {
+            activePanel = panel;
+            activeText = tutorialText;
+            activeArrow = arrow;
+            activeGotItButton = gotItButton;
+        }
 
-        // Optional: set "Got It" position per panel.
+        // Optional: set "Got It" position per panel
         if (overrideGotItPosition && activeGotItButton != null)
         {
-            activeGotItButton.anchoredPosition = usePanel2 ? gotItAnchoredPosPanel2 : gotItAnchoredPosPanel1;
+            switch (choice)
+            {
+                case PanelChoice.Panel2:
+                    activeGotItButton.anchoredPosition = gotItAnchoredPosPanel2;
+                    break;
+                case PanelChoice.Panel3:
+                    activeGotItButton.anchoredPosition = gotItAnchoredPosPanel3;
+                    break;
+                default:
+                    activeGotItButton.anchoredPosition = gotItAnchoredPosPanel1;
+                    break;
+            }
         }
     }
+
 
     private void ShowCurrentStep()
     {
@@ -659,7 +699,10 @@ public class TutorialManager : MonoBehaviour
         {
             case "SampleScene": return data.sampleSceneGuideDone;
             case "WorldMap": return data.worldMapGuideDone;
-            case "Cellar": return data.cellarGuideDone;
+            case "wine": return data.wineGuideDone;
+            case "basement": return data.basementGuideDone;
+            case "WineryReception": return data.wineryReceptionGuideDone;
+
             default: return false;
         }
     }
@@ -677,9 +720,17 @@ public class TutorialManager : MonoBehaviour
             case "WorldMap":
                 data.worldMapGuideDone = true;
                 break;
-            case "Cellar":
-                data.cellarGuideDone = true;
+            case "basement":
+                data.basementGuideDone = true;
                 break;
+            case "wine":
+                data.wineGuideDone = true;
+                break;
+            case "WineryReception":
+                data.wineryReceptionGuideDone = true;
+                break;
+
+
         }
     }
 
@@ -749,7 +800,11 @@ public class TutorialManager : MonoBehaviour
             bool allDone =
                 data.sampleSceneGuideDone &&
                 data.worldMapGuideDone &&
-                data.cellarGuideDone;
+                data.wineryReceptionGuideDone &&
+                data.basementGuideDone &&
+                data.wineGuideDone;
+
+
 
             if (allDone)
                 data.tutorialCompleted = true;
@@ -769,12 +824,18 @@ public class TutorialManager : MonoBehaviour
         if (panel2 != null)
             panel2.SetActive(false);
 
+        if (panel3 != null)
+            panel3.SetActive(false);
+
+
         // Hide both arrows.
         if (arrow != null)
             arrow.gameObject.SetActive(false);
 
         if (arrow2 != null)
             arrow2.gameObject.SetActive(false);
+        if (arrow3 != null)
+            arrow3.gameObject.SetActive(false);
 
         // Hide both "Got It" buttons.
         if (gotItButton != null)
@@ -782,6 +843,8 @@ public class TutorialManager : MonoBehaviour
 
         if (gotItButton2 != null)
             gotItButton2.gameObject.SetActive(false);
+        if (gotItButton3 != null)
+            gotItButton3.gameObject.SetActive(false);
 
         // Reset runtime state.
         currentGuide = null;
@@ -790,6 +853,7 @@ public class TutorialManager : MonoBehaviour
         if (playerMover != null)
             playerMover.SetAllowMoveDuringTutorial(false);
         GrandpaStoppedTalking?.Invoke();
+        tutorialIsRunning = false;
     }
     private void CachePlayer()
     {

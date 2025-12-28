@@ -213,6 +213,7 @@ public class Barrel : MonoBehaviour, IPointerDownHandler
 
         bool added = InventoryManager.Instance.Add(bottleItemId, bottleAmount);
         Debug.Log($"[Barrel] Harvested {bottleItemId} x{bottleAmount}, success={added}");
+        TutorialManager.Instance?.SetFlag("Readybarrel");
 
         // reset
         isReady = false;

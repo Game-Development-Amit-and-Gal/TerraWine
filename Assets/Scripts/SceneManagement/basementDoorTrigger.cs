@@ -1,22 +1,18 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Trigger placed on a doorway that loads a new scene when the Player enters.
-/// </summary>
-public class basementDoorTrigger : MonoBehaviour
+public class BasementDoorTrigger : MonoBehaviour
 {
-    [Tooltip("The name of the scene to load when entering the basement/room.")]
-    public string sceneName = "basement";
+    [Tooltip("The scene to load when entering.")]
+    [SerializeField] private string sceneName = "basement";
+
+    [Tooltip("Where the Player will spawn in the new scene.")]
+    [SerializeField] private Vector2 playerSpawnPosition;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the object that touched this trigger is the Player
-        if (other.CompareTag("Player"))
-        {
-            TutorialManager.Instance?.SetFlag("Basement");
-            // Load the target scene immediately
-            SceneManager.LoadScene(sceneName);
-        }
+        if (!other.CompareTag("Player")) return;
+
+        TutorialManager.Instance?.SetFlag("Basement");
+        GameManager.Instance.ChangeScene(sceneName, playerSpawnPosition);
     }
 }

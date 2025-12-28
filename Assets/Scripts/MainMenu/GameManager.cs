@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Services.Authentication;
+using System.Threading.Tasks;
 
 /// <summary>
 /// Central controller for the game’s global state.
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("[GameManager] NEW GAME clicked -> deleting old save");
         SaveSystem.Delete();
+        _ = DeleteCloudSafe();
 
         var sm = FindFirstObjectByType<SeasonManager>();
         if (sm != null) sm.ResetForNewGame();
@@ -114,7 +117,10 @@ public class GameManager : MonoBehaviour
             tutorialCompleted = false,
             sampleSceneGuideDone = false,
             worldMapGuideDone = false,
-            cellarGuideDone = false,
+            wineGuideDone = false,
+            basementGuideDone = false,
+            wineryReceptionGuideDone = false,
+
 
             inventory = new List<InventoryItem>(),
             ownedBarrels = new List<OwnedBarrelData>(),
@@ -167,16 +173,50 @@ public class GameManager : MonoBehaviour
         SaveGame();
     }
 
-    public void ContinueGame()
+    public async void ContinueGame()
     {
         Debug.Log("[GameManager] CONTINUE clicked");
-
         TutorialManager.tutorialIsRunning = false;
 
-        var loaded = SaveSystem.Load();
+        Debug.Log("[GameManager] IsSignedIn=" + AuthenticationService.Instance.IsSignedIn);
+
+        GameData loaded = null;
+
+        try
+        {
+            if (AuthenticationService.Instance.IsSignedIn)
+            {
+                var json = await CloudSaveSystem.LoadStringAsync("savegame");
+
+                if (!string.IsNullOrEmpty(json))
+                {
+                    loaded = JsonUtility.FromJson<GameData>(json);
+                    Debug.Log("[GameManager] Loaded from CLOUD (key=savegame). jsonLen=" + json.Length);
+                }
+                else
+                {
+                    Debug.LogWarning("[GameManager] CLOUD returned empty/null for key=savegame -> fallback to LOCAL");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("[GameManager] Not signed in -> skip CLOUD -> fallback to LOCAL");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning("[GameManager] Cloud load failed -> fallback to LOCAL. " + e.Message);
+        }
+
         if (loaded == null)
         {
-            Debug.LogWarning("[GameManager] No saved game found. Cannot continue.");
+            loaded = SaveSystem.Load();
+            Debug.Log("[GameManager] Loaded from LOCAL (savegame.json)");
+        }
+
+        if (loaded == null)
+        {
+            Debug.LogWarning("[GameManager] No saved game found (cloud+local). Cannot continue.");
             return;
         }
 
@@ -186,9 +226,7 @@ public class GameManager : MonoBehaviour
         if (Data.stolenRecipeIds == null) Data.stolenRecipeIds = new List<string>();
         if (Data.raidLog == null) Data.raidLog = new List<string>();
 
-        // ✅ הוספה: אתחול קווטה אחרי שטענת Data מהשמירה
         ActionQuotaManager.Instance?.InitializeForCurrentProfile();
-
         EnemyRaidManager.Instance?.ScheduleRaidOnNextSceneLoad("continue");
 
         Debug.Log("[GameManager] Continue unlockedRecipeIds = " + string.Join(", ", Data.unlockedRecipeIds));
@@ -204,6 +242,9 @@ public class GameManager : MonoBehaviour
             );
         }
     }
+
+
+
 
     // ------------------------------
     // SCENES / SAVE
@@ -248,8 +289,10 @@ public class GameManager : MonoBehaviour
             Data.unlockedRecipeIds = new List<string>();
 
         SaveSystem.Save(Data);
+        _ = SaveCloudSafe();
         PlantManager.Instance?.SaveAll();
     }
+
 
     // ------------------------------
     // MONEY
@@ -293,6 +336,22 @@ public class GameManager : MonoBehaviour
 
         return true;
     }
+    private async Task DeleteCloudSafe()
+    {
+        try
+        {
+            if (!AuthenticationService.Instance.IsSignedIn)
+                return;
+
+            await CloudSaveSystem.DeleteAsync("savegame");
+            Debug.Log("[GameManager] Cloud Delete OK");
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning("[GameManager] Cloud Delete failed: " + e.Message);
+        }
+    }
+
 
     private void OnApplicationQuit()
     {
@@ -307,4 +366,21 @@ public class GameManager : MonoBehaviour
         Debug.Log("[GameManager] OnApplicationPause Pause=" + pause);
         if (pause) SaveGame();
     }
+    private async Task SaveCloudSafe()
+    {
+        try
+        {
+            if (!AuthenticationService.Instance.IsSignedIn)
+                return;
+
+            await CloudSaveSystem.SaveStringAsync("savegame", JsonUtility.ToJson(Data, true));
+
+            Debug.Log("[GameManager] Cloud Save OK");
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning("[GameManager] Cloud Save failed: " + e.Message);
+        }
+    }
+
 }

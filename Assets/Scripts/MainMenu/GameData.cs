@@ -64,7 +64,9 @@ public class GameData
     public bool tutorialCompleted;       // General tutorial finished?
     public bool sampleSceneGuideDone;    // Intro scene guide completed?
     public bool worldMapGuideDone;       // World map guide completed?
-    public bool cellarGuideDone;         // Cellar usage guide completed?
+    public bool wineGuideDone;
+    public bool basementGuideDone;
+    public bool wineryReceptionGuideDone;
 }
 
 
