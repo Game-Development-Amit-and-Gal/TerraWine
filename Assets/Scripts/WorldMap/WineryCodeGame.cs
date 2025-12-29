@@ -27,7 +27,7 @@ public class WineryCodeGameAuto : MonoBehaviour
     [SerializeField] private Color colorGray = new Color(0.65f, 0.65f, 0.65f, 1f);
     [SerializeField] private Color colorPurple = new Color(0.65f, 0.35f, 0.90f, 1f);
     [SerializeField] private Color colorGreen = new Color(0.25f, 0.85f, 0.35f, 1f);
-    [SerializeField] private WorldMapPanelSwitcher panelSwitcher; 
+    [SerializeField] private WorldMapPanelSwitcher panelSwitcher;
     private bool canCloseWithEsc = false;
 
     private Transform[] rowRoots;
@@ -81,6 +81,7 @@ public class WineryCodeGameAuto : MonoBehaviour
 
     public void StartNewGame()
     {
+        int start_row = 0;
         attemptIndex = 0;
         secret = GenerateSecret();
         canCloseWithEsc = false;
@@ -101,7 +102,7 @@ public class WineryCodeGameAuto : MonoBehaviour
         if (statusText != null) statusText.text = "נחשי 3 ספרות (0-9) ואז Submit";
         submitButton.interactable = true;
 
-        FocusRow(0);
+        FocusRow(start_row);
     }
 
     private void OnSubmit()
@@ -236,7 +237,7 @@ public class WineryCodeGameAuto : MonoBehaviour
         // ירוקים
         for (int i = 0; i < digits; i++)
         {
-            if (guess[i] == sec[i]) result[i] = 2;
+            if (guess[i] == sec[i]) result[i] = 2; // 2 is green in our case
             else count[sec[i]]++;
         }
 
