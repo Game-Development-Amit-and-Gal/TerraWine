@@ -11009,6 +11009,8 @@ MonoBehaviour:
   useTrigger: 1
   sellPanel: {fileID: 0}
   summaryText: {fileID: 0}
+  clickMover: {fileID: 0}
+  regularMover: {fileID: 0}
 --- !u!61 &8592138513267778830
 BoxCollider2D:
   m_ObjectHideFlags: 0
