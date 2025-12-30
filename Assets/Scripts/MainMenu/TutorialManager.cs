@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Services.Analytics;
 
 /// <summary>
 /// Manages in-game tutorials across multiple scenes.
@@ -795,6 +796,8 @@ public class TutorialManager : MonoBehaviour
 
             // Mark this scene's guide as completed.
             MarkSceneGuideDone(currentSceneName, data);
+            MyAnalytics.SendTutorialSceneCompleted(currentSceneName);
+
 
             // Check if all scene guides are done.
             bool allDone =
@@ -806,8 +809,12 @@ public class TutorialManager : MonoBehaviour
 
 
 
-            if (allDone)
+            if (allDone && !data.tutorialCompleted)
+            {
                 data.tutorialCompleted = true;
+                MyAnalytics.SendTutorialCompleted(); 
+            }
+
 
             // Save the updated data.
             GameManager.Instance.SaveGame();
