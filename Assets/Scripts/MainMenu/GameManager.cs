@@ -288,6 +288,7 @@ public class GameManager : MonoBehaviour
         if (Data.unlockedRecipeIds == null)
             Data.unlockedRecipeIds = new List<string>();
 
+
         SaveSystem.Save(Data);
         _ = SaveCloudSafe();
         PlantManager.Instance?.SaveAll();
@@ -336,6 +337,8 @@ public class GameManager : MonoBehaviour
 
         return true;
     }
+
+ 
     private async Task DeleteCloudSafe()
     {
         try
@@ -382,5 +385,26 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("[GameManager] Cloud Save failed: " + e.Message);
         }
     }
+
+
+
+    //ADDED BY CHATGPT 31.12
+    public void AddItemsAndSave(IEnumerable<(string itemId, int amount)> items)
+    {
+        if (InventoryManager.Instance == null)
+        {
+            Debug.LogWarning("[GameManager] AddItemsAndSave: no InventoryManager.");
+            return;
+        }
+
+        foreach (var it in items)
+        {
+            if (string.IsNullOrWhiteSpace(it.itemId) || it.amount <= 0) continue;
+            InventoryManager.Instance.Add(it.itemId, it.amount);
+        }
+
+        SaveGame(); // one local save + one cloud save
+    }
+
 
 }

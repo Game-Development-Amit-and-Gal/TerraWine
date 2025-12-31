@@ -38,6 +38,8 @@ public class InventoryManager : MonoBehaviour
         onChanged?.Invoke();  // Updates UI automatically if assigned
     }
 
+
+
     #region API
     public bool Add(string id, int amount = 1)
     {
@@ -177,8 +179,9 @@ public class InventoryManager : MonoBehaviour
 
         return allAdded; 
     }
-   
-    
+
+
+
 
 
     public void ResetAll()
