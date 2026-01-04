@@ -145,13 +145,7 @@ public class BarrelUI : MonoBehaviour
             // Update button label (searches inactive children too)
             var label = btn.GetComponentInChildren<TMP_Text>(true);
             if (label != null)
-            {
                 label.text = string.IsNullOrWhiteSpace(r.wineName) ? r.id : r.wineName;
-            }
-            else
-            {
-                Debug.LogWarning("[BarrelUI] RecipeButton prefab has NO TMP_Text child. (Button text won't update)");
-            }
 
             // Make sure listeners don't stack
             btn.onClick.RemoveAllListeners();
@@ -160,11 +154,17 @@ public class BarrelUI : MonoBehaviour
             btn.onClick.AddListener(() =>
             {
                 if (debugLogs) Debug.Log("[BarrelUI] Click recipe id = " + rid);
+
                 selectedRecipeId = rid;
+
+                // ✅ Flag only when clicking the specific recipe
+                if (rid == "Young_Cabernet")
+                    TutorialManager.Instance?.SetFlag("Young Cabernet");
+
                 RefreshDetails();
             });
 
-            // Auto-select the first recipe
+            // Auto-select the first recipe (but DOES NOT trigger the flag)
             if (string.IsNullOrWhiteSpace(selectedRecipeId))
                 selectedRecipeId = rid;
         }
@@ -174,6 +174,7 @@ public class BarrelUI : MonoBehaviour
         if (debugLogs)
             Debug.Log("========== [BarrelUI] BuildList END ==========");
     }
+
 
     private void RefreshDetails()
     {
@@ -261,7 +262,7 @@ public class BarrelUI : MonoBehaviour
         detailsText.text = sb.ToString();
 
         if (confirmButton != null)
-            TutorialManager.Instance?.SetFlag("Young Cabernet");
+            
             confirmButton.interactable = hasAll && outp.bottleItem != null;
     }
 

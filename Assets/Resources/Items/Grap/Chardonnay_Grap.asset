@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Chardonnay_Grap
   displayName: Chardonnay Grap
-  icon: {fileID: -2474326463405404903, guid: ae0e854dd29991241b2d67dc0a837648, type: 3}
+  icon: {fileID: 21300000, guid: ae0e854dd29991241b2d67dc0a837648, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

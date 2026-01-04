@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Petit_verdot_Grap
   displayName: 'Petit verdot '
-  icon: {fileID: 7794159406338443351, guid: fa1b41456f9967c409ea2a9870fb8f3b, type: 3}
+  icon: {fileID: 21300000, guid: fa1b41456f9967c409ea2a9870fb8f3b, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

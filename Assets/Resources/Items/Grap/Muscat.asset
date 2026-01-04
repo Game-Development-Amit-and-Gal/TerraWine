@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302182c9ff20b604d9d22ed6aff13dd0, type: 3}
   m_Name: Muscat
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  id: Muscat
+  id: Muscat_Grap
   displayName: Muscat
-  icon: {fileID: -332323998995242468, guid: 46372e1433cc6c642bd3f41857604eba, type: 3}
+  icon: {fileID: 21300000, guid: 46372e1433cc6c642bd3f41857604eba, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

@@ -15,6 +15,11 @@ public class WorldMapPanelSwitcher : MonoBehaviour
     [SerializeField] private int maxBottleSteal = 4;        // 0-4
     [SerializeField] private int maxGrapeSeedSteal = 20;    // 0-20
 
+    [Header("MiniGame Scene")]
+    [SerializeField] private string closingWallSceneName = "ClosingWallMiniGame";
+    [SerializeField] private Vector2 miniGamePlayerSpawnPos = Vector2.zero;
+
+
     // נטען לפי תיקיות בתוך Resources/Items
     private ItemSO[] bottleItems;
     private ItemSO[] seedItems;
@@ -69,78 +74,25 @@ public class WorldMapPanelSwitcher : MonoBehaviour
     {
         if (!TrySpendOneAction()) return;
 
-        var inv = InventoryManager.Instance;
-        if (inv == null) { SetMsg("אין InventoryManager בסצנה."); return; }
+        // אופציונלי: הודעה / סגירת UI
+        SetMsg("מתחילים מיני-גיים לגניבת ענבים/זרעים...");
 
-        int total = Random.Range(0, maxGrapeSeedSteal + 1); // 0..20
-        if (total == 0) { SetMsg("לא נגנב כלום הפעם."); return; }
+        // חשוב: מתחילים ניסיון חדש נקי (לוט זמני)
+        MiniGameLootBuffer.Instance?.Clear();
 
-        bool pickSeeds = Random.value < 0.5f;
-        var pool = pickSeeds ? seedItems : grapItems;
-
-        if (pool == null || pool.Length == 0)
+        // מעבר סצנה "כמו WorldMapZone"
+        if (GameManager.Instance != null)
         {
-            SetMsg(pickSeeds
-                ? "לא נמצאו Items בתיקייה Resources/Items/Seed."
-                : "לא נמצאו Items בתיקייה Resources/Items/Grap.");
-            return;
+            GameManager.Instance.ChangeScene(closingWallSceneName, miniGamePlayerSpawnPos);
         }
-
-        // ✅ k = 1/2/3 בהסתברות שווה (1/3)
-        int k = Random.Range(1, 4); // 1..3
-        k = Mathf.Min(k, pool.Length);
-
-        // לבחור k שונים
-        var available = new List<ItemSO>(pool);
-        var chosen = new List<ItemSO>();
-        for (int i = 0; i < k; i++)
+        else
         {
-            int idx = Random.Range(0, available.Count);
-            chosen.Add(available[idx]);
-            available.RemoveAt(idx);
+            Debug.LogWarning("[WorldMapPanelSwitcher] GameManager.Instance is null — cannot change scene.");
+            // fallback אם אין GameManager
+            UnityEngine.SceneManagement.SceneManager.LoadScene(closingWallSceneName);
         }
-
-        // לחלק את total בין k (כל אחד לפחות 1)
-        int[] amounts = new int[k];
-        int remaining = total;
-
-        for (int i = 0; i < k; i++)
-        {
-            amounts[i] = 1;
-            remaining--;
-            if (remaining <= 0) { remaining = 0; break; }
-        }
-
-        while (remaining > 0)
-        {
-            amounts[Random.Range(0, k)]++;
-            remaining--;
-        }
-
-        // להוסיף לאינבנטורי + לבנות פירוט
-        int addedTotal = 0;
-        var parts = new List<string>();
-
-        for (int i = 0; i < k; i++)
-        {
-            if (amounts[i] <= 0) continue;
-
-            bool ok = inv.Add(chosen[i].id, amounts[i]);
-            if (!ok) break;
-
-            addedTotal += amounts[i];
-            parts.Add($"{chosen[i].id} x{amounts[i]}");
-        }
-
-        if (addedTotal <= 0)
-        {
-            SetMsg("התיק מלא, לא הצלחתי להוסיף את השלל.");
-            return;
-        }
-
-        string typeName = pickSeeds ? "זרעים" : "ענבים";
-        SetMsg($"נגנבו {addedTotal} {typeName} מתוך {k} סוגים: {string.Join(", ", parts)}");
     }
+
 
     public void OpenActionsPanel()
     {

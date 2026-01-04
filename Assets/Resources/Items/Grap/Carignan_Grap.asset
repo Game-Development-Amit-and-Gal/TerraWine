@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Carignan_Grap
   displayName: Carignan Grap
-  icon: {fileID: -7380244599877616279, guid: 34a1e0ca6228f26459a6bf51dd412296, type: 3}
+  icon: {fileID: 21300000, guid: 34a1e0ca6228f26459a6bf51dd412296, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

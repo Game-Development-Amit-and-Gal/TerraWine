@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Sauvignon_Blanc_Grap
   displayName: Sauvignon Blanc
-  icon: {fileID: -2474326463405404903, guid: 0dbf741f35f99364b8a1b10743f6c91e, type: 3}
+  icon: {fileID: 21300000, guid: 0dbf741f35f99364b8a1b10743f6c91e, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

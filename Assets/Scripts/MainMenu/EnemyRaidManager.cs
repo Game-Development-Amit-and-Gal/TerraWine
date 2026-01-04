@@ -16,6 +16,10 @@ public class EnemyRaidManager : MonoBehaviour
     [SerializeField] private string raidAllowedScene = "SampleScene";
     [SerializeField] private LoadSceneMode raidAllowedMode = LoadSceneMode.Single;
     [SerializeField] private bool clearPendingOnMainMenu = true;
+    [Header("Raid UI (SampleScene)")]
+    [SerializeField] private string stolerPanelPath = "UI/Stoler/Panel";
+    [SerializeField] private bool showStolerPanelOnSuccessfulRaid = true;
+
 
     [Header("Raid start timing (important)")]
     [Tooltip("How many frames to wait after sceneLoaded before trying the raid. Helps PlantManager/plots finish loading.")]
@@ -257,6 +261,11 @@ public class EnemyRaidManager : MonoBehaviour
         }
 
         gm.SaveGame();
+        if (stolenCount > 0)
+        {
+            TryShowStolerPanel(reason, stolenCount);
+        }
+
         Log($"[Raid] Raid finished. stolenCount={stolenCount}, reason='{reason}', scene='{SceneManager.GetActiveScene().name}'");
     }
 
@@ -438,4 +447,46 @@ public class EnemyRaidManager : MonoBehaviour
 
         Debug.Log("[Raid] " + msg);
     }
+    private void TryShowStolerPanel(string reason, int stolenCount)
+    {
+        if (!showStolerPanelOnSuccessfulRaid) return;
+
+        var active = SceneManager.GetActiveScene();
+        if (!string.Equals(active.name, raidAllowedScene, StringComparison.OrdinalIgnoreCase))
+            return;
+
+        var panel = FindInSceneByPath(stolerPanelPath);
+        if (panel == null)
+        {
+            Log($"[Raid] Stoler panel NOT found at path '{stolerPanelPath}'.");
+            return;
+        }
+
+        panel.SetActive(true);
+        Log($"[Raid] Stoler panel ON. reason='{reason}', stolenCount={stolenCount}");
+    }
+
+    private GameObject FindInSceneByPath(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path)) return null;
+
+        // תומך ב "UI/Stoler"
+        var parts = path.Split('/');
+        Transform current = null;
+
+        // root object
+        var rootGo = GameObject.Find(parts[0]);
+        if (rootGo == null) return null;
+
+        current = rootGo.transform;
+
+        for (int i = 1; i < parts.Length; i++)
+        {
+            current = current.Find(parts[i]);
+            if (current == null) return null;
+        }
+
+        return current.gameObject;
+    }
+
 }

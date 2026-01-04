@@ -2,55 +2,64 @@
 
 public class CameraFollowX : MonoBehaviour
 {
-    /// <summary>
-    /// The transform the camera will follow (usually the Player).
-    /// </summary>
+    [Header("Target")]
+    [Tooltip("The transform the camera will follow (usually the Player).")]
     public Transform target;
 
-    /// <summary>
-    /// Horizontal offset from the player.
-    /// Useful when you want the player to appear slightly left/right on screen
-    /// instead of centered exactly.
-    /// </summary>
+    [Header("Follow")]
+    [Tooltip("Horizontal offset from the player (player appears slightly left/right).")]
     public float offsetX = 0f;
 
-    /// <summary>
-    /// Smoothness of the camera movement.
-    /// 0 = instant snap, high values = slower and smoother follow.
-    /// </summary>
+    [Tooltip("Smoothness of the camera movement. Higher = smoother, 0 = snap.")]
     public float smooth = 5f;
 
-    /// <summary>
-    /// LateUpdate is used to update the camera
-    /// after the player has moved for the current frame,
-    /// preventing jitter or lag from physics or animations.
-    /// </summary>
+    [Header("Limits (Optional)")]
+    [Tooltip("Enable X limits for the camera movement.")]
+    public bool useLimits = false;
+
+    [Tooltip("Minimum X value the camera can reach.")]
+    public float minX = -10f;
+
+    [Tooltip("Maximum X value the camera can reach.")]
+    public float maxX = 10f;
+
     void LateUpdate()
     {
-        // If no target is assigned, do nothing.
         if (target == null)
             return;
 
-        /// <summary>
-        /// Copy the current camera position (so we keep Y and Z unchanged).
-        /// </summary>
         Vector3 pos = transform.position;
 
-        /// <summary>
-        /// Compute the desired horizontal position:
-        /// player's X location + optional offset.
-        /// </summary>
+        // Desired X follow position
         float targetX = target.position.x + offsetX;
 
-        /// <summary>
-        /// Smoothly interpolate (lerp) only along the X axis.
-        /// Keeps camera motion smooth and avoids sudden jumps.
-        /// </summary>
-        pos.x = Mathf.Lerp(pos.x, targetX, smooth * Time.deltaTime);
+        // Optional clamp to limits
+        if (useLimits)
+            targetX = Mathf.Clamp(targetX, minX, maxX);
 
-        /// <summary>
-        /// Apply the updated position back to the camera.
-        /// </summary>
+        // Smooth follow only on X
+        if (smooth <= 0f)
+            pos.x = targetX; // snap
+        else
+            pos.x = Mathf.Lerp(pos.x, targetX, smooth * Time.deltaTime);
+
         transform.position = pos;
     }
+
+#if UNITY_EDITOR
+    // Nice: show limits in Scene view when selected
+    private void OnDrawGizmosSelected()
+    {
+        if (!useLimits) return;
+
+        Gizmos.color = Color.yellow;
+
+        // Draw two vertical lines at minX and maxX at camera's current Y
+        float y = transform.position.y;
+        float z = transform.position.z;
+
+        Gizmos.DrawLine(new Vector3(minX, y - 50f, z), new Vector3(minX, y + 50f, z));
+        Gizmos.DrawLine(new Vector3(maxX, y - 50f, z), new Vector3(maxX, y + 50f, z));
+    }
+#endif
 }

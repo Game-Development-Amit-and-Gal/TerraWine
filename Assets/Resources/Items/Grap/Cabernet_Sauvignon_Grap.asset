@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Cabernet_Sauvignon_Grap
   displayName: Cabernet Sauvignon
-  icon: {fileID: 2719153232368109570, guid: c0f135678b8eb1941bab89ed0bf4dbb0, type: 3}
+  icon: {fileID: 21300000, guid: c0f135678b8eb1941bab89ed0bf4dbb0, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

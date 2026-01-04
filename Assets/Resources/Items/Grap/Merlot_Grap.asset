@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Merlo_Grap
   displayName: Merlo Grap
-  icon: {fileID: 8166710274925509176, guid: 9fa626accc8dcf64ea67551d40a915c3, type: 3}
+  icon: {fileID: 3428111270604309379, guid: 7629d53d1ff89da4db86b4a1ac4df69f, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

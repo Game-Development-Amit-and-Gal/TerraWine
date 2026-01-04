@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b483ec16153efb74fb2398848c9e3d74, type: 3}
+  m_Name: Barrel & Thorn Winery
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyItemSO
+  enemyName: Eli Rowan
+  wineryName: Barrel & Thorn Winery
+  portrait: {fileID: 2039115205, guid: b090c1ab516757345816532418965606, type: 3}
+  caughtPortrait: {fileID: 1995885827, guid: 2739b9ebf1029fb49968bde07bc0f86c, type: 3}
+  isCaught: 0
+  apronColor: 0
+  leftHandItem: 0
+  rightHandItem: 0
+  shirtPattern: 0

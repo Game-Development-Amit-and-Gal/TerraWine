@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Colombard_Grap
   displayName: Colombard Grap
-  icon: {fileID: 3010051013469113003, guid: 3e559f2caa7b9a14995cc41f4e8acaaf, type: 3}
+  icon: {fileID: 21300000, guid: 3e559f2caa7b9a14995cc41f4e8acaaf, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

@@ -442,7 +442,7 @@ MonoBehaviour:
       message: "Now it\u2019s time \nto plant some seeds.\nIn the vineyard, \nclick
         on one of the seeds."
       targetObjectName: Player
-      arrowOffset: {x: -900, y: 400}
+      arrowOffset: {x: -900, y: 250}
       hideSceneUI: 0
       overridePanelChoice: 1
       panelChoice: 1
@@ -563,10 +563,10 @@ MonoBehaviour:
       showWorldPaths: []
       message: "Go to the Basement \nusing the arrow keys."
       targetObjectName: Player
-      arrowOffset: {x: 800, y: -400}
+      arrowOffset: {x: 1400, y: -400}
       hideSceneUI: 1
       overridePanelChoice: 1
-      panelChoice: 1
+      panelChoice: 2
       nextMode: 2
       secondsToAutoNext: 0
       requiredFlagName: Basement
@@ -583,7 +583,7 @@ MonoBehaviour:
       arrowOffset: {x: 200, y: 200}
       hideSceneUI: 1
       overridePanelChoice: 1
-      panelChoice: 1
+      panelChoice: 2
       nextMode: 2
       secondsToAutoNext: 0
       requiredFlagName: Rightdoor
@@ -597,10 +597,10 @@ MonoBehaviour:
       showWorldPaths: []
       message: Press the barrel
       targetObjectName: Player
-      arrowOffset: {x: 900, y: 100}
+      arrowOffset: {x: -500, y: 100}
       hideSceneUI: 0
       overridePanelChoice: 1
-      panelChoice: 2
+      panelChoice: 1
       nextMode: 2
       secondsToAutoNext: 0
       requiredFlagName: barrel
@@ -611,7 +611,7 @@ MonoBehaviour:
       showWorldPaths: []
       message: Press the Young Cabernet
       targetObjectName: Player
-      arrowOffset: {x: 200, y: 400}
+      arrowOffset: {x: 100, y: 550}
       hideSceneUI: 0
       overridePanelChoice: 1
       panelChoice: 2
@@ -625,7 +625,7 @@ MonoBehaviour:
       showWorldPaths: []
       message: Press confirm
       targetObjectName: Player
-      arrowOffset: {x: 200, y: 400}
+      arrowOffset: {x: 200, y: -200}
       hideSceneUI: 0
       overridePanelChoice: 1
       panelChoice: 2
@@ -639,10 +639,10 @@ MonoBehaviour:
       showWorldPaths: []
       message: Press the barrel
       targetObjectName: Player
-      arrowOffset: {x: 900, y: 100}
+      arrowOffset: {x: -500, y: 100}
       hideSceneUI: 0
       overridePanelChoice: 1
-      panelChoice: 2
+      panelChoice: 1
       nextMode: 2
       secondsToAutoNext: 0
       requiredFlagName: Readybarrel
@@ -2079,6 +2079,8 @@ MonoBehaviour:
   raidAllowedScene: SampleScene
   raidAllowedMode: 0
   clearPendingOnMainMenu: 1
+  stolerPanelPath: UI/Stoler/Panel
+  showStolerPanelOnSuccessfulRaid: 1
   waitFramesBeforeRaid: 2
   extraDelaySeconds: 0
   waitTimeoutSeconds: 2
@@ -5027,7 +5029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   mainMenuCanvas: {fileID: 1775925191}
   mainMenuRoot: {fileID: 1821054806}
-  playIntro: 1
+  playIntro: 0
   introVideoPlayer: {fileID: 1222537245}
   introFileName: game_video.mp4
 --- !u!4 &2133828406 stripped
