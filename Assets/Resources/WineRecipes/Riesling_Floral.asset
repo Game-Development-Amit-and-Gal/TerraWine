@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab48d64a5a8b6ef4da3c7538aa3bbfe6, type: 3}
+  m_Name: Riesling_Floral
+  m_EditorClassIdentifier: Assembly-CSharp::WineRecipeSO
+  id: Riesling_Floral
+  wineName: Riesling Floral
+  barrelPrefab: {fileID: 0}
+  barrelIcon: {fileID: 0}
+  grapes:
+  - itemName: Riesling_Grap
+    amount: 10
+  semiDry:
+    timeSeconds: 0
+    bottleItem: {fileID: 11400000, guid: 99cf74a1f747cd24b9f5b9fbf8307835, type: 2}
+    bottleAmount: 1
+    rating: 1
+  dry:
+    timeSeconds: 0
+    bottleItem: {fileID: 11400000, guid: fcdb0874ab4d0a64e99c325070fc6e25, type: 2}
+    bottleAmount: 1
+    rating: 1
+  defaultBottleAmount: 1
+  defaultRating: 5
+  defaultGrapeAmount: 1

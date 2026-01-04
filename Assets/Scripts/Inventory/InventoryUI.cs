@@ -61,6 +61,7 @@ public class InventoryUI : MonoBehaviour
 
         // Stop listening to inventory change events when UI is hidden
         InventoryManager.Instance.onChanged.RemoveListener(Redraw);
+        InventoryTooltipUI.Instance?.Hide();
 
         // Hide any bottom UI sections when the panel closes
         SetExtraUiActive(false);
@@ -78,6 +79,7 @@ public class InventoryUI : MonoBehaviour
         {
             // Show standard category bottoms when inventory is active
             if (ResourcesBottom != null)
+                TutorialManager.Instance?.SetFlag("Bag Open");
                 ResourcesBottom.SetActive(active);
 
             if (WineBottlesBottom != null)
@@ -120,8 +122,11 @@ public class InventoryUI : MonoBehaviour
     public void Toggle()
     {
         // Flip the panel’s current visibility state (open ↔ closed)
+        InventoryTooltipUI.Instance?.Hide();
         bool newState = !panel.activeSelf;
+        bool tutorialState = true;
 
+        SetOpenBagTutorial(tutorialState, panel);
         // Apply the new visibility to the main inventory panel
         panel.SetActive(newState);
 
@@ -141,6 +146,8 @@ public class InventoryUI : MonoBehaviour
         // Show the bottom UI sections as well
         SetExtraUiActive(true);
 
+
+
         // Refresh the inventory display immediately
         Redraw();
     }
@@ -150,6 +157,8 @@ public class InventoryUI : MonoBehaviour
     {
         // Hide the inventory panel
         panel.SetActive(false);
+        TutorialManager.Instance?.SetFlag("Bag Close");
+        InventoryTooltipUI.Instance?.Hide();
 
         // Hide the bottom UI sections as well
         SetExtraUiActive(false);
@@ -175,6 +184,7 @@ public class InventoryUI : MonoBehaviour
     {
         // Switch the active tab/category to Resources
         currentCategory = ItemCategory.Resources;
+        
 
         // Refresh the UI to display only items from this category
         Redraw();
@@ -301,7 +311,7 @@ public class InventoryUI : MonoBehaviour
                     {
                         int totalValue = so.price * s.amount;
                         if (priceTxt != null)
-                            priceTxt.text = $"₪{totalValue}";
+                            priceTxt.text = $"{totalValue}";
 
 
                         if (priceIcon != null)
@@ -349,6 +359,15 @@ public class InventoryUI : MonoBehaviour
                     click.iconImage = img;
                 }
             }
+        }
+    }
+   public static void SetOpenBagTutorial(bool openBagTutorial,GameObject panel)
+    {
+        if (panel.CompareTag("BAG"))
+        {
+            // for tutorial level 
+            bool check = InventoryManager.openedBagGardenTutorial = openBagTutorial;
+            Debug.Log("Value of BAG is changed from " + check + " Into " + !check);
         }
     }
 }

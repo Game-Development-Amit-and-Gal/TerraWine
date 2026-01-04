@@ -1,148 +1,292 @@
-﻿// Assets/Scripts/Barrels/BarrelUI.cs
-using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
-/// <summary>
-/// Controls the UI for selecting how many grapes to use in a barrel
-/// and whether the produced wine will be dry or semi-dry.
-/// </summary>
 public class BarrelUI : MonoBehaviour
 {
-    [SerializeField] private GameObject panel;       // UI panel that pops up for choosing settings
-    [SerializeField] private TMP_Text grapesText;    // Text field showing selected amount of grapes
-    [SerializeField] private TMP_Text modeText;      // Text field showing wine style (Dry / Semi-Dry)
+    [Header("Root Panel")]
+    [SerializeField] private GameObject panel;
 
-    Barrel currentBarrel;   // The barrel that is currently being configured through the UI
+    [Header("Recipe List")]
+    [SerializeField] private Transform recipeListRoot;      // Should be: ScrollView/Viewport/Content
+    [SerializeField] private Button recipeButtonPrefab;     // Recipe button prefab
 
-    int maxGrapes;          // Maximum usable grapes (rounded down to BottleSize multiple)
-    int selectedGrapes;     // The currently chosen grape amount by the user
-    bool makeDry = false;   // Wine mode flag: false = Semi-Dry, true = Dry
+    [Header("Details")]
+    [SerializeField] private TMP_Text detailsText;
 
-    /// <summary>
-    /// Opens the UI with a reference to a barrel
-    /// and calculates allowed grape usage based on availability.
-    /// </summary>
-    public void OpenForBarrel(Barrel barrel, int grapesAvailable)
+    [Header("Buttons")]
+    [SerializeField] private Button semiDryButton;
+    [SerializeField] private Button dryButton;
+    [SerializeField] private Button confirmButton;
+    [SerializeField] private Button closeButton;
+
+    [Header("Debug")]
+    [SerializeField] private bool debugLogs = true;
+
+    private Barrel currentBarrel;
+    private string selectedRecipeId;
+    private WineDryness selectedDryness = WineDryness.SemiDry;
+
+    private readonly List<Button> spawned = new();
+
+    private void Start()
     {
-        // Store the target barrel to apply the result later
+        if (panel != null) panel.SetActive(false);
+
+        if (closeButton != null) closeButton.onClick.AddListener(Close);
+
+        if (semiDryButton != null)
+            semiDryButton.onClick.AddListener(() =>
+            {
+                selectedDryness = WineDryness.SemiDry;
+                RefreshDetails();
+            });
+
+        if (dryButton != null)
+            dryButton.onClick.AddListener(() =>
+            {
+                selectedDryness = WineDryness.Dry;
+                RefreshDetails();
+            });
+
+        if (confirmButton != null)
+            confirmButton.onClick.AddListener(OnConfirm);
+    }
+
+    public void OpenForBarrel(Barrel barrel)
+    {
         currentBarrel = barrel;
+        selectedRecipeId = null;
+        selectedDryness = WineDryness.SemiDry;
 
-        // Ensure the player can only use grapes equal to full bottle multiples
-        maxGrapes = (grapesAvailable / barrel.GrapesPerBottle) * barrel.GrapesPerBottle;
+        if (panel != null) panel.SetActive(true);
 
-        // If there aren't enough grapes to make even one bottle, cancel
-        if (maxGrapes <= 0)
+       
+        StartCoroutine(DelayedBuildList());
+    }
+
+    private IEnumerator DelayedBuildList()
+    {
+        yield return null; // ממתין פריים אחד
+        BuildList();
+        RefreshDetails();
+        ForceRebuildListLayout();
+    }
+
+
+    public void Close()
+    {
+        if (panel != null) panel.SetActive(false);
+        currentBarrel = null;
+        selectedRecipeId = null;
+    }
+
+    private void BuildList()
+    {
+        // Clear previous buttons
+        foreach (var b in spawned)
+            if (b != null) Destroy(b.gameObject);
+        spawned.Clear();
+
+        if (confirmButton != null) confirmButton.interactable = false;
+
+        // ---------- Logs ----------
+        if (debugLogs)
         {
-            Debug.Log("[BarrelUI] No grapes to use");
+            Debug.Log("========== [BarrelUI] BuildList ==========");
+
+            Debug.Log("[BarrelUI] currentBarrel = " + (currentBarrel != null ? currentBarrel.name : "NULL"));
+            if (currentBarrel != null)
+                Debug.Log("[BarrelUI] BarrelPrefabName = " + currentBarrel.BarrelPrefabName);
+
+            var unlocked = GameManager.Instance?.Data?.unlockedRecipeIds;
+            Debug.Log("[BarrelUI] unlockedRecipeIds = " +
+                      (unlocked == null ? "NULL" : string.Join(", ", unlocked)));
+
+            Debug.Log("[BarrelUI] RecipeManager.Instance = " + (RecipeManager.Instance != null ? "OK" : "NULL"));
+            Debug.Log("[BarrelUI] recipeListRoot = " + (recipeListRoot != null ? recipeListRoot.name : "NULL"));
+            Debug.Log("[BarrelUI] recipeButtonPrefab = " + (recipeButtonPrefab != null ? recipeButtonPrefab.name : "NULL"));
+        }
+        // --------------------------
+
+        if (RecipeManager.Instance == null || currentBarrel == null) return;
+        if (recipeListRoot == null || recipeButtonPrefab == null) return;
+
+        var recipes = RecipeManager.Instance.GetUnlockedRecipesForBarrel(currentBarrel.BarrelPrefabName);
+
+        if (debugLogs)
+            Debug.Log("[BarrelUI] recipes after barrel filter = " + recipes.Count);
+
+        if (recipes.Count == 0)
+        {
+            if (detailsText != null)
+                detailsText.text = "You have no unlocked recipes that match this barrel.";
+
+            if (debugLogs)
+                Debug.LogWarning("[BarrelUI] No recipes to show (0 after filter).");
+
             return;
         }
 
-        // Start with the minimum usable amount (exactly one bottle)
-        selectedGrapes = barrel.GrapesPerBottle;
+        // Build buttons
+        foreach (var r in recipes)
+        {
+            if (debugLogs)
+                Debug.Log($"[BarrelUI] Show recipe id='{r.id}' name='{r.wineName}' barrelPrefab='{r.barrelPrefab?.name}'");
 
-        // Default wine type: Semi-Dry
-        makeDry = false;
+            var btn = Instantiate(recipeButtonPrefab, recipeListRoot);
+            spawned.Add(btn);
 
-        // Update displayed text before showing the UI
-        RefreshUI();
+            btn.gameObject.SetActive(true);
+            btn.transform.localScale = Vector3.one;
 
-        // Show the UI panel to the player
-        panel.SetActive(true);
+            // Update button label (searches inactive children too)
+            var label = btn.GetComponentInChildren<TMP_Text>(true);
+            if (label != null)
+                label.text = string.IsNullOrWhiteSpace(r.wineName) ? r.id : r.wineName;
+
+            // Make sure listeners don't stack
+            btn.onClick.RemoveAllListeners();
+
+            string rid = r.id;
+            btn.onClick.AddListener(() =>
+            {
+                if (debugLogs) Debug.Log("[BarrelUI] Click recipe id = " + rid);
+
+                selectedRecipeId = rid;
+
+                // ✅ Flag only when clicking the specific recipe
+                if (rid == "Young_Cabernet")
+                    TutorialManager.Instance?.SetFlag("Young Cabernet");
+
+                RefreshDetails();
+            });
+
+            // Auto-select the first recipe (but DOES NOT trigger the flag)
+            if (string.IsNullOrWhiteSpace(selectedRecipeId))
+                selectedRecipeId = rid;
+        }
+
+        ForceRebuildListLayout();
+
+        if (debugLogs)
+            Debug.Log("========== [BarrelUI] BuildList END ==========");
     }
 
-    /// <summary>
-    /// Close the UI window and unlink any active barrel.
-    /// </summary>
-    public void Close()
+
+    private void RefreshDetails()
     {
-        panel.SetActive(false);   // Hide UI panel
-        currentBarrel = null;     // Clear reference so we don't affect something wrongly later
+        if (confirmButton != null) confirmButton.interactable = false;
+        if (detailsText == null) return;
+
+        if (currentBarrel == null)
+        {
+            detailsText.text = "";
+            return;
+        }
+
+        if (RecipeManager.Instance == null)
+        {
+            detailsText.text = "RecipeManager is missing.";
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(selectedRecipeId))
+        {
+            detailsText.text = "Please select a recipe.";
+            return;
+        }
+
+        var recipe = RecipeManager.Instance.GetRecipe(selectedRecipeId);
+        if (recipe == null)
+        {
+            detailsText.text = "Recipe was not loaded (check Resources/WineRecipes + id).";
+            if (debugLogs) Debug.LogWarning("[BarrelUI] GetRecipe returned NULL for id=" + selectedRecipeId);
+            return;
+        }
+
+        bool hasAll = true;
+        System.Text.StringBuilder sb = new();
+
+        sb.AppendLine($"{(string.IsNullOrWhiteSpace(recipe.wineName) ? recipe.id : recipe.wineName)}");
+        sb.AppendLine($"{selectedDryness}");
+        sb.AppendLine("");
+
+        
+        if (InventoryManager.Instance == null)
+        {
+            sb.AppendLine("No InventoryManager in the scene.");
+            hasAll = false;
+        }
+        else
+        {
+            foreach (var ing in recipe.grapes)
+            {
+                string id = ing.itemName;
+                if (string.IsNullOrWhiteSpace(id))
+                {
+                    hasAll = false;
+                    sb.AppendLine("- (Missing itemName in recipe)");
+                    continue;
+                }
+
+                int have = InventoryManager.Instance.CountOf(id);
+                bool ok = have >= ing.amount;
+                if (!ok) hasAll = false;
+
+                var def = InventoryManager.Instance.GetDefinition(id);
+                string nice = def != null ? def.displayName : null;
+
+                if (!string.IsNullOrWhiteSpace(nice))
+                {
+                    sb.AppendLine($"{nice}");
+                    sb.AppendLine($"need {ing.amount}, have {have}");
+                }
+                else
+                {
+                    sb.AppendLine($"need {ing.amount}, have {have}");
+                }
+            }
+        }
+
+        sb.AppendLine("");
+        var outp = recipe.GetOutput(selectedDryness);
+
+        string bottleId = (outp.bottleItem != null) ? outp.bottleItem.id : "(NO BOTTLE ITEM)";
+        sb.AppendLine($"Time: {outp.timeSeconds} seconds");
+        
+       
+
+        detailsText.text = sb.ToString();
+
+        if (confirmButton != null)
+            
+            confirmButton.interactable = hasAll && outp.bottleItem != null;
     }
 
-    /// <summary>
-    /// Increase selected grapes in increments of one bottle,
-    /// stopping when the maximum allowed amount is reached.
-    /// </summary>
-    public void OnMorePressed()
+    private void OnConfirm()
     {
-        if (currentBarrel == null) return; // Safety block
-
-        // Add grapes but never go above maxGrapes
-        selectedGrapes = Mathf.Min(
-            selectedGrapes + currentBarrel.GrapesPerBottle,
-            maxGrapes
-        );
-
-        RefreshUI(); // Refresh displayed number
-    }
-
-    /// <summary>
-    /// Decrease selected grapes in bottle-sized steps,
-    /// but never allow dropping below the minimum needed for one bottle.
-    /// </summary>
-    public void OnLessPressed()
-    {
-        if (currentBarrel == null) return;
-
-        // Reduce grapes but keep it >= 1 bottle
-        selectedGrapes = Mathf.Max(
-            currentBarrel.GrapesPerBottle,
-            selectedGrapes - currentBarrel.GrapesPerBottle
-        );
-
-        RefreshUI();
-    }
-
-    /// <summary>
-    /// Switch to Semi-Dry wine mode.
-    /// </summary>
-    public void OnSemiDryPressed()
-    {
-        makeDry = false; // Update state
-        RefreshUI();     // Update label
-    }
-
-    /// <summary>
-    /// Switch to Dry wine mode.
-    /// </summary>
-    public void OnDryPressed()
-    {
-        makeDry = true;
-        RefreshUI();
-    }
-
-    /// <summary>
-    /// Finalizes user choice and tells the barrel to start aging.
-    /// </summary>
-    public void OnConfirmPressed()
-    {
-        // Safety: If no barrel is selected or no grapes were chosen, just close the UI
-        if (currentBarrel == null || selectedGrapes <= 0)
+        TutorialManager.Instance?.SetFlag("confirm");
+        if (currentBarrel == null || string.IsNullOrWhiteSpace(selectedRecipeId))
         {
             Close();
             return;
         }
 
-        // Tell the barrel to begin the aging process using these settings
-        currentBarrel.StartAging(selectedGrapes, makeDry);
-
-        // Close the UI after confirming
-        Close();
+        bool started = currentBarrel.TryStartRecipe(selectedRecipeId, selectedDryness);
+        if (started) Close();
+        else RefreshDetails();
     }
 
-    /// <summary>
-    /// Updates all text displays based on current settings.
-    /// </summary>
-    void RefreshUI()
+    private void ForceRebuildListLayout()
     {
-        // Update grapes text
-        if (grapesText != null)
-            grapesText.text = selectedGrapes.ToString();
-
-        // Update wine style label
-        if (modeText != null)
-            modeText.text = makeDry
-                ? "Dry (5 minutes)"        // Aging duration shown for clarity
-                : "Semi-Dry (2 minutes)";
+        // Important especially when Content is inside a ScrollView
+        if (recipeListRoot is RectTransform rt)
+        {
+            Canvas.ForceUpdateCanvases();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
+        }
     }
 }

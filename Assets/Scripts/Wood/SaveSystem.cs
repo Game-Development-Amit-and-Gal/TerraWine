@@ -7,46 +7,43 @@ using UnityEngine;
 /// </summary>
 public static class SaveSystem
 {
-    /// <summary>
-    /// Full path to the save file (e.g., ".../AppData/LocalLow/Company/Game/savegame.json").
-    /// Uses Application.persistentDataPath which works on Windows, Mac, Android, etc.
-    /// </summary>
     private static string PathFile =>
         Path.Combine(Application.persistentDataPath, "savegame.json");
 
-    /// <summary>
-    /// Converts the GameData into JSON and writes it to disk.
-    /// </summary>
     public static void Save(GameData data)
     {
-        var json = JsonUtility.ToJson(data, true); // pretty-print for readability
+        Debug.Log($"[SaveSystem] SAVE -> {PathFile}");
+        Debug.Log("[SaveSystem] SAVE unlockedRecipeIds = " +
+                  (data?.unlockedRecipeIds == null ? "NULL" : string.Join(", ", data.unlockedRecipeIds)));
+
+        var json = JsonUtility.ToJson(data, true);
         File.WriteAllText(PathFile, json);
     }
 
-    /// <summary>
-    /// Returns true if the save file exists.
-    /// </summary>
     public static bool HasSave() => File.Exists(PathFile);
 
-    /// <summary>
-    /// Loads save data from the file.
-    /// If no file exists, returns null instead of crashing.
-    /// </summary>
     public static GameData Load()
     {
+        Debug.Log($"[SaveSystem] LOAD -> {PathFile}");
+
         if (!HasSave())
+        {
+            Debug.Log("[SaveSystem] LOAD: no file");
             return null;
+        }
 
         var json = File.ReadAllText(PathFile);
-        return JsonUtility.FromJson<GameData>(json);
+        var d = JsonUtility.FromJson<GameData>(json);
+
+        Debug.Log("[SaveSystem] LOAD unlockedRecipeIds = " +
+                  (d?.unlockedRecipeIds == null ? "NULL" : string.Join(", ", d.unlockedRecipeIds)));
+
+        return d;
     }
 
-    /// <summary>
-    /// Deletes the save file from disk (if it exists).
-    /// Useful for debugging or resetting progress.
-    /// </summary>
     public static void Delete()
     {
+        Debug.Log($"[SaveSystem] DELETE -> {PathFile}");
         if (HasSave())
             File.Delete(PathFile);
     }

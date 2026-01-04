@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 183352119984006331}
   - component: {fileID: 7476030003942526970}
   - component: {fileID: 1001708391286371392}
+  - component: {fileID: -7342553925791610380}
   m_Layer: 0
   m_Name: Tree_Tall
   m_TagString: Untagged
@@ -156,3 +157,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TreeYield
   minYield: 0
   maxYield: 25
+  lowRangeMax: 10
+  lowRangeWeight: 0.7
+  yieldAmount: 0
+--- !u!114 &-7342553925791610380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2356496349320941418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a610fb04299d24a81ff5ce6595f20f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TreeClickHarvest
+  woodItemId: WOOD
+  destroyAfterHarvest: 1

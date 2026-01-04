@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302182c9ff20b604d9d22ed6aff13dd0, type: 3}
+  m_Name: Colombard_Seed
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  id: Colombard_Seed
+  displayName: Colombard
+  icon: {fileID: -6263536802651633628, guid: bcb02297e517e694b97d5ff43553d620, type: 3}
+  stackable: 1
+  maxStack: 99
+  price: 20
+  isSeed: 1
+  isWineBottle: 0
+  category: 0
+  growTimeSeconds: 3
+  harvestItem: {fileID: 11400000, guid: 6943cb6fa977a6a4b94a279397cdb15d, type: 2}
+  harvestAmount: 10
+  plantedPlotSprite: {fileID: 0}
+  readyPlotSprite: {fileID: 3010051013469113003, guid: d157383c89ab3f74fabc19e5ac05f1ec, type: 3}

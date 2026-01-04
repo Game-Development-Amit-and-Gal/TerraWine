@@ -23,6 +23,7 @@ public class InventoryManager : MonoBehaviour
     private List<InventorySlot> slots = new();         // Player's current inventory
 
     public IReadOnlyList<InventorySlot> Slots => slots; // Getter method
+    public static bool openedBagGardenTutorial = false;
 
     void Awake() // Ensures Only one Instance Exists
     {

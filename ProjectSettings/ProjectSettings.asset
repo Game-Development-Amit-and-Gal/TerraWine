@@ -662,7 +662,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -684,10 +690,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 3d8e0bb8-51a7-4e95-9b79-d9b7e999feb0
+  cloudProjectId: d053e1d8-4027-470c-890c-25096c3a3cd0
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: My project (3)
+  projectName: TerraWine
   organizationId: galogimaymon
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

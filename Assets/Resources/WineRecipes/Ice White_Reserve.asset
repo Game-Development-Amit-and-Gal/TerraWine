@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab48d64a5a8b6ef4da3c7538aa3bbfe6, type: 3}
+  m_Name: Ice White_Reserve
+  m_EditorClassIdentifier: Assembly-CSharp::WineRecipeSO
+  id: Ice_White_Reserve
+  wineName: Ice White Reserve
+  barrelPrefab: {fileID: 0}
+  barrelIcon: {fileID: 0}
+  grapes:
+  - itemName: Riesling_Grap
+    amount: 1
+  semiDry:
+    timeSeconds: 0
+    bottleItem: {fileID: 11400000, guid: a2cd5d3a7d734684dbfe4de5a314badb, type: 2}
+    bottleAmount: 1
+    rating: 1
+  dry:
+    timeSeconds: 0
+    bottleItem: {fileID: 11400000, guid: 73abb0ea24dcaca4aae4175a21a5bab1, type: 2}
+    bottleAmount: 1
+    rating: 1
+  defaultBottleAmount: 1
+  defaultRating: 5
+  defaultGrapeAmount: 1

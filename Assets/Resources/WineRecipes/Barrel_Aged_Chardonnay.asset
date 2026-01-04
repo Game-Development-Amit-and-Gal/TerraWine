@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab48d64a5a8b6ef4da3c7538aa3bbfe6, type: 3}
+  m_Name: Barrel_Aged_Chardonnay
+  m_EditorClassIdentifier: Assembly-CSharp::WineRecipeSO
+  id: Barrel_Aged_Chardonnay
+  wineName: Barrel Aged Chardonnay
+  barrelPrefab: {fileID: 0}
+  barrelIcon: {fileID: 0}
+  grapes:
+  - itemName: Chardonnay
+    amount: 10
+  semiDry:
+    timeSeconds: 7200
+    bottleItem: {fileID: 11400000, guid: c3d86c32eb536cb4088b48ed76046a92, type: 2}
+    bottleAmount: 155
+    rating: 8
+  dry:
+    timeSeconds: 13680
+    bottleItem: {fileID: 11400000, guid: 3025ce38a82c0d048b7cfa9036e3878d, type: 2}
+    bottleAmount: 310
+    rating: 10
+  defaultBottleAmount: 1
+  defaultRating: 5
+  defaultGrapeAmount: 1

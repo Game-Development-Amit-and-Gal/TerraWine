@@ -17,6 +17,8 @@ public class PlantPlotSave
     public string seedId;          // ID of planted seed
     public string harvestItemId;   // Item produced from harvest
     public int harvestAmount;      // Amount produced
+    
+
 }
 
 /// <summary>
@@ -47,6 +49,11 @@ public class PlantPlot : MonoBehaviour,
     private bool isGrowing;
     private bool isReady;
     private float remainingTime;
+    // Per-seed visuals (runtime)
+    private Sprite plantedOverrideSprite;
+    private Sprite readyOverrideSprite;
+    public bool IsGrowing => isGrowing;
+    public bool IsReady => isReady;
 
     // Harvest info (set when planting)
     private string seedId;
@@ -79,10 +86,18 @@ public class PlantPlot : MonoBehaviour,
         isReady = false;
         remainingTime = 0f;
 
+        seedId = null;
+        harvestItemId = null;
+        harvestAmount = 0;
+
+        plantedOverrideSprite = null;
+        readyOverrideSprite = null;
+
         if (spriteRenderer != null) spriteRenderer.sprite = emptySprite;
         if (timerText != null) timerText.gameObject.SetActive(false);
         if (readyVfx != null) readyVfx.SetActive(false);
     }
+
 
     /// <summary>
     /// Handles click: harvest if ready, or plant if allowed.
@@ -112,23 +127,21 @@ public class PlantPlot : MonoBehaviour,
     public void StartGrowth(ItemSO seed)
     {
         if (!CanPlant || seed == null || !seed.isSeed) return;
+        TutorialManager.Instance?.SetFlag("Press vineyard");
 
         seedId = seed.id;
         remainingTime = seed.growTimeSeconds;
         harvestItemId = seed.harvestItem != null ? seed.harvestItem.id : null;
         harvestAmount = seed.harvestAmount;
+        plantedOverrideSprite = seed.plantedPlotSprite;
+        readyOverrideSprite = seed.readyPlotSprite;
 
         isGrowing = true;
         isReady = false;
 
         // Change sprite upon planting
         if (spriteRenderer != null)
-        {
-            if (seed.plantedPlotSprite != null)
-                spriteRenderer.sprite = seed.plantedPlotSprite;
-            else
-                spriteRenderer.sprite = plantedSprite;
-        }
+            spriteRenderer.sprite = (plantedOverrideSprite != null) ? plantedOverrideSprite : plantedSprite;
 
         if (readyVfx != null) readyVfx.SetActive(false);
 
@@ -152,9 +165,12 @@ public class PlantPlot : MonoBehaviour,
 
         isGrowing = false;
         isReady = true;
+        TutorialManager.Instance?.SetFlag("Vineyard Redy");
         remainingTime = 0f;
 
-        if (spriteRenderer != null) spriteRenderer.sprite = readySprite;
+        if (spriteRenderer != null)
+            spriteRenderer.sprite = (readyOverrideSprite != null) ? readyOverrideSprite : readySprite;
+
         if (timerText != null) timerText.gameObject.SetActive(false);
         if (readyVfx != null) readyVfx.SetActive(true);
     }
@@ -188,6 +204,7 @@ public class PlantPlot : MonoBehaviour,
         }
 
         bool ok = InventoryManager.Instance.Add(harvestItemId, harvestAmount);
+        TutorialManager.Instance?.SetFlag("Is Ready");
         Debug.Log($"[PlantPlot] Harvested {harvestAmount}x {harvestItemId}, success={ok}");
 
         ResetToEmpty();
@@ -238,17 +255,27 @@ public class PlantPlot : MonoBehaviour,
     /// </summary>
     public void LoadFrom(PlantPlotSave s, float deltaSeconds)
     {
-        if (s == null) return; 
+        if (s == null) return;
 
-        seedId = s.seedId; 
-        harvestItemId = s.harvestItemId;
-        harvestAmount = s.harvestAmount;
+        seedId = s.seedId;
 
         isGrowing = s.isGrowing;
         isReady = s.isReady;
         remainingTime = s.remainingTime;
 
-        // Apply offline progression
+        // אם היה seedId – נשחזר ממנו harvest + sprites
+        // (ואז אין צורך לסמוך על מה ששמור ב-save)
+        TryRestoreFromSeedId();
+
+        // אם משום מה לא הצלחנו לשחזר (למשל InventoryManager לא קיים עדיין),
+        // נשמור לפחות את מה שהיה בקובץ (fallback)
+        if (string.IsNullOrEmpty(harvestItemId))
+            harvestItemId = s.harvestItemId;
+
+        if (harvestAmount <= 0)
+            harvestAmount = s.harvestAmount;
+
+        // Offline progression
         if (isGrowing)
         {
             remainingTime -= deltaSeconds;
@@ -260,25 +287,65 @@ public class PlantPlot : MonoBehaviour,
             }
         }
 
-        // Restore correct visuals
+        // Render state
         if (!isGrowing && !isReady)
         {
             ResetToEmpty();
+            return;
         }
-        else if (isReady)
+
+        if (isReady)
         {
-            if (spriteRenderer != null) spriteRenderer.sprite = readySprite;
+            if (spriteRenderer != null)
+                spriteRenderer.sprite = (readyOverrideSprite != null) ? readyOverrideSprite : readySprite;
+
             if (timerText != null) timerText.gameObject.SetActive(false);
             if (readyVfx != null) readyVfx.SetActive(true);
+            return;
         }
-        else if (isGrowing)
-        {
-            if (spriteRenderer != null) spriteRenderer.sprite = plantedSprite;
-            if (timerText != null) timerText.gameObject.SetActive(false);
-            if (readyVfx != null) readyVfx.SetActive(false);
 
-            StopAllCoroutines();
-            StartCoroutine(GrowRoutine());
-        }
+        // isGrowing
+        if (spriteRenderer != null)
+            spriteRenderer.sprite = (plantedOverrideSprite != null) ? plantedOverrideSprite : plantedSprite;
+
+        if (timerText != null) timerText.gameObject.SetActive(false);
+        if (readyVfx != null) readyVfx.SetActive(false);
+
+        StopAllCoroutines();
+        StartCoroutine(GrowRoutine());
     }
+
+    public bool EnemyRaid_TryStealHarvest(out string stolenInfo)
+    {
+        stolenInfo = null;
+
+        if (!isReady) return false;
+
+        // מה נגנב (מידע ל-Log)
+        stolenInfo = $"{harvestItemId} x{harvestAmount} (Plot={plotId})";
+
+        // הגנב לקח -> מאפסים את החלקה בלי לתת לשחקן
+        ResetToEmpty();
+        return true;
+    }
+    private bool TryRestoreFromSeedId()
+    {
+        // חייבים קטלוג כדי להביא ItemSO לפי id
+        if (InventoryManager.Instance == null) return false;
+        if (string.IsNullOrEmpty(seedId)) return false;
+
+        var seed = InventoryManager.Instance.GetDefinition(seedId);
+        if (seed == null) return false;
+
+        // שחזור harvest מהזרע
+        harvestItemId = seed.harvestItem != null ? seed.harvestItem.id : null;
+        harvestAmount = seed.harvestAmount;
+
+        // שחזור sprites מהזרע
+        plantedOverrideSprite = seed.plantedPlotSprite;
+        readyOverrideSprite = seed.readyPlotSprite;
+
+        return true;
+    }
+
 }

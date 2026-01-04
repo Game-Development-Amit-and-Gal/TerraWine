@@ -1,185 +1,316 @@
-﻿// Assets/Scripts/Barrels/Barrel.cs
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-/// <summary>
-/// Handles barrel behavior: starting aging (wine production), finishing it,
-/// and harvesting bottles when ready.
-/// Works together with BarrelUI for player interactions.
-/// </summary>
-public class Barrel : MonoBehaviour, IPointerClickHandler
+public class Barrel : MonoBehaviour, IPointerDownHandler
 {
-    // ---------------------- Identity ----------------------
     [Header("Identity")]
-    [SerializeField] private string barrelId = "BARREL_1"; // Unique ID (useful for saving if you have multiple barrels)
+    [SerializeField] private string barrelId = "";
 
-    // ---------------------- Item IDs ----------------------
-    [Header("Items")]
-    [SerializeField] private string grapeItemId = "Cabernet_Sauvignon_Grap";      // Inventory ID for grapes
-    [SerializeField] private string bottleItemId = "Cabernet_Sauvignon_Bottle";  // Inventory ID for resulting wine bottle
-    [SerializeField] private int grapesPerBottle = 5;                             // Grapes required per bottle
+    [Header("Barrel Prefab Name For Matching Recipes")]
+    [Tooltip("If empty -> uses this GameObject name (without (Clone)).")]
+    [SerializeField] private string barrelPrefabNameOverride = "";
 
-    // ---------------------- Wine Aging Data ----------------------
-    [Header("Aging Times (seconds)")]
-    [SerializeField] private float semiDrySeconds = 20f;  // Example: 20 seconds (representing 2 minutes)
-    [SerializeField] private float drySeconds = 300f;     // Example: 300 seconds (5 minutes)
+    public string BarrelPrefabName => string.IsNullOrWhiteSpace(barrelPrefabNameOverride)
+        ? StripClone(gameObject.name)
+        : StripClone(barrelPrefabNameOverride);
 
-    // ---------------------- UI Reference ----------------------
     [Header("UI")]
-    [SerializeField] private BarrelUI ui; // UI panel for selecting amount and wine type
+    [SerializeField] private BarrelUI ui;
 
-    // ---------------------- Barrel State ----------------------
-    int grapesInside = 0;      // Grapes currently inside barrel
-    bool isAging = false;      // TRUE while aging is in progress
-    bool isReady = false;      // TRUE when wine is done aging
-    float remainingSeconds = 0f;
-    float totalSeconds = 0f;
+    // state
+    private bool isAging;
+    private bool isReady;
 
-    // Reset values to clear the barrel
-    float resetSeconds = 0f;
-    int resetGrapesInside = 0;
-    bool resetIsAgingAndReady = false;
+    private string recipeId;
+    private WineDryness dryness;
 
-    bool isDry = false; // TRUE = Dry wine, FALSE = Semi-Dry
+    private long agingStartTicks;
+    private long agingEndTicks;
 
-    // ---------------------- Public Properties ----------------------
-    public int GrapesPerBottle => grapesPerBottle;
-    public float SemiDrySeconds => semiDrySeconds;
-    public float DrySeconds => drySeconds;
+    private string bottleItemId;
+    private int bottleAmount;
 
-    /// <summary>
-    /// Handles clicking on the barrel in the scene:
-    /// - If empty → open UI to choose grapes & wine type
-    /// - If wine ready → harvest bottles
-    /// - If still aging → show debug message
-    /// </summary>
-    public void OnPointerClick(PointerEventData eventData)
+#if UNITY_EDITOR
+    private void OnValidate()
     {
-        // Only react to left mouse button
+        if (string.IsNullOrEmpty(barrelId))
+        {
+            barrelId = Guid.NewGuid().ToString();
+            UnityEditor.EditorUtility.SetDirty(this);
+        }
+    }
+#endif
+
+    private void Awake()
+    {
+        if (ui == null)
+            ui = UnityEngine.Object.FindFirstObjectByType<BarrelUI>();
+    }
+
+    private void Start()
+    {
+        LoadStateFromSave();
+        ResumeOrFinishIfNeeded();
+    }
+
+    // ✅ במקום Click - פותחים על PointerDown (מבטל כמעט תמיד את הבעיה של "צריך 2 קליקים")
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log($"[Barrel] OnPointerDown hit {name}. ui={(ui ? ui.name : "NULL")}");
+
         if (eventData.button != PointerEventData.InputButton.Left)
             return;
 
-        // If barrel is empty and not aging → open UI
-        if (!isAging && !isReady)
-        {
-            if (InventoryManager.Instance == null || ui == null) return;
-
-            // Count available grapes in player's inventory
-            int grapesInBag = InventoryManager.Instance.CountOf(grapeItemId);
-
-            // Open UI for selection
-            ui.OpenForBarrel(this, grapesInBag);
-        }
-        // If wine is ready → collect bottles
-        else if (isReady)
+        // אם מוכן – איסוף
+        if (isReady)
         {
             HarvestBottles();
+            return;
+        }
+
+        // אם בתהליך יישון – לא לפתוח UI (רק לוג)
+        if (isAging)
+        {
+            Debug.Log($"[Barrel] Aging... remaining {GetRemainingSeconds():0.0}s");
+            return;
+        }
+
+        if (ui != null)
+        {
+            TutorialManager.Instance?.SetFlag("barrel");
+            ui.OpenForBarrel(this);
         }
         else
         {
-            // Still aging → not ready
-            Debug.Log("[Barrel] Wine is still aging...");
+            Debug.LogWarning("[Barrel] No BarrelUI in scene.");
         }
     }
 
-    /// <summary>
-    /// Called by BarrelUI after the player chooses amount of grapes and wine type.
-    /// Starts the aging process.
-    /// </summary>
-    public void StartAging(int grapesToUse, bool makeDry)
+    public bool TryStartRecipe(string selectedRecipeId, WineDryness selectedDryness)
     {
-        if (isAging || isReady) return;                 // Prevent restarting aging
-        if (InventoryManager.Instance == null) return;  // Safety check
+        if (isAging || isReady) return false;
 
-        // Only allow multiples of grapesPerBottle
-        int usableGrapes = (grapesToUse / grapesPerBottle) * grapesPerBottle;
-        if (usableGrapes <= 0) return;
-
-        // Check inventory amount
-        int inBag = InventoryManager.Instance.CountOf(grapeItemId);
-        if (inBag < usableGrapes)
+        if (RecipeManager.Instance == null)
         {
-            Debug.LogWarning($"[Barrel] Not enough grapes. Have {inBag}, tried to use {usableGrapes}");
-            return;
+            Debug.LogWarning("[Barrel] No RecipeManager.");
+            return false;
         }
 
-        // Remove grapes from inventory
-        bool removed = InventoryManager.Instance.Remove(grapeItemId, usableGrapes);
-        if (!removed)
+        if (!RecipeManager.Instance.IsUnlocked(selectedRecipeId))
         {
-            Debug.LogWarning("[Barrel] Failed to remove grapes from inventory");
-            return;
+            Debug.LogWarning("[Barrel] Recipe is locked: " + selectedRecipeId);
+            return false;
         }
 
-        // Store grapes and set wine type
-        grapesInside = usableGrapes;
-        isDry = makeDry;
+        var recipe = RecipeManager.Instance.GetRecipe(selectedRecipeId);
+        if (recipe == null)
+        {
+            Debug.LogWarning("[Barrel] Recipe not found: " + selectedRecipeId);
+            return false;
+        }
 
-        // Choose proper aging time
-        totalSeconds = makeDry ? drySeconds : semiDrySeconds;
-        remainingSeconds = totalSeconds;
+        // Match barrel prefab if recipe defines it
+        if (recipe.barrelPrefab != null)
+        {
+            string need = StripClone(recipe.barrelPrefab.name);
+            if (need != BarrelPrefabName)
+            {
+                Debug.LogWarning($"[Barrel] Recipe needs barrel '{need}' but this barrel is '{BarrelPrefabName}'");
+                return false;
+            }
+        }
 
-        // Set state to start aging
+        if (InventoryManager.Instance == null)
+        {
+            Debug.LogWarning("[Barrel] No InventoryManager.");
+            return false;
+        }
+
+        // Check ingredients
+        foreach (var ing in recipe.grapes)
+        {
+            string id = ing.itemName;
+            if (string.IsNullOrWhiteSpace(id)) return false;
+
+            int have = InventoryManager.Instance.CountOf(id);
+            if (have < ing.amount)
+            {
+                Debug.LogWarning($"[Barrel] Missing {id}. Need {ing.amount}, have {have}");
+                return false;
+            }
+        }
+
+        // Remove ingredients
+        foreach (var ing in recipe.grapes)
+        {
+            bool ok = InventoryManager.Instance.Remove(ing.itemName, ing.amount);
+            if (!ok)
+            {
+                Debug.LogWarning($"[Barrel] Failed removing {ing.itemName} x{ing.amount}");
+                return false;
+            }
+        }
+
+        // Output
+        var outp = recipe.GetOutput(selectedDryness);
+        if (outp.bottleItem == null)
+        {
+            Debug.LogWarning("[Barrel] Recipe output has no bottleItem.");
+            return false;
+        }
+
+        recipeId = selectedRecipeId;
+        dryness = selectedDryness;
+
+        bottleItemId = outp.bottleItem.id;
+        bottleAmount = outp.bottleAmount;
+
+        agingStartTicks = DateTime.UtcNow.Ticks;
+        agingEndTicks = agingStartTicks + (long)(outp.timeSeconds * TimeSpan.TicksPerSecond);
+
         isAging = true;
         isReady = false;
 
-        // Stop any old routines and start a new one
+        SaveState();
+
         StopAllCoroutines();
         StartCoroutine(AgingRoutine());
 
-        Debug.Log($"[Barrel] Started aging {grapesInside} grapes for {(makeDry ? "dry" : "semi-dry")} wine. Time={totalSeconds}s");
+        Debug.Log($"[Barrel] Start recipe={recipeId} dryness={dryness} -> {bottleItemId} x{bottleAmount}");
+        return true;
     }
 
-    /// <summary>
-    /// Coroutine that simulates wine aging over time.
-    /// </summary>
-    System.Collections.IEnumerator AgingRoutine()
+    private IEnumerator AgingRoutine()
     {
-        // Decrease time every frame until done
-        while (remainingSeconds > resetSeconds && isAging)
+        while (isAging)
         {
-            remainingSeconds -= Time.deltaTime;
-            // Optional: update UI timer here
+            if (DateTime.UtcNow.Ticks >= agingEndTicks) break;
             yield return null;
         }
 
         if (!isAging) yield break;
 
-        // Wine finished aging
         isAging = false;
         isReady = true;
-        remainingSeconds = resetSeconds;
+        SaveState();
 
-        Debug.Log("[Barrel] Wine is ready!");
+        Debug.Log("[Barrel] Ready!");
     }
 
-    /// <summary>
-    /// Converts the aged grapes inside the barrel into bottled wine.
-    /// Adds bottles to inventory and resets barrel.
-    /// </summary>
-    void HarvestBottles()
+    private void HarvestBottles()
     {
-        if (!isReady || grapesInside <= resetGrapesInside) return;
+        if (!isReady) return;
         if (InventoryManager.Instance == null) return;
 
-        // Calculate number of bottles
-        int bottles = grapesInside / grapesPerBottle;
-        int noBottles = 0; // avoid magic numbers
-        if (bottles <= noBottles)
+        if (string.IsNullOrWhiteSpace(bottleItemId) || bottleAmount <= 0)
         {
-            Debug.LogWarning("[Barrel] No full bottles to harvest");
+            Debug.LogWarning("[Barrel] Invalid bottle output.");
             return;
         }
 
-        // Add bottles to inventory
-        bool added = InventoryManager.Instance.Add(bottleItemId, bottles);
-        Debug.Log($"[Barrel] Harvested {bottles} bottles of wine. success={added}");
+        bool added = InventoryManager.Instance.Add(bottleItemId, bottleAmount);
+        Debug.Log($"[Barrel] Harvested {bottleItemId} x{bottleAmount}, success={added}");
+        TutorialManager.Instance?.SetFlag("Readybarrel");
 
-        // Reset barrel to empty state
-        grapesInside = resetGrapesInside;
-        isReady = resetIsAgingAndReady;
-        isAging = resetIsAgingAndReady;
-        totalSeconds = resetSeconds;
-        remainingSeconds = resetSeconds;
+        // reset
+        isReady = false;
+        isAging = false;
+
+        recipeId = null;
+        bottleItemId = null;
+        bottleAmount = 0;
+
+        agingStartTicks = 0;
+        agingEndTicks = 0;
+
+        SaveState();
+    }
+
+    private float GetRemainingSeconds()
+    {
+        if (!isAging) return 0f;
+        long left = agingEndTicks - DateTime.UtcNow.Ticks;
+        return Mathf.Max(0f, left / (float)TimeSpan.TicksPerSecond);
+    }
+
+    // ---------------- Save/Load using GameData ----------------
+
+    private void SaveState()
+    {
+        if (GameManager.Instance == null || GameManager.Instance.Data == null) return;
+
+        var data = GameManager.Instance.Data;
+        data.barrelAging ??= new List<BarrelAgingSave>();
+
+        var s = data.barrelAging.Find(x => x.barrelId == barrelId);
+        if (s == null)
+        {
+            s = new BarrelAgingSave();
+            data.barrelAging.Add(s);
+        }
+
+        s.barrelId = barrelId;
+
+        s.isAging = isAging;
+        s.isReady = isReady;
+
+        s.recipeId = recipeId;
+        s.dryness = dryness;
+
+        s.agingStartTicks = agingStartTicks;
+        s.agingEndTicks = agingEndTicks;
+
+        s.bottleItemId = bottleItemId;
+        s.bottleAmount = bottleAmount;
+
+        SaveSystem.Save(data);
+    }
+
+    private void LoadStateFromSave()
+    {
+        if (GameManager.Instance == null || GameManager.Instance.Data == null) return;
+
+        var list = GameManager.Instance.Data.barrelAging;
+        if (list == null) return;
+
+        var s = list.Find(x => x.barrelId == barrelId);
+        if (s == null) return;
+
+        isAging = s.isAging;
+        isReady = s.isReady;
+
+        recipeId = s.recipeId;
+        dryness = s.dryness;
+
+        agingStartTicks = s.agingStartTicks;
+        agingEndTicks = s.agingEndTicks;
+
+        bottleItemId = s.bottleItemId;
+        bottleAmount = s.bottleAmount;
+    }
+
+    private void ResumeOrFinishIfNeeded()
+    {
+        if (!isAging) return;
+
+        if (DateTime.UtcNow.Ticks >= agingEndTicks)
+        {
+            isAging = false;
+            isReady = true;
+            SaveState();
+            return;
+        }
+
+        StopAllCoroutines();
+        StartCoroutine(AgingRoutine());
+    }
+
+    private static string StripClone(string s)
+    {
+        if (string.IsNullOrEmpty(s)) return s;
+        return s.Replace("(Clone)", "").Trim();
     }
 }

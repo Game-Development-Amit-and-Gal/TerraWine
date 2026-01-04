@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Services.Authentication;
+using System.Threading.Tasks;
 
 /// <summary>
 /// Wrapper class used to store a list of plot saves as JSON.
@@ -18,13 +20,14 @@ class PlantPlotsSaveWrapper
 /// </summary>
 public class PlantManager : MonoBehaviour
 {
+    public bool HasLoaded { get; private set; }
     // ------------- STATIC SINGLETON ------------- //
 
     public static PlantManager Instance { get; private set; }   // global access point
 
     // Key used in PlayerPrefs storage (acts like a file name)
     const string Key = "PROFILE::DEFAULT::PLANTS";
-
+    private const string CloudKey = "plants_v1";
     /// <summary>
     /// Ensures only ONE PlantManager exists (singleton pattern).
     /// </summary>
@@ -36,7 +39,7 @@ public class PlantManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
+        HasLoaded = false;
         // Otherwise, this becomes the real instance
         Instance = this;
     }
@@ -49,36 +52,40 @@ public class PlantManager : MonoBehaviour
     /// Saves every PlantPlot in the current scene into PlayerPrefs.
     /// Does NOT overwrite if no plots exist (prevents clearing previous saves).
     /// </summary>
-    public void SaveAll()
+    public async void SaveAll()
     {
-        // Finds ALL PlantPlot components in the open scene (Unity 6 style)
         PlantPlot[] plots = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
 
-        // If there are no plots at all (e.g., different scene), skip the save
         if (plots == null || plots.Length == 0)
         {
             Debug.Log("[PlantManager] SaveAll: no PlantPlots in this scene, skipping save.");
             return;
         }
 
-        // Create a wrapper object to store all plot saves
         var wrapper = new PlantPlotsSaveWrapper();
-
-        // Convert each PlantPlot to a PlantPlotSave object
         foreach (var p in plots)
             wrapper.plots.Add(p.GetSave());
 
-        // Convert the wrapper to JSON text
         string json = JsonUtility.ToJson(wrapper);
 
-        // Save JSON into PlayerPrefs under a key
+        // 1) שמירה מקומית (כמו שיש לך)
         PlayerPrefs.SetString(Key, json);
-
-        // Ensures it is written immediately to disk
         PlayerPrefs.Save();
+
+        // 2) שמירה לענן (רק אם מחוברת)
+        try
+        {
+            if (AuthenticationService.Instance.IsSignedIn)
+                await CloudSaveSystem.SaveStringAsync(CloudKey, json);
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning("[PlantManager] Cloud Save failed: " + e.Message);
+        }
 
         Debug.Log("[PlantManager] SaveAll: saved " + wrapper.plots.Count + " plots.");
     }
+
 
     // -------------------------------------------------- //
     // --------------------- LOAD ----------------------- //
@@ -88,38 +95,73 @@ public class PlantManager : MonoBehaviour
     /// Loads saved PlantPlot data and restores their state visually.
     /// deltaSeconds = Time passed while the game was closed (offline growth).
     /// </summary>
-    public void LoadAll(float deltaSeconds)
+    public async void LoadAll(float deltaSeconds)
     {
-        // If no save file exists, don't do anything
-        if (!PlayerPrefs.HasKey(Key)) return;
+        HasLoaded = false;
 
-        // Load raw JSON text from PlayerPrefs
-        string json = PlayerPrefs.GetString(Key);
-
-        // Convert JSON back into a wrapper class
-        var wrapper = JsonUtility.FromJson<PlantPlotsSaveWrapper>(json);
-
-        // If the wrapper or list is null, nothing to restore
-        if (wrapper == null || wrapper.plots == null) return;
-
-        // Find all PlantPlots currently visible in the scene
         PlantPlot[] plotsInScene = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
 
-        // Loop through each saved record
+        // 0) קודם לנסות להביא JSON מהענן
+        string json = null;
+
+        try
+        {
+            if (AuthenticationService.Instance.IsSignedIn)
+                json = await CloudSaveSystem.LoadStringAsync(CloudKey);
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning("[PlantManager] Cloud Load failed, fallback to local: " + e.Message);
+        }
+
+        // 1) fallback: אם אין בענן, לוקחים מקומי
+        if (string.IsNullOrEmpty(json))
+        {
+            if (!PlayerPrefs.HasKey(Key))
+            {
+                foreach (var p in plotsInScene)
+                    if (p != null) p.ResetToEmpty();
+
+                HasLoaded = true;
+                return;
+            }
+
+            json = PlayerPrefs.GetString(Key);
+        }
+
+        var wrapper = JsonUtility.FromJson<PlantPlotsSaveWrapper>(json);
+
+        if (wrapper == null || wrapper.plots == null)
+        {
+            foreach (var p in plotsInScene)
+                if (p != null) p.ResetToEmpty();
+
+            HasLoaded = true;
+            return;
+        }
+
+        var map = new Dictionary<string, PlantPlot>(plotsInScene.Length);
+        foreach (var p in plotsInScene)
+        {
+            if (p == null) continue;
+            if (string.IsNullOrEmpty(p.PlotId)) continue;
+            map[p.PlotId] = p;
+        }
+
+        foreach (var p in plotsInScene)
+            if (p != null) p.ResetToEmpty();
+
         foreach (var saved in wrapper.plots)
         {
-            // Try to match saved plot ID with real plot in the scene
-            foreach (var plot in plotsInScene)
-            {
-                // If IDs match, restore the saved state into this plot
-                if (plot.PlotId == saved.id)
-                {
-                    plot.LoadFrom(saved, deltaSeconds); // applies offline growth
-                    break; // Stop searching once matched
-                }
-            }
+            if (saved == null || string.IsNullOrEmpty(saved.id)) continue;
+
+            if (map.TryGetValue(saved.id, out var plot) && plot != null)
+                plot.LoadFrom(saved, deltaSeconds);
         }
+
+        HasLoaded = true;
     }
+
 
     // -------------------------------------------------- //
     // ------------------- RESET ALL -------------------- //
@@ -141,6 +183,12 @@ public class PlantManager : MonoBehaviour
         // Reset each plot visually and internally
         foreach (var p in plots)
             p.ResetToEmpty();
+        try
+        {
+            if (AuthenticationService.Instance.IsSignedIn)
+                _ = CloudSaveSystem.DeleteAsync(CloudKey);
+        }
+        catch { }
     }
 
     // -------------------------------------------------- //
@@ -156,4 +204,38 @@ public class PlantManager : MonoBehaviour
         PlantPlot[] plots = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
         return plots != null && plots.Length > 0;
     }
+    public int GetGrowingPlotsCount()
+    {
+        if (!HasLoaded) return 0;
+
+        PlantPlot[] plots = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
+
+        int count = 0;
+        foreach (var p in plots)
+        {
+            if (p != null && p.IsGrowing)
+                count++;
+        }
+        return count;
+    }
+    public bool EnemyRaid_TryStealRandomPlant(out string stolenInfo)
+    {
+        stolenInfo = null;
+
+        PlantPlot[] plots = FindObjectsByType<PlantPlot>(FindObjectsSortMode.None);
+        if (plots == null || plots.Length == 0) return false;
+
+        List<PlantPlot> ready = new();
+        foreach (var p in plots)
+        {
+            if (p != null && p.IsReady)
+                ready.Add(p);
+        }
+
+        if (ready.Count == 0) return false;
+
+        var pick = ready[UnityEngine.Random.Range(0, ready.Count)];
+        return pick.EnemyRaid_TryStealHarvest(out stolenInfo);
+    }
+
 }

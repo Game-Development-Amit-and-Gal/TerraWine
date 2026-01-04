@@ -7,211 +7,225 @@ using TMPro;
 [RequireComponent(typeof(Collider2D))]
 public class TruckSeller : MonoBehaviour
 {
-    [Header("Selling through the truck")] // Abillity to Sell wine through the truck
-    [Tooltip("Modification on the Price '")]
+    [Header("Selling through the truck")]
     [Range(0f, 2f)]
     [SerializeField] private float priceMultiplier = 1f;
 
-    [Tooltip(" Trigger in order to Identify whether the player stands near the truck")] 
     [SerializeField] private bool useTrigger = true;
 
     [Header("Sell UI")]
-    [SerializeField] private GameObject sellPanel;   
-    [SerializeField] private TMP_Text summaryText;    
+    [SerializeField] private GameObject sellPanel;
+    [SerializeField] private TMP_Text summaryText;
+
+    // Drag these from the PLAYER in Inspector
+    [SerializeField] private MiniMapClickToMove clickMover;
+    [SerializeField] private PlayerMovement regularMover;
 
     private bool playerInside = false;
 
-    private void Start() // Hide the panel at first
+    private void Start()
     {
-      
         if (sellPanel != null)
             sellPanel.SetActive(false);
     }
 
-    private void Reset() // Automatically sets the truck's collider to Trigger mode so it can detect players entering. 
+    private void Reset()
     {
-
         var col = GetComponent<Collider2D>();
-        if (col != null)
-            col.isTrigger = true;
+        if (col != null) col.isTrigger = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) // 
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (!useTrigger) return;
         if (!other.CompareTag("Player")) return;
 
-        playerInside = true; // Player can press E 
-        Debug.Log("[In Range] Press E in order to open a sale"); 
+        playerInside = true;
+        Debug.Log("[In Range] Press E in order to open a sale");
     }
 
-    private void OnTriggerExit2D(Collider2D other) 
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (!useTrigger) return;
         if (!other.CompareTag("Player")) return;
 
-        playerInside = false; // Player can't press E to open a sale
-        ClosePanel();
+        playerInside = false;
+
+        // Close + restore movement when leaving
+        ClosePanelAndRestoreMovement();
+
         Debug.Log("[Out of Range] Can't open a sale here");
     }
 
     private void Update()
     {
-        if (!playerInside) return;
         if (Keyboard.current == null) return;
 
-     
-        if (Keyboard.current.eKey.wasPressedThisFrame) // After the player is near the Truck and pressed E open the sale pannel
+        // ESC closes panel anywhere
+        if (IsPanelOpen() && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            TogglePanel();
-        }
-    }
-
-
-
-    private void TogglePanel() // Open the sale pannel
-    {
-        if (sellPanel == null)
-        {
-            Debug.LogWarning("[TruckSeller] No Pannel has been inserted in the inspector");
+            ClosePanelAndRestoreMovement();
             return;
         }
 
-        
-        var invUI = sellPanel.GetComponent<InventoryUI>();
+        if (!playerInside) return;
 
-      
-        bool wantOpen = !sellPanel.activeSelf; // if the player want to open the pannel
-
-        if (invUI != null)
+        if (Keyboard.current.eKey.wasPressedThisFrame)
         {
-            if (wantOpen)
+            if (IsPanelOpen())
             {
-                invUI.Open();   //Open the Inventory
+                ClosePanelAndRestoreMovement();
             }
             else
             {
-                invUI.Close();
+                OpenPanelAndBlockMovement();
             }
-        }
-        else
-        {
-            
-            sellPanel.SetActive(wantOpen);
-        }
-
-        if (wantOpen)
-        {
-            RefreshPreview();
         }
     }
 
-
-    private void ClosePanel() // Close the panel
+    private bool IsPanelOpen()
     {
+        return sellPanel != null && sellPanel.activeSelf;
+    }
+
+    private void SetMovementEnabled(bool canMove)
+    {
+        if (clickMover != null) clickMover.enabled = canMove;
+        if (regularMover != null) regularMover.enabled = canMove;
+    }
+
+    private bool EnsureMoversAssigned()
+    {
+        if (clickMover == null || regularMover == null)
+        {
+            Debug.LogError(
+                "[TruckSeller] clickMover/regularMover not assigned. " +
+                "Assign them in Inspector from the PLAYER (MiniMapClickToMove + PlayerMovement)."
+            );
+            return false;
+        }
+        return true;
+    }
+
+    private void OpenPanelAndBlockMovement()
+    {
+        if (sellPanel == null)
+        {
+            Debug.LogWarning("[TruckSeller] No Panel has been inserted in the inspector");
+            return;
+        }
+
+        if (!EnsureMoversAssigned()) return;
+
+        // Block movement
+        SetMovementEnabled(false);
+
+        // Open panel (prefer InventoryUI.Open if exists)
+        var invUI = sellPanel.GetComponent<InventoryUI>();
+        if (invUI != null) invUI.Open();
+        else sellPanel.SetActive(true);
+
+        RefreshPreview();
+    }
+
+    private void ClosePanelAndRestoreMovement()
+    {
+        InventoryTooltipUI.Instance?.Hide();
+        // Close panel (prefer InventoryUI.Close if exists)
         if (sellPanel != null)
-            sellPanel.SetActive(false); // hide the pannel on the game
+        {
+            var invUI = sellPanel.GetComponent<InventoryUI>();
+            if (invUI != null) invUI.Close();
+            else sellPanel.SetActive(false);
+        }
+
+        // Restore movement
+        SetMovementEnabled(true);
     }
 
     private void RefreshPreview()
     {
         if (summaryText == null) return;
 
-        int preview = CalculateTotalWineValue(); // Calculate Total Wine bottles value
-        if (preview > 0)
-            summaryText.text = $" ₪{preview} for all Your Wine Bottles"; // for all Your Wine Bottles
-        else
-            summaryText.text = "No Wine Bottles for Sale";
+        int preview = CalculateTotalWineValue();
+        summaryText.text = (preview > 0)
+            ? $" ₪{preview} for all Your Wine Bottles"
+            : "No Wine Bottles for Sale";
     }
 
     private int CalculateTotalWineValue()
     {
-        int indicator = 0; // avoid magic numbers
-        if (InventoryManager.Instance == null) return indicator; // If the Inventory isnt initialized return.
+        if (InventoryManager.Instance == null) return 0;
 
-        List<InventorySlot> wineSlots = InventoryManager.Instance.GetAllWineBottleSlots(); // Get the total Wine Bottles
-        int totalMoney = 0; // init the total return value
-
-        int zero = 0; // avoid magic numbers
+        List<InventorySlot> wineSlots = InventoryManager.Instance.GetAllWineBottleSlots();
+        int totalMoney = 0;
 
         foreach (var slot in wineSlots)
         {
-            ItemSO item = InventoryManager.Instance.GetDefinition(slot.id); // Get the current Item information
-            if (item == null || slot.amount <= zero) continue; // If its null or there aren't any bottles continue.
+            ItemSO item = InventoryManager.Instance.GetDefinition(slot.id);
+            if (item == null || slot.amount <= 0) continue;
 
-            int pricePerBottle = Mathf.Max(zero, item.price);  // init the current's kind information
-            int amount = slot.amount;
-
-            int value = Mathf.RoundToInt(pricePerBottle * amount * priceMultiplier); // Get the total value per the current kind
-            totalMoney += value; // Add it to the return value
+            int value = Mathf.RoundToInt(Mathf.Max(0, item.price) * slot.amount * priceMultiplier);
+            totalMoney += value;
         }
 
         return totalMoney;
     }
 
-    
-    public void ConfirmSellAllWine() // Sells the Wine and add the money to the player
+    public void ConfirmSellAllWine()
     {
-        int zero = 0;
         int totalMoney = SellAllWineInternal();
 
-        if (totalMoney > zero) // If there was profit add it to the player's total balance
+        if (totalMoney > 0)
         {
             GameManager.Instance.AddMoney(totalMoney);
             Debug.Log($"[TruckSeller] Sold wine bottles for {totalMoney}₪. New balance: {GameManager.Instance.Data.money}");
         }
-        else // Else, No profit has been made.
+        else
         {
             Debug.Log("[TruckSeller] There’s nothing to sell or the price is 0");
         }
 
-        ClosePanel(); // Close Pannel
+        // Close + restore movement
+        ClosePanelAndRestoreMovement();
     }
 
-
-    public void CancelSell() // Player Regrets, and is cancelling the sale
+    public void CancelSell()
     {
         Debug.Log("[TruckSeller] You cancelled the sale");
-        ClosePanel();
+
+        // Close + restore movement
+        ClosePanelAndRestoreMovement();
     }
 
-
-    private int SellAllWineInternal() //Sell all the Wine Bottle and adding the profit to the players balance
+    private int SellAllWineInternal()
     {
-
-        int indicator = 0;
-        int zero = 0;
         if (InventoryManager.Instance == null || GameManager.Instance == null)
         {
-            Debug.LogWarning("[TruckSeller] Missing InventoryManager or GameManager"); // Missing in the inspector
-            return indicator;
+            Debug.LogWarning("[TruckSeller] Missing InventoryManager or GameManager");
+            return 0;
         }
 
-        List<InventorySlot> wineSlots = InventoryManager.Instance.GetAllWineBottleSlots(); // Get all the wine bottles
-        if (wineSlots.Count == zero)
-        {
-            return indicator;
-        }
+        List<InventorySlot> wineSlots = InventoryManager.Instance.GetAllWineBottleSlots();
+        if (wineSlots.Count == 0) return 0;
 
         int totalMoney = 0;
 
-        foreach (var slot in new List<InventorySlot>(wineSlots)) // Traverse each wine kind and extract its total value and add to the total sum
+        foreach (var slot in new List<InventorySlot>(wineSlots))
         {
-            ItemSO item = InventoryManager.Instance.GetDefinition(slot.id); // get the wine information
-            if (item == null || slot.amount <= zero) continue;  // if there aren't any continue to the next Kind
+            ItemSO item = InventoryManager.Instance.GetDefinition(slot.id);
+            if (item == null || slot.amount <= 0) continue;
 
-            int pricePerBottle = Mathf.Max(zero, item.price); // Get its price per bottle
-            int amount = slot.amount; // The amount of bottles
-
-            int value = Mathf.RoundToInt(pricePerBottle * amount * priceMultiplier); // Total value for the Kind of Wine
+            int value = Mathf.RoundToInt(Mathf.Max(0, item.price) * slot.amount * priceMultiplier);
             totalMoney += value;
 
-            InventoryManager.Instance.Remove(slot.id, amount); // Remove the Bottle
+            InventoryManager.Instance.Remove(slot.id, slot.amount);
         }
 
         return totalMoney;
     }
-    public void SellOneBottle(string itemId) // Same Function as the above But calculates the value for One bottle
+
+    public void SellOneBottle(string itemId)
     {
         if (InventoryManager.Instance == null || GameManager.Instance == null)
         {
@@ -220,10 +234,8 @@ public class TruckSeller : MonoBehaviour
         }
 
         ItemSO item = InventoryManager.Instance.GetDefinition(itemId);
-        if (item == null || !item.isWineBottle)
-            return;
+        if (item == null || !item.isWineBottle) return;
 
-        
         int count = InventoryManager.Instance.CountOf(itemId);
         if (count <= 0)
         {
@@ -231,21 +243,14 @@ public class TruckSeller : MonoBehaviour
             return;
         }
 
-        
-        int pricePerBottle = Mathf.Max(0, item.price);
-        int money = Mathf.RoundToInt(pricePerBottle * priceMultiplier);
+        int money = Mathf.RoundToInt(Mathf.Max(0, item.price) * priceMultiplier);
 
-       
         bool ok = InventoryManager.Instance.Remove(itemId, 1);
         if (!ok) return;
 
-       
         GameManager.Instance.AddMoney(money);
 
-       
         RefreshPreview();
-
         Debug.Log($"[TruckSeller] Sold 1x {item.displayName} for {money}₪");
     }
-
 }
