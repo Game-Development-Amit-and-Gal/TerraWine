@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,6 +20,12 @@ public class Barrel : MonoBehaviour, IPointerDownHandler
 
     [Header("UI")]
     [SerializeField] private BarrelUI ui;
+
+    [Header("Timer UI (TextMeshPro child)")]
+    [Tooltip("Drag the TMP child here. If empty, it will auto-find TMP in children.")]
+    [SerializeField] private TMP_Text timerText;
+    [Tooltip("If false, hides the timer text when not aging and not ready.")]
+    [SerializeField] private bool showWhenIdle = false;
 
     // state
     private bool isAging;
@@ -48,12 +55,16 @@ public class Barrel : MonoBehaviour, IPointerDownHandler
     {
         if (ui == null)
             ui = UnityEngine.Object.FindFirstObjectByType<BarrelUI>();
+
+        if (timerText == null)
+            timerText = GetComponentInChildren<TMP_Text>(true);
     }
 
     private void Start()
     {
         LoadStateFromSave();
         ResumeOrFinishIfNeeded();
+        UpdateTimerText();
     }
 
     // ✅ במקום Click - פותחים על PointerDown (מבטל כמעט תמיד את הבעיה של "צריך 2 קליקים")
@@ -175,6 +186,7 @@ public class Barrel : MonoBehaviour, IPointerDownHandler
         isReady = false;
 
         SaveState();
+        UpdateTimerText();
 
         StopAllCoroutines();
         StartCoroutine(AgingRoutine());
@@ -188,7 +200,9 @@ public class Barrel : MonoBehaviour, IPointerDownHandler
         while (isAging)
         {
             if (DateTime.UtcNow.Ticks >= agingEndTicks) break;
-            yield return null;
+
+            UpdateTimerText();
+            yield return new WaitForSeconds(1f);
         }
 
         if (!isAging) yield break;
@@ -197,6 +211,7 @@ public class Barrel : MonoBehaviour, IPointerDownHandler
         isReady = true;
         SaveState();
 
+        UpdateTimerText();
         Debug.Log("[Barrel] Ready!");
     }
 
@@ -227,6 +242,7 @@ public class Barrel : MonoBehaviour, IPointerDownHandler
         agingEndTicks = 0;
 
         SaveState();
+        UpdateTimerText();
     }
 
     private float GetRemainingSeconds()
@@ -234,6 +250,48 @@ public class Barrel : MonoBehaviour, IPointerDownHandler
         if (!isAging) return 0f;
         long left = agingEndTicks - DateTime.UtcNow.Ticks;
         return Mathf.Max(0f, left / (float)TimeSpan.TicksPerSecond);
+    }
+
+    // ---------------- Timer UI ----------------
+
+    private void UpdateTimerText()
+    {
+        if (timerText == null) return;
+
+        if (isReady)
+        {
+            timerText.gameObject.SetActive(true);
+            timerText.text = "READY";
+            return;
+        }
+
+        if (isAging)
+        {
+            timerText.gameObject.SetActive(true);
+
+            long leftTicks = agingEndTicks - DateTime.UtcNow.Ticks;
+            if (leftTicks < 0) leftTicks = 0;
+
+            var left = TimeSpan.FromTicks(leftTicks);
+
+            // HH:MM:SS if 1h+, else MM:SS
+            timerText.text = left.TotalHours >= 1
+                ? $"{(int)left.TotalHours:00}:{left.Minutes:00}:{left.Seconds:00}"
+                : $"{left.Minutes:00}:{left.Seconds:00}";
+
+            return;
+        }
+
+        // idle
+        if (showWhenIdle)
+        {
+            timerText.gameObject.SetActive(true);
+            timerText.text = "";
+        }
+        else
+        {
+            timerText.gameObject.SetActive(false);
+        }
     }
 
     // ---------------- Save/Load using GameData ----------------
@@ -294,18 +352,24 @@ public class Barrel : MonoBehaviour, IPointerDownHandler
 
     private void ResumeOrFinishIfNeeded()
     {
-        if (!isAging) return;
+        if (!isAging)
+        {
+            UpdateTimerText();
+            return;
+        }
 
         if (DateTime.UtcNow.Ticks >= agingEndTicks)
         {
             isAging = false;
             isReady = true;
             SaveState();
+            UpdateTimerText();
             return;
         }
 
         StopAllCoroutines();
         StartCoroutine(AgingRoutine());
+        UpdateTimerText();
     }
 
     private static string StripClone(string s)
