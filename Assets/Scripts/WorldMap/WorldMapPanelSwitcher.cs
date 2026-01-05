@@ -31,6 +31,7 @@ public class WorldMapPanelSwitcher : MonoBehaviour
         // Resources/Items/Bottle
         // Resources/Items/Grap
         // Resources/Items/Seed
+
         bottleItems = Resources.LoadAll<ItemSO>("Items/Bottle");
         grapItems = Resources.LoadAll<ItemSO>("Items/Grap");
         seedItems = Resources.LoadAll<ItemSO>("Items/Seed");

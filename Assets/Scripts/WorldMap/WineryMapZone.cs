@@ -28,6 +28,7 @@ public class WineryMapZone : MonoBehaviour,
     [SerializeField] private RectTransform tooltipUI;
     [SerializeField] private Vector2 tooltipOffset = new Vector2(0f, 50f);
 
+
     private TextMeshProUGUI tooltipLabel;
 
 #if ENABLE_INPUT_SYSTEM
@@ -134,4 +135,5 @@ public class WineryMapZone : MonoBehaviour,
     {
         SetPanelOpen(false);
     }
+
 }
