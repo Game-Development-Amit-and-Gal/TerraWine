@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance { get; private set; } // Set the Singleton
 
     [Header("Bag Settings")]
-    [Min(1)] public int capacity = 20; // Set its Capacity
+    [Min(1)] public int capacity = 4; // Set its Capacity
 
     [Header("Event UI")]
     public UnityEvent onChanged; // Fires when Inventory updates (UI listens to this)

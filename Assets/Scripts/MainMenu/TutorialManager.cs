@@ -4,45 +4,51 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Unity.Services.Analytics;
 
 /// <summary>
-/// Manages in-game tutorials across multiple scenes.
-/// Each scene can have multiple "steps", where each step:
-/// - shows a text message,
-/// - optionally points an arrow at a target object (UI or world),
-/// - can optionally hide the scene UI while this step is active.
-/// Completion state is stored in GameData (via GameManager).
+/// Tutorial manager that can show:
+/// 1) UI tutorial panels (panel/panel2/panel3)
+/// 2) UI arrows (RectTransform) pointing to UI targets
+/// 3) WORLD arrows (Prefab with SpriteRenderer) that physically exists in the world above a world object
+///
+/// WORLD arrow selection:
+/// - Global default: worldArrowPrefab
+/// - Per-step override: Step.worldArrowPrefabOverride (use different arrow prefab per object)
+///
+/// Target resolution:
+/// - If targetObjectName contains "/" -> treated as path under UI root ("UI") or World root ("World")
+/// - Otherwise -> deep search by name under UI root then World root, then fallback GameObject.Find
 /// </summary>
 public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance { get; private set; }
 
     [Header("Tutorial UI (Panel 1)")]
-    [SerializeField] private GameObject panel;          // Root panel of the tutorial UI.
-    [SerializeField] private TMP_Text tutorialText;     // Text component for the current step.
+    [SerializeField] private GameObject panel;
+    [SerializeField] private TMP_Text tutorialText;
 
-    [Header("Arrow (Panel 1)")]
-    [SerializeField] private RectTransform arrow;       // Arrow that points to the target object (optional).
+    [Header("Arrows (Panel 1)")]
+    [SerializeField] private RectTransform[] arrows1;
 
     [Header("Got It Button (Panel 1)")]
-    [SerializeField] private RectTransform gotItButton; // "Got It" button for Panel 1 (optional but recommended).
+    [SerializeField] private RectTransform gotItButton;
 
     [Header("Tutorial UI (Panel 2)")]
     [SerializeField] private GameObject panel2;
     [SerializeField] private TMP_Text tutorialText2;
 
-    [Header("Arrow (Panel 2)")]
-    [SerializeField] private RectTransform arrow2;
+    [Header("Arrows (Panel 2)")]
+    [SerializeField] private RectTransform[] arrows2;
 
     [Header("Got It Button (Panel 2)")]
-    [SerializeField] private RectTransform gotItButton2; // "Got It" button for Panel 2 (optional but recommended).
+    [SerializeField] private RectTransform gotItButton2;
+
     [Header("Tutorial UI (Panel 3)")]
     [SerializeField] private GameObject panel3;
     [SerializeField] private TMP_Text tutorialText3;
 
-    [Header("Arrow (Panel 3)")]
-    [SerializeField] private RectTransform arrow3;
+    [Header("Arrows (Panel 3)")]
+    [SerializeField] private RectTransform[] arrows3;
 
     [Header("Got It Button (Panel 3)")]
     [SerializeField] private RectTransform gotItButton3;
@@ -54,24 +60,40 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Vector2 gotItAnchoredPosPanel3 = Vector2.zero;
 
     [Header("Per-scene guides")]
-    [SerializeField] private SceneGuide[] guides;       // All guides for all scenes.
+    [SerializeField] private SceneGuide[] guides;
 
     [Header("Scene UI root")]
     [SerializeField] private string sceneUiRootName = "UI";
-    // Name of the root GameObject that holds the scene's UI.
-    // This object can be disabled per-step and re-enabled afterwards.
+
     [Header("Scene WORLD root")]
-    [SerializeField] private string worldRootName = "World"; 
+    [SerializeField] private string worldRootName = "World";
+
+    // -----------------------------
+    // WORLD arrow (Prefab in the world, NOT UI)
+    // -----------------------------
+    [Header("WORLD Arrow (Prefab in the world, NOT UI)")]
+    [Tooltip("Default world arrow prefab (SpriteRenderer + WorldArrowFollow). Can be overridden per step.")]
+    [SerializeField] private GameObject worldArrowPrefab;
+
+    [Tooltip("Default offset above the target object (world units).")]
+    [SerializeField] private Vector3 defaultWorldArrowOffset = new Vector3(0f, 1.5f, 0f);
+
+    [Tooltip("If target isn't found immediately after scene load, wait N frames before giving up.")]
+    [SerializeField, Min(1)] private int waitFramesForTarget = 60;
+
+    private GameObject worldArrowInstance;
+    private Coroutine worldArrowRoutine;
 
     private GameObject currentWorldRoot;
-    // Runtime state
     private GameObject currentSceneUiRoot;
     private string currentSceneName;
     private SceneGuide currentGuide;
     private int currentStepIndex = 0;
+
     public static bool tutorialIsRunning = false;
     public static bool tutorialIsRunningGardenScene = false;
     public static Action GrandpaStoppedTalking;
+
     private PlayerMovement playerMover;
     private readonly Dictionary<GameObject, bool> _originalActive = new();
     private readonly HashSet<GameObject> _touchedThisStep = new();
@@ -80,210 +102,131 @@ public class TutorialManager : MonoBehaviour
 
     private GameObject activePanel;
     private TMP_Text activeText;
-    private RectTransform activeArrow;
     private RectTransform activeGotItButton;
+
+    // UI arrows (RectTransform inside panels)
+    private RectTransform[] activeArrows;
+    private RectTransform activeArrow;
 
     // Auto-next state (timer/flag)
     private Coroutine autoAdvanceRoutine = null;
     private readonly HashSet<string> tutorialFlags = new HashSet<string>();
 
-    /// <summary>
-    /// Defines how the tutorial should advance from this step to the next one.
-    /// </summary>
-    public enum NextMode
-    {
-        OnClick,        // Next happens only when the user clicks "Got It"
-        OnTime,         // Next happens after a delay (seconds)
-        OnFlag,         // Next happens when a flag is set
-        OnFlagThenTime  // Next happens when a flag is set, THEN after a delay
-    }
+    public enum NextMode { OnClick, OnTime, OnFlag, OnFlagThenTime }
 
-    /// <summary>
-    /// Configuration for a single scene's tutorial.
-    /// Each scene can have multiple steps.
-    /// </summary>
     [Serializable]
     public class SceneGuide
     {
-        /// <summary>
-        /// Name of the scene this guide belongs to.
-        /// Must match the scene name in Build Settings.
-        /// </summary>
         public string sceneName;
-
-        /// <summary>
-        /// Choose which tutorial panel to use in this scene (Panel 1 or Panel 2).
-        /// NOTE: This is a DEFAULT. Each Step can override it (see Step.overridePanelChoice).
-        /// </summary>
         public PanelChoice panelChoice = PanelChoice.Panel1;
-
-        /// <summary>
-        /// Ordered steps that will be shown in this scene's tutorial.
-        /// </summary>
         public Step[] steps;
     }
 
-    /// <summary>
-    /// A single tutorial step:
-    /// - message shown to the player,
-    /// - optional target object name,
-    /// - optional arrow offset,
-    /// - optional flag to hide the scene UI for this step.
-    /// </summary>
     [Serializable]
     public class Step
     {
+        [Header("Arrow Variant (UI arrows inside panel)")]
+        [Tooltip("Which UI arrow to use inside the selected panel. 0 = first. -1 = no UI arrow (even if target exists).")]
+        public int arrowVariantIndex = 0;
+
+        [Header("WORLD Arrow Override (optional)")]
+        [Tooltip("If set, this specific WORLD arrow prefab will be used for this step (instead of the global worldArrowPrefab).")]
+        public GameObject worldArrowPrefabOverride;
+
+        [Tooltip("Optional: override world offset for THIS step (world units).")]
+        public bool overrideWorldOffset = false;
+
+        public Vector3 worldOffsetOverride = new Vector3(0f, 1.5f, 0f);
+
         [Header("Per-step UI visibility (relative to Scene UI root)")]
-        public List<string> hideUiPaths = new List<string>(); // מה להסתיר בצעד הזה
-        public List<string> showUiPaths = new List<string>(); // אופציונלי: מה להכריח להציג בצעד הזה
+        public List<string> hideUiPaths = new List<string>();
+        public List<string> showUiPaths = new List<string>();
+
         [Header("Per-step WORLD visibility (relative to World root)")]
         public List<string> hideWorldPaths = new List<string>();
         public List<string> showWorldPaths = new List<string>();
 
-
-        /// <summary>
-        /// Text to display for this step.
-        /// </summary>
         [TextArea(3, 8)]
         public string message;
 
-        /// <summary>
-        /// Name of the target object in the scene hierarchy
-        /// that the arrow should point to.
-        /// If empty or null, the arrow will be hidden.
-        /// </summary>
+        [Header("Target")]
+        [Tooltip("Name or path. If includes '/', it's treated as a path under UI root or World root.")]
         public string targetObjectName;
 
-        /// <summary>
-        /// Additional offset applied to the arrow's position.
-        /// Useful to adjust the arrow so it does not overlap the target.
-        /// </summary>
+        [Tooltip("For UI: screen-space offset. For World: extra offset added in world (x,y).")]
         public Vector2 arrowOffset;
 
-        /// <summary>
-        /// If true, the scene UI root will be hidden for this step.
-        /// If false, the scene UI will stay visible.
-        /// </summary>
         public bool hideSceneUI = false;
 
-        /// <summary>
-        /// If true, this step will override the scene's default panel choice.
-        /// If false, this step will use SceneGuide.panelChoice.
-        /// </summary>
         public bool overridePanelChoice = false;
-
-        /// <summary>
-        /// Choose which tutorial panel to use in this step (Panel 1 or Panel 2).
-        /// Only used when overridePanelChoice = true.
-        /// </summary>
         public PanelChoice panelChoice = PanelChoice.Panel1;
 
-        /// <summary>
-        /// Controls how this step advances to the next one:
-        /// - OnClick: waits for button click
-        /// - OnTime: waits for secondsToAutoNext
-        /// - OnFlag: waits for requiredFlagName
-        /// - OnFlagThenTime: waits for requiredFlagName, then waits secondsToAutoNext
-        /// </summary>
         public NextMode nextMode = NextMode.OnClick;
-
-        /// <summary>
-        /// Seconds to wait before auto-advancing (used by OnTime and OnFlagThenTime).
-        /// </summary>
         public float secondsToAutoNext = 2f;
-
-        /// <summary>
-        /// Flag name to wait for (used by OnFlag and OnFlagThenTime).
-        /// Another script should call TutorialManager.Instance.SetFlag("FLAG_NAME");
-        /// </summary>
         public string requiredFlagName = "";
-        /// <summary>
-        /// If true, player can move with arrow keys during THIS tutorial step.
-        /// </summary>
+
         public bool allowMovementDuringThisStep = false;
     }
 
-    #region Unity lifecycle
+    private float faded = 0.2f;
+    private float originalAlpha = 1f;
 
     private void Awake()
     {
-        // Ensure there is only one TutorialManager instance.
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
+        if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
 
-        // Make sure the tutorial panel starts hidden.
-        if (panel != null)
-            panel.SetActive(false);
-
-        if (panel2 != null)
-            panel2.SetActive(false);
-
-        // Make sure the arrow starts hidden.
-        if (arrow != null)
-            arrow.gameObject.SetActive(false);
-
-        if (arrow2 != null)
-            arrow2.gameObject.SetActive(false);
+        if (panel != null) panel.SetActive(false);
+        if (panel2 != null) panel2.SetActive(false);
         if (panel3 != null) panel3.SetActive(false);
-        if (arrow3 != null) arrow3.gameObject.SetActive(false);
-        
 
-        // Make sure the "Got It" button starts hidden (both panels).
-        if (gotItButton != null)
-            gotItButton.gameObject.SetActive(false);
+        HideAllArrows();
 
-        if (gotItButton2 != null)
-            gotItButton2.gameObject.SetActive(false);
+        if (gotItButton != null) gotItButton.gameObject.SetActive(false);
+        if (gotItButton2 != null) gotItButton2.gameObject.SetActive(false);
         if (gotItButton3 != null) gotItButton3.gameObject.SetActive(false);
 
-        // Clear active references at start.
         activePanel = null;
         activeText = null;
-        activeArrow = null;
         activeGotItButton = null;
+        activeArrows = null;
+        activeArrow = null;
+
+        HideWorldArrow();
     }
 
-    private void OnEnable()
-    {
-        // Subscribe to the sceneLoaded event to know when a new scene is loaded.
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
+    private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
 
     private void OnDisable()
     {
-        // Unsubscribe from the sceneLoaded event to avoid memory leaks.
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        HideWorldArrow();
     }
 
-    #endregion
+   /* private void Update()
+    {
+        // נוח לסגור מדריך בלחיצה על ESC (אפשר להסיר אם לא רוצים)
+        if (!tutorialIsRunning) return;
 
-    #region Scene handling
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseGuide();
+        }
+    }*/
 
-    /// <summary>
-    /// Called automatically whenever a new scene is loaded.
-    /// Decides whether to show the tutorial for that scene.
-    /// </summary>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         currentSceneName = scene.name;
 
         StopAutoAdvance();
+        HideWorldArrow(); // חשוב: לא להשאיר חץ מהסצנה הקודמת
+        HideAllArrows();  // חשוב: לנקות חצי UI
 
-        // Never show tutorials on the main menu.
         if (scene.name == "MainMenu")
         {
             if (panel != null) panel.SetActive(false);
             if (panel2 != null) panel2.SetActive(false);
             if (panel3 != null) panel3.SetActive(false);
-
-            if (arrow != null) arrow.gameObject.SetActive(false);
-            if (arrow2 != null) arrow2.gameObject.SetActive(false);
-            if (arrow3 != null) arrow3.gameObject.SetActive(false);
 
             if (gotItButton != null) gotItButton.gameObject.SetActive(false);
             if (gotItButton2 != null) gotItButton2.gameObject.SetActive(false);
@@ -298,25 +241,18 @@ public class TutorialManager : MonoBehaviour
             return;
         }
 
-
         TryShowGuideForScene(scene.name);
     }
 
-    /// <summary>
-    /// Attempts to show a tutorial for the given scene name,
-    /// if there is a guide configured and it was not completed yet.
-    /// </summary>
     private void TryShowGuideForScene(string sceneName)
     {
-        tutorialIsRunning = false; // ✅ ברירת מחדל: אין טוטוריאל עד שנוכיח אחרת
+        tutorialIsRunning = false;
 
         if (GameManager.Instance == null || GameManager.Instance.Data == null)
             return;
 
         var data = GameManager.Instance.Data;
-
-        if (data.tutorialCompleted)
-            return;
+        if (data.tutorialCompleted) return;
 
         currentGuide = Array.Find(guides, g => g.sceneName == sceneName);
         if (currentGuide == null || currentGuide.steps == null || currentGuide.steps.Length == 0)
@@ -334,58 +270,56 @@ public class TutorialManager : MonoBehaviour
         if (activePanel != null)
             activePanel.SetActive(true);
 
-        tutorialIsRunning = true;  // ✅ רק אם באמת מצאנו מדריך ומציגים אותו
+        tutorialIsRunning = true;
         ShowCurrentStep();
     }
 
-
-    #endregion
-
-    #region Step display
-
-    /// <summary>
-    /// Updates the tutorial text, scene UI visibility and arrow
-    /// based on the current step.
-    /// </summary>
-    ///
-    private float faded = 0.2f;
-    private float originalAlpha = 1f;
-
-    /// <summary>
-    /// Returns which panel should be used for the given Step:
-    /// - If step.overridePanelChoice == true => uses step.panelChoice
-    /// - Else => uses currentGuide.panelChoice (scene default)
-    /// </summary>
     private PanelChoice GetEffectivePanelChoiceForStep(Step step)
     {
-        if (currentGuide == null || step == null)
-            return PanelChoice.Panel1;
-
+        if (currentGuide == null || step == null) return PanelChoice.Panel1;
         return step.overridePanelChoice ? step.panelChoice : currentGuide.panelChoice;
     }
 
-    /// <summary>
-    /// Select which tutorial panel is active (Panel 1 / Panel 2).
-    /// This sets activePanel / activeText / activeArrow / activeGotItButton.
-    /// </summary>
+    // -----------------------------
+    // UI Arrow helpers
+    // -----------------------------
+    private void HideAllArrows()
+    {
+        if (arrows1 != null) foreach (var a in arrows1) if (a != null) a.gameObject.SetActive(false);
+        if (arrows2 != null) foreach (var a in arrows2) if (a != null) a.gameObject.SetActive(false);
+        if (arrows3 != null) foreach (var a in arrows3) if (a != null) a.gameObject.SetActive(false);
+    }
+
+    private void HideActivePanelArrows()
+    {
+        if (activeArrows == null) return;
+        foreach (var a in activeArrows)
+            if (a != null) a.gameObject.SetActive(false);
+    }
+
+    private RectTransform GetArrowForStep(Step step)
+    {
+        if (step == null) return null;
+        if (activeArrows == null || activeArrows.Length == 0) return null;
+
+        if (step.arrowVariantIndex < 0) return null;
+
+        int idx = Mathf.Clamp(step.arrowVariantIndex, 0, activeArrows.Length - 1);
+        return activeArrows[idx];
+    }
+
     private void SelectPanel(PanelChoice choice)
     {
-        // Hide all panels
         if (panel != null) panel.SetActive(false);
         if (panel2 != null) panel2.SetActive(false);
         if (panel3 != null) panel3.SetActive(false);
 
-        // Hide all arrows
-        if (arrow != null) arrow.gameObject.SetActive(false);
-        if (arrow2 != null) arrow2.gameObject.SetActive(false);
-        if (arrow3 != null) arrow3.gameObject.SetActive(false);
+        HideAllArrows();
 
-        // Hide all Got It buttons
         if (gotItButton != null) gotItButton.gameObject.SetActive(false);
         if (gotItButton2 != null) gotItButton2.gameObject.SetActive(false);
         if (gotItButton3 != null) gotItButton3.gameObject.SetActive(false);
 
-        // Choose active set (with fallbacks)
         bool canUsePanel2 = (choice == PanelChoice.Panel2) && panel2 != null && tutorialText2 != null;
         bool canUsePanel3 = (choice == PanelChoice.Panel3) && panel3 != null && tutorialText3 != null;
 
@@ -393,192 +327,311 @@ public class TutorialManager : MonoBehaviour
         {
             activePanel = panel3;
             activeText = tutorialText3;
-            activeArrow = arrow3 != null ? arrow3 : arrow; // fallback arrow
-            activeGotItButton = gotItButton3 != null ? gotItButton3 : gotItButton; // fallback button
+            activeGotItButton = gotItButton3 != null ? gotItButton3 : gotItButton;
+            activeArrows = arrows3;
         }
         else if (canUsePanel2)
         {
             activePanel = panel2;
             activeText = tutorialText2;
-            activeArrow = arrow2 != null ? arrow2 : arrow;
             activeGotItButton = gotItButton2 != null ? gotItButton2 : gotItButton;
+            activeArrows = arrows2;
         }
         else
         {
             activePanel = panel;
             activeText = tutorialText;
-            activeArrow = arrow;
             activeGotItButton = gotItButton;
+            activeArrows = arrows1;
         }
 
-        // Optional: set "Got It" position per panel
+        activeArrow = null;
+
         if (overrideGotItPosition && activeGotItButton != null)
         {
             switch (choice)
             {
-                case PanelChoice.Panel2:
-                    activeGotItButton.anchoredPosition = gotItAnchoredPosPanel2;
-                    break;
-                case PanelChoice.Panel3:
-                    activeGotItButton.anchoredPosition = gotItAnchoredPosPanel3;
-                    break;
-                default:
-                    activeGotItButton.anchoredPosition = gotItAnchoredPosPanel1;
-                    break;
+                case PanelChoice.Panel2: activeGotItButton.anchoredPosition = gotItAnchoredPosPanel2; break;
+                case PanelChoice.Panel3: activeGotItButton.anchoredPosition = gotItAnchoredPosPanel3; break;
+                default: activeGotItButton.anchoredPosition = gotItAnchoredPosPanel1; break;
             }
         }
     }
 
-
     private void ShowCurrentStep()
     {
-
         StopAutoAdvance();
         RestorePerStepVisibility();
+        HideWorldArrow(); // חשוב: לא להשאיר חץ עולם מסטפ קודם
 
-        if (currentGuide == null || currentGuide.steps == null || currentGuide.steps.Length == 0)
-            return;
-
-        if (currentStepIndex < 0 || currentStepIndex >= currentGuide.steps.Length)
-        {
-            return;
-        }
+        if (currentGuide == null || currentGuide.steps == null || currentGuide.steps.Length == 0) return;
+        if (currentStepIndex < 0 || currentStepIndex >= currentGuide.steps.Length) return;
 
         Step step = currentGuide.steps[currentStepIndex];
+
         CachePlayer();
         if (playerMover != null)
             playerMover.SetAllowMoveDuringTutorial(step.allowMovementDuringThisStep);
 
-
-        // Pick the correct UI panel for THIS step (Step can override scene default).
         SelectPanel(GetEffectivePanelChoiceForStep(step));
 
-        if (activeText == null)
-            return;
+        if (activeText == null) return;
 
-        // Make sure the active tutorial panel is visible.
-        if (activePanel != null)
-            activePanel.SetActive(true);
+        if (activePanel != null) activePanel.SetActive(true);
+        if (activeGotItButton != null) activeGotItButton.gameObject.SetActive(step.nextMode == NextMode.OnClick);
 
-        // Button visibility depends on nextMode:
-        // - OnClick => show "Got It"
-        // - otherwise => hide "Got It"
-        if (activeGotItButton != null)
-            activeGotItButton.gameObject.SetActive(step.nextMode == NextMode.OnClick);
-
-        // 1) Show or hide scene UI according to this step
+        // 1) UI root
         if (currentSceneUiRoot != null)
             currentSceneUiRoot.SetActive(!step.hideSceneUI);
 
         if (!step.hideSceneUI)
         {
-            var fader = currentSceneUiRoot.GetComponent<UITransparencyGroup>();
+            var fader = currentSceneUiRoot != null ? currentSceneUiRoot.GetComponent<UITransparencyGroup>() : null;
             fader?.RestoreAlpha(faded);
         }
         else
         {
-            var fader = currentSceneUiRoot?.GetComponent<UITransparencyGroup>();
+            var fader = currentSceneUiRoot != null ? currentSceneUiRoot.GetComponent<UITransparencyGroup>() : null;
             fader?.RestoreAlpha(originalAlpha);
         }
 
-        // 2) Update text
+        // 2) Text
         activeText.text = step.message;
 
-        // 3) Update arrow
-        if (activeArrow != null)
-        {
-            if (!string.IsNullOrEmpty(step.targetObjectName))
-            {
-                GameObject target = GameObject.Find(step.targetObjectName);
-                if (target != null)
-                {
-                    // Try treating the target as UI (RectTransform).
-                    RectTransform targetRect = target.GetComponent<RectTransform>();
-                    if (targetRect != null)
-                    {
-                        activeArrow.gameObject.SetActive(true);
-                        activeArrow.position = targetRect.position + (Vector3)step.arrowOffset;
-                    }
-                    else
-                    {
-                        // Treat the target as a world object and convert to screen position.
-                        Vector3 worldPos = target.transform.position;
-                        if (Camera.main != null)
-                        {
-                            Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
-                            activeArrow.gameObject.SetActive(true);
-                            activeArrow.position = screenPos + (Vector3)step.arrowOffset;
-                        }
-                        else
-                        {
-                            activeArrow.gameObject.SetActive(false);
-                        }
-                    }
-                }
-                else
-                {
-                    // Target not found.
-                    activeArrow.gameObject.SetActive(false);
-                }
-            }
-            else
-            {
-                // No target for this step.
-                activeArrow.gameObject.SetActive(false);
-            }
-        }
+        // 3) Visibility first (so targets become active before arrow tries to attach)
         if (!step.hideSceneUI)
-        {
             ApplyPerStepVisibility(step);
-        }
+
         ApplyPerStepWorldVisibility(step);
 
+        // 4) Arrow (UI or WORLD)
+        SetupArrowForStep(step);
 
-
-        // 4) Auto-advance logic (time / flag / flag->time)
         StartAutoAdvanceForStep(step);
     }
 
-    #endregion
+    private void SetupArrowForStep(Step step)
+    {
+        HideActivePanelArrows();
+        activeArrow = GetArrowForStep(step);
 
-    #region Auto advance (time / flag)
+        if (string.IsNullOrEmpty(step.targetObjectName))
+        {
+            if (activeArrow != null) activeArrow.gameObject.SetActive(false);
+            HideWorldArrow();
+            return;
+        }
 
-    /// <summary>
-    /// External scripts can turn on tutorial flags.
-    /// Example: TutorialManager.Instance.SetFlag("PLANTED_FIRST_SEED");
-    /// </summary>
+        Transform targetT = ResolveTargetTransformSmart(step.targetObjectName);
+
+        if (targetT == null || !targetT.gameObject.activeInHierarchy)
+        {
+            if (activeArrow != null) activeArrow.gameObject.SetActive(false);
+            TrySpawnWorldArrowWithWait(step);
+            return;
+        }
+
+        // If UI target -> use UI arrow (RectTransform)
+        RectTransform targetRect = targetT.GetComponent<RectTransform>();
+        if (targetRect != null)
+        {
+            if (activeArrow == null) return;
+
+            activeArrow.gameObject.SetActive(true);
+            activeArrow.position = targetRect.position + (Vector3)step.arrowOffset;
+
+            HideWorldArrow();
+            return;
+        }
+
+        // Otherwise it's a world target -> show WORLD arrow prefab
+        if (activeArrow != null) activeArrow.gameObject.SetActive(false);
+        ShowWorldArrowImmediate(step, targetT);
+    }
+
+    // -----------------------------
+    // WORLD arrow logic
+    // -----------------------------
+    private void HideWorldArrow()
+    {
+        if (worldArrowRoutine != null)
+        {
+            StopCoroutine(worldArrowRoutine);
+            worldArrowRoutine = null;
+        }
+
+        if (worldArrowInstance != null)
+        {
+            Destroy(worldArrowInstance);
+            worldArrowInstance = null;
+        }
+    }
+
+    private void TrySpawnWorldArrowWithWait(Step step)
+    {
+        // If no prefab at all -> nothing to do
+        var prefabToUse = step != null && step.worldArrowPrefabOverride != null ? step.worldArrowPrefabOverride : worldArrowPrefab;
+        if (prefabToUse == null) return;
+
+        HideWorldArrow();
+
+        int stepSnapshot = currentStepIndex;
+        SceneGuide guideSnapshot = currentGuide;
+
+        worldArrowRoutine = StartCoroutine(CoSpawnWorldArrowWhenReady(step, guideSnapshot, stepSnapshot));
+    }
+
+    private IEnumerator CoSpawnWorldArrowWhenReady(Step step, SceneGuide guideSnapshot, int stepSnapshot)
+    {
+        int frames = Mathf.Max(1, waitFramesForTarget);
+
+        for (int i = 0; i < frames; i++)
+        {
+            if (currentGuide != guideSnapshot || currentStepIndex != stepSnapshot)
+                yield break;
+
+            Transform targetT = ResolveTargetTransformSmart(step.targetObjectName);
+
+            if (targetT != null && targetT.gameObject.activeInHierarchy)
+            {
+                // If it becomes UI -> don't spawn world arrow
+                if (targetT.GetComponent<RectTransform>() != null)
+                    yield break;
+
+                ShowWorldArrowImmediate(step, targetT);
+                yield break;
+            }
+
+            yield return null;
+        }
+
+        Debug.LogWarning($"[Tutorial] Target not found after waiting {frames} frames: '{step.targetObjectName}' in scene '{currentSceneName}'.");
+    }
+
+    private void ShowWorldArrowImmediate(Step step, Transform targetT)
+    {
+        if (targetT == null) return;
+
+        GameObject prefabToUse = (step != null && step.worldArrowPrefabOverride != null) ? step.worldArrowPrefabOverride : worldArrowPrefab;
+        if (prefabToUse == null) return;
+
+        HideWorldArrow();
+
+        Vector3 anchor = GetNiceWorldPoint(targetT);
+
+        worldArrowInstance = Instantiate(prefabToUse);
+        worldArrowInstance.name = "WorldArrow_Runtime";
+
+        Vector3 baseOffset = defaultWorldArrowOffset;
+        if (step != null && step.overrideWorldOffset) baseOffset = step.worldOffsetOverride;
+
+        // step.arrowOffset used as extra X/Y in world
+        Vector3 extra = step != null ? new Vector3(step.arrowOffset.x, step.arrowOffset.y, 0f) : Vector3.zero;
+
+        // corrected offset: if anchor != target.position (Renderer bounds center), we compensate
+        Vector3 correctedOffset = (anchor - targetT.position) + baseOffset + extra;
+
+        var follow = worldArrowInstance.GetComponent<WorldArrowFollow>();
+        if (follow != null)
+        {
+            follow.AttachTo(targetT, correctedOffset);
+        }
+        else
+        {
+            worldArrowInstance.transform.position = anchor + baseOffset + extra;
+        }
+    }
+
+    private Vector3 GetNiceWorldPoint(Transform t)
+    {
+        if (t == null) return Vector3.zero;
+
+        var r = t.GetComponentInChildren<Renderer>();
+        if (r != null) return r.bounds.center;
+
+        return t.position;
+    }
+
+    // Smart target resolution:
+    // 1) If path under UI root -> Find(path)
+    // 2) If path under World root -> Find(path)
+    // 3) Deep name search under UI, then World
+    // 4) fallback GameObject.Find
+    private Transform ResolveTargetTransformSmart(string nameOrPath)
+    {
+        if (string.IsNullOrEmpty(nameOrPath)) return null;
+
+        bool isPath = nameOrPath.Contains("/");
+
+        if (isPath)
+        {
+            if (currentSceneUiRoot != null)
+            {
+                var tUi = currentSceneUiRoot.transform.Find(nameOrPath);
+                if (tUi != null) return tUi;
+            }
+
+            if (currentWorldRoot != null)
+            {
+                var tW = currentWorldRoot.transform.Find(nameOrPath);
+                if (tW != null) return tW;
+            }
+        }
+        else
+        {
+            if (currentSceneUiRoot != null)
+            {
+                var deepUi = FindDeepChildByName(currentSceneUiRoot.transform, nameOrPath);
+                if (deepUi != null) return deepUi;
+            }
+
+            if (currentWorldRoot != null)
+            {
+                var deepWorld = FindDeepChildByName(currentWorldRoot.transform, nameOrPath);
+                if (deepWorld != null) return deepWorld;
+            }
+        }
+
+        var go = GameObject.Find(nameOrPath);
+        return go != null ? go.transform : null;
+    }
+
+    private Transform FindDeepChildByName(Transform root, string name)
+    {
+        if (root == null) return null;
+
+        for (int i = 0; i < root.childCount; i++)
+        {
+            var c = root.GetChild(i);
+            if (c.name == name) return c;
+
+            var found = FindDeepChildByName(c, name);
+            if (found != null) return found;
+        }
+
+        return null;
+    }
+
+    // -----------------------------
+    // Flags
+    // -----------------------------
     public void SetFlag(string flagName)
     {
-        if (string.IsNullOrEmpty(flagName))
-            return;
-
+        if (string.IsNullOrEmpty(flagName)) return;
         tutorialFlags.Add(flagName);
     }
 
-    /// <summary>
-    /// Optional: clear a specific flag.
-    /// </summary>
     public void ClearFlag(string flagName)
     {
-        if (string.IsNullOrEmpty(flagName))
-            return;
-
+        if (string.IsNullOrEmpty(flagName)) return;
         tutorialFlags.Remove(flagName);
     }
 
-    /// <summary>
-    /// Optional: clear all flags.
-    /// </summary>
-    public void ClearAllFlags()
-    {
-        tutorialFlags.Clear();
-    }
+    public void ClearAllFlags() => tutorialFlags.Clear();
 
     private bool IsFlagSet(string flagName)
     {
-        if (string.IsNullOrEmpty(flagName))
-            return false;
-
+        if (string.IsNullOrEmpty(flagName)) return false;
         return tutorialFlags.Contains(flagName);
     }
 
@@ -593,21 +646,15 @@ public class TutorialManager : MonoBehaviour
 
     private void StartAutoAdvanceForStep(Step step)
     {
-        if (step == null)
-            return;
+        if (step == null) return;
 
-        // Snapshot for safety: if step changes while waiting, we don't auto-advance the wrong step.
         int stepSnapshot = currentStepIndex;
         SceneGuide guideSnapshot = currentGuide;
 
-        // Fallback behavior if data is missing
         if (step.nextMode == NextMode.OnFlag || step.nextMode == NextMode.OnFlagThenTime)
         {
             if (string.IsNullOrEmpty(step.requiredFlagName))
-            {
-                // No flag name => cannot wait. Do nothing (behaves like OnClick without button).
                 return;
-            }
         }
 
         if (step.nextMode == NextMode.OnTime)
@@ -630,7 +677,6 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(seconds);
 
-        // If we changed guide/step during wait, do nothing.
         if (currentGuide != guideSnapshot || currentStepIndex != stepSnapshot)
             yield break;
 
@@ -641,14 +687,12 @@ public class TutorialManager : MonoBehaviour
     {
         while (!IsFlagSet(flagName))
         {
-            // If we changed guide/step during wait, do nothing.
             if (currentGuide != guideSnapshot || currentStepIndex != stepSnapshot)
                 yield break;
 
             yield return null;
         }
 
-        // Final safety check
         if (currentGuide != guideSnapshot || currentStepIndex != stepSnapshot)
             yield break;
 
@@ -657,7 +701,6 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator AutoAdvanceFlagThenTime(string flagName, float seconds, SceneGuide guideSnapshot, int stepSnapshot)
     {
-        // 1) Wait for flag
         while (!IsFlagSet(flagName))
         {
             if (currentGuide != guideSnapshot || currentStepIndex != stepSnapshot)
@@ -666,7 +709,6 @@ public class TutorialManager : MonoBehaviour
             yield return null;
         }
 
-        // 2) Only AFTER flag is set, start the timer
         if (seconds < 0f) seconds = 0f;
 
         float t = 0f;
@@ -679,21 +721,15 @@ public class TutorialManager : MonoBehaviour
             yield return null;
         }
 
-        // Final safety check
         if (currentGuide != guideSnapshot || currentStepIndex != stepSnapshot)
             yield break;
 
         OnNextStep();
     }
 
-    #endregion
-
-    #region Completion flags
-
-    /// <summary>
-    /// Checks if the guide for the given scene was already completed,
-    /// using flags stored in GameData.
-    /// </summary>
+    // -----------------------------
+    // Completion
+    // -----------------------------
     private bool IsSceneGuideAlreadyDone(string sceneName, GameData data)
     {
         switch (sceneName)
@@ -703,47 +739,22 @@ public class TutorialManager : MonoBehaviour
             case "wine": return data.wineGuideDone;
             case "basement": return data.basementGuideDone;
             case "WineryReception": return data.wineryReceptionGuideDone;
-
             default: return false;
         }
     }
 
-    /// <summary>
-    /// Marks the guide for the given scene as completed in GameData.
-    /// </summary>
     private void MarkSceneGuideDone(string sceneName, GameData data)
     {
         switch (sceneName)
         {
-            case "SampleScene":
-                data.sampleSceneGuideDone = true;
-                break;
-            case "WorldMap":
-                data.worldMapGuideDone = true;
-                break;
-            case "basement":
-                data.basementGuideDone = true;
-                break;
-            case "wine":
-                data.wineGuideDone = true;
-                break;
-            case "WineryReception":
-                data.wineryReceptionGuideDone = true;
-                break;
-
-
+            case "SampleScene": data.sampleSceneGuideDone = true; break;
+            case "WorldMap": data.worldMapGuideDone = true; break;
+            case "basement": data.basementGuideDone = true; break;
+            case "wine": data.wineGuideDone = true; break;
+            case "WineryReception": data.wineryReceptionGuideDone = true; break;
         }
     }
 
-    #endregion
-
-    #region Public API (button callback)
-
-    /// <summary>
-    /// Called from the tutorial "Next" button.
-    /// Advances to the next step, or closes the tutorial
-    /// if this was the last step.
-    /// </summary>
     public void OnNextStep()
     {
         CachePlayer();
@@ -751,8 +762,6 @@ public class TutorialManager : MonoBehaviour
             playerMover.SetAllowMoveDuringTutorial(false);
 
         StopAutoAdvance();
-
-
         ClearAllFlags();
 
         if (currentGuide == null)
@@ -775,31 +784,20 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-
-    #endregion
-
-    #region Closing & cleanup
-
-    /// <summary>
-    /// Closes the tutorial panel, restores the scene UI,
-    /// and updates GameData with completion flags.
-    /// </summary>
     private void CloseGuide()
     {
         RestorePerStepVisibility();
-
         StopAutoAdvance();
+        HideWorldArrow();
+        HideAllArrows();
 
         if (GameManager.Instance != null && GameManager.Instance.Data != null)
         {
             var data = GameManager.Instance.Data;
 
-            // Mark this scene's guide as completed.
             MarkSceneGuideDone(currentSceneName, data);
             MyAnalytics.SendTutorialSceneCompleted(currentSceneName);
 
-
-            // Check if all scene guides are done.
             bool allDone =
                 data.sampleSceneGuideDone &&
                 data.worldMapGuideDone &&
@@ -807,61 +805,37 @@ public class TutorialManager : MonoBehaviour
                 data.basementGuideDone &&
                 data.wineGuideDone;
 
-
-
             if (allDone && !data.tutorialCompleted)
             {
                 data.tutorialCompleted = true;
-                MyAnalytics.SendTutorialCompleted(); 
+                MyAnalytics.SendTutorialCompleted();
             }
 
-
-            // Save the updated data.
             GameManager.Instance.SaveGame();
         }
 
-        // Ensure the scene UI is visible when tutorial closes.
         if (currentSceneUiRoot != null)
             currentSceneUiRoot.SetActive(true);
 
-        // Hide both tutorial panels.
-        if (panel != null)
-            panel.SetActive(false);
+        if (panel != null) panel.SetActive(false);
+        if (panel2 != null) panel2.SetActive(false);
+        if (panel3 != null) panel3.SetActive(false);
 
-        if (panel2 != null)
-            panel2.SetActive(false);
+        if (gotItButton != null) gotItButton.gameObject.SetActive(false);
+        if (gotItButton2 != null) gotItButton2.gameObject.SetActive(false);
+        if (gotItButton3 != null) gotItButton3.gameObject.SetActive(false);
 
-        if (panel3 != null)
-            panel3.SetActive(false);
-
-
-        // Hide both arrows.
-        if (arrow != null)
-            arrow.gameObject.SetActive(false);
-
-        if (arrow2 != null)
-            arrow2.gameObject.SetActive(false);
-        if (arrow3 != null)
-            arrow3.gameObject.SetActive(false);
-
-        // Hide both "Got It" buttons.
-        if (gotItButton != null)
-            gotItButton.gameObject.SetActive(false);
-
-        if (gotItButton2 != null)
-            gotItButton2.gameObject.SetActive(false);
-        if (gotItButton3 != null)
-            gotItButton3.gameObject.SetActive(false);
-
-        // Reset runtime state.
         currentGuide = null;
         currentStepIndex = 0;
+
         CachePlayer();
         if (playerMover != null)
             playerMover.SetAllowMoveDuringTutorial(false);
+
         GrandpaStoppedTalking?.Invoke();
         tutorialIsRunning = false;
     }
+
     private void CachePlayer()
     {
         if (playerMover != null) return;
@@ -909,7 +883,6 @@ public class TutorialManager : MonoBehaviour
     {
         if (step == null) return;
 
-        // קודם show ואז hide כדי שיהיה עקבי
         if (step.showUiPaths != null)
             foreach (var p in step.showUiPaths)
                 SetActiveByUiPath(p, true);
@@ -918,6 +891,7 @@ public class TutorialManager : MonoBehaviour
             foreach (var p in step.hideUiPaths)
                 SetActiveByUiPath(p, false);
     }
+
     private void SetActiveByWorldPath(string path, bool active)
     {
         if (currentWorldRoot == null) return;
@@ -951,9 +925,4 @@ public class TutorialManager : MonoBehaviour
             foreach (var p in step.hideWorldPaths)
                 SetActiveByWorldPath(p, false);
     }
-
-
-
-
-    #endregion
 }

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - BAG
+  - Garden_bed
+  - WineryHouse
   layers:
   - Default
   - TransparentFX

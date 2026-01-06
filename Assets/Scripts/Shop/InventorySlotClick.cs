@@ -2,17 +2,11 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-/// <summary>
-/// Handles click interactions on an inventory slot.
-/// Depending on the mode, clicking may sell bottles, select seeds for planting,
-/// or simply close the inventory.
-/// Also shows tooltip on hover (displayName).
-/// </summary>
 public class InventorySlotClick : MonoBehaviour,
     IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
-    [HideInInspector] public string itemId;     // ID of the item displayed in this slot
-    [HideInInspector] public Image iconImage;   // Slot icon reference (set by InventoryUI)
+    [HideInInspector] public string itemId;
+    [HideInInspector] public Image iconImage;
 
     [Header("Truck Sell Mode (Only for selling wine bottles)")]
     [SerializeField] private bool isTruckSell = false;
@@ -20,47 +14,48 @@ public class InventorySlotClick : MonoBehaviour,
 
     // ---------------- HOVER TOOLTIP ----------------
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        ShowTooltip(eventData.position);
-    }
-
-    public void OnPointerMove(PointerEventData eventData)
-    {
-        ShowTooltip(eventData.position);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        InventoryTooltipUI.Instance?.Hide();
-    }
+    public void OnPointerEnter(PointerEventData eventData) => ShowTooltip(eventData.position);
+    public void OnPointerMove(PointerEventData eventData) => ShowTooltip(eventData.position);
+    public void OnPointerExit(PointerEventData eventData) => InventoryTooltipUI.Instance?.Hide();
 
     private void ShowTooltip(Vector2 screenPos)
     {
-        if (string.IsNullOrEmpty(itemId)) return;
+        if (string.IsNullOrEmpty(itemId))
+        {
+            InventoryTooltipUI.Instance?.Hide();
+            return;
+        }
 
         var inv = InventoryManager.Instance;
-        if (inv == null) return;
+        if (inv == null)
+        {
+            InventoryTooltipUI.Instance?.Hide();
+            return;
+        }
 
         ItemSO so = inv.GetDefinition(itemId);
-        if (so == null) return;
+        if (so == null)
+        {
+            InventoryTooltipUI.Instance?.Hide();
+            return;
+        }
 
-        // אם אין displayName כתוב, ניפול ל-id
         string text = string.IsNullOrWhiteSpace(so.displayName) ? so.id : so.displayName;
-
         InventoryTooltipUI.Instance?.Show(text, screenPos);
     }
 
-    // ---------------- CLICK ----------------
-
+    // ---------------- CLICK (slot click) ----------------
     public void OnPointerClick(PointerEventData eventData)
     {
+        // תמיד נסגור Tooltip בלחיצה (גם אם זה לא Sell Mode)
         InventoryTooltipUI.Instance?.Hide();
-        if (eventData.button != PointerEventData.InputButton.Left)
-            return;
 
-        if (string.IsNullOrEmpty(itemId))
-            return;
+        // ✅ בחירת SEED נעשית דרך PlantButton, לא דרך לחיצה על ה-slot.
+        // לכן כאן נשאיר רק Sell Mode.
+        if (!isTruckSell) return;
+
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+        if (string.IsNullOrEmpty(itemId)) return;
 
         var inv = InventoryManager.Instance;
         if (inv == null)
@@ -76,47 +71,18 @@ public class InventorySlotClick : MonoBehaviour,
             return;
         }
 
-        // ========== TRUCK SELL MODE ==========
-        if (isTruckSell)
+        if (truckSeller == null)
         {
-            if (truckSeller == null)
-            {
-                Debug.LogWarning("[InventorySlotClick] truckSeller not set");
-                return;
-            }
-
-            if (!so.isWineBottle)
-            {
-                Debug.Log($"[InventorySlotClick] {itemId} is not a wine bottle");
-                return;
-            }
-
-            truckSeller.SellOneBottle(itemId);
+            Debug.LogWarning("[InventorySlotClick] truckSeller not set");
             return;
         }
 
-        // ========== PLANTING MODE (Seed selection) ==========
-        if (so.isSeed)
+        if (!so.isWineBottle)
         {
-            TutorialManager.Instance?.SetFlag("Press Seed");
-            PlantingController.Instance?.SelectSeed(so);
-        }
-        else
-        {
-            Debug.Log($"[InventorySlotClick] {itemId} is NOT a seed (clicked normally).");
+            Debug.Log($"[InventorySlotClick] {itemId} is not a wine bottle");
+            return;
         }
 
-        // ========== UI BEHAVIOR ==========
-        var invUI = GetComponentInParent<InventoryUI>();
-        if (invUI != null)
-        {
-            if (invUI.CompareTag("BAG"))
-            {
-                bool check = InventoryManager.openedBagGardenTutorial = false;
-                Debug.Log("Value of BAG is changed from " + check + " Into " + !check);
-            }
-
-            invUI.Close();
-        }
+        truckSeller.SellOneBottle(itemId);
     }
 }

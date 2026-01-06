@@ -872,8 +872,8 @@ MonoBehaviour:
       hideSceneUI: 0
       overridePanelChoice: 1
       panelChoice: 2
-      nextMode: 1
-      secondsToAutoNext: 3
+      nextMode: 2
+      secondsToAutoNext: 0
       requiredFlagName: 
       allowMovementDuringThisStep: 1
   sceneUiRootName: UI

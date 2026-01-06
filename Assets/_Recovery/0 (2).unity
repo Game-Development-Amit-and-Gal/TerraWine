@@ -528,6 +528,141 @@ MonoBehaviour:
   gotItAnchoredPosPanel2: {x: 0, y: 0}
   gotItAnchoredPosPanel3: {x: 0, y: 0}
   guides:
+  - sceneName: WineryReception
+    panelChoice: 0
+    steps:
+    - arrowVariantIndex: 0
+      worldArrowPrefabOverride: {fileID: 0}
+      overrideWorldOffset: 0
+      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
+      hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: "Go to the Basement \nusing the arrow keys."
+      targetObjectName: Player
+      arrowOffset: {x: 1400, y: -400}
+      hideSceneUI: 1
+      overridePanelChoice: 1
+      panelChoice: 2
+      nextMode: 2
+      secondsToAutoNext: 0
+      requiredFlagName: Basement
+      allowMovementDuringThisStep: 1
+  - sceneName: basement
+    panelChoice: 0
+    steps:
+    - arrowVariantIndex: 0
+      worldArrowPrefabOverride: {fileID: 0}
+      overrideWorldOffset: 0
+      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
+      hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: "Go to the right door \nusing the arrow keys."
+      targetObjectName: Player
+      arrowOffset: {x: 200, y: 200}
+      hideSceneUI: 1
+      overridePanelChoice: 1
+      panelChoice: 2
+      nextMode: 2
+      secondsToAutoNext: 0
+      requiredFlagName: Rightdoor
+      allowMovementDuringThisStep: 1
+  - sceneName: wine
+    panelChoice: 0
+    steps:
+    - arrowVariantIndex: 0
+      worldArrowPrefabOverride: {fileID: 0}
+      overrideWorldOffset: 0
+      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
+      hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: Press the barrel
+      targetObjectName: Player
+      arrowOffset: {x: -500, y: 100}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 0
+      requiredFlagName: barrel
+      allowMovementDuringThisStep: 0
+    - arrowVariantIndex: 0
+      worldArrowPrefabOverride: {fileID: 0}
+      overrideWorldOffset: 0
+      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
+      hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: Press the Young Cabernet
+      targetObjectName: Player
+      arrowOffset: {x: 100, y: 550}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 2
+      nextMode: 2
+      secondsToAutoNext: 0
+      requiredFlagName: Young Cabernet
+      allowMovementDuringThisStep: 0
+    - arrowVariantIndex: 0
+      worldArrowPrefabOverride: {fileID: 0}
+      overrideWorldOffset: 0
+      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
+      hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: Press confirm
+      targetObjectName: Player
+      arrowOffset: {x: 200, y: -200}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 2
+      nextMode: 2
+      secondsToAutoNext: 0
+      requiredFlagName: confirm
+      allowMovementDuringThisStep: 0
+    - arrowVariantIndex: 0
+      worldArrowPrefabOverride: {fileID: 0}
+      overrideWorldOffset: 0
+      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
+      hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: Press the barrel
+      targetObjectName: Player
+      arrowOffset: {x: -500, y: 100}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 1
+      nextMode: 2
+      secondsToAutoNext: 0
+      requiredFlagName: Readybarrel
+      allowMovementDuringThisStep: 0
+    - arrowVariantIndex: 0
+      worldArrowPrefabOverride: {fileID: 0}
+      overrideWorldOffset: 0
+      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
+      hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: Go back to the yard.
+      targetObjectName: Player
+      arrowOffset: {x: 900, y: 100}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 2
+      nextMode: 0
+      secondsToAutoNext: 0
+      requiredFlagName: 
+      allowMovementDuringThisStep: 1
   - sceneName: SampleScene
     panelChoice: 0
     steps:
@@ -720,7 +855,7 @@ MonoBehaviour:
       requiredFlagName: Bag Close
       allowMovementDuringThisStep: 0
     - arrowVariantIndex: -1
-      worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+      worldArrowPrefabOverride: {fileID: 1251139060}
       overrideWorldOffset: 1
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
       hideUiPaths:
@@ -732,7 +867,7 @@ MonoBehaviour:
       - 
       showWorldPaths: []
       message: Enter the winery
-      targetObjectName: Grid/WineryHouse/WineryDoorTrigger
+      targetObjectName: Grid/WineryHouse
       arrowOffset: {x: 0, y: 0}
       hideSceneUI: 0
       overridePanelChoice: 1
@@ -740,141 +875,6 @@ MonoBehaviour:
       nextMode: 2
       secondsToAutoNext: 2
       requiredFlagName: Winery
-      allowMovementDuringThisStep: 1
-  - sceneName: WineryReception
-    panelChoice: 0
-    steps:
-    - arrowVariantIndex: -1
-      worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      overrideWorldOffset: 1
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: "Go to the Basement \nusing the arrow keys."
-      targetObjectName: 'WinerybasementTrigger '
-      arrowOffset: {x: 0, y: 0}
-      hideSceneUI: 1
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 2
-      secondsToAutoNext: 0
-      requiredFlagName: Basement
-      allowMovementDuringThisStep: 1
-  - sceneName: basement
-    panelChoice: 0
-    steps:
-    - arrowVariantIndex: -1
-      worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      overrideWorldOffset: 1
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: "Go to the right door \nusing the arrow keys."
-      targetObjectName: 'WineryWineTrigger '
-      arrowOffset: {x: 0, y: 0}
-      hideSceneUI: 1
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 2
-      secondsToAutoNext: 0
-      requiredFlagName: Rightdoor
-      allowMovementDuringThisStep: 1
-  - sceneName: wine
-    panelChoice: 0
-    steps:
-    - arrowVariantIndex: 0
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: Press the barrel
-      targetObjectName: Player
-      arrowOffset: {x: -500, y: 100}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 1
-      nextMode: 2
-      secondsToAutoNext: 0
-      requiredFlagName: barrel
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: Press the Young Cabernet
-      targetObjectName: Player
-      arrowOffset: {x: 100, y: 550}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 2
-      secondsToAutoNext: 0
-      requiredFlagName: Young Cabernet
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: Press confirm
-      targetObjectName: Player
-      arrowOffset: {x: 200, y: -200}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 2
-      secondsToAutoNext: 0
-      requiredFlagName: confirm
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: Press the barrel
-      targetObjectName: Player
-      arrowOffset: {x: -500, y: 100}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 1
-      nextMode: 2
-      secondsToAutoNext: 0
-      requiredFlagName: Readybarrel
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: Go back to the yard.
-      targetObjectName: Player
-      arrowOffset: {x: 900, y: 100}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 1
-      secondsToAutoNext: 3
-      requiredFlagName: 
       allowMovementDuringThisStep: 1
   sceneUiRootName: UI
   worldRootName: World
@@ -4031,6 +4031,77 @@ Transform:
   m_Children: []
   m_Father: {fileID: 100028653}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1251139059
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1744896438}
+    m_Modifications:
+    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.05621
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.36727
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2117284359493532730, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+      propertyPath: m_Name
+      value: ARROW1 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2117284359493532730, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+--- !u!1 &1251139060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2117284359493532730, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+  m_PrefabInstance: {fileID: 1251139059}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1251139061 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+  m_PrefabInstance: {fileID: 1251139059}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1251857465 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8957535181035098610, guid: 91dfbb0dd388563449ddd17dcfc13fd3, type: 3}
@@ -4701,11 +4772,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473236774}
   m_CullTransparentMesh: 1
---- !u!4 &1474432845 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-  m_PrefabInstance: {fileID: 1607455438}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1477401399
 GameObject:
   m_ObjectHideFlags: 0
@@ -4994,75 +5060,6 @@ Transform:
   - {fileID: 1785819895}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1607455438
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1744896438}
-    m_Modifications:
-    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.393921
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.1509104
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2117284359493532730, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_Name
-      value: ARROW1 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2117284359493532730, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
 --- !u!1 &1613102610
 GameObject:
   m_ObjectHideFlags: 0
@@ -5489,72 +5486,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &1622382849
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1744896438}
-    m_Modifications:
-    - target: {fileID: 7317666665341064, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -20.06549
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.91087
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7317666665341064, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2117284359493532730, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      propertyPath: m_Name
-      value: ARROW1 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2117284359493532730, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
---- !u!4 &1622382850 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7317666665341064, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-  m_PrefabInstance: {fileID: 1622382849}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1640580715
 GameObject:
   m_ObjectHideFlags: 0
@@ -5715,10 +5646,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 546288503676655963, guid: 5e987b73fec8a1e45b19f516a9bfeed9, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5000
-      objectReference: {fileID: 0}
     - target: {fileID: 2117284359493532730, guid: 5e987b73fec8a1e45b19f516a9bfeed9, type: 3}
       propertyPath: m_Name
       value: ARROW1
@@ -5764,8 +5691,7 @@ Transform:
   m_Children:
   - {fileID: 1427573477}
   - {fileID: 365100784}
-  - {fileID: 1474432845}
-  - {fileID: 1622382850}
+  - {fileID: 1251139061}
   - {fileID: 446284292}
   - {fileID: 631461534}
   - {fileID: 2133828406}

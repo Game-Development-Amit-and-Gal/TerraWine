@@ -1,86 +1,71 @@
-﻿using System.Collections.Generic;      
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// Handles the visual inventory window in the UI.
-/// It listens for inventory changes, creates item slot UI elements,
-/// switches categories (tabs), and supports both normal inventory view
-/// and special Sell/Buy modes depending on the scene.
-/// </summary>
-
 public class InventoryUI : MonoBehaviour
 {
-    [SerializeField] GameObject panel;        // The main inventory UI panel (window to show/hide)
-    [SerializeField] Transform gridParent;    // Parent transform that will hold all the item slot UI elements
-    [SerializeField] GameObject slotPrefab;   // Prefab used to visually represent a single inventory slot
+    [SerializeField] private GameObject panel;
+    [SerializeField] private Transform gridParent;
+    [SerializeField] private GameObject slotPrefab;
 
-    [SerializeField] GameObject extraImage;          // Extra UI image/decorator shown above the bottom bar
-    [SerializeField] GameObject ResourcesBottom;     // Bottom UI section used when viewing resource items
-    [SerializeField] GameObject WineBottlesBottom;   // Bottom UI section used when viewing wine bottles
-    [SerializeField] GameObject DesignBottom;        // Bottom UI section used when viewing design-related items
+    [SerializeField] private GameObject extraImage;
+    [SerializeField] private GameObject ResourcesBottom;
+    [SerializeField] private GameObject WineBottlesBottom;
+    [SerializeField] private GameObject DesignBottom;
 
+    [SerializeField] private bool isSellUI = false;
+    [SerializeField] private TruckSeller truckSeller;
 
-    [SerializeField] bool isSellUI = false;      // If true, this inventory panel is used for selling items (truck interaction)
-    [SerializeField] TruckSeller truckSeller;    // Reference to the TruckSeller script that handles selling logic
+    [SerializeField] private bool isBuyUI = false;
+    [SerializeField] private GameObject UpdateBottom;
+    [SerializeField] private GameObject SecurityBottom;
+    [SerializeField] private GameObject DesignBuyBottom;
 
+    [SerializeField] private ItemCategory currentCategory = ItemCategory.Resources;
 
-    [SerializeField] bool isBuyUI = false;             // If true, this inventory panel is used for buying items (shop mode)
-    [SerializeField] GameObject UpdateBottom;          // Bottom UI shown when viewing update/upgrade purchase options
-    [SerializeField] GameObject SecurityBottom;        // Bottom UI shown when buying security-related items
-    [SerializeField] GameObject DesignBuyBottom;       // Bottom UI shown when buying design-themed items
+    [Header("Paging")]
+    [SerializeField, Min(1)] private int itemsPerPage = 4;
+    [SerializeField] private GameObject nextPageButton;
+    [SerializeField] private GameObject prevPageButton;
+    [SerializeField] private TMP_Text pageLabel;
 
+    private int currentPage = 0;
 
-
-    [SerializeField] ItemCategory currentCategory = ItemCategory.Resources;   // The currently active category/tab being displayed in the inventory
-
-
-    private void OnEnable() // Bind the onChanged Object with redraw function
+    private void OnEnable()
     {
-        // If there is no InventoryManager (should not happen), stop
         if (InventoryManager.Instance == null)
         {
             Debug.LogWarning("[InventoryUI] No InventoryManager in scene!");
             return;
         }
 
-        // Subscribe to inventory change events so UI refreshes automatically
         InventoryManager.Instance.onChanged.AddListener(Redraw);
-
-        // Immediately draw the current inventory when the panel becomes active
         Redraw();
     }
 
-
     private void OnDisable()
     {
-        // If InventoryManager doesn’t exist, nothing to unsubscribe from
         if (InventoryManager.Instance == null) return;
 
-        // Stop listening to inventory change events when UI is hidden
         InventoryManager.Instance.onChanged.RemoveListener(Redraw);
         InventoryTooltipUI.Instance?.Hide();
-
-        // Hide any bottom UI sections when the panel closes
         SetExtraUiActive(false);
     }
 
-
     private void SetExtraUiActive(bool active)
     {
-        // Toggle the decorative image at the top of the bottom UI section
         if (extraImage != null)
             extraImage.SetActive(active);
 
-        // If NOT in Buy mode → show standard bottom layouts (Resources/Wine/Design)
         if (!isBuyUI)
         {
-            // Show standard category bottoms when inventory is active
             if (ResourcesBottom != null)
-                TutorialManager.Instance?.SetFlag("Bag Open");
+            {
+                if (active) TutorialManager.Instance?.SetFlag("Bag Open");
                 ResourcesBottom.SetActive(active);
+            }
 
             if (WineBottlesBottom != null)
                 WineBottlesBottom.SetActive(active);
@@ -88,286 +73,347 @@ public class InventoryUI : MonoBehaviour
             if (DesignBottom != null)
                 DesignBottom.SetActive(active);
 
-            // Hide BUY-related bottoms in this mode
-            if (UpdateBottom != null)
-                UpdateBottom.SetActive(false);
-
-            if (SecurityBottom != null)
-                SecurityBottom.SetActive(false);
-
-            if (DesignBuyBottom != null)
-                DesignBuyBottom.SetActive(false);
+            if (UpdateBottom != null) UpdateBottom.SetActive(false);
+            if (SecurityBottom != null) SecurityBottom.SetActive(false);
+            if (DesignBuyBottom != null) DesignBuyBottom.SetActive(false);
         }
-        else  // If in Buy mode → show purchase UI sections instead
+        else
         {
-            // Hide the standard inventory bottoms
-            if (ResourcesBottom != null)
-                ResourcesBottom.SetActive(false);
-            if (WineBottlesBottom != null)
-                WineBottlesBottom.SetActive(false);
-            if (DesignBottom != null)
-                DesignBottom.SetActive(false);
+            if (ResourcesBottom != null) ResourcesBottom.SetActive(false);
+            if (WineBottlesBottom != null) WineBottlesBottom.SetActive(false);
+            if (DesignBottom != null) DesignBottom.SetActive(false);
 
-            // Show BUY-related bottoms
-            if (UpdateBottom != null)
-                UpdateBottom.SetActive(active);
-            if (SecurityBottom != null)
-                SecurityBottom.SetActive(active);
-            if (DesignBuyBottom != null)
-                DesignBuyBottom.SetActive(active);
+            if (UpdateBottom != null) UpdateBottom.SetActive(active);
+            if (SecurityBottom != null) SecurityBottom.SetActive(active);
+            if (DesignBuyBottom != null) DesignBuyBottom.SetActive(active);
         }
     }
-
 
     public void Toggle()
     {
-        // Flip the panel’s current visibility state (open ↔ closed)
         InventoryTooltipUI.Instance?.Hide();
+        if (panel == null) return;
+
         bool newState = !panel.activeSelf;
-        bool tutorialState = true;
 
-        SetOpenBagTutorial(tutorialState, panel);
-        // Apply the new visibility to the main inventory panel
+        SetOpenBagTutorial(newState, panel);
+
         panel.SetActive(newState);
-
-        // Show/hide the bottom UI sections based on this state
         SetExtraUiActive(newState);
 
-        // If the panel has just opened, refresh the displayed items
-        if (newState) Redraw();
-    }
-
-
-    public void Open()
-    {
-        // Show the inventory panel
-        panel.SetActive(true);
-
-        // Show the bottom UI sections as well
-        SetExtraUiActive(true);
-
-
-
-        // Refresh the inventory display immediately
-        Redraw();
-    }
-
-
-    public void Close()
-    {
-        // Hide the inventory panel
-        panel.SetActive(false);
-        TutorialManager.Instance?.SetFlag("Bag Close");
-        InventoryTooltipUI.Instance?.Hide();
-
-        // Hide the bottom UI sections as well
-        SetExtraUiActive(false);
-    }
-
-
-    private void Update()
-    {
-        // If the panel does not exist or is not currently open, ignore input
-        if (panel == null || !panel.activeSelf) return;
-
-        // Allow the player to close the inventory using the Escape key
-        if (Keyboard.current != null &&
-            Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (newState)
         {
-            Close();
+            currentPage = 0;
+            Redraw();
+        }
+        else
+        {
+            SetPagingUiActive(false);
         }
     }
 
-
-
-    public void ShowResourcesTab()
+    public void Open()
     {
-        // Switch the active tab/category to Resources
-        currentCategory = ItemCategory.Resources;
-        
+        if (panel == null) return;
 
-        // Refresh the UI to display only items from this category
+        panel.SetActive(true);
+        SetExtraUiActive(true);
+        currentPage = 0;
         Redraw();
     }
 
-
-    public void ShowWineBottlesTab()
+    public void Close()
     {
-        // Switch the active tab/category to Wine Bottles
-        currentCategory = ItemCategory.WineBottles;
+        if (panel == null) return;
 
-        // Refresh the UI to display only items from this category
-        Redraw();
+        panel.SetActive(false);
+        TutorialManager.Instance?.SetFlag("Bag Close");
+        InventoryTooltipUI.Instance?.Hide();
+        SetExtraUiActive(false);
+
+        SetPagingUiActive(false);
+        SetOpenBagTutorial(false, panel);
     }
 
-
-    public void ShowDesignTab()
+    private void Update()
     {
-        // Switch the active tab/category to Design items
-        currentCategory = ItemCategory.Design;
+        if (panel == null || !panel.activeSelf) return;
 
-        // Refresh the UI to display only items from this category
-        Redraw();
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+            Close();
     }
 
-    public void ShowUpdateTab()
-    {
-        // Switch the active tab/category to Upgrade items
-        currentCategory = ItemCategory.Update;
+    // Tabs
+    public void ShowResourcesTab() { currentCategory = ItemCategory.Resources; currentPage = 0; Redraw(); }
+    public void ShowWineBottlesTab() { currentCategory = ItemCategory.WineBottles; currentPage = 0; Redraw(); }
+    public void ShowDesignTab() { currentCategory = ItemCategory.Design; currentPage = 0; Redraw(); }
+    public void ShowUpdateTab() { currentCategory = ItemCategory.Update; currentPage = 0; Redraw(); }
+    public void ShowSecurityTab() { currentCategory = ItemCategory.Security; currentPage = 0; Redraw(); }
+    public void ShowDesignBuyTab() { currentCategory = ItemCategory.DesignBuy; currentPage = 0; Redraw(); }
 
-        // Refresh the UI to display only items from this category
-        Redraw();
+    // Paging
+    public void NextPage()
+    {
+        var inv = InventoryManager.Instance;
+        if (inv == null) return;
+
+        int total = CountFiltered(inv);
+        int maxPage = total > 0 ? (total - 1) / itemsPerPage : 0;
+
+        if (currentPage < maxPage)
+        {
+            currentPage++;
+            Redraw();
+        }
     }
 
-    public void ShowSecurityTab()
+    public void PrevPage()
     {
-        // Switch the active tab/category to Security items
-        currentCategory = ItemCategory.Security;
-
-        // Refresh the UI to display only items from this category
-        Redraw();
+        if (currentPage > 0)
+        {
+            currentPage--;
+            Redraw();
+        }
     }
 
-
-    public void ShowDesignBuyTab()
+    // Draw
+    private void Redraw()
     {
-        // Switch the active tab/category to Design items for purchase
-        currentCategory = ItemCategory.DesignBuy;
+        if (panel == null || !panel.activeInHierarchy)
+        {
+            SetPagingUiActive(false);
+            return;
+        }
 
-        // Refresh the UI to display only items from this category
-        Redraw();
-    }
+        if (gridParent == null || slotPrefab == null)
+        {
+            Debug.LogWarning("[InventoryUI] gridParent/slotPrefab missing!");
+            return;
+        }
 
-
-    void Redraw()
-    {
         foreach (Transform c in gridParent)
             Destroy(c.gameObject);
 
         var inv = InventoryManager.Instance;
         if (inv == null) return;
 
-        int capacity = inv.capacity;
-
-
         List<InventorySlot> filtered = new List<InventorySlot>();
-
         foreach (var s in inv.Slots)
         {
-            if (string.IsNullOrEmpty(s.id) || s.amount <= 0)
-                continue;
+            if (string.IsNullOrEmpty(s.id) || s.amount <= 0) continue;
 
             ItemSO so = inv.GetDefinition(s.id);
-            if (so == null)
-                continue;
+            if (so == null) continue;
 
-            if (so.category != currentCategory)
-                continue;
-
+            if (so.category != currentCategory) continue;
             filtered.Add(s);
         }
 
-
-        for (int i = 0; i < capacity; i++)
+        int total = filtered.Count;
+        if (total <= 0)
         {
+            SetPagingUiActive(false);
+            return;
+        }
+
+        int maxPage = (total - 1) / itemsPerPage;
+        currentPage = Mathf.Clamp(currentPage, 0, maxPage);
+
+        if (prevPageButton != null) prevPageButton.SetActive(currentPage > 0);
+        if (nextPageButton != null) nextPageButton.SetActive(currentPage < maxPage);
+
+        if (pageLabel != null)
+        {
+            pageLabel.enabled = true;
+            pageLabel.gameObject.SetActive(true);
+
+            var cg = pageLabel.GetComponentInParent<CanvasGroup>();
+            if (cg != null && cg.alpha <= 0f) cg.alpha = 1f;
+
+            int shownMax = Mathf.Max(1, maxPage + 1);
+            pageLabel.text = $"{(currentPage + 1)}/{shownMax}";
+        }
+
+        int start = currentPage * itemsPerPage;
+        int end = Mathf.Min(start + itemsPerPage, total);
+
+        for (int i = start; i < end; i++)
+        {
+            var slot = filtered[i];
+            ItemSO so = inv.GetDefinition(slot.id);
+            if (so == null) continue;
+
             var go = Instantiate(slotPrefab, gridParent);
 
             var imgTr = go.transform.Find("Icon");
             var amountTr = go.transform.Find("Amount");
             var priceTr = go.transform.Find("Price");
+            var nameTr = go.transform.Find("Name");
+            var timeTr = go.transform.Find("ReadyTime");
 
-            var img = imgTr.GetComponent<Image>();
-            var amountTxt = amountTr.GetComponent<TMP_Text>();
+            // NEW: Plant button
+            var plantBtnTr = go.transform.Find("PlantButton");
+            var plantBtn = plantBtnTr != null ? plantBtnTr.GetComponent<Button>() : null;
+
+            var img = imgTr != null ? imgTr.GetComponent<Image>() : null;
+            var amountTxt = amountTr != null ? amountTr.GetComponent<TMP_Text>() : null;
+
             TMP_Text priceTxt = null;
             Image priceIcon = null;
             if (priceTr != null)
             {
                 priceTxt = priceTr.GetComponent<TMP_Text>();
+                if (priceTxt == null) priceTxt = priceTr.GetComponentInChildren<TMP_Text>(true);
+
                 priceIcon = priceTr.GetComponent<Image>();
+                if (priceIcon == null) priceIcon = priceTr.GetComponentInChildren<Image>(true);
             }
 
+            var nameTxt = nameTr != null ? nameTr.GetComponent<TMP_Text>() : null;
+            var timeTxt = timeTr != null ? timeTr.GetComponent<TMP_Text>() : null;
 
-
-            if (i < filtered.Count)
+            // icon
+            if (img != null)
             {
-                var s = filtered[i];
-
-                ItemSO so = inv.GetDefinition(s.id);
-                if (so != null)
+                if (so.icon != null)
                 {
                     img.sprite = so.icon;
                     img.enabled = true;
                 }
                 else
                 {
+                    img.sprite = null;
                     img.enabled = false;
                 }
+            }
 
-                amountTxt.text = s.amount > 1 ? s.amount.ToString() : "";
+            // amount
+            if (amountTxt != null)
+                amountTxt.text = slot.amount > 1 ? slot.amount.ToString() : "";
 
-                if (priceTxt != null || priceIcon != null)
+            // NAME
+            if (nameTxt != null)
+            {
+                string nameToShow = !string.IsNullOrWhiteSpace(so.displayName) ? so.displayName : so.id;
+                nameTxt.text = nameToShow;
+                nameTxt.gameObject.SetActive(true);
+            }
+
+            // READY TIME (Seeds only)
+            if (timeTxt != null)
+            {
+                if (so.isSeed)
                 {
-                    if (so != null && so.isWineBottle)
-                    {
-                        int totalValue = so.price * s.amount;
-                        if (priceTxt != null)
-                            priceTxt.text = $"{totalValue}";
-
-
-                        if (priceIcon != null)
-                            priceIcon.enabled = true;
-                        if (priceTr != null)
-                            priceTr.gameObject.SetActive(true);
-                    }
-                    else
-                    {
-
-                        if (priceTxt != null)
-                            priceTxt.text = "";
-
-                        if (priceIcon != null)
-                            priceIcon.enabled = false;
-                        if (priceTr != null)
-                            priceTr.gameObject.SetActive(false);
-                    }
+                    timeTxt.text = $"Grow Time: {FormatTime(so.growTimeSeconds)}";
+                    timeTxt.gameObject.SetActive(true);
                 }
-
-                var click = go.GetComponent<InventorySlotClick>();
-                if (click != null)
+                else
                 {
-                    click.itemId = s.id;
-                    click.iconImage = img;
+                    timeTxt.text = "";
+                    timeTxt.gameObject.SetActive(false);
                 }
             }
-            else
+
+            // price (wine bottles only)
+            if (priceTr != null)
             {
-                img.enabled = false;
-                amountTxt.text = "";
+                bool showPrice = so.isWineBottle;
 
-
-                if (priceTxt != null)
-                    priceTxt.text = "";
-                if (priceIcon != null)
-                    priceIcon.enabled = false;
-                if (priceTr != null)
-                    priceTr.gameObject.SetActive(false);
-
-                var click = go.GetComponent<InventorySlotClick>();
-                if (click != null)
+                if (showPrice)
                 {
-                    click.itemId = "";
-                    click.iconImage = img;
+                    int totalValue = so.price * slot.amount;
+                    if (priceTxt != null) priceTxt.text = totalValue.ToString();
+                    if (priceIcon != null) priceIcon.enabled = true;
+                    priceTr.gameObject.SetActive(true);
+                }
+                else
+                {
+                    if (priceTxt != null) priceTxt.text = "";
+                    if (priceIcon != null) priceIcon.enabled = false;
+                    priceTr.gameObject.SetActive(false);
+                }
+            }
+
+            // keep tooltip script (but selection will be via PlantButton)
+            var click = go.GetComponent<InventorySlotClick>();
+            if (click != null)
+            {
+                click.itemId = slot.id;
+                click.iconImage = img;
+            }
+
+            // NEW: PlantButton behavior (Seeds only)
+            if (plantBtn != null)
+            {
+                bool canPlant = so.isSeed && !isSellUI && !isBuyUI;
+
+                plantBtn.gameObject.SetActive(canPlant);
+                plantBtn.onClick.RemoveAllListeners();
+
+                if (canPlant)
+                {
+                    string seedId = slot.id; // capture safe
+
+                    plantBtn.onClick.AddListener(() =>
+                    {
+                        var inv2 = InventoryManager.Instance;
+                        if (inv2 == null) return;
+
+                        var seedSo = inv2.GetDefinition(seedId);
+                        if (seedSo == null || !seedSo.isSeed) return;
+
+                        TutorialManager.Instance?.SetFlag("Press Seed");
+                        PlantingController.Instance?.SelectSeed(seedSo);
+
+                        Close();
+                    });
                 }
             }
         }
     }
-   public static void SetOpenBagTutorial(bool openBagTutorial,GameObject panel)
+
+    private int CountFiltered(InventoryManager inv)
     {
-        if (panel.CompareTag("BAG"))
+        int count = 0;
+        foreach (var s in inv.Slots)
         {
-            // for tutorial level 
-            bool check = InventoryManager.openedBagGardenTutorial = openBagTutorial;
-            Debug.Log("Value of BAG is changed from " + check + " Into " + !check);
+            if (string.IsNullOrEmpty(s.id) || s.amount <= 0) continue;
+
+            ItemSO so = inv.GetDefinition(s.id);
+            if (so == null) continue;
+
+            if (so.category != currentCategory) continue;
+            count++;
+        }
+        return count;
+    }
+
+    private void SetPagingUiActive(bool active)
+    {
+        if (prevPageButton != null) prevPageButton.SetActive(active && currentPage > 0);
+        if (nextPageButton != null) nextPageButton.SetActive(active);
+        if (pageLabel != null) pageLabel.gameObject.SetActive(active);
+    }
+
+    private string FormatTime(float seconds)
+    {
+        if (seconds < 0f) seconds = 0f;
+
+        int s = Mathf.CeilToInt(seconds);
+        int m = s / 60;
+        s %= 60;
+
+        return $"{m:0}:{s:00}";
+    }
+
+    public static void SetOpenBagTutorial(bool openBagTutorial, GameObject panelObj)
+    {
+        if (panelObj != null && panelObj.CompareTag("BAG"))
+        {
+            bool prev = InventoryManager.openedBagGardenTutorial;
+            InventoryManager.openedBagGardenTutorial = openBagTutorial;
+
+            Debug.Log($"Value of BAG changed from {prev} to {openBagTutorial}");
         }
     }
 }
