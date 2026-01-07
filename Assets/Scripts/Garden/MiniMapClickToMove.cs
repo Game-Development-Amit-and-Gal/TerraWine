@@ -25,7 +25,6 @@ public class MiniMapClickToMove : MonoBehaviour
     {
         if (TutorialManager.tutorialIsRunning)
         {
-            Debug.Log("Tutorial is still running due to bool value");
             return;
         }
         // Use the new Input System. If there is no mouse, do nothing.
