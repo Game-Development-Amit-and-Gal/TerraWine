@@ -18,10 +18,10 @@ public class PlantingController : MonoBehaviour
 
     // The currently selected seed (stored as ItemSO)
     private ItemSO currentSeedItem;
-    [SerializeField] private TMP_Text removePromptItem;
     [Header("UI references")]
+    [SerializeField] private RectTransform uiContainer;
     [SerializeField] private RectTransform canvasTransform;
-    private Vector2 textOffset = new Vector2(150f,70f);
+    [SerializeField] private Vector2 textOffset = new Vector2(-1100,0f);
 
     /// <summary>
     /// True if a seed is currently selected from inventory.
@@ -42,8 +42,13 @@ public class PlantingController : MonoBehaviour
         if (cursorSprite != null)
             cursorSprite.enabled = false;
 
-        if(removePromptItem != null)
-               removePromptItem.enabled = false; 
+        if(uiContainer != null)
+        {
+            uiContainer.gameObject.SetActive(false);
+        }
+            
+        
+
  
         // Ensure normal mouse cursor is visible while no seed is selected
         Cursor.visible = true;
@@ -71,7 +76,8 @@ public class PlantingController : MonoBehaviour
             cursorSprite.enabled = true;
             SetCursorSpriteSize(item.icon);
         }
-        removePromptItem.enabled = true;
+        //removePromptItem.enabled = true;
+        uiContainer.gameObject.SetActive(true);
 
         // Hide default mouse cursor → we now use the seed icon instead
         Cursor.visible = false;
@@ -86,7 +92,7 @@ public class PlantingController : MonoBehaviour
 
         if (cursorSprite != null)
             cursorSprite.enabled = false;
-        removePromptItem.enabled = false;
+        uiContainer.gameObject.SetActive(false);
 
         // Restore the normal mouse cursor
         Cursor.visible = true;
@@ -117,15 +123,15 @@ public class PlantingController : MonoBehaviour
         Vector3 world = Camera.main.ScreenToWorldPoint(mousePos);
         world.z = 0f;
         cursorSprite.transform.position = world;
-        if(removePromptItem != null && canvasTransform != null)
+        if( uiContainer != null && canvasTransform != null)
         {
             Vector2 anchoredPos;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 canvasTransform,
-                mousePos + textOffset,
+                mousePos,
                 null,
                 out anchoredPos);
-            removePromptItem.rectTransform.anchoredPosition = anchoredPos;
+            uiContainer.anchoredPosition = anchoredPos + textOffset;
         }
     }
 

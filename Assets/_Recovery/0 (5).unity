@@ -2258,7 +2258,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 627854252}
+  - {fileID: 386760656}
   m_Father: {fileID: 1919073661}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2743,17 +2743,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 386760655}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 146093580}
-  m_Father: {fileID: 627854252}
+  m_Father: {fileID: 289195553}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -50.000244, y: 5.200012}
+  m_AnchoredPosition: {x: -548, y: 114.2}
   m_SizeDelta: {x: 300, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &386760657
@@ -2807,8 +2807,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   squareTransform: {fileID: 386760656}
-  floatAmplitude: 10
-  speed: 0.2
+  floatAmplitude: 0.5
+  floatFreq: 2
 --- !u!1001 &397773895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63013,42 +63013,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2081657692}
   m_LocalEulerAnglesHint: {x: 0, y: 0.933, z: 0.131}
---- !u!1 &627854251
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 627854252}
-  m_Layer: 5
-  m_Name: uiRectContainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &627854252
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 627854251}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 386760656}
-  m_Father: {fileID: 289195553}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -548, y: 109}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &634309077
 GameObject:
   m_ObjectHideFlags: 0
@@ -338116,7 +338080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlantingController
   cursorWorldHeight: 2
   cursorSprite: {fileID: 1919073660}
-  uiContainer: {fileID: 627854252}
+  removePromptItem: {fileID: 146093581}
   canvasTransform: {fileID: 289195553}
 --- !u!4 &1516731685
 Transform:

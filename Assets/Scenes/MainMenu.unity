@@ -879,6 +879,24 @@ MonoBehaviour:
       secondsToAutoNext: 3
       requiredFlagName: 
       allowMovementDuringThisStep: 1
+    - arrowVariantIndex: 0
+      worldArrowPrefabOverride: {fileID: 0}
+      overrideWorldOffset: 0
+      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
+      hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: 
+      targetObjectName: Player
+      arrowOffset: {x: 900, y: 100}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 2
+      nextMode: 1
+      secondsToAutoNext: 3
+      requiredFlagName: 
+      allowMovementDuringThisStep: 1
   sceneUiRootName: UI
   worldRootName: World
   worldArrowPrefab: {fileID: 365100781}

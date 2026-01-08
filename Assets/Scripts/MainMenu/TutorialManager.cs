@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -203,16 +204,16 @@ public class TutorialManager : MonoBehaviour
         HideWorldArrow();
     }
 
-   /* private void Update()
-    {
-        // נוח לסגור מדריך בלחיצה על ESC (אפשר להסיר אם לא רוצים)
-        if (!tutorialIsRunning) return;
+    /* private void Update()
+     {
+         // נוח לסגור מדריך בלחיצה על ESC (אפשר להסיר אם לא רוצים)
+         if (!tutorialIsRunning) return;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            CloseGuide();
-        }
-    }*/
+         if (Input.GetKeyDown(KeyCode.Escape))
+         {
+             CloseGuide();
+         }
+     }*/
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
