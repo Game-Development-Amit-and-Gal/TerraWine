@@ -506,6 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287b752c5c056d84e8250115ffced93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
+  currentGlobalState: 10
   panel: {fileID: 35155697}
   tutorialText: {fileID: 763222774}
   arrows1:
@@ -531,7 +532,8 @@ MonoBehaviour:
   - sceneName: SampleScene
     panelChoice: 0
     steps:
-    - arrowVariantIndex: -1
+    - requiredState: 10
+      arrowVariantIndex: -1
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -550,7 +552,8 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: 
       allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 1
+    - requiredState: 10
+      arrowVariantIndex: 1
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -573,7 +576,8 @@ MonoBehaviour:
       secondsToAutoNext: 4
       requiredFlagName: Move arrow keys
       allowMovementDuringThisStep: 1
-    - arrowVariantIndex: 0
+    - requiredState: 10
+      arrowVariantIndex: 0
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -595,7 +599,8 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Bag Open
       allowMovementDuringThisStep: 0
-    - arrowVariantIndex: -1
+    - requiredState: 10
+      arrowVariantIndex: -1
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -616,7 +621,8 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Press Seed
       allowMovementDuringThisStep: 0
-    - arrowVariantIndex: -1
+    - requiredState: 10
+      arrowVariantIndex: -1
       worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 5e987b73fec8a1e45b19f516a9bfeed9, type: 3}
       overrideWorldOffset: 1
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -637,7 +643,8 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Press vineyard
       allowMovementDuringThisStep: 1
-    - arrowVariantIndex: -1
+    - requiredState: 10
+      arrowVariantIndex: -1
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -655,7 +662,8 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Vineyard Redy
       allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 1
+    - requiredState: 10
+      arrowVariantIndex: 1
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -675,7 +683,8 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Is Ready
       allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
+    - requiredState: 10
+      arrowVariantIndex: 0
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -697,7 +706,8 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Bag Open
       allowMovementDuringThisStep: 0
-    - arrowVariantIndex: -1
+    - requiredState: 10
+      arrowVariantIndex: -1
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -719,7 +729,8 @@ MonoBehaviour:
       secondsToAutoNext: 2
       requiredFlagName: Bag Close
       allowMovementDuringThisStep: 0
-    - arrowVariantIndex: -1
+    - requiredState: 10
+      arrowVariantIndex: -1
       worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
       overrideWorldOffset: 1
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -747,7 +758,8 @@ MonoBehaviour:
   - sceneName: WineryReception
     panelChoice: 0
     steps:
-    - arrowVariantIndex: -1
+    - requiredState: 20
+      arrowVariantIndex: -1
       worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
       overrideWorldOffset: 1
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -768,7 +780,8 @@ MonoBehaviour:
   - sceneName: basement
     panelChoice: 0
     steps:
-    - arrowVariantIndex: -1
+    - requiredState: 30
+      arrowVariantIndex: -1
       worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
       overrideWorldOffset: 1
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -789,7 +802,8 @@ MonoBehaviour:
   - sceneName: wine
     panelChoice: 0
     steps:
-    - arrowVariantIndex: 0
+    - requiredState: 40
+      arrowVariantIndex: 0
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -807,7 +821,8 @@ MonoBehaviour:
       secondsToAutoNext: 0
       requiredFlagName: barrel
       allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
+    - requiredState: 40
+      arrowVariantIndex: 0
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -825,7 +840,8 @@ MonoBehaviour:
       secondsToAutoNext: 0
       requiredFlagName: Young Cabernet
       allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
+    - requiredState: 40
+      arrowVariantIndex: 0
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -843,7 +859,8 @@ MonoBehaviour:
       secondsToAutoNext: 0
       requiredFlagName: confirm
       allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
+    - requiredState: 40
+      arrowVariantIndex: 0
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -861,7 +878,8 @@ MonoBehaviour:
       secondsToAutoNext: 0
       requiredFlagName: Readybarrel
       allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
+    - requiredState: 40
+      arrowVariantIndex: 0
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
@@ -879,7 +897,8 @@ MonoBehaviour:
       secondsToAutoNext: 3
       requiredFlagName: 
       allowMovementDuringThisStep: 1
-    - arrowVariantIndex: 0
+    - requiredState: 40
+      arrowVariantIndex: 0
       worldArrowPrefabOverride: {fileID: 0}
       overrideWorldOffset: 0
       worldOffsetOverride: {x: 0, y: 1.5, z: 0}
