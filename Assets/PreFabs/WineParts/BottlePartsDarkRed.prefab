@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5655182090714270273}
   m_Layer: 0
-  m_Name: BottlePartsGreen
+  m_Name: BottlePartsDarkRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1599202935771922980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.28102, y: 20, z: 0}
+  m_LocalPosition: {x: -3.28102, y: 1.16, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47,10 +47,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: top 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4254854132482858450, guid: 298059c22aa866f49b9c71f2a5298c55, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -4162965162596673917, guid: d628663676e584a48910be17db742f80, type: 3}
     - target: {fileID: 4254854132482858450, guid: 298059c22aa866f49b9c71f2a5298c55, type: 3}
       propertyPath: m_SortingOrder
       value: 4
@@ -158,10 +154,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7772396647221026067, guid: e4769388484756d4c82c44f1fad712f5, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2374820167878320465, guid: 3869c371b52795e46a6305e16b26ff49, type: 3}
-    - target: {fileID: 7772396647221026067, guid: e4769388484756d4c82c44f1fad712f5, type: 3}
       propertyPath: m_SortingOrder
       value: 4
       objectReference: {fileID: 0}
@@ -187,10 +179,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottom 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8232093028567718554, guid: 73fdbb3cde541314bb6be1452e8fa7a6, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 2773265178316729258, guid: 20258850f8db3af45a57bbfeac8c36e2, type: 3}
     - target: {fileID: 8232093028567718554, guid: 73fdbb3cde541314bb6be1452e8fa7a6, type: 3}
       propertyPath: m_SortingOrder
       value: 4
@@ -257,10 +245,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottom2 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5394758513256319794, guid: 16552b367cf79bd448e70b608de17c1d, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2283359001606352305, guid: 070fe03d437b8e244ab834760a6c8db6, type: 3}
     - target: {fileID: 5394758513256319794, guid: 16552b367cf79bd448e70b608de17c1d, type: 3}
       propertyPath: m_SortingOrder
       value: 4
