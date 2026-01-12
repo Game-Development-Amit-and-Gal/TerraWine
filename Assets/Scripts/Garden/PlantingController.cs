@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;   // Required for the new Input System (Keyboard/Mouse)
 
 /// <summary>
@@ -18,10 +17,6 @@ public class PlantingController : MonoBehaviour
 
     // The currently selected seed (stored as ItemSO)
     private ItemSO currentSeedItem;
-    [Header("UI references")]
-    [SerializeField] private RectTransform uiContainer;
-    [SerializeField] private RectTransform canvasTransform;
-    [SerializeField] private Vector2 textOffset = new Vector2(-1100,0f);
 
     /// <summary>
     /// True if a seed is currently selected from inventory.
@@ -42,14 +37,6 @@ public class PlantingController : MonoBehaviour
         if (cursorSprite != null)
             cursorSprite.enabled = false;
 
-        if(uiContainer != null)
-        {
-            uiContainer.gameObject.SetActive(false);
-        }
-            
-        
-
- 
         // Ensure normal mouse cursor is visible while no seed is selected
         Cursor.visible = true;
     }
@@ -76,8 +63,6 @@ public class PlantingController : MonoBehaviour
             cursorSprite.enabled = true;
             SetCursorSpriteSize(item.icon);
         }
-        //removePromptItem.enabled = true;
-        uiContainer.gameObject.SetActive(true);
 
         // Hide default mouse cursor → we now use the seed icon instead
         Cursor.visible = false;
@@ -92,7 +77,6 @@ public class PlantingController : MonoBehaviour
 
         if (cursorSprite != null)
             cursorSprite.enabled = false;
-        uiContainer.gameObject.SetActive(false);
 
         // Restore the normal mouse cursor
         Cursor.visible = true;
@@ -119,20 +103,9 @@ public class PlantingController : MonoBehaviour
 
         // Follow mouse position with the seed icon
         Vector2 mousePos = Mouse.current.position.ReadValue();
-
         Vector3 world = Camera.main.ScreenToWorldPoint(mousePos);
         world.z = 0f;
         cursorSprite.transform.position = world;
-        if( uiContainer != null && canvasTransform != null)
-        {
-            Vector2 anchoredPos;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                canvasTransform,
-                mousePos,
-                null,
-                out anchoredPos);
-            uiContainer.anchoredPosition = anchoredPos + textOffset;
-        }
     }
 
     /// <summary>

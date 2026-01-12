@@ -11,6 +11,10 @@ public class ManagerDoor2 : MonoBehaviour
     [Tooltip("Where the Player will spawn in the new scene.")]
     [SerializeField] private Vector2 playerSpawnPosition;
 
+    [Header("Tutorial Flag")]
+    [Tooltip("Tutorial flag to set when the player enters this door (leave empty to disable).")]
+    [SerializeField] private string tutorialFlag = "Basement";
+
     [Header("Visual Prompt References")]
     [Tooltip("Drag the child SpriteRenderer (the aura) here.")]
     public SpriteRenderer auraRenderer;
@@ -18,36 +22,30 @@ public class ManagerDoor2 : MonoBehaviour
     [Header("Aura Animation Settings")]
     public float pulseSpeed = 4.0f;
     public float maxAlpha = 0.7f;
-    public float offset = 1.0f; // Controls the baseline visibility of the aura
+    public float offset = 1.0f;
 
     private bool playerInRange = false;
 
     private void Awake()
     {
-        // Start with visuals hidden
         if (auraRenderer != null) auraRenderer.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        if (playerInRange)
-        {
-            // 1. Aura Pulsing Logic
-            if (auraRenderer != null)
-            {
-                // Calculate a smooth breathing pulse using Sine
-                float pulse = (((Mathf.Sin(Time.time * pulseSpeed)) + offset) / 2f) * maxAlpha;
-                Color c = auraRenderer.color;
-                c.a = pulse;
-                auraRenderer.color = c;
-            }
+        if (!playerInRange) return;
 
-            // 2. Interaction Logic
-            // Checking Keyboard.current is safer for PC games using the New Input System
-            if (Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame)
-            {
-                EnterBasement();
-            }
+        if (auraRenderer != null)
+        {
+            float pulse = (((Mathf.Sin(Time.time * pulseSpeed)) + offset) / 2f) * maxAlpha;
+            Color c = auraRenderer.color;
+            c.a = pulse;
+            auraRenderer.color = c;
+        }
+
+        if (Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame)
+        {
+            EnterBasement();
         }
     }
 
@@ -73,17 +71,15 @@ public class ManagerDoor2 : MonoBehaviour
     {
         Debug.Log($"Moving player to {sceneName}...");
 
-        // Tutorial Logic: Only fires when the player actually enters
-        TutorialManager.Instance?.SetFlag("Basement");
+        // Set flag only if provided
+        if (!string.IsNullOrWhiteSpace(tutorialFlag))
+            TutorialManager.Instance?.SetFlag(tutorialFlag);
 
-        // Use GameManager to handle the technical scene swap and spawn positioning
         if (GameManager.Instance != null)
-        {
             GameManager.Instance.ChangeScene(sceneName, playerSpawnPosition);
-        }
         else
         {
-            Debug.LogError("BasementDoor: GameManager instance missing!");
+            Debug.LogError("ManagerDoor2: GameManager instance missing!");
             SceneManager.LoadScene(sceneName);
         }
     }

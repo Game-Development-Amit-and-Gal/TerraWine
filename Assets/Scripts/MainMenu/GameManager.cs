@@ -149,9 +149,9 @@ public class GameManager : MonoBehaviour
         {
             InventoryManager.Instance.ResetAll();
             InventoryManager.Instance.Add("Cabernet_Sauvignon_Seed", 5);
-            InventoryManager.Instance.Add("Grenache_Seed", 5);
+           /* InventoryManager.Instance.Add("Grenache_Seed", 5);
             InventoryManager.Instance.Add("Petit_verdot_Seed", 1);
-            InventoryManager.Instance.Add("Colombard_Seed", 2);
+            InventoryManager.Instance.Add("Colombard_Seed", 2);*/
             InventoryManager.Instance.AddCategory(ItemCategory.Update, 1);
         }
         else
