@@ -1223,9 +1223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b374dea07bf6c8447b9b57e4713368da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  epsilon: 0.6
+  epsilon: 0.3
   levelTime: 30
-  speedIncreasePerLevel: 3.2
+  speedIncreasePerLevel: 4
   availableBottlePrefabs:
   - {fileID: 1599202935771922980, guid: b743eb8d80dbf12468bf1ab4ba621590, type: 3}
   - {fileID: 1259513472943166251, guid: fc6f21f1108978649a86f67f97bacac9, type: 3}
