@@ -780,12 +780,12 @@ MonoBehaviour:
       targetObjectName: 'WineryWineTrigger '
       arrowOffset: {x: 0, y: 0}
       hideSceneUI: 1
-      overridePanelChoice: 0
-      panelChoice: 0
-      nextMode: 0
+      overridePanelChoice: 1
+      panelChoice: 2
+      nextMode: 2
       secondsToAutoNext: 0
       requiredFlagName: Rightdoor
-      allowMovementDuringThisStep: 0
+      allowMovementDuringThisStep: 1
   - sceneName: wine
     panelChoice: 0
     steps:
@@ -874,9 +874,27 @@ MonoBehaviour:
       arrowOffset: {x: 900, y: 100}
       hideSceneUI: 0
       overridePanelChoice: 1
-      panelChoice: 0
-      nextMode: 0
+      panelChoice: 2
+      nextMode: 2
       secondsToAutoNext: 0
+      requiredFlagName: YARD
+      allowMovementDuringThisStep: 1
+    - arrowVariantIndex: 0
+      worldArrowPrefabOverride: {fileID: 0}
+      overrideWorldOffset: 0
+      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
+      hideUiPaths: []
+      showUiPaths: []
+      hideWorldPaths: []
+      showWorldPaths: []
+      message: 
+      targetObjectName: Player
+      arrowOffset: {x: 900, y: 100}
+      hideSceneUI: 0
+      overridePanelChoice: 1
+      panelChoice: 2
+      nextMode: 1
+      secondsToAutoNext: 3
       requiredFlagName: 
       allowMovementDuringThisStep: 1
   sceneUiRootName: UI
@@ -940,8 +958,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -203}
-  m_SizeDelta: {x: 300, y: 70}
+  m_AnchoredPosition: {x: 0, y: -110.43309}
+  m_SizeDelta: {x: 159.7714, y: 45.4974}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &294536752
 MonoBehaviour:
@@ -1704,7 +1722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5}
+  m_AnchoredPosition: {x: 0, y: 8}
   m_SizeDelta: {x: -20, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &432996415
@@ -2796,15 +2814,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2974,7 +2992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.4999962}
+  m_AnchoredPosition: {x: 0, y: 5}
   m_SizeDelta: {x: -20, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &866668104
@@ -3628,8 +3646,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 250}
-  m_SizeDelta: {x: 500, y: 70}
+  m_AnchoredPosition: {x: 0, y: 184}
+  m_SizeDelta: {x: 266.2856, y: 45.4974}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &989113519
 PrefabInstance:
@@ -3907,8 +3925,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 123}
-  m_SizeDelta: {x: 500, y: 70}
+  m_AnchoredPosition: {x: 0, y: 101.45479}
+  m_SizeDelta: {x: 266.2856, y: 45.4974}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1158966911
 GameObject:
@@ -3944,8 +3962,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00046253, y: 8}
-  m_SizeDelta: {x: 700, y: 150}
+  m_AnchoredPosition: {x: 0, y: 26.709038}
+  m_SizeDelta: {x: 372.7999, y: 97.4944}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1158966913
 MonoBehaviour:
@@ -4374,15 +4392,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5323,8 +5341,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -104}
-  m_SizeDelta: {x: 300, y: 70}
+  m_AnchoredPosition: {x: 0, y: -46.086777}
+  m_SizeDelta: {x: 159.7714, y: 45.4974}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1619548778
 MonoBehaviour:
@@ -6201,11 +6219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -6783,7 +6801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   mainMenuCanvas: {fileID: 1775925191}
   mainMenuRoot: {fileID: 1821054806}
-  playIntro: 1
+  playIntro: 0
   introVideoPlayer: {fileID: 1222537245}
   introFileName: game_video.mp4
 --- !u!4 &2133828406 stripped
