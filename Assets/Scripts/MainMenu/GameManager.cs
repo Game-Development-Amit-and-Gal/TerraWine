@@ -49,14 +49,13 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+
         // Ensure EnemyRaidManager exists (persistent)
         if (EnemyRaidManager.Instance == null)
         {
             var go = new GameObject("EnemyRaidManager");
             go.AddComponent<EnemyRaidManager>();
         }
-
-
 
         if (!introController) introController = FindObjectOfType<IntroController>();
         if (!sceneLoader) sceneLoader = FindObjectOfType<SceneLoader>();
@@ -80,7 +79,6 @@ public class GameManager : MonoBehaviour
         TutorialManager.tutorialIsRunning = true;
         TutorialManager.tutorialIsRunningGardenScene = true;
     }
-
 
     private IEnumerator NewGameFlow()
     {
@@ -114,6 +112,7 @@ public class GameManager : MonoBehaviour
             waterGrowingCountSnapshot = 0,
             waterDrainRemainder = 0f,
 
+            // legacy tutorial flags (you can keep them for now)
             tutorialCompleted = false,
             sampleSceneGuideDone = false,
             worldMapGuideDone = false,
@@ -121,6 +120,9 @@ public class GameManager : MonoBehaviour
             basementGuideDone = false,
             wineryReceptionGuideDone = false,
 
+            // NEW: flexible tutorial system
+            completedTutorialKeys = new List<string>(),
+            tutorialPersistentFlags = new List<string>(),
 
             inventory = new List<InventoryItem>(),
             ownedBarrels = new List<OwnedBarrelData>(),
@@ -128,7 +130,7 @@ public class GameManager : MonoBehaviour
             unlockedRecipeIds = new List<string>()
         };
 
-        // ✅ הוספה: אתחול קווטה אחרי יצירת Data
+        // ✅ init quota after creating Data
         ActionQuotaManager.Instance?.InitializeForCurrentProfile();
 
         // Unlock starting recipes...
@@ -149,9 +151,6 @@ public class GameManager : MonoBehaviour
         {
             InventoryManager.Instance.ResetAll();
             InventoryManager.Instance.Add("Cabernet_Sauvignon_Seed", 5);
-           /* InventoryManager.Instance.Add("Grenache_Seed", 5);
-            InventoryManager.Instance.Add("Petit_verdot_Seed", 1);
-            InventoryManager.Instance.Add("Colombard_Seed", 2);*/
             InventoryManager.Instance.AddCategory(ItemCategory.Update, 1);
         }
         else
@@ -222,9 +221,14 @@ public class GameManager : MonoBehaviour
 
         Data = loaded;
 
+        // Defensive init for older saves
         if (Data.unlockedRecipeIds == null) Data.unlockedRecipeIds = new List<string>();
         if (Data.stolenRecipeIds == null) Data.stolenRecipeIds = new List<string>();
         if (Data.raidLog == null) Data.raidLog = new List<string>();
+
+        // NEW: tutorial data (for older saves)
+        if (Data.completedTutorialKeys == null) Data.completedTutorialKeys = new List<string>();
+        if (Data.tutorialPersistentFlags == null) Data.tutorialPersistentFlags = new List<string>();
 
         ActionQuotaManager.Instance?.InitializeForCurrentProfile();
         EnemyRaidManager.Instance?.ScheduleRaidOnNextSceneLoad("continue");
@@ -242,9 +246,6 @@ public class GameManager : MonoBehaviour
             );
         }
     }
-
-
-
 
     // ------------------------------
     // SCENES / SAVE
@@ -265,7 +266,6 @@ public class GameManager : MonoBehaviour
             );
         }
     }
-
 
     public void SaveGame()
     {
@@ -288,11 +288,14 @@ public class GameManager : MonoBehaviour
         if (Data.unlockedRecipeIds == null)
             Data.unlockedRecipeIds = new List<string>();
 
+        // NEW: keep lists non-null
+        if (Data.completedTutorialKeys == null) Data.completedTutorialKeys = new List<string>();
+        if (Data.tutorialPersistentFlags == null) Data.tutorialPersistentFlags = new List<string>();
+
         SaveSystem.Save(Data);
         _ = SaveCloudSafe();
         PlantManager.Instance?.SaveAll();
     }
-
 
     // ------------------------------
     // MONEY
@@ -336,6 +339,81 @@ public class GameManager : MonoBehaviour
 
         return true;
     }
+
+    // ------------------------------
+    // TUTORIAL SAVE API (NEW)
+    // ------------------------------
+
+    private string TutorialKey(string sceneName, string tutorialId)
+        => $"{sceneName}::{tutorialId}";
+
+    public bool IsTutorialDone(string sceneName, string tutorialId)
+    {
+        if (Data == null) return false;
+        if (Data.completedTutorialKeys == null) Data.completedTutorialKeys = new List<string>();
+
+        string key = TutorialKey(sceneName, tutorialId);
+        return Data.completedTutorialKeys.Contains(key);
+    }
+
+    public void MarkTutorialDone(string sceneName, string tutorialId, bool saveImmediately = true)
+    {
+        if (Data == null) return;
+        if (Data.completedTutorialKeys == null) Data.completedTutorialKeys = new List<string>();
+
+        string key = TutorialKey(sceneName, tutorialId);
+        if (!Data.completedTutorialKeys.Contains(key))
+            Data.completedTutorialKeys.Add(key);
+
+        if (saveImmediately) SaveGame();
+    }
+
+    // Flags that persist (optional)
+    public bool HasTutorialFlag(string flag)
+    {
+        if (Data == null) return false;
+        if (Data.tutorialPersistentFlags == null) Data.tutorialPersistentFlags = new List<string>();
+        return Data.tutorialPersistentFlags.Contains(flag);
+    }
+
+    public void SetTutorialFlag(string flag, bool saveImmediately = true)
+    {
+        if (string.IsNullOrWhiteSpace(flag)) return;
+        if (Data == null) return;
+
+        if (Data.tutorialPersistentFlags == null) Data.tutorialPersistentFlags = new List<string>();
+
+        if (!Data.tutorialPersistentFlags.Contains(flag))
+            Data.tutorialPersistentFlags.Add(flag);
+
+        if (saveImmediately) SaveGame();
+    }
+
+    public void ClearTutorialFlag(string flag, bool saveImmediately = true)
+    {
+        if (string.IsNullOrWhiteSpace(flag)) return;
+        if (Data == null) return;
+
+        if (Data.tutorialPersistentFlags == null) Data.tutorialPersistentFlags = new List<string>();
+        Data.tutorialPersistentFlags.Remove(flag);
+
+        if (saveImmediately) SaveGame();
+    }
+
+    public void ClearAllTutorialFlags(bool saveImmediately = true)
+    {
+        if (Data == null) return;
+        if (Data.tutorialPersistentFlags == null) Data.tutorialPersistentFlags = new List<string>();
+
+        Data.tutorialPersistentFlags.Clear();
+
+        if (saveImmediately) SaveGame();
+    }
+
+    // ------------------------------
+    // CLOUD SAVE/DELETE
+    // ------------------------------
+
     private async Task DeleteCloudSafe()
     {
         try
@@ -352,7 +430,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     private void OnApplicationQuit()
     {
         if (SceneManager.GetActiveScene().name == "MainMenu") return;
@@ -366,6 +443,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("[GameManager] OnApplicationPause Pause=" + pause);
         if (pause) SaveGame();
     }
+
     private async Task SaveCloudSafe()
     {
         try
@@ -382,5 +460,4 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("[GameManager] Cloud Save failed: " + e.Message);
         }
     }
-
 }

@@ -12,13 +12,15 @@ using UnityEngine.SceneManagement;
 /// 2) UI arrows (RectTransform) pointing to UI targets
 /// 3) WORLD arrows (Prefab with SpriteRenderer) that physically exists in the world above a world object
 ///
-/// WORLD arrow selection:
-/// - Global default: worldArrowPrefab
-/// - Per-step override: Step.worldArrowPrefabOverride (use different arrow prefab per object)
+/// NEW (מה שביקשת):
+/// ✅ לכל סצנה יכולה להיות רשימה של כמה Tutorials (לא רק אחד)
+/// ✅ כל Tutorial יכול להתחיל "מייד" או "רק אחרי Flag"
+/// ✅ בסיום Tutorial אחד – יעבור לבא רק אם התנאי שלו מתקיים,
+///    אחרת יעצור ויחכה עד שאת תפעילי SetFlag(...)
 ///
-/// Target resolution:
-/// - If targetObjectName contains "/" -> treated as path under UI root ("UI") or World root ("World")
-/// - Otherwise -> deep search by name under UI root then World root, then fallback GameObject.Find
+/// שמירת התקדמות:
+/// - כדי לא לגעת לך ב-GameData, שמרתי completion לכל Tutorial ב-PlayerPrefs.
+/// - בנוסף, אם כל הטוטוריאלים בסצנה הסתיימו, אני גם מסמן את ה-GameData.sceneGuideDone כמו שהיה לך.
 /// </summary>
 public class TutorialManager : MonoBehaviour
 {
@@ -60,7 +62,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Vector2 gotItAnchoredPosPanel2 = Vector2.zero;
     [SerializeField] private Vector2 gotItAnchoredPosPanel3 = Vector2.zero;
 
-    [Header("Per-scene guides")]
+    [Header("Per-scene guides (NEW: each scene can have multiple tutorials)")]
     [SerializeField] private SceneGuide[] guides;
 
     [Header("Scene UI root")]
@@ -88,8 +90,15 @@ public class TutorialManager : MonoBehaviour
     private GameObject currentWorldRoot;
     private GameObject currentSceneUiRoot;
     private string currentSceneName;
-    private SceneGuide currentGuide;
+
+    // NEW: scene guide -> tutorials list
+    private SceneGuide currentSceneGuide;
+    private TutorialGuide currentTutorial;
+    private int currentTutorialIndex = -1;
     private int currentStepIndex = 0;
+
+    // "מחכה לטוטוריאל הבא" (שמופעל ע"י flag)
+    private bool waitingForNextTutorial = false;
 
     public static bool tutorialIsRunning = false;
     public static bool tutorialIsRunningGardenScene = false;
@@ -109,17 +118,42 @@ public class TutorialManager : MonoBehaviour
     private RectTransform[] activeArrows;
     private RectTransform activeArrow;
 
-    // Auto-next state (timer/flag)
+    // Auto-next state (timer/flag) - עדיין עובד ל-STEP בתוך Tutorial
     private Coroutine autoAdvanceRoutine = null;
     private readonly HashSet<string> tutorialFlags = new HashSet<string>();
 
     public enum NextMode { OnClick, OnTime, OnFlag, OnFlagThenTime }
 
+    // =============================
+    // NEW: Tutorial-level gating
+    // =============================
+    public enum TutorialStartMode { Immediately, OnFlag }
+
     [Serializable]
     public class SceneGuide
     {
         public string sceneName;
+
+        [Tooltip("A list of tutorials in THIS scene (order matters).")]
+        public TutorialGuide[] tutorials;
+    }
+
+    [Serializable]
+    public class TutorialGuide
+    {
+        [Header("Identity (must be unique within the scene)")]
+        public string tutorialId = "Tutorial_0";
+
+        [Header("Default UI panel for this tutorial")]
         public PanelChoice panelChoice = PanelChoice.Panel1;
+
+        [Header("When should THIS tutorial start?")]
+        public TutorialStartMode startMode = TutorialStartMode.Immediately;
+
+        [Tooltip("If StartMode=OnFlag, tutorial starts only after this flag is set.")]
+        public string startFlag = "";
+
+        [Header("Steps")]
         public Step[] steps;
     }
 
@@ -204,40 +238,25 @@ public class TutorialManager : MonoBehaviour
         HideWorldArrow();
     }
 
-    /* private void Update()
-     {
-         // נוח לסגור מדריך בלחיצה על ESC (אפשר להסיר אם לא רוצים)
-         if (!tutorialIsRunning) return;
-
-         if (Input.GetKeyDown(KeyCode.Escape))
-         {
-             CloseGuide();
-         }
-     }*/
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         currentSceneName = scene.name;
 
         StopAutoAdvance();
-        HideWorldArrow(); // חשוב: לא להשאיר חץ מהסצנה הקודמת
-        HideAllArrows();  // חשוב: לנקות חצי UI
+        HideWorldArrow();
+        HideAllArrows();
+
+        waitingForNextTutorial = false;
+        tutorialIsRunning = false;
 
         if (scene.name == "MainMenu")
         {
-            if (panel != null) panel.SetActive(false);
-            if (panel2 != null) panel2.SetActive(false);
-            if (panel3 != null) panel3.SetActive(false);
-
-            if (gotItButton != null) gotItButton.gameObject.SetActive(false);
-            if (gotItButton2 != null) gotItButton2.gameObject.SetActive(false);
-            if (gotItButton3 != null) gotItButton3.gameObject.SetActive(false);
-
-            tutorialIsRunning = false;
-
+            ForceHideAllPanelsAndButtons();
             currentSceneUiRoot = null;
-            currentGuide = null;
             currentWorldRoot = null;
+            currentSceneGuide = null;
+            currentTutorial = null;
+            currentTutorialIndex = -1;
             currentStepIndex = 0;
             return;
         }
@@ -245,6 +264,9 @@ public class TutorialManager : MonoBehaviour
         TryShowGuideForScene(scene.name);
     }
 
+    // =============================
+    // Scene -> choose tutorials
+    // =============================
     private void TryShowGuideForScene(string sceneName)
     {
         tutorialIsRunning = false;
@@ -255,35 +277,115 @@ public class TutorialManager : MonoBehaviour
         var data = GameManager.Instance.Data;
         if (data.tutorialCompleted) return;
 
-        currentGuide = Array.Find(guides, g => g.sceneName == sceneName);
-        if (currentGuide == null || currentGuide.steps == null || currentGuide.steps.Length == 0)
+        currentSceneGuide = Array.Find(guides, g => g.sceneName == sceneName);
+        if (currentSceneGuide == null || currentSceneGuide.tutorials == null || currentSceneGuide.tutorials.Length == 0)
             return;
 
+        // אם כבר סיימת את כל המדריכים של הסצנה (לפי GameData) - לא להציג
         if (IsSceneGuideAlreadyDone(sceneName, data))
             return;
 
         currentSceneUiRoot = GameObject.Find(sceneUiRootName);
         currentWorldRoot = GameObject.Find(worldRootName);
 
+        // Start first eligible tutorial in this scene
+        StartFirstEligibleTutorialInScene();
+    }
+
+    private void StartFirstEligibleTutorialInScene()
+    {
+        currentTutorial = null;
+        currentTutorialIndex = -1;
         currentStepIndex = 0;
-        SelectPanel(GetEffectivePanelChoiceForStep(currentGuide.steps[currentStepIndex]));
+        waitingForNextTutorial = false;
+
+        int idx = FindNextEligibleTutorialIndex(startFrom: 0, allowStartIfFlagAlreadySet: true);
+        if (idx < 0)
+        {
+            // אין Tutorial שאפשר להתחיל כרגע (למשל כולם OnFlag בלי דגל)
+            ForceHideAllPanelsAndButtons();
+            tutorialIsRunning = false;
+            waitingForNextTutorial = true;
+            return;
+        }
+
+        StartTutorialAt(idx);
+    }
+
+    private void StartTutorialAt(int tutorialIndex)
+    {
+        if (currentSceneGuide == null || currentSceneGuide.tutorials == null) return;
+        if (tutorialIndex < 0 || tutorialIndex >= currentSceneGuide.tutorials.Length) return;
+
+        currentTutorialIndex = tutorialIndex;
+        currentTutorial = currentSceneGuide.tutorials[currentTutorialIndex];
+        currentStepIndex = 0;
+
+        waitingForNextTutorial = false;
+        tutorialIsRunning = true;
+
+        // select panel by tutorial default
+        SelectPanel(currentTutorial.panelChoice);
 
         if (activePanel != null)
             activePanel.SetActive(true);
 
-        tutorialIsRunning = true;
         ShowCurrentStep();
     }
 
-    private PanelChoice GetEffectivePanelChoiceForStep(Step step)
+    private int FindNextEligibleTutorialIndex(int startFrom, bool allowStartIfFlagAlreadySet)
     {
-        if (currentGuide == null || step == null) return PanelChoice.Panel1;
-        return step.overridePanelChoice ? step.panelChoice : currentGuide.panelChoice;
+        if (currentSceneGuide == null || currentSceneGuide.tutorials == null) return -1;
+
+        for (int i = startFrom; i < currentSceneGuide.tutorials.Length; i++)
+        {
+            var t = currentSceneGuide.tutorials[i];
+            if (t == null || t.steps == null || t.steps.Length == 0) continue;
+
+            if (IsTutorialDone(currentSceneName, t.tutorialId))
+                continue;
+
+            if (t.startMode == TutorialStartMode.Immediately)
+                return i;
+
+            if (t.startMode == TutorialStartMode.OnFlag)
+            {
+                // אם רוצים: אפשר להתחיל מיד אם הדגל כבר קיים
+                if (allowStartIfFlagAlreadySet && !string.IsNullOrEmpty(t.startFlag) && IsFlagSet(t.startFlag))
+                    return i;
+
+                // אחרת - לא eligible כרגע
+                continue;
+            }
+        }
+
+        return -1;
     }
 
-    // -----------------------------
-    // UI Arrow helpers
-    // -----------------------------
+    // =============================
+    // UI Panel choice logic
+    // =============================
+    private PanelChoice GetEffectivePanelChoiceForStep(Step step)
+    {
+        if (currentTutorial == null || step == null) return PanelChoice.Panel1;
+        // אם Step רוצה override, משתמשים בו, אחרת משתמשים בברירת המחדל של ה-Tutorial
+        return step.overridePanelChoice ? step.panelChoice : currentTutorial.panelChoice;
+    }
+
+    private void ForceHideAllPanelsAndButtons()
+    {
+        if (panel != null) panel.SetActive(false);
+        if (panel2 != null) panel2.SetActive(false);
+        if (panel3 != null) panel3.SetActive(false);
+
+        if (gotItButton != null) gotItButton.gameObject.SetActive(false);
+        if (gotItButton2 != null) gotItButton2.gameObject.SetActive(false);
+        if (gotItButton3 != null) gotItButton3.gameObject.SetActive(false);
+
+        HideAllArrows();
+        HideWorldArrow();
+    }
+
     private void HideAllArrows()
     {
         if (arrows1 != null) foreach (var a in arrows1) if (a != null) a.gameObject.SetActive(false);
@@ -359,16 +461,19 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    // =============================
+    // Steps show
+    // =============================
     private void ShowCurrentStep()
     {
         StopAutoAdvance();
         RestorePerStepVisibility();
-        HideWorldArrow(); // חשוב: לא להשאיר חץ עולם מסטפ קודם
+        HideWorldArrow();
 
-        if (currentGuide == null || currentGuide.steps == null || currentGuide.steps.Length == 0) return;
-        if (currentStepIndex < 0 || currentStepIndex >= currentGuide.steps.Length) return;
+        if (currentTutorial == null || currentTutorial.steps == null || currentTutorial.steps.Length == 0) return;
+        if (currentStepIndex < 0 || currentStepIndex >= currentTutorial.steps.Length) return;
 
-        Step step = currentGuide.steps[currentStepIndex];
+        Step step = currentTutorial.steps[currentStepIndex];
 
         CachePlayer();
         if (playerMover != null)
@@ -399,7 +504,7 @@ public class TutorialManager : MonoBehaviour
         // 2) Text
         activeText.text = step.message;
 
-        // 3) Visibility first (so targets become active before arrow tries to attach)
+        // 3) Visibility first
         if (!step.hideSceneUI)
             ApplyPerStepVisibility(step);
 
@@ -432,7 +537,7 @@ public class TutorialManager : MonoBehaviour
             return;
         }
 
-        // If UI target -> use UI arrow (RectTransform)
+        // If UI target -> use UI arrow
         RectTransform targetRect = targetT.GetComponent<RectTransform>();
         if (targetRect != null)
         {
@@ -445,14 +550,14 @@ public class TutorialManager : MonoBehaviour
             return;
         }
 
-        // Otherwise it's a world target -> show WORLD arrow prefab
+        // Otherwise it's a world target
         if (activeArrow != null) activeArrow.gameObject.SetActive(false);
         ShowWorldArrowImmediate(step, targetT);
     }
 
-    // -----------------------------
-    // WORLD arrow logic
-    // -----------------------------
+    // =============================
+    // WORLD arrow
+    // =============================
     private void HideWorldArrow()
     {
         if (worldArrowRoutine != null)
@@ -470,32 +575,30 @@ public class TutorialManager : MonoBehaviour
 
     private void TrySpawnWorldArrowWithWait(Step step)
     {
-        // If no prefab at all -> nothing to do
         var prefabToUse = step != null && step.worldArrowPrefabOverride != null ? step.worldArrowPrefabOverride : worldArrowPrefab;
         if (prefabToUse == null) return;
 
         HideWorldArrow();
 
         int stepSnapshot = currentStepIndex;
-        SceneGuide guideSnapshot = currentGuide;
+        var tutorialSnapshot = currentTutorial;
 
-        worldArrowRoutine = StartCoroutine(CoSpawnWorldArrowWhenReady(step, guideSnapshot, stepSnapshot));
+        worldArrowRoutine = StartCoroutine(CoSpawnWorldArrowWhenReady(step, tutorialSnapshot, stepSnapshot));
     }
 
-    private IEnumerator CoSpawnWorldArrowWhenReady(Step step, SceneGuide guideSnapshot, int stepSnapshot)
+    private IEnumerator CoSpawnWorldArrowWhenReady(Step step, TutorialGuide tutorialSnapshot, int stepSnapshot)
     {
         int frames = Mathf.Max(1, waitFramesForTarget);
 
         for (int i = 0; i < frames; i++)
         {
-            if (currentGuide != guideSnapshot || currentStepIndex != stepSnapshot)
+            if (currentTutorial != tutorialSnapshot || currentStepIndex != stepSnapshot)
                 yield break;
 
             Transform targetT = ResolveTargetTransformSmart(step.targetObjectName);
 
             if (targetT != null && targetT.gameObject.activeInHierarchy)
             {
-                // If it becomes UI -> don't spawn world arrow
                 if (targetT.GetComponent<RectTransform>() != null)
                     yield break;
 
@@ -526,10 +629,8 @@ public class TutorialManager : MonoBehaviour
         Vector3 baseOffset = defaultWorldArrowOffset;
         if (step != null && step.overrideWorldOffset) baseOffset = step.worldOffsetOverride;
 
-        // step.arrowOffset used as extra X/Y in world
         Vector3 extra = step != null ? new Vector3(step.arrowOffset.x, step.arrowOffset.y, 0f) : Vector3.zero;
 
-        // corrected offset: if anchor != target.position (Renderer bounds center), we compensate
         Vector3 correctedOffset = (anchor - targetT.position) + baseOffset + extra;
 
         var follow = worldArrowInstance.GetComponent<WorldArrowFollow>();
@@ -553,11 +654,9 @@ public class TutorialManager : MonoBehaviour
         return t.position;
     }
 
-    // Smart target resolution:
-    // 1) If path under UI root -> Find(path)
-    // 2) If path under World root -> Find(path)
-    // 3) Deep name search under UI, then World
-    // 4) fallback GameObject.Find
+    // =============================
+    // Smart target resolution
+    // =============================
     private Transform ResolveTargetTransformSmart(string nameOrPath)
     {
         if (string.IsNullOrEmpty(nameOrPath)) return null;
@@ -613,13 +712,21 @@ public class TutorialManager : MonoBehaviour
         return null;
     }
 
-    // -----------------------------
-    // Flags
-    // -----------------------------
+    // =============================
+    // Flags (STEP-level + Tutorial start gating)
+    // =============================
     public void SetFlag(string flagName)
     {
         if (string.IsNullOrEmpty(flagName)) return;
+
         tutorialFlags.Add(flagName);
+        Debug.Log($"[Tutorial] Flag SET: '{flagName}'");
+
+        // NEW: אם אנחנו לא רצים עכשיו, אבל מחכים לטוטוריאל הבא -> ננסה להתחיל אותו
+        if (!tutorialIsRunning && waitingForNextTutorial)
+        {
+            TryStartWaitingTutorialIfPossible();
+        }
     }
 
     public void ClearFlag(string flagName)
@@ -636,6 +743,21 @@ public class TutorialManager : MonoBehaviour
         return tutorialFlags.Contains(flagName);
     }
 
+    private void TryStartWaitingTutorialIfPossible()
+    {
+        if (currentSceneGuide == null || currentSceneGuide.tutorials == null) return;
+
+        // מחפשים את הטוטוריאל הבא שלא Done ושאפשר להתחיל (כולל OnFlag שכבר הודלק)
+        int startFrom = Mathf.Max(0, currentTutorialIndex + 1);
+        int idx = FindNextEligibleTutorialIndex(startFrom, allowStartIfFlagAlreadySet: true);
+        if (idx < 0) return;
+
+        StartTutorialAt(idx);
+    }
+
+    // =============================
+    // Auto-advance inside a STEP
+    // =============================
     private void StopAutoAdvance()
     {
         if (autoAdvanceRoutine != null)
@@ -650,7 +772,7 @@ public class TutorialManager : MonoBehaviour
         if (step == null) return;
 
         int stepSnapshot = currentStepIndex;
-        SceneGuide guideSnapshot = currentGuide;
+        var tutorialSnapshot = currentTutorial;
 
         if (step.nextMode == NextMode.OnFlag || step.nextMode == NextMode.OnFlagThenTime)
         {
@@ -660,51 +782,51 @@ public class TutorialManager : MonoBehaviour
 
         if (step.nextMode == NextMode.OnTime)
         {
-            autoAdvanceRoutine = StartCoroutine(AutoAdvanceAfterSeconds(step.secondsToAutoNext, guideSnapshot, stepSnapshot));
+            autoAdvanceRoutine = StartCoroutine(AutoAdvanceAfterSeconds(step.secondsToAutoNext, tutorialSnapshot, stepSnapshot));
         }
         else if (step.nextMode == NextMode.OnFlag)
         {
-            autoAdvanceRoutine = StartCoroutine(AutoAdvanceWhenFlag(step.requiredFlagName, guideSnapshot, stepSnapshot));
+            autoAdvanceRoutine = StartCoroutine(AutoAdvanceWhenFlag(step.requiredFlagName, tutorialSnapshot, stepSnapshot));
         }
         else if (step.nextMode == NextMode.OnFlagThenTime)
         {
-            autoAdvanceRoutine = StartCoroutine(AutoAdvanceFlagThenTime(step.requiredFlagName, step.secondsToAutoNext, guideSnapshot, stepSnapshot));
+            autoAdvanceRoutine = StartCoroutine(AutoAdvanceFlagThenTime(step.requiredFlagName, step.secondsToAutoNext, tutorialSnapshot, stepSnapshot));
         }
     }
 
-    private IEnumerator AutoAdvanceAfterSeconds(float seconds, SceneGuide guideSnapshot, int stepSnapshot)
+    private IEnumerator AutoAdvanceAfterSeconds(float seconds, TutorialGuide tutorialSnapshot, int stepSnapshot)
     {
         if (seconds < 0f) seconds = 0f;
 
         yield return new WaitForSeconds(seconds);
 
-        if (currentGuide != guideSnapshot || currentStepIndex != stepSnapshot)
+        if (currentTutorial != tutorialSnapshot || currentStepIndex != stepSnapshot)
             yield break;
 
         OnNextStep();
     }
 
-    private IEnumerator AutoAdvanceWhenFlag(string flagName, SceneGuide guideSnapshot, int stepSnapshot)
+    private IEnumerator AutoAdvanceWhenFlag(string flagName, TutorialGuide tutorialSnapshot, int stepSnapshot)
     {
         while (!IsFlagSet(flagName))
         {
-            if (currentGuide != guideSnapshot || currentStepIndex != stepSnapshot)
+            if (currentTutorial != tutorialSnapshot || currentStepIndex != stepSnapshot)
                 yield break;
 
             yield return null;
         }
 
-        if (currentGuide != guideSnapshot || currentStepIndex != stepSnapshot)
+        if (currentTutorial != tutorialSnapshot || currentStepIndex != stepSnapshot)
             yield break;
 
         OnNextStep();
     }
 
-    private IEnumerator AutoAdvanceFlagThenTime(string flagName, float seconds, SceneGuide guideSnapshot, int stepSnapshot)
+    private IEnumerator AutoAdvanceFlagThenTime(string flagName, float seconds, TutorialGuide tutorialSnapshot, int stepSnapshot)
     {
         while (!IsFlagSet(flagName))
         {
-            if (currentGuide != guideSnapshot || currentStepIndex != stepSnapshot)
+            if (currentTutorial != tutorialSnapshot || currentStepIndex != stepSnapshot)
                 yield break;
 
             yield return null;
@@ -715,22 +837,105 @@ public class TutorialManager : MonoBehaviour
         float t = 0f;
         while (t < seconds)
         {
-            if (currentGuide != guideSnapshot || currentStepIndex != stepSnapshot)
+            if (currentTutorial != tutorialSnapshot || currentStepIndex != stepSnapshot)
                 yield break;
 
             t += Time.deltaTime;
             yield return null;
         }
 
-        if (currentGuide != guideSnapshot || currentStepIndex != stepSnapshot)
+        if (currentTutorial != tutorialSnapshot || currentStepIndex != stepSnapshot)
             yield break;
 
         OnNextStep();
     }
 
-    // -----------------------------
-    // Completion
-    // -----------------------------
+    // =============================
+    // Completion & Next
+    // =============================
+    public void OnNextStep()
+    {
+        CachePlayer();
+        if (playerMover != null)
+            playerMover.SetAllowMoveDuringTutorial(false);
+
+        StopAutoAdvance();
+        ClearAllFlags();
+
+        if (currentTutorial == null)
+        {
+            CloseGuide();
+            return;
+        }
+
+        currentStepIndex++;
+
+        if (currentStepIndex >= currentTutorial.steps.Length)
+        {
+            // finished this tutorial -> mark it done
+            MarkTutorialDone(currentSceneName, currentTutorial.tutorialId);
+
+            // close UI of current tutorial
+            ForceHideAllPanelsAndButtons();
+            RestorePerStepVisibility();
+
+            // try start next tutorial if eligible
+            int startFrom = currentTutorialIndex + 1;
+
+            // 1) אם הבא Immediate -> יתחיל
+            // 2) אם הבא OnFlag -> נחכה עד SetFlag(...)
+            int nextImmediateIdx = FindNextEligibleTutorialIndex(startFrom, allowStartIfFlagAlreadySet: true);
+
+            if (nextImmediateIdx >= 0)
+            {
+                StartTutorialAt(nextImmediateIdx);
+                return;
+            }
+
+            // אין מה להתחיל כרגע -> נחכה לדגלים
+            tutorialIsRunning = false;
+            waitingForNextTutorial = true;
+
+            // אם סיימת את כל הטוטוריאלים בסצנה -> תסמן סצנה done כמו בעבר
+            TryMarkSceneDoneIfAllTutorialsCompleted();
+
+            GrandpaStoppedTalking?.Invoke();
+            return;
+        }
+
+        ShowCurrentStep();
+    }
+
+    private void CloseGuide()
+    {
+        RestorePerStepVisibility();
+        StopAutoAdvance();
+        HideWorldArrow();
+        HideAllArrows();
+
+        if (currentSceneUiRoot != null)
+            currentSceneUiRoot.SetActive(true);
+
+        ForceHideAllPanelsAndButtons();
+
+        currentTutorial = null;
+        currentTutorialIndex = -1;
+        currentStepIndex = 0;
+
+        CachePlayer();
+        if (playerMover != null)
+            playerMover.SetAllowMoveDuringTutorial(false);
+
+        TryMarkSceneDoneIfAllTutorialsCompleted();
+
+        GrandpaStoppedTalking?.Invoke();
+        tutorialIsRunning = false;
+        waitingForNextTutorial = false;
+    }
+
+    // =============================
+    // Scene-level done flags (your existing GameData bools)
+    // =============================
     private bool IsSceneGuideAlreadyDone(string sceneName, GameData data)
     {
         switch (sceneName)
@@ -756,87 +961,49 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void OnNextStep()
+    private void TryMarkSceneDoneIfAllTutorialsCompleted()
     {
-        CachePlayer();
-        if (playerMover != null)
-            playerMover.SetAllowMoveDuringTutorial(false);
+        if (GameManager.Instance == null || GameManager.Instance.Data == null) return;
+        if (currentSceneGuide == null || currentSceneGuide.tutorials == null) return;
 
-        StopAutoAdvance();
-        ClearAllFlags();
-
-        if (currentGuide == null)
+        // אם יש אפילו Tutorial אחד שלא Done -> לא מסמנים
+        foreach (var t in currentSceneGuide.tutorials)
         {
-            CloseGuide();
-            tutorialIsRunning = false;
-            return;
+            if (t == null) continue;
+            if (t.steps == null || t.steps.Length == 0) continue;
+
+            if (!IsTutorialDone(currentSceneName, t.tutorialId))
+                return;
         }
 
-        currentStepIndex++;
+        // כולם done -> מסמנים Scene done + עושים את הלוגיקה הישנה שלך (כולל סיום טוטוריאל כללי)
+        var data = GameManager.Instance.Data;
 
-        if (currentStepIndex >= currentGuide.steps.Length)
+        MarkSceneGuideDone(currentSceneName, data);
+        MyAnalytics.SendTutorialSceneCompleted(currentSceneName);
+
+        bool allScenesDone =
+            data.sampleSceneGuideDone &&
+            data.worldMapGuideDone &&
+            data.wineryReceptionGuideDone &&
+            data.basementGuideDone &&
+            data.wineGuideDone;
+
+        if (allScenesDone && !data.tutorialCompleted)
         {
-            CloseGuide();
-            tutorialIsRunning = false;
+            InventoryManager.Instance.Add("Grenache_Seed", 5);
+            InventoryManager.Instance.Add("Petit_verdot_Seed", 1);
+            InventoryManager.Instance.Add("Colombard_Seed", 2);
+            data.tutorialCompleted = true;
+            MyAnalytics.SendTutorialCompleted();
         }
-        else
-        {
-            ShowCurrentStep();
-        }
+
+        GameManager.Instance.SaveGame();
     }
 
-    private void CloseGuide()
-    {
-        RestorePerStepVisibility();
-        StopAutoAdvance();
-        HideWorldArrow();
-        HideAllArrows();
-
-        if (GameManager.Instance != null && GameManager.Instance.Data != null)
-        {
-            var data = GameManager.Instance.Data;
-
-            MarkSceneGuideDone(currentSceneName, data);
-            MyAnalytics.SendTutorialSceneCompleted(currentSceneName);
-
-            bool allDone =
-                data.sampleSceneGuideDone &&
-                data.worldMapGuideDone &&
-                data.wineryReceptionGuideDone &&
-                data.basementGuideDone &&
-                data.wineGuideDone;
-
-            if (allDone && !data.tutorialCompleted)
-            {
-                data.tutorialCompleted = true;
-                MyAnalytics.SendTutorialCompleted();
-            }
-
-            GameManager.Instance.SaveGame();
-        }
-
-        if (currentSceneUiRoot != null)
-            currentSceneUiRoot.SetActive(true);
-
-        if (panel != null) panel.SetActive(false);
-        if (panel2 != null) panel2.SetActive(false);
-        if (panel3 != null) panel3.SetActive(false);
-
-        if (gotItButton != null) gotItButton.gameObject.SetActive(false);
-        if (gotItButton2 != null) gotItButton2.gameObject.SetActive(false);
-        if (gotItButton3 != null) gotItButton3.gameObject.SetActive(false);
-
-        currentGuide = null;
-        currentStepIndex = 0;
-
-        CachePlayer();
-        if (playerMover != null)
-            playerMover.SetAllowMoveDuringTutorial(false);
-
-        GrandpaStoppedTalking?.Invoke();
-        tutorialIsRunning = false;
-    }
-
+    // =============================
+    // Player cache
+    // =============================
     private void CachePlayer()
     {
         if (playerMover != null) return;
@@ -846,6 +1013,9 @@ public class TutorialManager : MonoBehaviour
             playerMover = p.GetComponent<PlayerMovement>();
     }
 
+    // =============================
+    // Per-step visibility restore/apply
+    // =============================
     private void RestorePerStepVisibility()
     {
         foreach (var go in _touchedThisStep)
@@ -926,4 +1096,21 @@ public class TutorialManager : MonoBehaviour
             foreach (var p in step.hideWorldPaths)
                 SetActiveByWorldPath(p, false);
     }
+
+    // =============================
+    // Tutorial completion persistence (NO GameData changes)
+    // =============================
+    private bool IsTutorialDone(string sceneName, string tutorialId)
+    {
+        if (GameManager.Instance == null) return false;
+        return GameManager.Instance.IsTutorialDone(sceneName, tutorialId);
+    }
+
+    private void MarkTutorialDone(string sceneName, string tutorialId)
+    {
+        if (GameManager.Instance == null) return;
+        // saveImmediately=true כדי שיישמר מיד בסייב
+        GameManager.Instance.MarkTutorialDone(sceneName, tutorialId, saveImmediately: true);
+    }
+
 }

@@ -1,28 +1,25 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class ManagerDoor2 : MonoBehaviour
 {
     [Header("Scene Transition")]
-    [Tooltip("The scene to load when entering (e.g., basement).")]
     [SerializeField] private string sceneName = "Manager_Office";
-
-    [Tooltip("Where the Player will spawn in the new scene.")]
     [SerializeField] private Vector2 playerSpawnPosition;
 
     [Header("Tutorial Flag")]
     [Tooltip("Tutorial flag to set when the player enters this door (leave empty to disable).")]
     [SerializeField] private string tutorialFlag = "Basement";
 
-    [Header("Visual Prompt References")]
-    [Tooltip("Drag the child SpriteRenderer (the aura) here.")]
+    [Header("Aura")]
     public SpriteRenderer auraRenderer;
-
-    [Header("Aura Animation Settings")]
     public float pulseSpeed = 4.0f;
     public float maxAlpha = 0.7f;
     public float offset = 1.0f;
+
+    [Header("Press F World Anchor")]
+    public Transform pressFAnchor; // child Empty בשם PressF_Anchor מעל הדלת
 
     private bool playerInRange = false;
 
@@ -35,52 +32,66 @@ public class ManagerDoor2 : MonoBehaviour
     {
         if (!playerInRange) return;
 
+        // Aura pulse
         if (auraRenderer != null)
         {
-            float pulse = (((Mathf.Sin(Time.time * pulseSpeed)) + offset) / 2f) * maxAlpha;
-            Color c = auraRenderer.color;
+            float pulse = (((Mathf.Sin(Time.time * pulseSpeed)) / 2f) + offset) * maxAlpha;
+            var c = auraRenderer.color;
             c.a = pulse;
             auraRenderer.color = c;
         }
 
+        // Input
         if (Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame)
         {
-            EnterBasement();
+            EnterOffice();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-            if (auraRenderer != null) auraRenderer.gameObject.SetActive(true);
-        }
+        if (!other.CompareTag("Player")) return;
+
+        playerInRange = true;
+        if (auraRenderer != null) auraRenderer.gameObject.SetActive(true);
+
+        PressFPrompt.Instance?.Show(pressFAnchor != null ? pressFAnchor : transform);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-            if (auraRenderer != null) auraRenderer.gameObject.SetActive(false);
-        }
+        if (!other.CompareTag("Player")) return;
+
+        playerInRange = false;
+        if (auraRenderer != null) auraRenderer.gameObject.SetActive(false);
+
+        PressFPrompt.Instance?.Hide();
     }
 
-    private void EnterBasement()
+    private void EnterOffice()
     {
-        Debug.Log($"Moving player to {sceneName}...");
+        // Hide prompt before transition
+        PressFPrompt.Instance?.Hide();
 
-        // Set flag only if provided
-        if (!string.IsNullOrWhiteSpace(tutorialFlag))
-            TutorialManager.Instance?.SetFlag(tutorialFlag);
+        // Tutorial flag
+        if (string.IsNullOrWhiteSpace(tutorialFlag))
+        {
+            Debug.LogWarning("[Door] tutorialFlag is empty");
+        }
+        else if (TutorialManager.Instance == null)
+        {
+            Debug.LogWarning($"[Door] TutorialManager.Instance is NULL, can't set flag '{tutorialFlag}'");
+        }
+        else
+        {
+            Debug.Log($"[Door] Setting tutorial flag: '{tutorialFlag}'");
+            TutorialManager.Instance.SetFlag(tutorialFlag);
+        }
 
+        // Scene transition
         if (GameManager.Instance != null)
             GameManager.Instance.ChangeScene(sceneName, playerSpawnPosition);
         else
-        {
-            Debug.LogError("ManagerDoor2: GameManager instance missing!");
             SceneManager.LoadScene(sceneName);
-        }
     }
 }

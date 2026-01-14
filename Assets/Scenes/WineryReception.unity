@@ -1336,10 +1336,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   sceneName: Manager_Office
   playerSpawnPosition: {x: 0, y: 0}
+  tutorialFlag: Basement
   auraRenderer: {fileID: 1750211495}
   pulseSpeed: 4
   maxAlpha: 0.7
   offset: 2
+  pressFAnchor: {fileID: 0}
 --- !u!4 &1324205354 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7623605105346020578, guid: e4e8a0056ec8ae047a8e48c4c9373a60, type: 3}
@@ -1516,6 +1518,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1742453295}
+  - {fileID: 1825045139}
   m_Father: {fileID: 1023346971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1373188915
@@ -1536,6 +1539,7 @@ MonoBehaviour:
   pulseSpeed: 4
   maxAlpha: 0.7
   offset: 2
+  pressFAnchor: {fileID: 1825045139}
 --- !u!1001 &1535645824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1773,6 +1777,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1825045138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1825045139}
+  m_Layer: 0
+  m_Name: PressF_Anchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1825045139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825045138}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.57, y: 0.32, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1373188913}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1984256578
 GameObject:
   m_ObjectHideFlags: 0

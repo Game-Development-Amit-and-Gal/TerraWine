@@ -254,7 +254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &157090833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,374 +529,372 @@ MonoBehaviour:
   gotItAnchoredPosPanel3: {x: 0, y: 0}
   guides:
   - sceneName: SampleScene
-    panelChoice: 0
-    steps:
-    - arrowVariantIndex: -1
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: "I heard what happened. \nDon\u2019t be sad, kiddo you\u2019ll beat\nthem
-        even without the recipe."
-      targetObjectName: 
-      arrowOffset: {x: 0, y: 0}
-      hideSceneUI: 1
-      overridePanelChoice: 0
+    tutorials:
+    - tutorialId: Intro_Easy
       panelChoice: 0
-      nextMode: 0
-      secondsToAutoNext: 2
-      requiredFlagName: 
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 1
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: 'To move around the farm,
+      startMode: 0
+      startFlag: 
+      steps:
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 0}
+        overrideWorldOffset: 0
+        worldOffsetOverride: {x: 0, y: 0, z: 0}
+        hideUiPaths: []
+        showUiPaths: []
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: "I heard what happened.\nDon't be sad' kiddo you'll \nbeat them
+          even without \nthe recipe."
+        targetObjectName: 
+        arrowOffset: {x: 0, y: 0}
+        hideSceneUI: 1
+        overridePanelChoice: 0
+        panelChoice: 0
+        nextMode: 0
+        secondsToAutoNext: 0
+        requiredFlagName: 
+        allowMovementDuringThisStep: 0
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 0}
+        overrideWorldOffset: 0
+        worldOffsetOverride: {x: 0, y: 0, z: 0}
+        hideUiPaths: []
+        showUiPaths: []
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: "To move around,\nuse the movement controls \narrow keys."
+        targetObjectName: 
+        arrowOffset: {x: 0, y: 0}
+        hideSceneUI: 1
+        overridePanelChoice: 1
+        panelChoice: 1
+        nextMode: 3
+        secondsToAutoNext: 3
+        requiredFlagName: Move arrow keys
+        allowMovementDuringThisStep: 1
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 0}
+        overrideWorldOffset: 0
+        worldOffsetOverride: {x: 0, y: 0, z: 0}
+        hideUiPaths:
+        - GameUI/World
+        - GameUI/Shop
+        - GameUI/Calendar
+        showUiPaths:
+        - GameUI/BAG
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: Press open your bag.
+        targetObjectName: BAG
+        arrowOffset: {x: -70, y: -70}
+        hideSceneUI: 0
+        overridePanelChoice: 1
+        panelChoice: 2
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: Bag Open
+        allowMovementDuringThisStep: 0
+      - arrowVariantIndex: 1
+        worldArrowPrefabOverride: {fileID: 0}
+        overrideWorldOffset: 0
+        worldOffsetOverride: {x: 0, y: 0, z: 0}
+        hideUiPaths: []
+        showUiPaths:
+        - 
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: Press plant
+        targetObjectName: PlantButton
+        arrowOffset: {x: -50, y: -50}
+        hideSceneUI: 0
+        overridePanelChoice: 1
+        panelChoice: 1
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: Press Seed
+        allowMovementDuringThisStep: 0
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 5e987b73fec8a1e45b19f516a9bfeed9, type: 3}
+        overrideWorldOffset: 1
+        worldOffsetOverride: {x: 0, y: 3, z: 0}
+        hideUiPaths: []
+        showUiPaths: []
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: Press one of the vineyards
+        targetObjectName: Garden_bed 2
+        arrowOffset: {x: 0, y: 0}
+        hideSceneUI: 1
+        overridePanelChoice: 1
+        panelChoice: 1
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: Press vineyard
+        allowMovementDuringThisStep: 1
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 0}
+        overrideWorldOffset: 0
+        worldOffsetOverride: {x: 0, y: 0, z: 0}
+        hideUiPaths:
+        - GameUI/World
+        - GameUI/Shop
+        - GameUI/Calendar
+        showUiPaths:
+        - GameUI/BAG
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: "Wait for the \ngrapes to grow."
+        targetObjectName: 
+        arrowOffset: {x: 0, y: 0}
+        hideSceneUI: 0
+        overridePanelChoice: 1
+        panelChoice: 1
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: Vineyard Redy
+        allowMovementDuringThisStep: 0
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 0}
+        overrideWorldOffset: 0
+        worldOffsetOverride: {x: 0, y: 0, z: 0}
+        hideUiPaths: []
+        showUiPaths: []
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: 'They ready
 
-        use the movement controls
+          press to harvest them.'
+        targetObjectName: 
+        arrowOffset: {x: 0, y: 0}
+        hideSceneUI: 1
+        overridePanelChoice: 1
+        panelChoice: 1
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: Is Ready
+        allowMovementDuringThisStep: 0
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 0}
+        overrideWorldOffset: 0
+        worldOffsetOverride: {x: 0, y: 0, z: 0}
+        hideUiPaths:
+        - GameUI/World
+        - GameUI/Shop
+        - GameUI/Calendar
+        showUiPaths:
+        - GameUI/BAG
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: 'Press your bag
 
-        arrow
-        keys.'
-      targetObjectName: Player
-      arrowOffset: {x: -257, y: -213}
-      hideSceneUI: 1
-      overridePanelChoice: 1
-      panelChoice: 1
-      nextMode: 3
-      secondsToAutoNext: 4
-      requiredFlagName: Move arrow keys
-      allowMovementDuringThisStep: 1
-    - arrowVariantIndex: 0
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths:
-      - GameUI/Shop
-      - GameUI/Calendar
-      - GameUI/World
-      showUiPaths: []
-      hideWorldPaths:
-      - Grid/WineryHouse/WineryDoorTrigger
-      showWorldPaths: []
-      message: Now open your bag.
-      targetObjectName: BAG
-      arrowOffset: {x: -220, y: -50}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 2
-      secondsToAutoNext: 2
-      requiredFlagName: Bag Open
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: -1
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths:
-      - GameUI/Shop
-      - GameUI/Calendar
-      - GameUI/World
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: click on one of the seeds.
-      targetObjectName: 
-      arrowOffset: {x: 0, y: 0}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 1
-      nextMode: 2
-      secondsToAutoNext: 2
-      requiredFlagName: Press Seed
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: -1
-      worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 5e987b73fec8a1e45b19f516a9bfeed9, type: 3}
-      overrideWorldOffset: 1
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths:
-      - GameUI/Shop
-      - GameUI/Calendar
-      - GameUI/World
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: "Click on one of the vineyard \nplots to plant the seed.\n \n"
-      targetObjectName: Garden_bed 2
-      arrowOffset: {x: 0, y: 0}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 1
-      nextMode: 2
-      secondsToAutoNext: 2
-      requiredFlagName: Press vineyard
-      allowMovementDuringThisStep: 1
-    - arrowVariantIndex: -1
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: "we need to wait for the \ngrapes to grow.\n"
-      targetObjectName: 
-      arrowOffset: {x: 0, y: 0}
-      hideSceneUI: 1
-      overridePanelChoice: 1
-      panelChoice: 1
-      nextMode: 2
-      secondsToAutoNext: 2
-      requiredFlagName: Vineyard Redy
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 1
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: 'The grapes are ready
+          to see the grapes.
 
-        press to harvest them.'
-      targetObjectName: Garden_bed 2
-      arrowOffset: {x: -100, y: -100}
-      hideSceneUI: 1
-      overridePanelChoice: 1
-      panelChoice: 1
-      nextMode: 2
-      secondsToAutoNext: 2
-      requiredFlagName: Is Ready
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths:
-      - GameUI/Shop
-      - GameUI/Calendar
-      - GameUI/World
-      showUiPaths: []
-      hideWorldPaths:
-      - Grid/WineryHouse/WineryDoorTrigger
-      showWorldPaths: []
-      message: Click on your bag to see the grapes.
-      targetObjectName: BAG
-      arrowOffset: {x: -220, y: -50}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 2
-      secondsToAutoNext: 2
-      requiredFlagName: Bag Open
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: -1
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths:
-      - GameUI/Shop
-      - GameUI/Calendar
-      - GameUI/World
-      showUiPaths: []
-      hideWorldPaths:
-      - Grid/WineryHouse/WineryDoorTrigger
-      showWorldPaths: []
-      message: Press ESC to close the bag.
-      targetObjectName: 
-      arrowOffset: {x: 0, y: 0}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 2
-      secondsToAutoNext: 2
-      requiredFlagName: Bag Close
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: -1
-      worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
-      overrideWorldOffset: 1
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths:
-      - GameUI/Shop
-      - GameUI/Calendar
-      - GameUI/World
-      showUiPaths: []
-      hideWorldPaths:
-      - 
-      showWorldPaths: []
-      message: 'Enter the winery.
+'
+        targetObjectName: BAG
+        arrowOffset: {x: -70, y: -70}
+        hideSceneUI: 0
+        overridePanelChoice: 1
+        panelChoice: 2
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: Bag Open
+        allowMovementDuringThisStep: 1
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 0}
+        overrideWorldOffset: 0
+        worldOffsetOverride: {x: 0, y: 0, z: 0}
+        hideUiPaths:
+        - GameUI/World
+        - GameUI/Shop
+        - GameUI/Calendar
+        showUiPaths:
+        - GameUI/BAG
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: 'Press your Esc
 
-        By pressing F near a door you can enter
-        any door'
-      targetObjectName: Grid/WineryHouse/WineryDoorTrigger
-      arrowOffset: {x: 0, y: 0}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 1
-      nextMode: 2
-      secondsToAutoNext: 2
-      requiredFlagName: Winery
-      allowMovementDuringThisStep: 1
+
+'
+        targetObjectName: 
+        arrowOffset: {x: 0, y: 0}
+        hideSceneUI: 0
+        overridePanelChoice: 1
+        panelChoice: 1
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: Bag Close
+        allowMovementDuringThisStep: 1
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 39053fc5b2cc00e469ae14b567bb3a9e, type: 3}
+        overrideWorldOffset: 1
+        worldOffsetOverride: {x: 0, y: 2, z: 0}
+        hideUiPaths:
+        - GameUI/World
+        - GameUI/Shop
+        - GameUI/Calendar
+        showUiPaths:
+        - GameUI/BAG
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: Enter the winery
+        targetObjectName: WineryDoorTrigger
+        arrowOffset: {x: 0, y: 0}
+        hideSceneUI: 0
+        overridePanelChoice: 1
+        panelChoice: 2
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: Winery
+        allowMovementDuringThisStep: 1
   - sceneName: WineryReception
-    panelChoice: 0
-    steps:
-    - arrowVariantIndex: -1
-      worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      overrideWorldOffset: 1
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: "Go to the Basement \nusing the arrow keys."
-      targetObjectName: 'WinerybasementTrigger '
-      arrowOffset: {x: 0, y: 0}
-      hideSceneUI: 1
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 2
-      secondsToAutoNext: 0
-      requiredFlagName: Basement
-      allowMovementDuringThisStep: 1
+    tutorials:
+    - tutorialId: Intro_Easy
+      panelChoice: 0
+      startMode: 0
+      startFlag: 
+      steps:
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
+        overrideWorldOffset: 1
+        worldOffsetOverride: {x: 0, y: 3, z: 0}
+        hideUiPaths: []
+        showUiPaths: []
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: Go to Basement
+        targetObjectName: 'WinerybasementTrigger '
+        arrowOffset: {x: 0, y: 0}
+        hideSceneUI: 0
+        overridePanelChoice: 1
+        panelChoice: 1
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: Basement
+        allowMovementDuringThisStep: 1
   - sceneName: basement
-    panelChoice: 0
-    steps:
-    - arrowVariantIndex: -1
-      worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
-      overrideWorldOffset: 1
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: "Go to the right door \nusing the arrow keys."
-      targetObjectName: 'WineryWineTrigger '
-      arrowOffset: {x: 0, y: 0}
-      hideSceneUI: 1
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 2
-      secondsToAutoNext: 0
-      requiredFlagName: Rightdoor
-      allowMovementDuringThisStep: 1
+    tutorials:
+    - tutorialId: Intro_Easy
+      panelChoice: 0
+      startMode: 0
+      startFlag: 
+      steps:
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 2117284359493532730, guid: 56cdc13e11bbc474c965670e1d09094b, type: 3}
+        overrideWorldOffset: 1
+        worldOffsetOverride: {x: 0, y: 2, z: 0}
+        hideUiPaths: []
+        showUiPaths: []
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: Go to right door
+        targetObjectName: 'WineryWineTrigger '
+        arrowOffset: {x: 0, y: 0}
+        hideSceneUI: 0
+        overridePanelChoice: 1
+        panelChoice: 2
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: Rightdoor
+        allowMovementDuringThisStep: 1
   - sceneName: wine
-    panelChoice: 0
-    steps:
-    - arrowVariantIndex: 0
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: Press the barrel
-      targetObjectName: Player
-      arrowOffset: {x: -500, y: 100}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 1
-      nextMode: 2
-      secondsToAutoNext: 0
-      requiredFlagName: barrel
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: Press the Young Cabernet
-      targetObjectName: Player
-      arrowOffset: {x: 100, y: 550}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 2
-      secondsToAutoNext: 0
-      requiredFlagName: Young Cabernet
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: Press confirm
-      targetObjectName: Player
-      arrowOffset: {x: 200, y: -200}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 2
-      secondsToAutoNext: 0
-      requiredFlagName: confirm
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: Press the barrel
-      targetObjectName: Player
-      arrowOffset: {x: -500, y: 100}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 1
-      nextMode: 2
-      secondsToAutoNext: 0
-      requiredFlagName: Readybarrel
-      allowMovementDuringThisStep: 0
-    - arrowVariantIndex: 0
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: Go back to the yard.
-      targetObjectName: Player
-      arrowOffset: {x: 900, y: 100}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 2
-      secondsToAutoNext: 0
-      requiredFlagName: YARD
-      allowMovementDuringThisStep: 1
-    - arrowVariantIndex: 0
-      worldArrowPrefabOverride: {fileID: 0}
-      overrideWorldOffset: 0
-      worldOffsetOverride: {x: 0, y: 1.5, z: 0}
-      hideUiPaths: []
-      showUiPaths: []
-      hideWorldPaths: []
-      showWorldPaths: []
-      message: 
-      targetObjectName: Player
-      arrowOffset: {x: 900, y: 100}
-      hideSceneUI: 0
-      overridePanelChoice: 1
-      panelChoice: 2
-      nextMode: 1
-      secondsToAutoNext: 3
-      requiredFlagName: 
-      allowMovementDuringThisStep: 1
+    tutorials:
+    - tutorialId: Intro_Easy
+      panelChoice: 0
+      startMode: 0
+      startFlag: 
+      steps:
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 0}
+        overrideWorldOffset: 1
+        worldOffsetOverride: {x: 0, y: 0, z: 0}
+        hideUiPaths: []
+        showUiPaths: []
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: Press the barrel
+        targetObjectName: 
+        arrowOffset: {x: 0, y: 0}
+        hideSceneUI: 0
+        overridePanelChoice: 1
+        panelChoice: 1
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: barrel
+        allowMovementDuringThisStep: 0
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 0}
+        overrideWorldOffset: 0
+        worldOffsetOverride: {x: 0, y: 0, z: 0}
+        hideUiPaths: []
+        showUiPaths: []
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: Press the Young Cabernet
+        targetObjectName: 
+        arrowOffset: {x: 0, y: 0}
+        hideSceneUI: 0
+        overridePanelChoice: 1
+        panelChoice: 2
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: Young Cabernet
+        allowMovementDuringThisStep: 0
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 0}
+        overrideWorldOffset: 0
+        worldOffsetOverride: {x: 0, y: 0, z: 0}
+        hideUiPaths: []
+        showUiPaths: []
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: Press confirm
+        targetObjectName: Confirm
+        arrowOffset: {x: -50, y: -50}
+        hideSceneUI: 0
+        overridePanelChoice: 1
+        panelChoice: 2
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: confirm
+        allowMovementDuringThisStep: 0
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 0}
+        overrideWorldOffset: 0
+        worldOffsetOverride: {x: 0, y: 0, z: 0}
+        hideUiPaths: []
+        showUiPaths: []
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: 'When ready
+
+          press the berrel '
+        targetObjectName: Wooden_Barrel1
+        arrowOffset: {x: -50, y: -50}
+        hideSceneUI: 0
+        overridePanelChoice: 1
+        panelChoice: 1
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: Readybarrel
+        allowMovementDuringThisStep: 0
+      - arrowVariantIndex: 0
+        worldArrowPrefabOverride: {fileID: 0}
+        overrideWorldOffset: 0
+        worldOffsetOverride: {x: 0, y: 0, z: 0}
+        hideUiPaths: []
+        showUiPaths: []
+        hideWorldPaths: []
+        showWorldPaths: []
+        message: Go back to yard
+        targetObjectName: 'WinerybasementTrigger '
+        arrowOffset: {x: -50, y: -50}
+        hideSceneUI: 0
+        overridePanelChoice: 1
+        panelChoice: 1
+        nextMode: 2
+        secondsToAutoNext: 0
+        requiredFlagName: YARD
+        allowMovementDuringThisStep: 1
   sceneUiRootName: UI
   worldRootName: World
   worldArrowPrefab: {fileID: 365100781}
@@ -959,7 +957,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -110.43309}
-  m_SizeDelta: {x: 159.7714, y: 45.4974}
+  m_SizeDelta: {x: 140, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &294536752
 MonoBehaviour:
@@ -2814,8 +2812,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38
-  m_fontSizeBase: 38
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3647,7 +3645,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 184}
-  m_SizeDelta: {x: 266.2856, y: 45.4974}
+  m_SizeDelta: {x: 300, y: 45.4974}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &989113519
 PrefabInstance:
@@ -3926,8 +3924,162 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 101.45479}
-  m_SizeDelta: {x: 266.2856, y: 45.4974}
+  m_SizeDelta: {x: 300, y: 45.4974}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1002146645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1002146646}
+  - component: {fileID: 1002146649}
+  - component: {fileID: 1002146648}
+  - component: {fileID: 1002146647}
+  m_Layer: 0
+  m_Name: PressF_UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1002146646
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002146645}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1477401400}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1002146647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002146645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5704b0828a6ca9e4dacdf9dba418c7d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  rect: {fileID: 1002146646}
+  worldOffset: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
+  amplitude: 10
+  freq: 1.5
+--- !u!114 &1002146648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002146645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Press F
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+  m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 40
+  m_fontSizeBase: 40
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1002146649
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002146645}
+  m_CullTransparentMesh: 1
 --- !u!1 &1158966911
 GameObject:
   m_ObjectHideFlags: 0
@@ -4392,8 +4544,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38
-  m_fontSizeBase: 38
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4580,8 +4732,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4728,7 +4880,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Signin
+  m_text: Sign in
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4755,13 +4907,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4845,6 +4997,7 @@ RectTransform:
   m_Children:
   - {fileID: 1251857465}
   - {fileID: 1954511836}
+  - {fileID: 1002146646}
   m_Father: {fileID: 1744896438}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5226,7 +5379,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Signup
+  m_text: Sign up
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5253,13 +5406,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -5342,7 +5495,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -46.086777}
-  m_SizeDelta: {x: 159.7714, y: 45.4974}
+  m_SizeDelta: {x: 140, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1619548778
 MonoBehaviour:
@@ -5504,8 +5657,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6169,7 +6322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1785819895
 RectTransform:
   m_ObjectHideFlags: 0
