@@ -6322,7 +6322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1785819895
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6954,7 +6954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   mainMenuCanvas: {fileID: 1775925191}
   mainMenuRoot: {fileID: 1821054806}
-  playIntro: 0
+  playIntro: 1
   introVideoPlayer: {fileID: 1222537245}
   introFileName: game_video.mp4
 --- !u!4 &2133828406 stripped

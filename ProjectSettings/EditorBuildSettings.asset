@@ -35,6 +35,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Manager_Office.unity
     guid: 12d9730bf3d29f54fafc02ef35229703
+  - enabled: 1
+    path: Assets/Scenes/MiniGameBottles.unity
+    guid: 27b067008f9a22e4180244b6aa83beb2
+  - enabled: 1
+    path: Assets/Scenes/CompetitionScene.unity
+    guid: 18084bd0608a23543995e12edfcfde6a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
