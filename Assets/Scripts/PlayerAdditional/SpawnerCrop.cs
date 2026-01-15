@@ -59,7 +59,11 @@ public class MiniGameCropSpawner : MonoBehaviour
         MiniGamePickup pickup =
             go.GetComponent<MiniGamePickup>() ?? go.GetComponentInChildren<MiniGamePickup>(true);
 
-       
+        // ✅ ADDED: לוודא שמגדירים itemId -> sprite -> normalization בתוך MiniGamePickup
+        if (pickup != null)
+        {
+            pickup.Init(e.itemId, e.amount);
+        }
 
         Rigidbody2D body =
             go.GetComponent<Rigidbody2D>() ?? go.GetComponentInChildren<Rigidbody2D>(true);

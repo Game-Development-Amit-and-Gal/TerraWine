@@ -149,14 +149,18 @@ public class MiniGameItemSpawner : MonoBehaviour
             );
 
             var pickup = Instantiate(pickupPrefab, pos, Quaternion.identity, spawnedParent);
-            pickup.Init(item.id, amount);
+            pickup.Init(item.id, amount); // ✅ inside Init -> sets sprite -> normalizes size
 
             // ✅ סקייל לענבים: X=0.1 Y=0.2
-            bool isGrap = item.id != null && item.id.Contains("_Grap"); // לפי השמות אצלך
-            if (isGrap)
-                pickup.transform.localScale = new Vector3(0.6f, 0.46f, 1f);
+            // NOTE: נטרלנו כדי שכל הפריטים יהיו באמת באותו גודל (הנרמול עושה את זה)
+            // bool isGrap = item.id != null && item.id.Contains("_Grap"); // לפי השמות אצלך
+            // if (isGrap)
+            //     pickup.transform.localScale = new Vector3(0.6f, 0.46f, 1f);
 
             spawned++;
+
+            // אם את רוצה עדיין לראות בלוג של "isGrap", אפשר לחשב בלי לשנות גודל:
+            bool isGrap = item.id != null && item.id.Contains("_Grap"); // לפי השמות אצלך
 
             if (verboseLogs && i < 10)
                 Debug.Log($"[MiniGameItemSpawner] Spawned #{i + 1}: id='{item.id}', amount={amount}, worldPos={pos}, cell={cell}, isGrap={isGrap}");
