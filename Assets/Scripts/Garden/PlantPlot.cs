@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.InputSystem; // ✅ ADDED
 
 /// <summary>
 /// Serializable save data for one plant plot.
@@ -17,7 +18,7 @@ public class PlantPlotSave
     public string seedId;          // ID of planted seed
     public string harvestItemId;   // Item produced from harvest
     public int harvestAmount;      // Amount produced
-    
+
 
 }
 
@@ -96,6 +97,8 @@ public class PlantPlot : MonoBehaviour,
         if (spriteRenderer != null) spriteRenderer.sprite = emptySprite;
         if (timerText != null) timerText.gameObject.SetActive(false);
         if (readyVfx != null) readyVfx.SetActive(false);
+
+        HarvestIconUI.Instance?.Hide(); // ✅ ADDED
     }
 
 
@@ -145,6 +148,8 @@ public class PlantPlot : MonoBehaviour,
 
         if (readyVfx != null) readyVfx.SetActive(false);
 
+        HarvestIconUI.Instance?.Hide(); // ✅ ADDED
+
         StopAllCoroutines();
         StartCoroutine(GrowRoutine());
     }
@@ -173,6 +178,10 @@ public class PlantPlot : MonoBehaviour,
 
         if (timerText != null) timerText.gameObject.SetActive(false);
         if (readyVfx != null) readyVfx.SetActive(true);
+
+        // ✅ ADDED: אם העכבר כבר מעל בזמן שזה נהיה Ready
+        if (IsPointerOverThisPlotNow())
+            HarvestIconUI.Instance?.Show();
     }
 
     /// <summary>
@@ -207,11 +216,17 @@ public class PlantPlot : MonoBehaviour,
         TutorialManager.Instance?.SetFlag("Is Ready");
         Debug.Log($"[PlantPlot] Harvested {harvestAmount}x {harvestItemId}, success={ok}");
 
+        HarvestIconUI.Instance?.Hide(); // ✅ ADDED
+
         ResetToEmpty();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        // ✅ ADDED: להדליק רק כשהוא Ready
+        if (isReady) HarvestIconUI.Instance?.Show();
+        else HarvestIconUI.Instance?.Hide();
+
         if (timerText == null) return;
 
         if (isGrowing)
@@ -228,6 +243,8 @@ public class PlantPlot : MonoBehaviour,
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        HarvestIconUI.Instance?.Hide(); // ✅ ADDED
+
         if (timerText == null) return;
         timerText.gameObject.SetActive(false);
     }
@@ -301,6 +318,11 @@ public class PlantPlot : MonoBehaviour,
 
             if (timerText != null) timerText.gameObject.SetActive(false);
             if (readyVfx != null) readyVfx.SetActive(true);
+
+            // ✅ ADDED
+            if (IsPointerOverThisPlotNow()) HarvestIconUI.Instance?.Show();
+            else HarvestIconUI.Instance?.Hide();
+
             return;
         }
 
@@ -310,6 +332,8 @@ public class PlantPlot : MonoBehaviour,
 
         if (timerText != null) timerText.gameObject.SetActive(false);
         if (readyVfx != null) readyVfx.SetActive(false);
+
+        HarvestIconUI.Instance?.Hide(); // ✅ ADDED
 
         StopAllCoroutines();
         StartCoroutine(GrowRoutine());
@@ -346,6 +370,40 @@ public class PlantPlot : MonoBehaviour,
         readyOverrideSprite = seed.readyPlotSprite;
 
         return true;
+    }
+
+    // ✅ ADDED: Input System mouse position
+    private Vector2 GetMouseScreenPos()
+    {
+        if (Mouse.current != null)
+            return Mouse.current.position.ReadValue();
+
+        return Vector2.zero;
+    }
+
+    // ✅ ADDED: בדיקה אם העכבר עכשיו מעל החלקה (עובד עם Input System)
+    private bool IsPointerOverThisPlotNow()
+    {
+        if (EventSystem.current == null) return false;
+
+        var ped = new PointerEventData(EventSystem.current)
+        {
+            position = GetMouseScreenPos()
+        };
+
+        var results = new System.Collections.Generic.List<RaycastResult>();
+        EventSystem.current.RaycastAll(ped, results);
+
+        for (int i = 0; i < results.Count; i++)
+        {
+            if (results[i].gameObject == gameObject)
+                return true;
+
+            // אם יש לך ילדים של האובייקט שמקבלים את ה-raycast:
+            // if (results[i].gameObject.transform.IsChildOf(transform)) return true;
+        }
+
+        return false;
     }
 
 }

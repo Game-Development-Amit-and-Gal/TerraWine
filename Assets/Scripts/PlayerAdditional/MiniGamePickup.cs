@@ -11,6 +11,9 @@ public class MiniGamePickup : MonoBehaviour
 
     private SpriteRenderer sr;
 
+    // ✅ ADDED: גובה קבוע בעולם לכל Pickup (תכווני במספרים)
+    [SerializeField] private float targetWorldHeight = 0.45f;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -28,6 +31,21 @@ public class MiniGamePickup : MonoBehaviour
             if (def != null && def.icon != null)
                 sr.sprite = def.icon;
         }
+
+        // ✅ ADDED: אחרי שקבענו sprite -> נרמול גודל
+        NormalizeSpriteToFixedHeight();
+    }
+
+    // ✅ ADDED: הופך את כל הספראייטים לאותו גובה בעולם, בלי קשר לגודל התמונה
+    private void NormalizeSpriteToFixedHeight()
+    {
+        if (sr == null || sr.sprite == null) return;
+
+        float currentHeight = sr.bounds.size.y;   // גובה אמיתי בעולם
+        if (currentHeight <= 0.0001f) return;
+
+        float k = targetWorldHeight / currentHeight;
+        transform.localScale = transform.localScale * k;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

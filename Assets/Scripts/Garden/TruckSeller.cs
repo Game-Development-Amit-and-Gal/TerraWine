@@ -17,6 +17,9 @@ public class TruckSeller : MonoBehaviour
     [SerializeField] private GameObject sellPanel;
     [SerializeField] private TMP_Text summaryText;
 
+    [Header("Press E World Anchor")]
+    [SerializeField] private Transform pressEAnchor;
+
     // Drag these from the PLAYER in Inspector
     [SerializeField] private MiniMapClickToMove clickMover;
     [SerializeField] private PlayerMovement regularMover;
@@ -27,6 +30,9 @@ public class TruckSeller : MonoBehaviour
     {
         if (sellPanel != null)
             sellPanel.SetActive(false);
+
+        // Make sure prompt is hidden on start
+        PressEPrompt.Instance?.Hide();
     }
 
     private void Reset()
@@ -42,6 +48,9 @@ public class TruckSeller : MonoBehaviour
 
         playerInside = true;
         Debug.Log("[In Range] Press E in order to open a sale");
+
+        // Show Press E (like your door)
+        PressEPrompt.Instance?.Show(pressEAnchor != null ? pressEAnchor : transform);
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -50,6 +59,9 @@ public class TruckSeller : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         playerInside = false;
+
+        // Hide prompt when leaving range
+        PressEPrompt.Instance?.Hide();
 
         // Close + restore movement when leaving
         ClosePanelAndRestoreMovement();
@@ -117,6 +129,9 @@ public class TruckSeller : MonoBehaviour
 
         if (!EnsureMoversAssigned()) return;
 
+        // Hide prompt while panel is open
+        PressEPrompt.Instance?.Hide();
+
         // Block movement
         SetMovementEnabled(false);
 
@@ -131,6 +146,7 @@ public class TruckSeller : MonoBehaviour
     private void ClosePanelAndRestoreMovement()
     {
         InventoryTooltipUI.Instance?.Hide();
+
         // Close panel (prefer InventoryUI.Close if exists)
         if (sellPanel != null)
         {
@@ -141,6 +157,12 @@ public class TruckSeller : MonoBehaviour
 
         // Restore movement
         SetMovementEnabled(true);
+
+        // If player still in range, show Press E again
+        if (playerInside)
+            PressEPrompt.Instance?.Show(pressEAnchor != null ? pressEAnchor : transform);
+        else
+            PressEPrompt.Instance?.Hide();
     }
 
     private void RefreshPreview()
@@ -186,15 +208,12 @@ public class TruckSeller : MonoBehaviour
             Debug.Log("[TruckSeller] There’s nothing to sell or the price is 0");
         }
 
-        // Close + restore movement
         ClosePanelAndRestoreMovement();
     }
 
     public void CancelSell()
     {
         Debug.Log("[TruckSeller] You cancelled the sale");
-
-        // Close + restore movement
         ClosePanelAndRestoreMovement();
     }
 

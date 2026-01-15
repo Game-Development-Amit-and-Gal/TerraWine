@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Syrah_Grap
   displayName: 'Syrah '
-  icon: {fileID: 21300000, guid: 5d99e9786619c464e876959fe03e45bd, type: 3}
+  icon: {fileID: 1988063679, guid: b2df0ec87a9bb90419b4ec617d317cee, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

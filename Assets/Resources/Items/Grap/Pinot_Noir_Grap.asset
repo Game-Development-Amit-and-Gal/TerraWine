@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   id: Pinot_Noir_Grap
   displayName: Pinot Noir
-  icon: {fileID: 21300000, guid: 8018ca8946c22714190d927c86c302fb, type: 3}
+  icon: {fileID: 1407699563, guid: b2df0ec87a9bb90419b4ec617d317cee, type: 3}
   stackable: 1
   maxStack: 99
   price: 0

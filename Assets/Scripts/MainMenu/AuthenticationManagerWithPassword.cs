@@ -115,6 +115,22 @@ public class AuthenticationManagerWithPassword : MonoBehaviour
     {
         if (authPanel != null) authPanel.SetActive(false);
     }
+    public async void GuestLogin()
+    {
+        
+        if (!UgsReady)
+            await InitUgsAndAnalytics();
+
+       
+        const string guestUser = "gal";
+        const string guestPass = "123456789Ga=l";
+
+        
+        string result = await LoginWithUsernameAndPassword(guestUser, guestPass);
+        Debug.Log("[UGS] GuestLogin: " + result);
+
+    }
+
 
     private void ShowAuthPanel()
     {

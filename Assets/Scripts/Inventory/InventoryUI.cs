@@ -11,17 +11,35 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private GameObject slotPrefab;
 
     [SerializeField] private GameObject extraImage;
+
+    // MAIN tabs (Selected versions)
+    [Header("Main Tabs - Selected")]
     [SerializeField] private GameObject ResourcesBottom;
     [SerializeField] private GameObject WineBottlesBottom;
     [SerializeField] private GameObject DesignBottom;
+
+    // MAIN tabs (Unselected versions)
+    [Header("Main Tabs - Unselected")]
+    [SerializeField] private GameObject ResourcesBottom_Unselected;
+    [SerializeField] private GameObject WineBottlesBottom_Unselected;
+    [SerializeField] private GameObject DesignBottom_Unselected;
 
     [SerializeField] private bool isSellUI = false;
     [SerializeField] private TruckSeller truckSeller;
 
     [SerializeField] private bool isBuyUI = false;
+
+    // BUY tabs (Selected versions)
+    [Header("Buy Tabs - Selected")]
     [SerializeField] private GameObject UpdateBottom;
     [SerializeField] private GameObject SecurityBottom;
     [SerializeField] private GameObject DesignBuyBottom;
+
+    // BUY tabs (Unselected versions)
+    [Header("Buy Tabs - Unselected")]
+    [SerializeField] private GameObject UpdateBottom_Unselected;
+    [SerializeField] private GameObject SecurityBottom_Unselected;
+    [SerializeField] private GameObject DesignBuyBottom_Unselected;
 
     [SerializeField] private ItemCategory currentCategory = ItemCategory.Resources;
 
@@ -43,6 +61,13 @@ public class InventoryUI : MonoBehaviour
 
         InventoryManager.Instance.onChanged.AddListener(Redraw);
         Redraw();
+
+        // ensure correct tab visuals if opened/enabled while panel already active
+        if (panel != null && panel.activeInHierarchy)
+        {
+            SetExtraUiActive(true);
+            RefreshTabSelection();
+        }
     }
 
     private void OnDisable()
@@ -59,34 +84,143 @@ public class InventoryUI : MonoBehaviour
         if (extraImage != null)
             extraImage.SetActive(active);
 
+        if (!active)
+        {
+            SetAllTabsVisible(false);
+            return;
+        }
+
+        // Show only the relevant set (Main vs Buy)
         if (!isBuyUI)
         {
-            if (ResourcesBottom != null)
-            {
-                if (active) TutorialManager.Instance?.SetFlag("Bag Open");
-                ResourcesBottom.SetActive(active);
-            }
+            SetMainTabsVisible(true);
+            SetBuyTabsVisible(false);
 
-            if (WineBottlesBottom != null)
-                WineBottlesBottom.SetActive(active);
-
-            if (DesignBottom != null)
-                DesignBottom.SetActive(active);
-
-            if (UpdateBottom != null) UpdateBottom.SetActive(false);
-            if (SecurityBottom != null) SecurityBottom.SetActive(false);
-            if (DesignBuyBottom != null) DesignBuyBottom.SetActive(false);
+            // bag open tutorial only when opening (same behavior you had)
+            TutorialManager.Instance?.SetFlag("Bag Open");
         }
         else
+        {
+            SetMainTabsVisible(false);
+            SetBuyTabsVisible(true);
+        }
+
+        RefreshTabSelection();
+    }
+
+    // --- Tabs visibility helpers (turn sets ON/OFF) ---
+
+    private void SetAllTabsVisible(bool visible)
+    {
+        // MAIN selected
+        if (ResourcesBottom != null) ResourcesBottom.SetActive(false);
+        if (WineBottlesBottom != null) WineBottlesBottom.SetActive(false);
+        if (DesignBottom != null) DesignBottom.SetActive(false);
+
+        // MAIN unselected
+        if (ResourcesBottom_Unselected != null) ResourcesBottom_Unselected.SetActive(false);
+        if (WineBottlesBottom_Unselected != null) WineBottlesBottom_Unselected.SetActive(false);
+        if (DesignBottom_Unselected != null) DesignBottom_Unselected.SetActive(false);
+
+        // BUY selected
+        if (UpdateBottom != null) UpdateBottom.SetActive(false);
+        if (SecurityBottom != null) SecurityBottom.SetActive(false);
+        if (DesignBuyBottom != null) DesignBuyBottom.SetActive(false);
+
+        // BUY unselected
+        if (UpdateBottom_Unselected != null) UpdateBottom_Unselected.SetActive(false);
+        if (SecurityBottom_Unselected != null) SecurityBottom_Unselected.SetActive(false);
+        if (DesignBuyBottom_Unselected != null) DesignBuyBottom_Unselected.SetActive(false);
+    }
+
+    private void SetMainTabsVisible(bool visible)
+    {
+        if (!visible)
         {
             if (ResourcesBottom != null) ResourcesBottom.SetActive(false);
             if (WineBottlesBottom != null) WineBottlesBottom.SetActive(false);
             if (DesignBottom != null) DesignBottom.SetActive(false);
 
-            if (UpdateBottom != null) UpdateBottom.SetActive(active);
-            if (SecurityBottom != null) SecurityBottom.SetActive(active);
-            if (DesignBuyBottom != null) DesignBuyBottom.SetActive(active);
+            if (ResourcesBottom_Unselected != null) ResourcesBottom_Unselected.SetActive(false);
+            if (WineBottlesBottom_Unselected != null) WineBottlesBottom_Unselected.SetActive(false);
+            if (DesignBottom_Unselected != null) DesignBottom_Unselected.SetActive(false);
+            return;
         }
+
+        // When visible, we will control which one is selected via RefreshTabSelection().
+        // So we can just enable the "unselected" as a baseline and hide selected for now.
+        if (ResourcesBottom_Unselected != null) ResourcesBottom_Unselected.SetActive(true);
+        if (WineBottlesBottom_Unselected != null) WineBottlesBottom_Unselected.SetActive(true);
+        if (DesignBottom_Unselected != null) DesignBottom_Unselected.SetActive(true);
+
+        if (ResourcesBottom != null) ResourcesBottom.SetActive(false);
+        if (WineBottlesBottom != null) WineBottlesBottom.SetActive(false);
+        if (DesignBottom != null) DesignBottom.SetActive(false);
+    }
+
+    private void SetBuyTabsVisible(bool visible)
+    {
+        if (!visible)
+        {
+            if (UpdateBottom != null) UpdateBottom.SetActive(false);
+            if (SecurityBottom != null) SecurityBottom.SetActive(false);
+            if (DesignBuyBottom != null) DesignBuyBottom.SetActive(false);
+
+            if (UpdateBottom_Unselected != null) UpdateBottom_Unselected.SetActive(false);
+            if (SecurityBottom_Unselected != null) SecurityBottom_Unselected.SetActive(false);
+            if (DesignBuyBottom_Unselected != null) DesignBuyBottom_Unselected.SetActive(false);
+            return;
+        }
+
+        if (UpdateBottom_Unselected != null) UpdateBottom_Unselected.SetActive(true);
+        if (SecurityBottom_Unselected != null) SecurityBottom_Unselected.SetActive(true);
+        if (DesignBuyBottom_Unselected != null) DesignBuyBottom_Unselected.SetActive(true);
+
+        if (UpdateBottom != null) UpdateBottom.SetActive(false);
+        if (SecurityBottom != null) SecurityBottom.SetActive(false);
+        if (DesignBuyBottom != null) DesignBuyBottom.SetActive(false);
+    }
+
+    // --- Tab selection visuals ---
+
+    private void RefreshTabSelection()
+    {
+        if (!isBuyUI)
+            RefreshTabSelection_Main();
+        else
+            RefreshTabSelection_Buy();
+    }
+
+    private void RefreshTabSelection_Main()
+    {
+        bool res = currentCategory == ItemCategory.Resources;
+        bool wine = currentCategory == ItemCategory.WineBottles;
+        bool design = currentCategory == ItemCategory.Design;
+
+        if (ResourcesBottom != null) ResourcesBottom.SetActive(res);
+        if (ResourcesBottom_Unselected != null) ResourcesBottom_Unselected.SetActive(!res);
+
+        if (WineBottlesBottom != null) WineBottlesBottom.SetActive(wine);
+        if (WineBottlesBottom_Unselected != null) WineBottlesBottom_Unselected.SetActive(!wine);
+
+        if (DesignBottom != null) DesignBottom.SetActive(design);
+        if (DesignBottom_Unselected != null) DesignBottom_Unselected.SetActive(!design);
+    }
+
+    private void RefreshTabSelection_Buy()
+    {
+        bool upd = currentCategory == ItemCategory.Update;
+        bool sec = currentCategory == ItemCategory.Security;
+        bool designBuy = currentCategory == ItemCategory.DesignBuy;
+
+        if (UpdateBottom != null) UpdateBottom.SetActive(upd);
+        if (UpdateBottom_Unselected != null) UpdateBottom_Unselected.SetActive(!upd);
+
+        if (SecurityBottom != null) SecurityBottom.SetActive(sec);
+        if (SecurityBottom_Unselected != null) SecurityBottom_Unselected.SetActive(!sec);
+
+        if (DesignBuyBottom != null) DesignBuyBottom.SetActive(designBuy);
+        if (DesignBuyBottom_Unselected != null) DesignBuyBottom_Unselected.SetActive(!designBuy);
     }
 
     public void Toggle()
@@ -105,6 +239,7 @@ public class InventoryUI : MonoBehaviour
         {
             currentPage = 0;
             Redraw();
+            RefreshTabSelection();
         }
         else
         {
@@ -120,6 +255,7 @@ public class InventoryUI : MonoBehaviour
         SetExtraUiActive(true);
         currentPage = 0;
         Redraw();
+        RefreshTabSelection();
     }
 
     public void Close()
@@ -144,12 +280,53 @@ public class InventoryUI : MonoBehaviour
     }
 
     // Tabs
-    public void ShowResourcesTab() { currentCategory = ItemCategory.Resources; currentPage = 0; Redraw(); }
-    public void ShowWineBottlesTab() { currentCategory = ItemCategory.WineBottles; currentPage = 0; Redraw(); }
-    public void ShowDesignTab() { currentCategory = ItemCategory.Design; currentPage = 0; Redraw(); }
-    public void ShowUpdateTab() { currentCategory = ItemCategory.Update; currentPage = 0; Redraw(); }
-    public void ShowSecurityTab() { currentCategory = ItemCategory.Security; currentPage = 0; Redraw(); }
-    public void ShowDesignBuyTab() { currentCategory = ItemCategory.DesignBuy; currentPage = 0; Redraw(); }
+    public void ShowResourcesTab()
+    {
+        currentCategory = ItemCategory.Resources;
+        currentPage = 0;
+        Redraw();
+        RefreshTabSelection();
+    }
+
+    public void ShowWineBottlesTab()
+    {
+        currentCategory = ItemCategory.WineBottles;
+        currentPage = 0;
+        Redraw();
+        RefreshTabSelection();
+    }
+
+    public void ShowDesignTab()
+    {
+        currentCategory = ItemCategory.Design;
+        currentPage = 0;
+        Redraw();
+        RefreshTabSelection();
+    }
+
+    public void ShowUpdateTab()
+    {
+        currentCategory = ItemCategory.Update;
+        currentPage = 0;
+        Redraw();
+        RefreshTabSelection();
+    }
+
+    public void ShowSecurityTab()
+    {
+        currentCategory = ItemCategory.Security;
+        currentPage = 0;
+        Redraw();
+        RefreshTabSelection();
+    }
+
+    public void ShowDesignBuyTab()
+    {
+        currentCategory = ItemCategory.DesignBuy;
+        currentPage = 0;
+        Redraw();
+        RefreshTabSelection();
+    }
 
     // Paging
     public void NextPage()
@@ -251,7 +428,7 @@ public class InventoryUI : MonoBehaviour
             var nameTr = go.transform.Find("Name");
             var timeTr = go.transform.Find("ReadyTime");
 
-            // NEW: Plant button
+            // Plant button
             var plantBtnTr = go.transform.Find("PlantButton");
             var plantBtn = plantBtnTr != null ? plantBtnTr.GetComponent<Button>() : null;
 
@@ -342,7 +519,7 @@ public class InventoryUI : MonoBehaviour
                 click.iconImage = img;
             }
 
-            // NEW: PlantButton behavior (Seeds only)
+            // PlantButton behavior (Seeds only)
             if (plantBtn != null)
             {
                 bool canPlant = so.isSeed && !isSellUI && !isBuyUI;

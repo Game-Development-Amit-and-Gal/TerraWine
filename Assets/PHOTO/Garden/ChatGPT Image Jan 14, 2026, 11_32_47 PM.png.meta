@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 34a1e0ca6228f26459a6bf51dd412296
+guid: 92e66f4b59f96ce47bb11fdcc387ed79
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7380244599877616279
-    second: Carignan_Grap_0
+      213: -337261223649341977
+    second: ChatGPT Image Jan 14, 2026, 11_32_47 PM_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,13 +46,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 39, y: 192, z: 75, w: 276}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Carignan_Grap_0
+      name: ChatGPT Image Jan 14, 2026, 11_32_47 PM_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 199
-        width: 910
-        height: 1105
+        x: 0
+        y: 8
+        width: 1024
+        height: 1503
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 96dbccc73aa149990800000000000000
-      internalID: -7380244599877616279
+      spriteID: 7ed0ed734bec15bf0800000000000000
+      internalID: -337261223649341977
       vertices: []
       indices: 
       edges: []
@@ -138,8 +138,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: 
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Carignan_Grap_0: -7380244599877616279
+      ChatGPT Image Jan 14, 2026, 11_32_47 PM_0: -337261223649341977
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

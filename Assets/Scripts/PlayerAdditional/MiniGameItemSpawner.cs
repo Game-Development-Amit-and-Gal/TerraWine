@@ -154,7 +154,7 @@ public class MiniGameItemSpawner : MonoBehaviour
             // ✅ סקייל לענבים: X=0.1 Y=0.2
             bool isGrap = item.id != null && item.id.Contains("_Grap"); // לפי השמות אצלך
             if (isGrap)
-                pickup.transform.localScale = new Vector3(0.16f, 0.12f, 1f);
+                pickup.transform.localScale = new Vector3(0.6f, 0.46f, 1f);
 
             spawned++;
 

@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Wood.unity
     guid: 0546c9a8d57e36440a72bdbddcb80c51
   - enabled: 1
+    path: Assets/Scenes/MiniGameBottles.unity
+    guid: 27b067008f9a22e4180244b6aa83beb2
+  - enabled: 1
     path: Assets/Scenes/WineryReception.unity
     guid: bd28519504e9e8e4a8282ac4c3eb44cf
   - enabled: 1
